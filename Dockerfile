@@ -18,7 +18,7 @@ RUN yarn prisma generate
 # Build TypeScript
 RUN yarn build
 
-EXPOSE 4000
+EXPOSE 3005
 
 # Jalankan aplikasi
 CMD ["yarn", "start"]

@@ -3,7 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 dotenv.config();
 
-import { call, end } from "./controller/call.controller";
+// import { call, end } from "./controller/call.controller";
 import "./config/mqtt"; // pastikan terhubung
 import "./config/redis";
 
@@ -17,8 +17,8 @@ const port = process.env.PORT || 3005;
 app.use(cors());
 app.use(express.json());
 
-app.post("/api/call", call);
-app.post("/api/end-call", end);
+// app.post("/api/call", call);
+// app.post("/api/end-call", end);
 
 app.use("/api/category", CategoryRoute);
 app.use("/api/description", DescriptionRoute);
