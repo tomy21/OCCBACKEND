@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum statusIssue {
+  new
+  progress
+  solved
+}
+
+enum record {
+  ACTIVE   @map("0")
+  INACTIVE @map("1")
+  DELETE   @map("2")
+}
+
+model OccCategory {
+  id        Int       @id @default(autoincrement())
+  category  String
+  createdBy String
+  modifyBy  String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+
+  occCategory OccDescription[]
+}
+
+model OccDescription {
+  id          Int       @id @default(autoincrement())
+  id_category Int
+  object      String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime?
+  createdBy   String
+  modifyBy    String?
+
+  category OccCategory @relation(fields: [id_category], references: [id])
+}
+
+model OccIssue {
+  id           Int         @id @default(autoincrement())
+  ticket       String
+  category     String?
+  lokasi       String?
+  description  String?
+  gate         String?
+  action       String?
+  foto         String?
+  number_plate String?
+  TrxNo        String?
+  status       statusIssue @default(new)
+  createdBy    String
+  modifiedBy   String?
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  deletedAt    DateTime?
+}
+
+model OccRefLocation {
+  id                Int       @id @default(autoincrement())
+  Code              String
+  Name              String
+  Region            String?
+  Vendor            String?
+  VendorParkingCode String?
+  ShortName         String?
+  Address           String?
+  StartTime         DateTime?
+  EndTime           DateTime?
+  DateNext          Int?
+  TimeZone          String?
+  CreatedAt         DateTime  @default(now())
+  UpdatedAt         DateTime  @updatedAt
+  DeletedAt         DateTime?
+  recordStatus      record
+}
+
+model OccGate {
+  id           Int       @id @default(autoincrement())
+  id_location  Int
+  gate         String
+  channel_cctv String
+  arduino      Int       @default(0)
+  statusGate   Int       @default(0)
+  id_tele      String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  deletedAt    DateTime?
+}
