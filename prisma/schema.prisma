@@ -20,8 +20,8 @@ enum statusIssue {
 }
 
 enum record {
-  ACTIVE   @map("0")
-  INACTIVE @map("1")
+  INACTIVE @map("0")
+  ACTIVE   @map("1")
   DELETE   @map("2")
 }
 
@@ -86,6 +86,8 @@ model OccRefLocation {
   UpdatedAt         DateTime  @updatedAt
   DeletedAt         DateTime?
   recordStatus      record
+
+  location OccGate[]
 }
 
 model OccGate {
@@ -99,4 +101,6 @@ model OccGate {
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   deletedAt    DateTime?
+
+  location OccRefLocation @relation(fields: [id_location], references: [id])
 }
