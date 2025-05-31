@@ -104,3 +104,11 @@ model OccGate {
 
   location OccRefLocation @relation(fields: [id_location], references: [id])
 }
+
+model OccIntercome {
+  Id        Int      @id @default(autoincrement())
+  GateName  String
+  Locations String
+  Count     Int
+  CreatedAt DateTime @default(now())
+}

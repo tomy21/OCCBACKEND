@@ -146,6 +146,46 @@ export const detailGateByLocation = async (req: Request, res: Response) => {
   }
 };
 
+export const addGateLocation = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const { idLocation } = req.params;
+    const { gateName } = req.body;
+
+    if (!gateName) {
+      res
+        .status(400)
+        .json(createResponse("GATE", "READ", "gateName is required"));
+    }
+
+    const locationId = parseInt(idLocation);
+    if (isNaN(locationId)) {
+      res
+        .status(400)
+        .json(createResponse("GATE", "READ", "Invalid location ID"));
+    }
+
+    const createGate = await prisma.occGate.create({
+      data: {
+        gate: gateName,
+        id_location: locationId,
+        channel_cctv: "0",
+      },
+    });
+
+    res
+      .status(201)
+      .json(createResponse("GATE", "CREATE", "Gate created", createGate));
+  } catch (error) {
+    console.error("Error creating gate:", error); // opsional
+    res
+      .status(500)
+      .json(createResponse("GATE", "ERROR", "Internal server error"));
+  }
+};
+
 export const updateLocationActive = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -174,11 +214,19 @@ export const openGate = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { status } = req.body;
     const open = status === "OPEN" ? 1 : 0;
-    await prisma.occGate.update({
-      where: { id: parseInt(id) },
-      data: { arduino: open },
+    const data = await prisma.occGate.update({
+      where: { id: parseInt(id), arduino: 1 },
+      data: { statusGate: open },
+      include: {
+        location: {
+          select: {
+            Code: true,
+            Name: true,
+          },
+        },
+      },
     });
-    res.status(200).json(createResponse("GATE", "UPDATE", "Gate opened"));
+    res.status(200).json(createResponse("GATE", "UPDATE", "Gate opened", data));
   } catch (error) {
     console.error(error);
     res
