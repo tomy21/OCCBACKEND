@@ -1,4 +1,5 @@
 export const RESPONSE_CODES = {
+  LOGIN: 20,
   CATEGORY: 21,
   DESCRIPTION: 22,
   ISSUE: 23,

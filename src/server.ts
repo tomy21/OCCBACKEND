@@ -16,7 +16,10 @@ import LocationRoute from "./routes/location/routes";
 import IOTRoute from "./routes/iot/routes";
 import CallRoute from "./routes/call/routes";
 
+import Auth from "./routes/login/routes";
+
 import { checkArduinoTimeout } from "./jobs/cekStatusArduino";
+import cookieParser from "cookie-parser";
 
 const app = express();
 const port = process.env.PORT || 3005;
@@ -33,6 +36,7 @@ const users = [
 
 let nextUserIndex = 0;
 
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
@@ -44,6 +48,7 @@ app.use("/api/description", DescriptionRoute);
 app.use("/api/issue", IssueRoute);
 app.use("/api/location", LocationRoute);
 app.use("/api/iot", IOTRoute);
+app.use("/api/auth", Auth);
 
 app.use(
   "/api/gate",

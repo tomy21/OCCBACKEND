@@ -6,8 +6,10 @@ import {
   getDescriptionById,
   updateDescription,
 } from "../../controller/objectController";
+import { authMiddleware } from "../../middleware/AuthMiddleware";
 
 const router = express.Router();
+router.use(authMiddleware as express.RequestHandler);
 
 router.post("/create", createDescription);
 router.get("/get-all", getAllDescription);
