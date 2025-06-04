@@ -107,6 +107,7 @@ export default function createGateStatusRoute(
               gateId: id,
               gateStatus: gate?.statusGate,
               location: gate?.location,
+              gate: gate?.gate,
             });
 
             res.status(200).json({

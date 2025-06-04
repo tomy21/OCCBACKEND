@@ -108,15 +108,16 @@ export const getLocationById = async (req: Request, res: Response) => {
 export const detailGateByLocation = async (req: Request, res: Response) => {
   try {
     const { locationId } = req.params;
+    const { search } = req.query;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const totalItems = await prisma.occGate.count();
-    const gates = await prisma.occGate.findMany({
-      where: { id_location: parseInt(locationId) },
-      skip,
-      take: limit,
+    const gatesRaw = await prisma.occGate.findMany({
+      where: {
+        id_location: parseInt(locationId),
+        deletedAt: null,
+      },
       include: {
         location: {
           select: {
@@ -126,6 +127,19 @@ export const detailGateByLocation = async (req: Request, res: Response) => {
         },
       },
     });
+
+    // Manual filtering
+    const filteredGates = gatesRaw.filter((gate) => {
+      const lowerSearch = (search as string)?.toLowerCase() || "";
+      return (
+        gate.gate.toLowerCase().includes(lowerSearch) ||
+        gate.location?.Name?.toLowerCase().includes(lowerSearch)
+      );
+    });
+
+    const totalItems = filteredGates.length;
+    const paginatedGates = filteredGates.slice(skip, skip + limit);
+
     res
       .status(200)
       .json(
@@ -133,13 +147,14 @@ export const detailGateByLocation = async (req: Request, res: Response) => {
           "GATE",
           "READ",
           "Get all gates fetched",
-          gates,
+          paginatedGates,
           page,
           limit,
           totalItems
         )
       );
-  } catch {
+  } catch (error) {
+    console.error("Error fetching gates:", error);
     res
       .status(500)
       .json(createResponse("GATE", "ERROR", "Internal server error"));
@@ -226,6 +241,14 @@ export const openGate = async (req: Request, res: Response) => {
         },
       },
     });
+
+    if (!data) {
+      res
+        .status(404)
+        .json(createResponse("GATE", "ERROR", "Arduino not active"));
+      return;
+    }
+
     res.status(200).json(createResponse("GATE", "UPDATE", "Gate opened", data));
   } catch (error) {
     console.error(error);
