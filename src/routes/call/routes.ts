@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
 import { Server } from "socket.io";
+import { toZonedTime } from "date-fns-tz";
 
 export default function createGateStatusRoute(
   io: Server,
@@ -10,6 +11,9 @@ export default function createGateStatusRoute(
 ) {
   const router = Router();
   const prisma = new PrismaClient();
+
+  const timeZone = "Asia/Jakarta";
+  const localDate = toZonedTime(new Date(), timeZone);
 
   let queue: { id: number; res: any }[] = [];
   let processing = false;
@@ -35,13 +39,18 @@ export default function createGateStatusRoute(
         },
       },
     });
+    const now = new Date();
 
+    // Tambah 7 jam (WIB = UTC+7) ke waktu UTC
+    const plus7hours = new Date(now.getTime() + 7 * 60 * 60 * 1000);
+    console.log(plus7hours);
     if (!findIntercom) {
       await prisma.occIntercome.create({
         data: {
           GateName: gate?.gate || "-",
           Locations: locationName || "-",
           Count: 1,
+          CreatedAt: plus7hours,
         },
       });
     } else {
@@ -49,9 +58,21 @@ export default function createGateStatusRoute(
         where: { Id: findIntercom.Id },
         data: {
           Count: findIntercom.Count + 1,
+          CreatedAt: plus7hours,
         },
       });
     }
+
+    const summary = await prisma.occIntercome.groupBy({
+      by: ["GateName", "Locations"],
+      where: {
+        CreatedAt: { gte: new Date(new Date().setHours(0, 0, 0, 0)) },
+      },
+      _sum: { Count: true },
+    });
+
+    // Emit ke semua client yang connect via socket
+    io.emit("intercome-summary", summary);
 
     // Masukkan ke queue dan proses
     queue.push({ id, res });

@@ -112,8 +112,8 @@ export const getDescriptionById = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const description = await prisma.occDescription.findUnique({
-      where: { id: parseInt(id) },
+    const description = await prisma.occDescription.findMany({
+      where: { id_category: parseInt(id) },
     });
 
     if (!description) {

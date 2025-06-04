@@ -15,11 +15,13 @@ import IssueRoute from "./routes/Issues/route";
 import LocationRoute from "./routes/location/routes";
 import IOTRoute from "./routes/iot/routes";
 import CallRoute from "./routes/call/routes";
+import SummaryRoute from "./routes/summary/routes";
 
 import Auth from "./routes/login/routes";
 
 import { checkArduinoTimeout } from "./jobs/cekStatusArduino";
 import cookieParser from "cookie-parser";
+import { fetchIntercomeSummary } from "./service/summaryCall";
 
 const app = express();
 const port = process.env.PORT || 3005;
@@ -47,6 +49,8 @@ app.use("/api/category", CategoryRoute);
 app.use("/api/description", DescriptionRoute);
 app.use("/api/issue", IssueRoute);
 app.use("/api/location", LocationRoute);
+app.use("/api/summary", SummaryRoute);
+
 app.use("/api/iot", IOTRoute);
 app.use("/api/auth", Auth);
 
