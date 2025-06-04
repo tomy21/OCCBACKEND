@@ -65,12 +65,24 @@ export const getAllDescription = async (
   res: Response
 ): Promise<void> => {
   try {
+    const { search } = req.query;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const totalItems = await prisma.occDescription.count();
+    const filterCondition = search
+      ? {
+          object: {
+            contains: search as string,
+          },
+        }
+      : {};
+
+    const totalItems = await prisma.occDescription.count({
+      where: filterCondition,
+    });
     const description = await prisma.occDescription.findMany({
+      where: filterCondition,
       skip,
       take: limit,
     });

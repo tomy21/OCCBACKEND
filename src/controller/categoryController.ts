@@ -39,12 +39,28 @@ export const getAllCategory = async (
   res: Response
 ): Promise<void> => {
   try {
+    const { search } = req.query;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const totalItems = await prisma.occCategory.count();
+    // Filter berdasarkan search (jika ada)
+    const filterCondition = search
+      ? {
+          category: {
+            contains: search as string,
+          },
+        }
+      : {};
+
+    // Hitung total setelah difilter
+    const totalItems = await prisma.occCategory.count({
+      where: filterCondition,
+    });
+
+    // Ambil data yang sudah difilter
     const categories = await prisma.occCategory.findMany({
+      where: filterCondition,
       skip,
       take: limit,
     });
@@ -61,7 +77,7 @@ export const getAllCategory = async (
 
     res.status(200).json(response);
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching categories:", error);
     res
       .status(500)
       .json(createResponse("CATEGORY", "ERROR", "Internal server error"));

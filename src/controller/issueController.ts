@@ -120,12 +120,29 @@ export const getAllIssues = async (
   res: Response
 ): Promise<void> => {
   try {
+    const { search } = req.query;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const totalItems = await prisma.occIssue.count();
+    // Filter kondisi pencarian jika `search` diisi
+    const filterCondition = search
+      ? {
+          OR: [
+            { ticket: { contains: search as string } },
+            { category: { contains: search as string } },
+            { lokasi: { contains: search as string } },
+            { gate: { contains: search as string } },
+          ],
+        }
+      : {};
+
+    const totalItems = await prisma.occIssue.count({
+      where: filterCondition,
+    });
+
     const issues = await prisma.occIssue.findMany({
+      where: filterCondition,
       skip,
       take: limit,
     });
@@ -142,10 +159,10 @@ export const getAllIssues = async (
 
     res.status(200).json(response);
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching issues:", error);
     res
       .status(500)
-      .json(createResponse("CATEGORY", "ERROR", "Internal server error"));
+      .json(createResponse("ISSUE", "ERROR", "Internal server error"));
   }
 };
 
