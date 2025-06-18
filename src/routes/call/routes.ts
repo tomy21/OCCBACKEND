@@ -13,13 +13,16 @@ export default function createGateStatusRoute(
   const prisma = new PrismaClient();
 
   const timeZone = "Asia/Jakarta";
-  const localDate = toZonedTime(new Date(), timeZone);
-
-  let queue: { id: number; res: any }[] = [];
+  let queue: { id: number; res: any; imageBase64: string }[] = [];
   let processing = false;
 
-  router.get("/status/:id", async (req, res) => {
+  router.post("/status/:id", async (req: any, res: any) => {
     const id = parseInt(req.params.id);
+    const { imageBase64 } = req.body;
+
+    if (!imageBase64 || typeof imageBase64 !== "string") {
+      return res.status(400).json({ error: "Image base64 not provided" });
+    }
 
     const gate = await prisma.occGate.findUnique({
       where: { id },
@@ -30,20 +33,22 @@ export default function createGateStatusRoute(
 
     const locationName = gate?.location?.Name;
 
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+
     const findIntercom = await prisma.occIntercome.findFirst({
       where: {
         GateName: gate?.gate,
         Locations: locationName,
         CreatedAt: {
-          gte: new Date(new Date().setHours(0, 0, 0, 0)),
+          gte: todayStart,
         },
       },
     });
-    const now = new Date();
 
-    // Tambah 7 jam (WIB = UTC+7) ke waktu UTC
+    const now = new Date();
     const plus7hours = new Date(now.getTime() + 7 * 60 * 60 * 1000);
-    console.log(plus7hours);
+
     if (!findIntercom) {
       await prisma.occIntercome.create({
         data: {
@@ -66,19 +71,18 @@ export default function createGateStatusRoute(
     const summary = await prisma.occIntercome.groupBy({
       by: ["GateName", "Locations"],
       where: {
-        CreatedAt: { gte: new Date(new Date().setHours(0, 0, 0, 0)) },
+        CreatedAt: { gte: todayStart },
       },
       _sum: { Count: true },
     });
 
-    // Emit ke semua client yang connect via socket
     io.emit("intercome-summary", summary);
 
     // Masukkan ke queue dan proses
-    queue.push({ id, res });
+    queue.push({ id, res, imageBase64 });
     processQueue();
 
-    return; // jangan langsung kirim response
+    // Jangan kirim response di sini, akan dikirim di processQueue
   });
 
   router.post("/call-ended", (req: any, res: any) => {
@@ -94,7 +98,6 @@ export default function createGateStatusRoute(
     }
 
     user.busy = false;
-
     console.log(`User with socketId ${socketId} marked as free`);
 
     res.json({ message: "User status updated to free" });
@@ -102,17 +105,17 @@ export default function createGateStatusRoute(
 
   const processQueue = async () => {
     if (processing || queue.length === 0) return;
-
     processing = true;
 
     while (queue.length > 0) {
-      const { id, res } = queue[0];
+      const { id, res, imageBase64 } = queue[0];
 
       let allocated = false;
       const nextUserIndex = getNextUserIndex();
 
       for (let i = 0; i < users.length; i++) {
         const idx = (nextUserIndex + i) % users.length;
+
         if (users[idx].id && !users[idx].busy) {
           users[idx].busy = true;
 
@@ -129,6 +132,7 @@ export default function createGateStatusRoute(
               gateStatus: gate?.statusGate,
               location: gate?.location,
               gate: gate?.gate,
+              imageBase64: imageBase64,
             });
 
             res.status(200).json({
@@ -137,12 +141,11 @@ export default function createGateStatusRoute(
             });
 
             queue.shift();
-
             setNextUserIndex((idx + 1) % users.length);
-
             allocated = true;
             break;
           } catch (error) {
+            console.error("Failed to process queue:", error);
             res.status(500).json({ error: "Failed to fetch gate status" });
             queue.shift();
             allocated = true;
@@ -152,7 +155,7 @@ export default function createGateStatusRoute(
       }
 
       if (!allocated) {
-        console.log("All users busy, waiting to retry queue...");
+        console.log("All users busy, retrying after delay...");
         await new Promise((r) => setTimeout(r, 500));
       }
     }
