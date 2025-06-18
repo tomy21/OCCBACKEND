@@ -12,7 +12,7 @@ const router = Router();
 router.post("/login", async (req: Request, res: Response): Promise<void> => {
   try {
     const { identifier, password, remember } = req.body;
-
+    console.log("proxy login", identifier, password, remember);
     const backendLoginUrl = `${URL_LOGIN}/v1/api/auth/login`;
 
     // Kirim request ke backend lama dan minta supaya header (Set-Cookie) disertakan

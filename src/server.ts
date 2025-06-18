@@ -41,7 +41,8 @@ let nextUserIndex = 0;
 
 app.use(cookieParser());
 app.use(cors());
-// app.use(express.json());
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
 
 // app.post("/api/call", call);
 // app.post("/api/end-call", end);
@@ -54,21 +55,6 @@ app.use("/api/summary", SummaryRoute);
 
 app.use("/api/iot", IOTRoute);
 app.use("/api/auth", Auth);
-
-app.use((req, res, next) => {
-  if (
-    req.headers["content-type"] &&
-    req.headers["content-type"].startsWith("multipart/form-data")
-  ) {
-    // Bypass body-parser untuk FormData (biarkan route yang handle)
-    return next();
-  }
-
-  bodyParser.json({ limit: "50mb" })(req, res, (err) => {
-    if (err) return res.status(400).send("Invalid JSON");
-    bodyParser.urlencoded({ extended: true, limit: "50mb" })(req, res, next);
-  });
-});
 
 app.use(
   "/api/gate",
