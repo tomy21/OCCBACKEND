@@ -2,6 +2,9 @@ import { Router } from "express";
 import { PrismaClient } from "@prisma/client";
 import { Server } from "socket.io";
 import { toZonedTime } from "date-fns-tz";
+import { recognizePlate } from "../../middleware/PlateRecognize";
+import { generateTicketCode } from "../../helper/generateNoTrx";
+import upload from "../../middleware/uploadImage";
 
 export default function createGateStatusRoute(
   io: Server,
@@ -13,79 +16,129 @@ export default function createGateStatusRoute(
   const prisma = new PrismaClient();
 
   const timeZone = "Asia/Jakarta";
-  let queue: { id: number; res: any; imageBase64: string }[] = [];
+  let queue: {
+    id: number;
+    res: any;
+    imageFile: string;
+    timeoutId: NodeJS.Timeout;
+    detailGate: any;
+  }[] = [];
+
   let processing = false;
 
-  router.post("/status/:id", async (req: any, res: any) => {
-    const id = parseInt(req.params.id);
-    const { imageBase64 } = req.body;
+  router.post(
+    "/status/:id",
+    upload.single("image"),
+    async (req: any, res: any) => {
+      const id = parseInt(req.params.id);
+      const imageFile = req.file;
 
-    if (!imageBase64 || typeof imageBase64 !== "string") {
-      return res.status(400).json({ error: "Image base64 not provided" });
-    }
+      if (!imageFile || !imageFile.path) {
+        return res.status(400).json({ error: "Image file not provided" });
+      }
 
-    const gate = await prisma.occGate.findUnique({
-      where: { id },
-      include: {
-        location: { select: { Name: true, Code: true } },
-      },
-    });
+      const imagePath = imageFile.filename;
 
-    const locationName = gate?.location?.Name;
+      const recognizeResult = await recognizePlate(imageFile.path);
 
-    const todayStart = new Date();
-    todayStart.setHours(0, 0, 0, 0);
+      console.log(recognizeResult.results[0].plate);
 
-    const findIntercom = await prisma.occIntercome.findFirst({
-      where: {
-        GateName: gate?.gate,
-        Locations: locationName,
-        CreatedAt: {
-          gte: todayStart,
-        },
-      },
-    });
-
-    const now = new Date();
-    const plus7hours = new Date(now.getTime() + 7 * 60 * 60 * 1000);
-
-    if (!findIntercom) {
-      await prisma.occIntercome.create({
-        data: {
-          GateName: gate?.gate || "-",
-          Locations: locationName || "-",
-          Count: 1,
-          CreatedAt: plus7hours,
+      const gate = await prisma.occGate.findUnique({
+        where: { id },
+        include: {
+          location: { select: { Name: true, Code: true } },
         },
       });
-    } else {
-      await prisma.occIntercome.update({
-        where: { Id: findIntercom.Id },
+
+      const locationName = gate?.location?.Name;
+
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+
+      const noTicket = await generateTicketCode(gate?.location?.Code || "");
+
+      const addIssue = await prisma.occIssue.create({
         data: {
-          Count: findIntercom.Count + 1,
-          CreatedAt: plus7hours,
+          ticket: noTicket,
+          gate: gate?.gate,
+          lokasi: locationName,
+          foto_in: imagePath,
+          number_plate: recognizeResult.results[0].plate,
+          createdBy: gate?.gate || "-",
+        },
+        select: {
+          id: true,
+          ticket: true,
+          gate: true,
+          lokasi: true,
+          foto_in: true,
+          number_plate: true,
         },
       });
+
+      const findIntercom = await prisma.occIntercome.findFirst({
+        where: {
+          GateName: gate?.gate,
+          Locations: locationName,
+          CreatedAt: {
+            gte: todayStart,
+          },
+        },
+      });
+
+      const now = new Date();
+      const plus7hours = new Date(now.getTime() + 7 * 60 * 60 * 1000);
+
+      if (!findIntercom) {
+        await prisma.occIntercome.create({
+          data: {
+            GateName: gate?.gate || "-",
+            Locations: locationName || "-",
+            Count: 1,
+            CreatedAt: plus7hours,
+          },
+        });
+      } else {
+        await prisma.occIntercome.update({
+          where: { Id: findIntercom.Id },
+          data: {
+            Count: findIntercom.Count + 1,
+            CreatedAt: plus7hours,
+          },
+        });
+      }
+
+      const summary = await prisma.occIntercome.groupBy({
+        by: ["GateName", "Locations"],
+        where: {
+          CreatedAt: { gte: todayStart },
+        },
+        _sum: { Count: true },
+      });
+
+      io.emit("intercome-summary", summary);
+
+      const timeoutId = setTimeout(() => {
+        const index = queue.findIndex((q) => q.res === res);
+        if (index !== -1) {
+          queue.splice(index, 1); // Hapus dari queue
+          res
+            .status(504)
+            .json({ error: "Timeout: no available user within 5 seconds" });
+        }
+      }, 5000);
+
+      // Masukkan ke queue dan proses
+      queue.push({ id, res, imageFile, timeoutId, detailGate: addIssue });
+      processQueue();
+
+      // Jangan kirim response di sini, akan dikirim di processQueue
     }
-
-    const summary = await prisma.occIntercome.groupBy({
-      by: ["GateName", "Locations"],
-      where: {
-        CreatedAt: { gte: todayStart },
-      },
-      _sum: { Count: true },
-    });
-
-    io.emit("intercome-summary", summary);
-
-    // Masukkan ke queue dan proses
-    queue.push({ id, res, imageBase64 });
-    processQueue();
-
-    // Jangan kirim response di sini, akan dikirim di processQueue
-  });
+  );
 
   router.post("/call-ended", (req: any, res: any) => {
+    console.log("call-ended body:", req.body);
+
     const { socketId } = req.body;
 
     if (!socketId) {
@@ -108,7 +161,7 @@ export default function createGateStatusRoute(
     processing = true;
 
     while (queue.length > 0) {
-      const { id, res, imageBase64 } = queue[0];
+      const { id, res, imageFile, detailGate } = queue[0];
 
       let allocated = false;
       const nextUserIndex = getNextUserIndex();
@@ -132,7 +185,8 @@ export default function createGateStatusRoute(
               gateStatus: gate?.statusGate,
               location: gate?.location,
               gate: gate?.gate,
-              imageBase64: imageBase64,
+              imageFile: imageFile,
+              detailGate: detailGate,
             });
 
             res.status(200).json({
@@ -140,6 +194,7 @@ export default function createGateStatusRoute(
               data: gate,
             });
 
+            clearTimeout(queue[0].timeoutId);
             queue.shift();
             setNextUserIndex((idx + 1) % users.length);
             allocated = true;

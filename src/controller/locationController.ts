@@ -223,37 +223,3 @@ export const updateLocationActive = async (req: Request, res: Response) => {
       .json(createResponse("LOCATION", "ERROR", "Internal server error"));
   }
 };
-
-export const openGate = async (req: Request, res: Response) => {
-  try {
-    const { id } = req.params;
-    const { status } = req.body;
-    const open = status === "OPEN" ? 1 : 0;
-    const data = await prisma.occGate.update({
-      where: { id: parseInt(id), arduino: 1 },
-      data: { statusGate: open },
-      include: {
-        location: {
-          select: {
-            Code: true,
-            Name: true,
-          },
-        },
-      },
-    });
-
-    if (!data) {
-      res
-        .status(404)
-        .json(createResponse("GATE", "ERROR", "Arduino not active"));
-      return;
-    }
-
-    res.status(200).json(createResponse("GATE", "UPDATE", "Gate opened", data));
-  } catch (error) {
-    console.error(error);
-    res
-      .status(500)
-      .json(createResponse("GATE", "ERROR", "Internal server error"));
-  }
-};

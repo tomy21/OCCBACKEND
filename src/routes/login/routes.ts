@@ -48,4 +48,20 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
   }
 });
 
+router.post("/logout", async (req: Request, res: Response): Promise<void> => {
+  try {
+    // Hapus cookie dari client (browser)
+    res.setHeader("Set-Cookie", "token=; Max-Age=0; Path=/; HttpOnly");
+
+    // Jika backend lama punya endpoint logout, kamu bisa panggil juga
+    const backendLogoutUrl = `${URL_LOGIN}/v1/api/auth/logout`;
+    await axios.post(backendLogoutUrl, {}, { withCredentials: true });
+
+    res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    console.error("Logout error:", error);
+    res.status(500).json({ error: "Failed to logout" });
+  }
+});
+
 export default router;

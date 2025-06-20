@@ -18,7 +18,8 @@ export const createIssue = async (
       idGate,
       description,
       action,
-      foto,
+      foto_in,
+      foto_out,
       number_plate,
       TrxNo,
     } = req.body;
@@ -28,7 +29,8 @@ export const createIssue = async (
       !idGate ||
       !description ||
       !action ||
-      !foto ||
+      foto_in ||
+      foto_out ||
       !number_plate ||
       !TrxNo
     ) {
@@ -40,7 +42,8 @@ export const createIssue = async (
           idGate ||
           description ||
           action ||
-          foto ||
+          foto_in ||
+          foto_out ||
           number_plate ||
           TrxNo
         } name is required`
@@ -87,7 +90,8 @@ export const createIssue = async (
         description,
         gate: gate.gate,
         action,
-        foto,
+        foto_in,
+        foto_out,
         number_plate,
         TrxNo,
         createdBy: "admin",
@@ -98,7 +102,8 @@ export const createIssue = async (
         category: true,
         gate: true,
         action: true,
-        foto: true,
+        foto_in: true,
+        foto_out: true,
         number_plate: true,
         TrxNo: true,
       },

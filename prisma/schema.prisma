@@ -58,7 +58,8 @@ model OccIssue {
   description  String?
   gate         String?
   action       String?
-  foto         String?
+  foto_in      String?
+  foto_out     String?
   number_plate String?
   TrxNo        String?
   status       statusIssue @default(new)

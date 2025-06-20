@@ -5,10 +5,6 @@ import http from "http";
 import { Server as SocketIOServer } from "socket.io";
 dotenv.config();
 
-// import { call, end } from "./controller/call.controller";
-// import "./config/mqtt"; // pastikan terhubung
-// import "./config/redis";
-
 import CategoryRoute from "./routes/category/router";
 import DescriptionRoute from "./routes/description/router";
 import IssueRoute from "./routes/Issues/route";
@@ -21,8 +17,8 @@ import Auth from "./routes/login/routes";
 
 import { checkArduinoTimeout } from "./jobs/cekStatusArduino";
 import cookieParser from "cookie-parser";
-import { fetchIntercomeSummary } from "./service/summaryCall";
 import bodyParser from "body-parser";
+import path from "path";
 
 const app = express();
 const port = process.env.PORT || 3005;
@@ -41,12 +37,12 @@ let nextUserIndex = 0;
 
 app.use(cookieParser());
 app.use(cors());
-app.use(bodyParser.json({ limit: "50mb" }));
-app.use(bodyParser.urlencoded({ extended: true, limit: "50mb" }));
-
+app.use(express.json());
+app.use(bodyParser.json());
 // app.post("/api/call", call);
 // app.post("/api/end-call", end);
 
+app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 app.use("/api/category", CategoryRoute);
 app.use("/api/description", DescriptionRoute);
 app.use("/api/issue", IssueRoute);
