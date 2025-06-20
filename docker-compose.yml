@@ -13,6 +13,7 @@ services:
       - JWT_SECRET=158243e2-ccc0-4798-a944-2a5b0d1c90f3
       - SIGNATURE_SECRET=c719f771-69ce-4945-9895-1759fb49df87
       - URL_LOGIN=https://devtest08.skyparking.online
+      - PLATE_RECOGNIZER_TOKEN=2ee83fb34e74d1bd32772ac11129862e8f8161e1
 
     restart: always
 
