@@ -41,7 +41,13 @@ export default function createGateStatusRoute(
 
       const recognizeResult = await recognizePlate(imageFile.path);
 
-      console.log(recognizeResult.results[0].plate);
+      if (!recognizeResult || !recognizeResult.results) {
+        return res
+          .status(400)
+          .json({ error: "Gagal convert gambar ke plate number" });
+      }
+
+      // console.log(recognizeResult.results[0].plate);
 
       const gate = await prisma.occGate.findUnique({
         where: { id },
