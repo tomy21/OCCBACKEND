@@ -108,17 +108,21 @@ export const getIssueStatusSummary = async (req: Request, res: Response) => {
     const { month } = req.query;
 
     const whereClause = month
-      ? Prisma.sql`AND DATE_FORMAT(CONVERT_TZ(createdAt, '+00:00', '+07:00'), '%Y-%m') = ${month}`
-      : Prisma.empty;
-    const result = await dbMain.$queryRaw<{ status: string; total: number }[]>(
-      Prisma.sql`
-        SELECT status, COUNT(*) AS total
-        FROM OccIssue
-        WHERE deletedAt IS NULL
-        ${whereClause}
-        GROUP BY status
+      ? `AND DATE_FORMAT(CONVERT_TZ(createdAt, '+00:00', '+07:00'), '%Y-%m') = '${month}'`
+      : "";
+
+    const result = await dbMain.$queryRawUnsafe<
+      { status: string; total: number }[]
+    >(
       `
+          SELECT status, COUNT(*) AS total
+          FROM OccIssue
+          WHERE deletedAt IS NULL
+          ${whereClause}
+          GROUP BY status
+        `
     );
+
     const formatted = result.map((row) => ({
       ...row,
       total: Number(row.total), // Convert BigInt to Number
