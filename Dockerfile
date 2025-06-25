@@ -17,9 +17,9 @@ RUN yarn install
 COPY . .
 
 # ✅ Generate Prisma Client (untuk 2 schema)
-RUN npx prisma generate --schema=prisma/main/schema.prisma
-RUN npx prisma generate --schema=prisma/secondary/schema.prisma
-
+# RUN npx prisma generate --schema=prisma/main/schema.prisma
+# RUN npx prisma generate --schema=prisma/secondary/schema.prisma
+RUN yarn generate
 # ✅ Build TypeScript ke dist/
 RUN yarn build
 
