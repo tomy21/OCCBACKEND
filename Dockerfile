@@ -4,6 +4,8 @@ FROM node:20-alpine
 # Install dependensi tambahan yang dibutuhkan Prisma (openssl, libc6, dll.)
 RUN apk add --no-cache openssl
 
+RUN rm -rf node_modules
+
 # Set working directory
 WORKDIR /app
 
