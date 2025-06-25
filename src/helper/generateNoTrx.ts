@@ -1,5 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { dbMain } from "../prisma/client";
 
 // Helper untuk menambahkan nol di depan angka
 function padNumber(num: number, length: number): string {
@@ -19,7 +18,7 @@ export async function generateTicketCode(lokasiCode: string): Promise<string> {
   todayEnd.setHours(23, 59, 59, 999);
 
   // Hitung jumlah ticket hari ini untuk lokasi tertentu
-  const countToday = await prisma.occIssue.count({
+  const countToday = await dbMain.occIssue.count({
     where: {
       createdAt: {
         gte: todayStart,

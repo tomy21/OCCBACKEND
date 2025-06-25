@@ -1,6 +1,4 @@
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { dbMain } from "../prisma/client";
 
 export const fetchIntercomeSummary = async (
   startDate?: string,
@@ -29,7 +27,7 @@ export const fetchIntercomeSummary = async (
     };
   }
 
-  const summary = await prisma.occIntercome.groupBy({
+  const summary = await dbMain.occIntercome.groupBy({
     by: ["GateName", "Locations"],
     where: whereCondition,
     _sum: {

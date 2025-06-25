@@ -1,0 +1,2 @@
+prisma/main/schema.prisma
+prisma/secondary/schema.prisma

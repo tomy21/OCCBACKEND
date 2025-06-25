@@ -1,12 +1,12 @@
 // cron atau interval di server
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+
+import { dbMain } from "../prisma/client";
 
 export const checkArduinoTimeout = async () => {
   const timeoutDuration = 30000; // 30 detik
   const now = new Date();
 
-  await prisma.occGate.updateMany({
+  await dbMain.occGate.updateMany({
     where: {
       updatedAt: {
         lt: new Date(now.getTime() - timeoutDuration),
