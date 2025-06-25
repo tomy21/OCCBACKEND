@@ -4,8 +4,7 @@ import {
   createPaginatedResponse,
   createResponse,
 } from "../helper/responseCode";
-
-const prisma = new PrismaClient();
+import { dbMain } from "../prisma/client";
 
 export const createCategory = async (
   req: Request,
@@ -19,7 +18,7 @@ export const createCategory = async (
       return;
     }
 
-    const category = await prisma.occCategory.create({
+    const category = await dbMain.occCategory.create({
       data: { category: name, createdBy: "admin" },
       select: { id: true, category: true },
     });
@@ -54,12 +53,12 @@ export const getAllCategory = async (
       : {};
 
     // Hitung total setelah difilter
-    const totalItems = await prisma.occCategory.count({
+    const totalItems = await dbMain.occCategory.count({
       where: filterCondition,
     });
 
     // Ambil data yang sudah difilter
-    const categories = await prisma.occCategory.findMany({
+    const categories = await dbMain.occCategory.findMany({
       where: filterCondition,
       skip,
       take: limit,
@@ -90,7 +89,7 @@ export const getCategoryById = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const category = await prisma.occCategory.findUnique({
+    const category = await dbMain.occCategory.findUnique({
       where: { id: parseInt(id) },
     });
 
@@ -127,7 +126,7 @@ export const updateCategory = async (
       return;
     }
 
-    const category = await prisma.occCategory.update({
+    const category = await dbMain.occCategory.update({
       where: { id: parseInt(id) },
       data: { category: name },
     });
@@ -149,7 +148,7 @@ export const deleteCategory = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    await prisma.occCategory.delete({ where: { id: parseInt(id) } });
+    await dbMain.occCategory.delete({ where: { id: parseInt(id) } });
     res
       .status(200)
       .json(createResponse("CATEGORY", "DELETE", "Category deleted"));

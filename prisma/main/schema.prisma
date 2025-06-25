@@ -6,11 +6,12 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/client-main"
 }
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL_MAIN")
 }
 
 enum statusIssue {
@@ -112,4 +113,23 @@ model OccIntercome {
   Locations String
   Count     Int
   CreatedAt DateTime @default(now())
+}
+
+model RefIssuer {
+  id                      Int       @id @default(autoincrement())
+  issuerId                String?
+  issuerName              String?
+  IssuerLongName          String?
+  Color                   String?
+  LogoUrl                 String?
+  SettlementPath          String?
+  SettlementExtensionFile String?
+  FlagRecon               String?
+  CreatedOn               DateTime  @default(now())
+  CreatedBy               String?
+  UpdatedOn               DateTime  @updatedAt
+  UpdatedBy               DateTime?
+  DeletedOn               String?
+  DeletedBy               String?
+  RecordStatus            Int       @default(1)
 }

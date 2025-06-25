@@ -1,0 +1,63 @@
+generator client {
+    provider = "prisma-client-js"
+    output   = "../generated/client-secondary"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL_SECONDARY")
+}
+
+model TransactionParkingIntegration {
+    id                          Int       @id @default(autoincrement())
+    TrxRefId                    Int
+    TransactionNo               String?
+    ReferenceNo                 String?
+    LicensePlateIn              String?
+    LocationCode                String?
+    SubLocationCode             String?
+    InTime                      DateTime?
+    GateInCode                  String?
+    VehicleType                 String?
+    ProductName                 String?
+    GracePeriodIn               Int?
+    QRTicket                    String?
+    Duration                    Int?
+    TariffAmount                Decimal?
+    VoucherAmount               Decimal?
+    PaymentAmount               Decimal?
+    PaymentStatus               String?
+    PaymentDate                 DateTime?
+    PaymentMethod               String?
+    IssuerID                    String?
+    PaymentReferenceNo          String?
+    RetrievalReferenceNo        String?
+    PrepaidCardName             String?
+    PrepaidCardNo               String?
+    PrepaidCardMID              String?
+    PrepaidCardTID              String?
+    PrepaidCardInitialBalance   Decimal?
+    PrepaidCardRemainingBalance Decimal?
+    ReferenceTransactionNo      String?
+    GracePeriodPayment          Int?
+    LicensePlateOut             String?
+    OutTime                     DateTime?
+    GateOutCode                 String?
+    MerchantDataRequestIN       String?
+    MerchantDataResponseIN      String?
+    POSTDataRequestIN           String?
+    POSTDataResponseIN          String?
+    MerchantDataRequestPAY      String?
+    MerchantDataResponsePAY     String?
+    POSTDataRequestPAY          String?
+    POSTDataResponsePAY         String?
+    MerchantDataRequestOUT      String?
+    MerchantDataResponseOUT     String?
+    POSTDataRequestOUT          String?
+    POSTDataResponseOUT         String?
+    RecordStatus                Int?      @default(1)
+    CreatedBy                   String?
+    CreatedOn                   DateTime?
+    UpdatedBy                   String?
+    UpdatedOn                   DateTime?
+}

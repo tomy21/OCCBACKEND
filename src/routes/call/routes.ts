@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { PrismaClient } from "@prisma/client";
 import { Server } from "socket.io";
 import { toZonedTime } from "date-fns-tz";
 import { recognizePlate } from "../../middleware/PlateRecognize";
 import { generateTicketCode } from "../../helper/generateNoTrx";
 import upload from "../../middleware/uploadImage";
+import { dbMain } from "../../prisma/client";
 
 export default function createGateStatusRoute(
   io: Server,
@@ -13,7 +13,6 @@ export default function createGateStatusRoute(
   setNextUserIndex: (val: number) => void
 ) {
   const router = Router();
-  const prisma = new PrismaClient();
 
   const timeZone = "Asia/Jakarta";
   let queue: {
@@ -41,15 +40,19 @@ export default function createGateStatusRoute(
 
       const recognizeResult = await recognizePlate(imageFile.path);
 
-      if (!recognizeResult || !recognizeResult.results) {
-        return res
-          .status(400)
-          .json({ error: "Gagal convert gambar ke plate number" });
+      if (
+        !recognizeResult ||
+        !Array.isArray(recognizeResult.results) ||
+        recognizeResult.results.length === 0
+      ) {
+        return res.status(200).json({
+          message: "Gambar diterima, namun plat nomor tidak terdeteksi.",
+          status: "NO_PLATE_DETECTED",
+          image: imagePath,
+        });
       }
 
-      // console.log(recognizeResult.results[0].plate);
-
-      const gate = await prisma.occGate.findUnique({
+      const gate = await dbMain.occGate.findUnique({
         where: { id },
         include: {
           location: { select: { Name: true, Code: true } },
@@ -63,7 +66,7 @@ export default function createGateStatusRoute(
 
       const noTicket = await generateTicketCode(gate?.location?.Code || "");
 
-      const addIssue = await prisma.occIssue.create({
+      const addIssue = await dbMain.occIssue.create({
         data: {
           ticket: noTicket,
           gate: gate?.gate,
@@ -82,7 +85,7 @@ export default function createGateStatusRoute(
         },
       });
 
-      const findIntercom = await prisma.occIntercome.findFirst({
+      const findIntercom = await dbMain.occIntercome.findFirst({
         where: {
           GateName: gate?.gate,
           Locations: locationName,
@@ -96,7 +99,7 @@ export default function createGateStatusRoute(
       const plus7hours = new Date(now.getTime() + 7 * 60 * 60 * 1000);
 
       if (!findIntercom) {
-        await prisma.occIntercome.create({
+        await dbMain.occIntercome.create({
           data: {
             GateName: gate?.gate || "-",
             Locations: locationName || "-",
@@ -105,7 +108,7 @@ export default function createGateStatusRoute(
           },
         });
       } else {
-        await prisma.occIntercome.update({
+        await dbMain.occIntercome.update({
           where: { Id: findIntercom.Id },
           data: {
             Count: findIntercom.Count + 1,
@@ -114,7 +117,7 @@ export default function createGateStatusRoute(
         });
       }
 
-      const summary = await prisma.occIntercome.groupBy({
+      const summary = await dbMain.occIntercome.groupBy({
         by: ["GateName", "Locations"],
         where: {
           CreatedAt: { gte: todayStart },
@@ -143,23 +146,26 @@ export default function createGateStatusRoute(
   );
 
   router.post("/call-ended", (req: any, res: any) => {
-    console.log("call-ended body:", req.body);
+    const { userNumber } = req.body;
 
-    const { socketId } = req.body;
-
-    if (!socketId) {
-      return res.status(400).json({ error: "socketId is required" });
+    if (!userNumber || userNumber < 1 || userNumber > 3) {
+      return res
+        .status(400)
+        .json({ error: "Valid userNumber is required (1-3)" });
     }
 
-    const user = users.find((u) => u.id === socketId);
-    if (!user) {
-      return res.status(404).json({ error: "User not found" });
+    const user = users[userNumber - 1];
+
+    if (!user || !user.id) {
+      return res
+        .status(404)
+        .json({ error: "User not found or not registered" });
     }
 
     user.busy = false;
-    console.log(`User with socketId ${socketId} marked as free`);
+    console.log(`User ${userNumber} (${user.id}) marked as free`);
 
-    res.json({ message: "User status updated to free" });
+    res.json({ message: `User ${userNumber} status updated to free` });
   });
 
   const processQueue = async () => {
@@ -179,7 +185,7 @@ export default function createGateStatusRoute(
           users[idx].busy = true;
 
           try {
-            const gate = await prisma.occGate.findUnique({
+            const gate = await dbMain.occGate.findUnique({
               where: { id },
               include: {
                 location: { select: { Name: true, Code: true } },

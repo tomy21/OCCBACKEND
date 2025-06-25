@@ -1,11 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import {
   createPaginatedResponse,
   createResponse,
 } from "../helper/responseCode";
-
-const prisma = new PrismaClient();
+import { dbMain } from "../prisma/client";
 
 export const getAllLocation = async (req: Request, res: Response) => {
   try {
@@ -13,8 +11,8 @@ export const getAllLocation = async (req: Request, res: Response) => {
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const totalItems = await prisma.occRefLocation.count();
-    const locations = await prisma.occRefLocation.findMany({
+    const totalItems = await dbMain.occRefLocation.count();
+    const locations = await dbMain.occRefLocation.findMany({
       skip,
       take: limit,
       select: {
@@ -50,10 +48,10 @@ export const getAllLocationActive = async (req: Request, res: Response) => {
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const totalItems = await prisma.occRefLocation.count({
+    const totalItems = await dbMain.occRefLocation.count({
       where: { recordStatus: "ACTIVE" },
     });
-    const locations = await prisma.occRefLocation.findMany({
+    const locations = await dbMain.occRefLocation.findMany({
       where: { recordStatus: "ACTIVE" },
       skip,
       take: limit,
@@ -83,8 +81,8 @@ export const getLocationById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
 
-    const totalItems = await prisma.occRefLocation.count();
-    const locations = await prisma.occRefLocation.findFirst({
+    const totalItems = await dbMain.occRefLocation.count();
+    const locations = await dbMain.occRefLocation.findFirst({
       where: { id: parseInt(id) },
     });
     res
@@ -113,7 +111,7 @@ export const detailGateByLocation = async (req: Request, res: Response) => {
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const gatesRaw = await prisma.occGate.findMany({
+    const gatesRaw = await dbMain.occGate.findMany({
       where: {
         id_location: parseInt(locationId),
         deletedAt: null,
@@ -182,7 +180,7 @@ export const addGateLocation = async (
         .json(createResponse("GATE", "READ", "Invalid location ID"));
     }
 
-    const createGate = await prisma.occGate.create({
+    const createGate = await dbMain.occGate.create({
       data: {
         gate: gateName,
         id_location: locationId,
@@ -204,7 +202,7 @@ export const addGateLocation = async (
 export const updateLocationActive = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    await prisma.occRefLocation.update({
+    await dbMain.occRefLocation.update({
       where: { id: parseInt(id) },
       data: { recordStatus: "ACTIVE" },
       select: {

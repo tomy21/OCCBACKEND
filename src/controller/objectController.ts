@@ -1,11 +1,9 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import {
   createPaginatedResponse,
   createResponse,
 } from "../helper/responseCode";
-
-const prisma = new PrismaClient();
+import { dbMain } from "../prisma/client";
 
 export const createDescription = async (
   req: Request,
@@ -19,7 +17,7 @@ export const createDescription = async (
       return;
     }
 
-    const category = await prisma.occCategory.findFirst({
+    const category = await dbMain.occCategory.findFirst({
       where: {
         id: parseInt(idDescription),
       },
@@ -34,7 +32,7 @@ export const createDescription = async (
 
     const idCategory = category?.id;
 
-    const description = await prisma.occDescription.create({
+    const description = await dbMain.occDescription.create({
       data: {
         object: name,
         id_category: Number(idCategory),
@@ -78,10 +76,10 @@ export const getAllDescription = async (
         }
       : {};
 
-    const totalItems = await prisma.occDescription.count({
+    const totalItems = await dbMain.occDescription.count({
       where: filterCondition,
     });
-    const description = await prisma.occDescription.findMany({
+    const description = await dbMain.occDescription.findMany({
       where: filterCondition,
       skip,
       take: limit,
@@ -112,7 +110,7 @@ export const getDescriptionById = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const description = await prisma.occDescription.findMany({
+    const description = await dbMain.occDescription.findMany({
       where: { id_category: parseInt(id) },
     });
 
@@ -158,7 +156,7 @@ export const updateDescription = async (
       return;
     }
 
-    const description = await prisma.occDescription.update({
+    const description = await dbMain.occDescription.update({
       where: { id: parseInt(id) },
       data: { object: name, id_category: Number(idDescription) },
     });
@@ -187,7 +185,7 @@ export const deleteDescription = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    await prisma.occDescription.delete({ where: { id: parseInt(id) } });
+    await dbMain.occDescription.delete({ where: { id: parseInt(id) } });
     res
       .status(200)
       .json(createResponse("DESCRIPTION", "DELETE", "Description deleted"));

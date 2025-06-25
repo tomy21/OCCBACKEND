@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import { Request, Response } from "express";
 import { createResponse } from "../helper/responseCode";
-
-const prisma = new PrismaClient();
+import { dbMain } from "../prisma/client";
 
 export const controlGate = async (
   req: Request,
@@ -13,7 +11,7 @@ export const controlGate = async (
   const open = status === "OPEN" ? 1 : 0;
 
   try {
-    const gate = await prisma.occGate.findUnique({
+    const gate = await dbMain.occGate.findUnique({
       where: { id: Number(id) },
     });
 
@@ -21,7 +19,7 @@ export const controlGate = async (
       res.status(404).json({ message: "Gate not found" });
     }
 
-    const updatedGate = await prisma.occGate.update({
+    const updatedGate = await dbMain.occGate.update({
       where: { id: Number(id) },
       data: { statusGate: open },
     });
@@ -46,7 +44,7 @@ export const arduinoPing = async (
   try {
     const { id } = req.params;
 
-    const data = await prisma.occGate.update({
+    const data = await dbMain.occGate.update({
       where: { id: parseInt(id) },
       data: { arduino: 1, updatedAt: new Date() },
       include: {

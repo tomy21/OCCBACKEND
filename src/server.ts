@@ -12,6 +12,7 @@ import LocationRoute from "./routes/location/routes";
 import IOTRoute from "./routes/iot/routes";
 import CallRoute from "./routes/call/routes";
 import SummaryRoute from "./routes/summary/routes";
+import TransactionRoute from "./routes/find-transaction/route";
 
 import Auth from "./routes/login/routes";
 
@@ -48,6 +49,7 @@ app.use("/api/description", DescriptionRoute);
 app.use("/api/issue", IssueRoute);
 app.use("/api/location", LocationRoute);
 app.use("/api/summary", SummaryRoute);
+app.use("/api/transaction", TransactionRoute);
 
 app.use("/api/iot", IOTRoute);
 app.use("/api/auth", Auth);

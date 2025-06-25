@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import { Prisma, PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { Prisma } from "@prisma/client";
+import { dbMain } from "../prisma/client";
 
 export const getIntercomeSummary = async (req: Request, res: Response) => {
   try {
@@ -32,7 +31,7 @@ export const getIntercomeSummary = async (req: Request, res: Response) => {
       });
     }
 
-    const totalItems = await prisma.occIntercome.aggregate({
+    const totalItems = await dbMain.occIntercome.aggregate({
       where: whereCondition,
       _sum: {
         Count: true,
@@ -55,7 +54,7 @@ export const getIntercomeSummary = async (req: Request, res: Response) => {
 
 export const getMonthlySummary = async (req: Request, res: Response) => {
   try {
-    const result = await prisma.$queryRaw<
+    const result = await dbMain.$queryRaw<
       { month: string; total: number }[]
     >`SELECT 
         DATE_FORMAT(CONVERT_TZ(createdAt, '+00:00', '+07:00'), '%Y-%m') AS month,
@@ -82,7 +81,7 @@ export const getMonthlySummaryCategory = async (
   res: Response
 ) => {
   try {
-    const result = await prisma.$queryRaw<
+    const result = await dbMain.$queryRaw<
       { month: string; total: number }[]
     >`SELECT 
         DATE_FORMAT(CONVERT_TZ(createdAt, '+00:00', '+07:00'), '%Y-%m') AS month,
@@ -111,7 +110,7 @@ export const getIssueStatusSummary = async (req: Request, res: Response) => {
     const whereClause = month
       ? Prisma.sql`AND DATE_FORMAT(CONVERT_TZ(createdAt, '+00:00', '+07:00'), '%Y-%m') = ${month}`
       : Prisma.empty;
-    const result = await prisma.$queryRaw<{ status: string; total: number }[]>(
+    const result = await dbMain.$queryRaw<{ status: string; total: number }[]>(
       Prisma.sql`
         SELECT status, COUNT(*) AS total
         FROM OccIssue

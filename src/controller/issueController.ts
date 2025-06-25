@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
-import { PrismaClient } from "@prisma/client";
 import {
   createPaginatedResponse,
   createResponse,
 } from "../helper/responseCode";
 import { generateTicketCode } from "../helper/generateNoTrx";
-
-const prisma = new PrismaClient();
+import { dbMain } from "../prisma/client";
+import { endOfDay, startOfDay } from "date-fns";
 
 export const createIssue = async (
   req: Request,
@@ -51,7 +50,7 @@ export const createIssue = async (
       return;
     }
 
-    const category = await prisma.occCategory.findFirst({
+    const category = await dbMain.occCategory.findFirst({
       where: {
         id: parseInt(idCategory),
       },
@@ -64,7 +63,7 @@ export const createIssue = async (
       return;
     }
 
-    const gate = await prisma.occGate.findFirst({
+    const gate = await dbMain.occGate.findFirst({
       where: {
         id: parseInt(idGate),
       },
@@ -75,7 +74,7 @@ export const createIssue = async (
       return;
     }
 
-    const lokasiData = await prisma.occRefLocation.findFirst({
+    const lokasiData = await dbMain.occRefLocation.findFirst({
       where: {
         id: gate.id_location,
       },
@@ -83,7 +82,7 @@ export const createIssue = async (
 
     const noTicket = await generateTicketCode(lokasiData!.Code);
 
-    const issue = await prisma.occIssue.create({
+    const issue = await dbMain.occIssue.create({
       data: {
         ticket: noTicket,
         category: category.category,
@@ -125,28 +124,40 @@ export const getAllIssues = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { search } = req.query;
+    const { search, date, location } = req.query;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    // Filter kondisi pencarian jika `search` diisi
-    const filterCondition = search
-      ? {
-          OR: [
-            { ticket: { contains: search as string } },
-            { category: { contains: search as string } },
-            { lokasi: { contains: search as string } },
-            { gate: { contains: search as string } },
-          ],
-        }
-      : {};
+    const queryDate = date ? new Date(date.toString()) : "";
+    const start = startOfDay(queryDate);
+    const end = endOfDay(queryDate);
 
-    const totalItems = await prisma.occIssue.count({
+    // Filter kondisi pencarian jika `search` diisi
+    const filterCondition = {
+      lokasi: location?.toString(),
+      ...(date && {
+        createdAt: {
+          gte: start,
+          lte: end,
+        },
+      }),
+      ...(search
+        ? {
+            OR: [
+              { ticket: { contains: search as string } },
+              { category: { contains: search as string } },
+              { gate: { contains: search as string } },
+            ],
+          }
+        : {}),
+    };
+
+    const totalItems = await dbMain.occIssue.count({
       where: filterCondition,
     });
 
-    const issues = await prisma.occIssue.findMany({
+    const issues = await dbMain.occIssue.findMany({
       where: filterCondition,
       skip,
       take: limit,
@@ -177,7 +188,7 @@ export const getIssueById = async (
 ): Promise<void> => {
   try {
     const { id } = req.params;
-    const issue = await prisma.occIssue.findUnique({
+    const issue = await dbMain.occIssue.findUnique({
       where: { id: parseInt(id) },
     });
 
