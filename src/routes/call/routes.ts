@@ -40,17 +40,12 @@ export default function createGateStatusRoute(
 
       const recognizeResult = await recognizePlate(imageFile.path);
 
-      if (
-        !recognizeResult ||
-        !Array.isArray(recognizeResult.results) ||
-        recognizeResult.results.length === 0
-      ) {
-        return res.status(200).json({
-          message: "Gambar diterima, namun plat nomor tidak terdeteksi.",
-          status: "NO_PLATE_DETECTED",
-          image: imagePath,
-        });
-      }
+      const hasPlate =
+        recognizeResult &&
+        Array.isArray(recognizeResult.results) &&
+        recognizeResult.results.length > 0;
+
+      const plateNumber = hasPlate ? recognizeResult.results[0].plate : "-";
 
       const gate = await dbMain.occGate.findUnique({
         where: { id },
@@ -60,7 +55,6 @@ export default function createGateStatusRoute(
       });
 
       const locationName = gate?.location?.Name;
-
       const todayStart = new Date();
       todayStart.setHours(0, 0, 0, 0);
 
@@ -71,8 +65,8 @@ export default function createGateStatusRoute(
           ticket: noTicket,
           gate: gate?.gate,
           lokasi: locationName,
-          foto_in: imagePath ?? "-",
-          number_plate: recognizeResult.results[0].plate,
+          foto_in: imagePath,
+          number_plate: plateNumber,
           createdBy: gate?.gate || "-",
         },
         select: {
@@ -137,11 +131,9 @@ export default function createGateStatusRoute(
         }
       }, 5000);
 
-      // Masukkan ke queue dan proses
+      // Tetap proses meskipun plate kosong
       queue.push({ id, res, imageFile, timeoutId, detailGate: addIssue });
       processQueue();
-
-      // Jangan kirim response di sini, akan dikirim di processQueue
     }
   );
 
