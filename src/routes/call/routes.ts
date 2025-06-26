@@ -71,7 +71,7 @@ export default function createGateStatusRoute(
           ticket: noTicket,
           gate: gate?.gate,
           lokasi: locationName,
-          foto_in: imagePath,
+          foto_in: imagePath ?? "-",
           number_plate: recognizeResult.results[0].plate,
           createdBy: gate?.gate || "-",
         },
