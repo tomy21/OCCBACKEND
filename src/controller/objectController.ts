@@ -83,6 +83,7 @@ export const getAllDescription = async (
       where: filterCondition,
       skip,
       take: limit,
+      orderBy: { updatedAt: "desc" },
     });
 
     const response = createPaginatedResponse(

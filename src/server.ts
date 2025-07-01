@@ -67,11 +67,13 @@ app.use(
 io.on("connection", (socket) => {
   console.log("New client connected:", socket.id);
 
-  socket.on("register", (userNumber: number) => {
-    if (userNumber >= 1 && userNumber <= 3) {
-      users[userNumber - 1].id = socket.id;
-      users[userNumber - 1].busy = false;
-      console.log(`User ${userNumber} registered with socket id ${socket.id}`);
+  socket.on("register", (userId: number) => {
+    // Cek kalau user belum ada, tambahkan
+    const existing = users.find((u) => u.id === socket.id);
+    if (!existing && userId >= 1 && userId <= 3) {
+      users[userId - 1].id = socket.id;
+      users[userId - 1].busy = false;
+      console.log(`✅ User ${userId} registered with socket id ${socket.id}`);
     }
   });
 
