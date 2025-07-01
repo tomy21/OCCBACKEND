@@ -8,7 +8,7 @@ import { dbMain } from "../../prisma/client";
 
 export default function createGateStatusRoute(
   io: Server,
-  users: { id: string | null; busy: boolean }[],
+  users: { id: number | null; socketId: string | null; busy: boolean }[],
   getNextUserIndex: () => number,
   setNextUserIndex: (val: number) => void
 ) {
@@ -32,20 +32,20 @@ export default function createGateStatusRoute(
       const id = parseInt(req.params.id);
       const imageFile = req.file;
 
-      if (!imageFile || !imageFile.path) {
-        return res.status(400).json({ error: "Image file not provided" });
+      const imagePath = imageFile?.filename || null;
+
+      let plateNumber = "-";
+      if (imageFile?.path) {
+        try {
+          const recognizeResult = await recognizePlate(imageFile.path);
+          const hasPlate =
+            Array.isArray(recognizeResult?.results) &&
+            recognizeResult.results.length > 0;
+          plateNumber = hasPlate ? recognizeResult.results[0].plate : "-";
+        } catch (err: any) {
+          console.warn("⚠️ Plate recognition failed:", err.message);
+        }
       }
-
-      const imagePath = imageFile.filename;
-
-      const recognizeResult = await recognizePlate(imageFile.path);
-
-      const hasPlate =
-        recognizeResult &&
-        Array.isArray(recognizeResult.results) &&
-        recognizeResult.results.length > 0;
-
-      const plateNumber = hasPlate ? recognizeResult.results[0].plate : "-";
 
       const gate = await dbMain.occGate.findUnique({
         where: { id },
@@ -124,40 +124,34 @@ export default function createGateStatusRoute(
       const timeoutId = setTimeout(() => {
         const index = queue.findIndex((q) => q.res === res);
         if (index !== -1) {
-          queue.splice(index, 1); // Hapus dari queue
+          queue.splice(index, 1);
           res
             .status(504)
             .json({ error: "Timeout: no available user within 5 seconds" });
         }
       }, 5000);
 
-      // Tetap proses meskipun plate kosong
       queue.push({ id, res, imageFile, timeoutId, detailGate: addIssue });
       processQueue();
     }
   );
 
   router.post("/call-ended", (req: any, res: any) => {
-    const { userNumber } = req.body;
+    const { userId } = req.body;
 
-    if (!userNumber || userNumber < 1 || userNumber > 3) {
-      return res
-        .status(400)
-        .json({ error: "Valid userNumber is required (1-3)" });
-    }
+    const user = users.find((u) => u.id === userId);
 
-    const user = users[userNumber - 1];
-
-    if (!user || !user.id) {
+    if (!user || !user.socketId) {
       return res
         .status(404)
         .json({ error: "User not found or not registered" });
     }
 
     user.busy = false;
-    console.log(`User ${userNumber} (${user.id}) marked as free`);
 
-    res.json({ message: `User ${userNumber} status updated to free` });
+    console.log(`User ${userId} (${user.socketId}) marked as free`);
+
+    res.json({ message: `User ${userId} status updated to free` });
   });
 
   const processQueue = async () => {
@@ -173,7 +167,7 @@ export default function createGateStatusRoute(
       for (let i = 0; i < users.length; i++) {
         const idx = (nextUserIndex + i) % users.length;
 
-        if (users[idx].id && !users[idx].busy) {
+        if (users[idx].socketId && !users[idx].busy) {
           users[idx].busy = true;
 
           try {
@@ -183,15 +177,22 @@ export default function createGateStatusRoute(
                 location: { select: { Name: true, Code: true } },
               },
             });
-
-            io.to(users[idx].id!).emit("gate-status-update", {
-              gateId: id,
-              gateStatus: gate?.statusGate,
-              location: gate?.location,
-              gate: gate?.gate,
-              imageFile: imageFile,
-              detailGate: detailGate,
-            });
+            console.log(
+              id,
+              gate?.statusGate,
+              gate?.location,
+              gate?.gate,
+              imageFile,
+              detailGate
+            ),
+              io.to(users[idx].socketId!).emit("gate-status-update", {
+                gateId: id,
+                gateStatus: gate?.statusGate,
+                location: gate?.location,
+                gate: gate?.gate,
+                imageFile: imageFile,
+                detailGate: detailGate,
+              });
 
             res.status(200).json({
               message: "Gate status fetched and sent to user",

@@ -29,13 +29,13 @@ const io = new SocketIOServer(server, {
 });
 
 const users = [
-  { id: null as string | null, busy: false },
-  { id: null as string | null, busy: false },
-  { id: null as string | null, busy: false },
+  { id: null as number | null, socketId: null as string | null, busy: false },
+  { id: null as number | null, socketId: null as string | null, busy: false },
+  { id: null as number | null, socketId: null as string | null, busy: false },
 ];
 
 let nextUserIndex = 0;
-
+console.log(users);
 app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
@@ -68,25 +68,32 @@ io.on("connection", (socket) => {
   console.log("New client connected:", socket.id);
 
   socket.on("register", (userId: number) => {
-    // Cek kalau user belum ada, tambahkan
-    const existing = users.find((u) => u.id === socket.id);
-    if (!existing && userId >= 1 && userId <= 3) {
-      users[userId - 1].id = socket.id;
-      users[userId - 1].busy = false;
-      console.log(`✅ User ${userId} registered with socket id ${socket.id}`);
-    }
-  });
+    // Cari slot yang masih kosong
+    const availableSlot = users.find((u) => u.id === null);
 
-  socket.on("call-ended", () => {
-    const user = users.find((u) => u.id === socket.id);
-    if (user) {
-      user.busy = false;
-      console.log(`User ${socket.id} finished call`);
+    if (availableSlot) {
+      availableSlot.id = userId;
+      availableSlot.socketId = socket.id;
+      availableSlot.busy = false;
+
+      console.log(`✅ User ${userId} registered with socket id ${socket.id}`);
+    } else {
+      console.log("⚠️ Semua slot user sudah terisi.");
     }
   });
 
   socket.on("disconnect", () => {
-    const user = users.find((u) => u.id === socket.id);
+    const user = users.find((u) => u.socketId === socket.id);
+    if (user) {
+      console.log(`❌ User ${user.id} disconnected`);
+      user.busy = false;
+      user.socketId = null;
+      user.id = null;
+    }
+  });
+
+  socket.on("disconnect", () => {
+    const user = users.find((u) => u.socketId === socket.id);
     if (user) {
       user.busy = false;
       user.id = null;
