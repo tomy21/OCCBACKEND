@@ -199,7 +199,7 @@ export default function createGateStatusRoute(
             };
 
             res.status(200).json({
-              code: 200,
+              ResponseCode: 200,
               message: "Gate status fetched and sent to user",
               data: dataGate,
             });
