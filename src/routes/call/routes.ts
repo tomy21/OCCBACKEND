@@ -194,9 +194,13 @@ export default function createGateStatusRoute(
                 detailGate: detailGate,
               });
 
+            const dataGate = {
+              plateNumber: "D1159AKF",
+            };
+
             res.status(200).json({
               message: "Gate status fetched and sent to user",
-              data: gate,
+              data: dataGate,
             });
 
             clearTimeout(queue[0].timeoutId);
