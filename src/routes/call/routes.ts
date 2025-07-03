@@ -193,7 +193,7 @@ export default function createGateStatusRoute(
             });
 
             const dataGate = {
-              plateNumber: "D1159AKF",
+              detailGate: dataPOST.data,
             };
 
             res.status(200).json({
