@@ -56,6 +56,12 @@ export const createIssue = async (
       },
     });
 
+    const descriptionData = await dbMain.occDescription.findFirst({
+      where: {
+        id: parseInt(description),
+      },
+    });
+
     if (!category) {
       res
         .status(404)
@@ -86,7 +92,8 @@ export const createIssue = async (
       data: {
         ticket: noTicket,
         category: category.category,
-        description,
+        lokasi: lokasiData?.Name,
+        description: descriptionData?.object,
         gate: gate.gate,
         action,
         foto_in,
