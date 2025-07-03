@@ -179,13 +179,8 @@ export default function createGateStatusRoute(
               },
             });
 
-            const dataPOST = await axios.post(
-              "http://3ea6-111-95-130-108.ngrok-free.app/api/get-data-post",
-              {
-                param: {
-                  plateNumber: detailGate.number_plate,
-                },
-              }
+            const dataPOST = await axios.get(
+              `http://3ea6-111-95-130-108.ngrok-free.app/api/get-data-post?plateNumber=${detailGate.number_plate}`
             );
 
             io.to(users[idx].socketId!).emit("gate-status-update", {
