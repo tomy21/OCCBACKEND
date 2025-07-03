@@ -5,6 +5,7 @@ import { recognizePlate } from "../../middleware/PlateRecognize";
 import { generateTicketCode } from "../../helper/generateNoTrx";
 import upload from "../../middleware/uploadImage";
 import { dbMain } from "../../prisma/client";
+import axios from "axios";
 
 export default function createGateStatusRoute(
   io: Server,
@@ -177,22 +178,24 @@ export default function createGateStatusRoute(
                 location: { select: { Name: true, Code: true } },
               },
             });
-            console.log(
-              id,
-              gate?.statusGate,
-              gate?.location,
-              gate?.gate,
-              imageFile,
-              detailGate
-            ),
-              io.to(users[idx].socketId!).emit("gate-status-update", {
-                gateId: id,
-                gateStatus: gate?.statusGate,
-                location: gate?.location,
-                gate: gate?.gate,
-                imageFile: imageFile,
-                detailGate: detailGate,
-              });
+
+            const dataPOST = await axios.post(
+              "http://3ea6-111-95-130-108.ngrok-free.app/api/get-data-post",
+              {
+                param: {
+                  plateNumber: detailGate.number_plate,
+                },
+              }
+            );
+
+            io.to(users[idx].socketId!).emit("gate-status-update", {
+              gateId: id,
+              gateStatus: gate?.statusGate,
+              location: gate?.location,
+              gate: gate?.gate,
+              imageFile: imageFile,
+              detailGate: dataPOST.data,
+            });
 
             const dataGate = {
               plateNumber: "D1159AKF",
