@@ -92,6 +92,20 @@ model OccRefLocation {
   location OccGate[]
 }
 
+model OccTransaction {
+  Id             Int       @id @default(autoincrement())
+  PlateNumberIn  String
+  PlateNumberOut String?
+  PathIn         String
+  PathOut        String?
+  Location       String?
+  GateName       String?
+  InTime         DateTime?
+  OutTime        DateTime?
+  CreatedAt      DateTime  @default(now())
+  UpdatedAt      DateTime  @updatedAt
+}
+
 model OccGate {
   id           Int       @id @default(autoincrement())
   id_location  Int

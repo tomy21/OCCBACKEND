@@ -6,6 +6,7 @@ import { generateTicketCode } from "../../helper/generateNoTrx";
 import upload from "../../middleware/uploadImage";
 import { dbMain } from "../../prisma/client";
 import axios from "axios";
+import { get } from "http";
 
 export default function createGateStatusRoute(
   io: Server,
@@ -179,6 +180,13 @@ export default function createGateStatusRoute(
               },
             });
 
+            const getTransaction = await dbMain.occTransaction.findFirst({
+              where: {
+                GateName: gate?.gate,
+                PlateNumberIn: detailGate.number_plate,
+              },
+            });
+
             const dataPOST = await axios.get(
               `http://3ea6-111-95-130-108.ngrok-free.app/api/get-data-post?plateNumber=${detailGate.number_plate}`
             );
@@ -188,6 +196,7 @@ export default function createGateStatusRoute(
               gateStatus: gate?.statusGate,
               location: gate?.location,
               gate: gate?.gate,
+              imageFileIn: getTransaction?.PathIn,
               imageFile: imageFile,
               detailGate: dataPOST.data,
             });

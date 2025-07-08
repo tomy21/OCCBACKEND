@@ -34,6 +34,11 @@ export type OccIssue = $Result.DefaultSelection<Prisma.$OccIssuePayload>
  */
 export type OccRefLocation = $Result.DefaultSelection<Prisma.$OccRefLocationPayload>
 /**
+ * Model OccTransaction
+ * 
+ */
+export type OccTransaction = $Result.DefaultSelection<Prisma.$OccTransactionPayload>
+/**
  * Model OccGate
  * 
  */
@@ -244,6 +249,16 @@ export class PrismaClient<
     * ```
     */
   get occRefLocation(): Prisma.OccRefLocationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.occTransaction`: Exposes CRUD operations for the **OccTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OccTransactions
+    * const occTransactions = await prisma.occTransaction.findMany()
+    * ```
+    */
+  get occTransaction(): Prisma.OccTransactionDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.occGate`: Exposes CRUD operations for the **OccGate** model.
@@ -718,6 +733,7 @@ export namespace Prisma {
     OccDescription: 'OccDescription',
     OccIssue: 'OccIssue',
     OccRefLocation: 'OccRefLocation',
+    OccTransaction: 'OccTransaction',
     OccGate: 'OccGate',
     OccIntercome: 'OccIntercome',
     RefIssuer: 'RefIssuer'
@@ -739,7 +755,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occGate" | "occIntercome" | "refIssuer"
+      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1004,6 +1020,72 @@ export namespace Prisma {
           count: {
             args: Prisma.OccRefLocationCountArgs<ExtArgs>
             result: $Utils.Optional<OccRefLocationCountAggregateOutputType> | number
+          }
+        }
+      }
+      OccTransaction: {
+        payload: Prisma.$OccTransactionPayload<ExtArgs>
+        fields: Prisma.OccTransactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OccTransactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OccTransactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>
+          }
+          findFirst: {
+            args: Prisma.OccTransactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OccTransactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>
+          }
+          findMany: {
+            args: Prisma.OccTransactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>[]
+          }
+          create: {
+            args: Prisma.OccTransactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>
+          }
+          createMany: {
+            args: Prisma.OccTransactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.OccTransactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>
+          }
+          update: {
+            args: Prisma.OccTransactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.OccTransactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OccTransactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.OccTransactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>
+          }
+          aggregate: {
+            args: Prisma.OccTransactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOccTransaction>
+          }
+          groupBy: {
+            args: Prisma.OccTransactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OccTransactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OccTransactionCountArgs<ExtArgs>
+            result: $Utils.Optional<OccTransactionCountAggregateOutputType> | number
           }
         }
       }
@@ -1293,6 +1375,7 @@ export namespace Prisma {
     occDescription?: OccDescriptionOmit
     occIssue?: OccIssueOmit
     occRefLocation?: OccRefLocationOmit
+    occTransaction?: OccTransactionOmit
     occGate?: OccGateOmit
     occIntercome?: OccIntercomeOmit
     refIssuer?: RefIssuerOmit
@@ -5625,6 +5708,988 @@ export namespace Prisma {
 
 
   /**
+   * Model OccTransaction
+   */
+
+  export type AggregateOccTransaction = {
+    _count: OccTransactionCountAggregateOutputType | null
+    _avg: OccTransactionAvgAggregateOutputType | null
+    _sum: OccTransactionSumAggregateOutputType | null
+    _min: OccTransactionMinAggregateOutputType | null
+    _max: OccTransactionMaxAggregateOutputType | null
+  }
+
+  export type OccTransactionAvgAggregateOutputType = {
+    Id: number | null
+  }
+
+  export type OccTransactionSumAggregateOutputType = {
+    Id: number | null
+  }
+
+  export type OccTransactionMinAggregateOutputType = {
+    Id: number | null
+    PlateNumberIn: string | null
+    PlateNumberOut: string | null
+    PathIn: string | null
+    PathOut: string | null
+    Location: string | null
+    GateName: string | null
+    InTime: Date | null
+    OutTime: Date | null
+    CreatedAt: Date | null
+    UpdatedAt: Date | null
+  }
+
+  export type OccTransactionMaxAggregateOutputType = {
+    Id: number | null
+    PlateNumberIn: string | null
+    PlateNumberOut: string | null
+    PathIn: string | null
+    PathOut: string | null
+    Location: string | null
+    GateName: string | null
+    InTime: Date | null
+    OutTime: Date | null
+    CreatedAt: Date | null
+    UpdatedAt: Date | null
+  }
+
+  export type OccTransactionCountAggregateOutputType = {
+    Id: number
+    PlateNumberIn: number
+    PlateNumberOut: number
+    PathIn: number
+    PathOut: number
+    Location: number
+    GateName: number
+    InTime: number
+    OutTime: number
+    CreatedAt: number
+    UpdatedAt: number
+    _all: number
+  }
+
+
+  export type OccTransactionAvgAggregateInputType = {
+    Id?: true
+  }
+
+  export type OccTransactionSumAggregateInputType = {
+    Id?: true
+  }
+
+  export type OccTransactionMinAggregateInputType = {
+    Id?: true
+    PlateNumberIn?: true
+    PlateNumberOut?: true
+    PathIn?: true
+    PathOut?: true
+    Location?: true
+    GateName?: true
+    InTime?: true
+    OutTime?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+  }
+
+  export type OccTransactionMaxAggregateInputType = {
+    Id?: true
+    PlateNumberIn?: true
+    PlateNumberOut?: true
+    PathIn?: true
+    PathOut?: true
+    Location?: true
+    GateName?: true
+    InTime?: true
+    OutTime?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+  }
+
+  export type OccTransactionCountAggregateInputType = {
+    Id?: true
+    PlateNumberIn?: true
+    PlateNumberOut?: true
+    PathIn?: true
+    PathOut?: true
+    Location?: true
+    GateName?: true
+    InTime?: true
+    OutTime?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+    _all?: true
+  }
+
+  export type OccTransactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OccTransaction to aggregate.
+     */
+    where?: OccTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccTransactions to fetch.
+     */
+    orderBy?: OccTransactionOrderByWithRelationInput | OccTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OccTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OccTransactions
+    **/
+    _count?: true | OccTransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OccTransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OccTransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OccTransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OccTransactionMaxAggregateInputType
+  }
+
+  export type GetOccTransactionAggregateType<T extends OccTransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateOccTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOccTransaction[P]>
+      : GetScalarType<T[P], AggregateOccTransaction[P]>
+  }
+
+
+
+
+  export type OccTransactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OccTransactionWhereInput
+    orderBy?: OccTransactionOrderByWithAggregationInput | OccTransactionOrderByWithAggregationInput[]
+    by: OccTransactionScalarFieldEnum[] | OccTransactionScalarFieldEnum
+    having?: OccTransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OccTransactionCountAggregateInputType | true
+    _avg?: OccTransactionAvgAggregateInputType
+    _sum?: OccTransactionSumAggregateInputType
+    _min?: OccTransactionMinAggregateInputType
+    _max?: OccTransactionMaxAggregateInputType
+  }
+
+  export type OccTransactionGroupByOutputType = {
+    Id: number
+    PlateNumberIn: string
+    PlateNumberOut: string | null
+    PathIn: string
+    PathOut: string | null
+    Location: string | null
+    GateName: string | null
+    InTime: Date | null
+    OutTime: Date | null
+    CreatedAt: Date
+    UpdatedAt: Date
+    _count: OccTransactionCountAggregateOutputType | null
+    _avg: OccTransactionAvgAggregateOutputType | null
+    _sum: OccTransactionSumAggregateOutputType | null
+    _min: OccTransactionMinAggregateOutputType | null
+    _max: OccTransactionMaxAggregateOutputType | null
+  }
+
+  type GetOccTransactionGroupByPayload<T extends OccTransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OccTransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OccTransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OccTransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], OccTransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OccTransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    PlateNumberIn?: boolean
+    PlateNumberOut?: boolean
+    PathIn?: boolean
+    PathOut?: boolean
+    Location?: boolean
+    GateName?: boolean
+    InTime?: boolean
+    OutTime?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }, ExtArgs["result"]["occTransaction"]>
+
+
+
+  export type OccTransactionSelectScalar = {
+    Id?: boolean
+    PlateNumberIn?: boolean
+    PlateNumberOut?: boolean
+    PathIn?: boolean
+    PathOut?: boolean
+    Location?: boolean
+    GateName?: boolean
+    InTime?: boolean
+    OutTime?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }
+
+  export type OccTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "PlateNumberIn" | "PlateNumberOut" | "PathIn" | "PathOut" | "Location" | "GateName" | "InTime" | "OutTime" | "CreatedAt" | "UpdatedAt", ExtArgs["result"]["occTransaction"]>
+
+  export type $OccTransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OccTransaction"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      Id: number
+      PlateNumberIn: string
+      PlateNumberOut: string | null
+      PathIn: string
+      PathOut: string | null
+      Location: string | null
+      GateName: string | null
+      InTime: Date | null
+      OutTime: Date | null
+      CreatedAt: Date
+      UpdatedAt: Date
+    }, ExtArgs["result"]["occTransaction"]>
+    composites: {}
+  }
+
+  type OccTransactionGetPayload<S extends boolean | null | undefined | OccTransactionDefaultArgs> = $Result.GetResult<Prisma.$OccTransactionPayload, S>
+
+  type OccTransactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OccTransactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OccTransactionCountAggregateInputType | true
+    }
+
+  export interface OccTransactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OccTransaction'], meta: { name: 'OccTransaction' } }
+    /**
+     * Find zero or one OccTransaction that matches the filter.
+     * @param {OccTransactionFindUniqueArgs} args - Arguments to find a OccTransaction
+     * @example
+     * // Get one OccTransaction
+     * const occTransaction = await prisma.occTransaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OccTransactionFindUniqueArgs>(args: SelectSubset<T, OccTransactionFindUniqueArgs<ExtArgs>>): Prisma__OccTransactionClient<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OccTransaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OccTransactionFindUniqueOrThrowArgs} args - Arguments to find a OccTransaction
+     * @example
+     * // Get one OccTransaction
+     * const occTransaction = await prisma.occTransaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OccTransactionFindUniqueOrThrowArgs>(args: SelectSubset<T, OccTransactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OccTransactionClient<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OccTransaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccTransactionFindFirstArgs} args - Arguments to find a OccTransaction
+     * @example
+     * // Get one OccTransaction
+     * const occTransaction = await prisma.occTransaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OccTransactionFindFirstArgs>(args?: SelectSubset<T, OccTransactionFindFirstArgs<ExtArgs>>): Prisma__OccTransactionClient<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OccTransaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccTransactionFindFirstOrThrowArgs} args - Arguments to find a OccTransaction
+     * @example
+     * // Get one OccTransaction
+     * const occTransaction = await prisma.occTransaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OccTransactionFindFirstOrThrowArgs>(args?: SelectSubset<T, OccTransactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__OccTransactionClient<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OccTransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccTransactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OccTransactions
+     * const occTransactions = await prisma.occTransaction.findMany()
+     * 
+     * // Get first 10 OccTransactions
+     * const occTransactions = await prisma.occTransaction.findMany({ take: 10 })
+     * 
+     * // Only select the `Id`
+     * const occTransactionWithIdOnly = await prisma.occTransaction.findMany({ select: { Id: true } })
+     * 
+     */
+    findMany<T extends OccTransactionFindManyArgs>(args?: SelectSubset<T, OccTransactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OccTransaction.
+     * @param {OccTransactionCreateArgs} args - Arguments to create a OccTransaction.
+     * @example
+     * // Create one OccTransaction
+     * const OccTransaction = await prisma.occTransaction.create({
+     *   data: {
+     *     // ... data to create a OccTransaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends OccTransactionCreateArgs>(args: SelectSubset<T, OccTransactionCreateArgs<ExtArgs>>): Prisma__OccTransactionClient<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OccTransactions.
+     * @param {OccTransactionCreateManyArgs} args - Arguments to create many OccTransactions.
+     * @example
+     * // Create many OccTransactions
+     * const occTransaction = await prisma.occTransaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OccTransactionCreateManyArgs>(args?: SelectSubset<T, OccTransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a OccTransaction.
+     * @param {OccTransactionDeleteArgs} args - Arguments to delete one OccTransaction.
+     * @example
+     * // Delete one OccTransaction
+     * const OccTransaction = await prisma.occTransaction.delete({
+     *   where: {
+     *     // ... filter to delete one OccTransaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OccTransactionDeleteArgs>(args: SelectSubset<T, OccTransactionDeleteArgs<ExtArgs>>): Prisma__OccTransactionClient<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OccTransaction.
+     * @param {OccTransactionUpdateArgs} args - Arguments to update one OccTransaction.
+     * @example
+     * // Update one OccTransaction
+     * const occTransaction = await prisma.occTransaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OccTransactionUpdateArgs>(args: SelectSubset<T, OccTransactionUpdateArgs<ExtArgs>>): Prisma__OccTransactionClient<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OccTransactions.
+     * @param {OccTransactionDeleteManyArgs} args - Arguments to filter OccTransactions to delete.
+     * @example
+     * // Delete a few OccTransactions
+     * const { count } = await prisma.occTransaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OccTransactionDeleteManyArgs>(args?: SelectSubset<T, OccTransactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccTransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OccTransactions
+     * const occTransaction = await prisma.occTransaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OccTransactionUpdateManyArgs>(args: SelectSubset<T, OccTransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one OccTransaction.
+     * @param {OccTransactionUpsertArgs} args - Arguments to update or create a OccTransaction.
+     * @example
+     * // Update or create a OccTransaction
+     * const occTransaction = await prisma.occTransaction.upsert({
+     *   create: {
+     *     // ... data to create a OccTransaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OccTransaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OccTransactionUpsertArgs>(args: SelectSubset<T, OccTransactionUpsertArgs<ExtArgs>>): Prisma__OccTransactionClient<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OccTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccTransactionCountArgs} args - Arguments to filter OccTransactions to count.
+     * @example
+     * // Count the number of OccTransactions
+     * const count = await prisma.occTransaction.count({
+     *   where: {
+     *     // ... the filter for the OccTransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends OccTransactionCountArgs>(
+      args?: Subset<T, OccTransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OccTransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OccTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccTransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OccTransactionAggregateArgs>(args: Subset<T, OccTransactionAggregateArgs>): Prisma.PrismaPromise<GetOccTransactionAggregateType<T>>
+
+    /**
+     * Group by OccTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccTransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OccTransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OccTransactionGroupByArgs['orderBy'] }
+        : { orderBy?: OccTransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OccTransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOccTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OccTransaction model
+   */
+  readonly fields: OccTransactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OccTransaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OccTransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OccTransaction model
+   */
+  interface OccTransactionFieldRefs {
+    readonly Id: FieldRef<"OccTransaction", 'Int'>
+    readonly PlateNumberIn: FieldRef<"OccTransaction", 'String'>
+    readonly PlateNumberOut: FieldRef<"OccTransaction", 'String'>
+    readonly PathIn: FieldRef<"OccTransaction", 'String'>
+    readonly PathOut: FieldRef<"OccTransaction", 'String'>
+    readonly Location: FieldRef<"OccTransaction", 'String'>
+    readonly GateName: FieldRef<"OccTransaction", 'String'>
+    readonly InTime: FieldRef<"OccTransaction", 'DateTime'>
+    readonly OutTime: FieldRef<"OccTransaction", 'DateTime'>
+    readonly CreatedAt: FieldRef<"OccTransaction", 'DateTime'>
+    readonly UpdatedAt: FieldRef<"OccTransaction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OccTransaction findUnique
+   */
+  export type OccTransactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * Filter, which OccTransaction to fetch.
+     */
+    where: OccTransactionWhereUniqueInput
+  }
+
+  /**
+   * OccTransaction findUniqueOrThrow
+   */
+  export type OccTransactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * Filter, which OccTransaction to fetch.
+     */
+    where: OccTransactionWhereUniqueInput
+  }
+
+  /**
+   * OccTransaction findFirst
+   */
+  export type OccTransactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * Filter, which OccTransaction to fetch.
+     */
+    where?: OccTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccTransactions to fetch.
+     */
+    orderBy?: OccTransactionOrderByWithRelationInput | OccTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OccTransactions.
+     */
+    cursor?: OccTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OccTransactions.
+     */
+    distinct?: OccTransactionScalarFieldEnum | OccTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * OccTransaction findFirstOrThrow
+   */
+  export type OccTransactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * Filter, which OccTransaction to fetch.
+     */
+    where?: OccTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccTransactions to fetch.
+     */
+    orderBy?: OccTransactionOrderByWithRelationInput | OccTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OccTransactions.
+     */
+    cursor?: OccTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OccTransactions.
+     */
+    distinct?: OccTransactionScalarFieldEnum | OccTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * OccTransaction findMany
+   */
+  export type OccTransactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * Filter, which OccTransactions to fetch.
+     */
+    where?: OccTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccTransactions to fetch.
+     */
+    orderBy?: OccTransactionOrderByWithRelationInput | OccTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OccTransactions.
+     */
+    cursor?: OccTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccTransactions.
+     */
+    skip?: number
+    distinct?: OccTransactionScalarFieldEnum | OccTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * OccTransaction create
+   */
+  export type OccTransactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * The data needed to create a OccTransaction.
+     */
+    data: XOR<OccTransactionCreateInput, OccTransactionUncheckedCreateInput>
+  }
+
+  /**
+   * OccTransaction createMany
+   */
+  export type OccTransactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OccTransactions.
+     */
+    data: OccTransactionCreateManyInput | OccTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OccTransaction update
+   */
+  export type OccTransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * The data needed to update a OccTransaction.
+     */
+    data: XOR<OccTransactionUpdateInput, OccTransactionUncheckedUpdateInput>
+    /**
+     * Choose, which OccTransaction to update.
+     */
+    where: OccTransactionWhereUniqueInput
+  }
+
+  /**
+   * OccTransaction updateMany
+   */
+  export type OccTransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccTransactions.
+     */
+    data: XOR<OccTransactionUpdateManyMutationInput, OccTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which OccTransactions to update
+     */
+    where?: OccTransactionWhereInput
+    /**
+     * Limit how many OccTransactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccTransaction upsert
+   */
+  export type OccTransactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * The filter to search for the OccTransaction to update in case it exists.
+     */
+    where: OccTransactionWhereUniqueInput
+    /**
+     * In case the OccTransaction found by the `where` argument doesn't exist, create a new OccTransaction with this data.
+     */
+    create: XOR<OccTransactionCreateInput, OccTransactionUncheckedCreateInput>
+    /**
+     * In case the OccTransaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OccTransactionUpdateInput, OccTransactionUncheckedUpdateInput>
+  }
+
+  /**
+   * OccTransaction delete
+   */
+  export type OccTransactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * Filter which OccTransaction to delete.
+     */
+    where: OccTransactionWhereUniqueInput
+  }
+
+  /**
+   * OccTransaction deleteMany
+   */
+  export type OccTransactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OccTransactions to delete
+     */
+    where?: OccTransactionWhereInput
+    /**
+     * Limit how many OccTransactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccTransaction without action
+   */
+  export type OccTransactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Model OccGate
    */
 
@@ -8701,6 +9766,23 @@ export namespace Prisma {
   export type OccRefLocationScalarFieldEnum = (typeof OccRefLocationScalarFieldEnum)[keyof typeof OccRefLocationScalarFieldEnum]
 
 
+  export const OccTransactionScalarFieldEnum: {
+    Id: 'Id',
+    PlateNumberIn: 'PlateNumberIn',
+    PlateNumberOut: 'PlateNumberOut',
+    PathIn: 'PathIn',
+    PathOut: 'PathOut',
+    Location: 'Location',
+    GateName: 'GateName',
+    InTime: 'InTime',
+    OutTime: 'OutTime',
+    CreatedAt: 'CreatedAt',
+    UpdatedAt: 'UpdatedAt'
+  };
+
+  export type OccTransactionScalarFieldEnum = (typeof OccTransactionScalarFieldEnum)[keyof typeof OccTransactionScalarFieldEnum]
+
+
   export const OccGateScalarFieldEnum: {
     id: 'id',
     id_location: 'id_location',
@@ -8814,6 +9896,18 @@ export namespace Prisma {
   };
 
   export type OccRefLocationOrderByRelevanceFieldEnum = (typeof OccRefLocationOrderByRelevanceFieldEnum)[keyof typeof OccRefLocationOrderByRelevanceFieldEnum]
+
+
+  export const OccTransactionOrderByRelevanceFieldEnum: {
+    PlateNumberIn: 'PlateNumberIn',
+    PlateNumberOut: 'PlateNumberOut',
+    PathIn: 'PathIn',
+    PathOut: 'PathOut',
+    Location: 'Location',
+    GateName: 'GateName'
+  };
+
+  export type OccTransactionOrderByRelevanceFieldEnum = (typeof OccTransactionOrderByRelevanceFieldEnum)[keyof typeof OccTransactionOrderByRelevanceFieldEnum]
 
 
   export const OccGateOrderByRelevanceFieldEnum: {
@@ -9267,6 +10361,91 @@ export namespace Prisma {
     UpdatedAt?: DateTimeWithAggregatesFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableWithAggregatesFilter<"OccRefLocation"> | Date | string | null
     recordStatus?: EnumrecordWithAggregatesFilter<"OccRefLocation"> | $Enums.record
+  }
+
+  export type OccTransactionWhereInput = {
+    AND?: OccTransactionWhereInput | OccTransactionWhereInput[]
+    OR?: OccTransactionWhereInput[]
+    NOT?: OccTransactionWhereInput | OccTransactionWhereInput[]
+    Id?: IntFilter<"OccTransaction"> | number
+    PlateNumberIn?: StringFilter<"OccTransaction"> | string
+    PlateNumberOut?: StringNullableFilter<"OccTransaction"> | string | null
+    PathIn?: StringFilter<"OccTransaction"> | string
+    PathOut?: StringNullableFilter<"OccTransaction"> | string | null
+    Location?: StringNullableFilter<"OccTransaction"> | string | null
+    GateName?: StringNullableFilter<"OccTransaction"> | string | null
+    InTime?: DateTimeNullableFilter<"OccTransaction"> | Date | string | null
+    OutTime?: DateTimeNullableFilter<"OccTransaction"> | Date | string | null
+    CreatedAt?: DateTimeFilter<"OccTransaction"> | Date | string
+    UpdatedAt?: DateTimeFilter<"OccTransaction"> | Date | string
+  }
+
+  export type OccTransactionOrderByWithRelationInput = {
+    Id?: SortOrder
+    PlateNumberIn?: SortOrder
+    PlateNumberOut?: SortOrderInput | SortOrder
+    PathIn?: SortOrder
+    PathOut?: SortOrderInput | SortOrder
+    Location?: SortOrderInput | SortOrder
+    GateName?: SortOrderInput | SortOrder
+    InTime?: SortOrderInput | SortOrder
+    OutTime?: SortOrderInput | SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+    _relevance?: OccTransactionOrderByRelevanceInput
+  }
+
+  export type OccTransactionWhereUniqueInput = Prisma.AtLeast<{
+    Id?: number
+    AND?: OccTransactionWhereInput | OccTransactionWhereInput[]
+    OR?: OccTransactionWhereInput[]
+    NOT?: OccTransactionWhereInput | OccTransactionWhereInput[]
+    PlateNumberIn?: StringFilter<"OccTransaction"> | string
+    PlateNumberOut?: StringNullableFilter<"OccTransaction"> | string | null
+    PathIn?: StringFilter<"OccTransaction"> | string
+    PathOut?: StringNullableFilter<"OccTransaction"> | string | null
+    Location?: StringNullableFilter<"OccTransaction"> | string | null
+    GateName?: StringNullableFilter<"OccTransaction"> | string | null
+    InTime?: DateTimeNullableFilter<"OccTransaction"> | Date | string | null
+    OutTime?: DateTimeNullableFilter<"OccTransaction"> | Date | string | null
+    CreatedAt?: DateTimeFilter<"OccTransaction"> | Date | string
+    UpdatedAt?: DateTimeFilter<"OccTransaction"> | Date | string
+  }, "Id">
+
+  export type OccTransactionOrderByWithAggregationInput = {
+    Id?: SortOrder
+    PlateNumberIn?: SortOrder
+    PlateNumberOut?: SortOrderInput | SortOrder
+    PathIn?: SortOrder
+    PathOut?: SortOrderInput | SortOrder
+    Location?: SortOrderInput | SortOrder
+    GateName?: SortOrderInput | SortOrder
+    InTime?: SortOrderInput | SortOrder
+    OutTime?: SortOrderInput | SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+    _count?: OccTransactionCountOrderByAggregateInput
+    _avg?: OccTransactionAvgOrderByAggregateInput
+    _max?: OccTransactionMaxOrderByAggregateInput
+    _min?: OccTransactionMinOrderByAggregateInput
+    _sum?: OccTransactionSumOrderByAggregateInput
+  }
+
+  export type OccTransactionScalarWhereWithAggregatesInput = {
+    AND?: OccTransactionScalarWhereWithAggregatesInput | OccTransactionScalarWhereWithAggregatesInput[]
+    OR?: OccTransactionScalarWhereWithAggregatesInput[]
+    NOT?: OccTransactionScalarWhereWithAggregatesInput | OccTransactionScalarWhereWithAggregatesInput[]
+    Id?: IntWithAggregatesFilter<"OccTransaction"> | number
+    PlateNumberIn?: StringWithAggregatesFilter<"OccTransaction"> | string
+    PlateNumberOut?: StringNullableWithAggregatesFilter<"OccTransaction"> | string | null
+    PathIn?: StringWithAggregatesFilter<"OccTransaction"> | string
+    PathOut?: StringNullableWithAggregatesFilter<"OccTransaction"> | string | null
+    Location?: StringNullableWithAggregatesFilter<"OccTransaction"> | string | null
+    GateName?: StringNullableWithAggregatesFilter<"OccTransaction"> | string | null
+    InTime?: DateTimeNullableWithAggregatesFilter<"OccTransaction"> | Date | string | null
+    OutTime?: DateTimeNullableWithAggregatesFilter<"OccTransaction"> | Date | string | null
+    CreatedAt?: DateTimeWithAggregatesFilter<"OccTransaction"> | Date | string
+    UpdatedAt?: DateTimeWithAggregatesFilter<"OccTransaction"> | Date | string
   }
 
   export type OccGateWhereInput = {
@@ -9930,6 +11109,101 @@ export namespace Prisma {
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+  }
+
+  export type OccTransactionCreateInput = {
+    PlateNumberIn: string
+    PlateNumberOut?: string | null
+    PathIn: string
+    PathOut?: string | null
+    Location?: string | null
+    GateName?: string | null
+    InTime?: Date | string | null
+    OutTime?: Date | string | null
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type OccTransactionUncheckedCreateInput = {
+    Id?: number
+    PlateNumberIn: string
+    PlateNumberOut?: string | null
+    PathIn: string
+    PathOut?: string | null
+    Location?: string | null
+    GateName?: string | null
+    InTime?: Date | string | null
+    OutTime?: Date | string | null
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type OccTransactionUpdateInput = {
+    PlateNumberIn?: StringFieldUpdateOperationsInput | string
+    PlateNumberOut?: NullableStringFieldUpdateOperationsInput | string | null
+    PathIn?: StringFieldUpdateOperationsInput | string
+    PathOut?: NullableStringFieldUpdateOperationsInput | string | null
+    Location?: NullableStringFieldUpdateOperationsInput | string | null
+    GateName?: NullableStringFieldUpdateOperationsInput | string | null
+    InTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    OutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccTransactionUncheckedUpdateInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    PlateNumberIn?: StringFieldUpdateOperationsInput | string
+    PlateNumberOut?: NullableStringFieldUpdateOperationsInput | string | null
+    PathIn?: StringFieldUpdateOperationsInput | string
+    PathOut?: NullableStringFieldUpdateOperationsInput | string | null
+    Location?: NullableStringFieldUpdateOperationsInput | string | null
+    GateName?: NullableStringFieldUpdateOperationsInput | string | null
+    InTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    OutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccTransactionCreateManyInput = {
+    Id?: number
+    PlateNumberIn: string
+    PlateNumberOut?: string | null
+    PathIn: string
+    PathOut?: string | null
+    Location?: string | null
+    GateName?: string | null
+    InTime?: Date | string | null
+    OutTime?: Date | string | null
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type OccTransactionUpdateManyMutationInput = {
+    PlateNumberIn?: StringFieldUpdateOperationsInput | string
+    PlateNumberOut?: NullableStringFieldUpdateOperationsInput | string | null
+    PathIn?: StringFieldUpdateOperationsInput | string
+    PathOut?: NullableStringFieldUpdateOperationsInput | string | null
+    Location?: NullableStringFieldUpdateOperationsInput | string | null
+    GateName?: NullableStringFieldUpdateOperationsInput | string | null
+    InTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    OutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccTransactionUncheckedUpdateManyInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    PlateNumberIn?: StringFieldUpdateOperationsInput | string
+    PlateNumberOut?: NullableStringFieldUpdateOperationsInput | string | null
+    PathIn?: StringFieldUpdateOperationsInput | string
+    PathOut?: NullableStringFieldUpdateOperationsInput | string | null
+    Location?: NullableStringFieldUpdateOperationsInput | string | null
+    GateName?: NullableStringFieldUpdateOperationsInput | string | null
+    InTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    OutTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type OccGateCreateInput = {
@@ -10674,6 +11948,62 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumrecordFilter<$PrismaModel>
     _max?: NestedEnumrecordFilter<$PrismaModel>
+  }
+
+  export type OccTransactionOrderByRelevanceInput = {
+    fields: OccTransactionOrderByRelevanceFieldEnum | OccTransactionOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type OccTransactionCountOrderByAggregateInput = {
+    Id?: SortOrder
+    PlateNumberIn?: SortOrder
+    PlateNumberOut?: SortOrder
+    PathIn?: SortOrder
+    PathOut?: SortOrder
+    Location?: SortOrder
+    GateName?: SortOrder
+    InTime?: SortOrder
+    OutTime?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type OccTransactionAvgOrderByAggregateInput = {
+    Id?: SortOrder
+  }
+
+  export type OccTransactionMaxOrderByAggregateInput = {
+    Id?: SortOrder
+    PlateNumberIn?: SortOrder
+    PlateNumberOut?: SortOrder
+    PathIn?: SortOrder
+    PathOut?: SortOrder
+    Location?: SortOrder
+    GateName?: SortOrder
+    InTime?: SortOrder
+    OutTime?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type OccTransactionMinOrderByAggregateInput = {
+    Id?: SortOrder
+    PlateNumberIn?: SortOrder
+    PlateNumberOut?: SortOrder
+    PathIn?: SortOrder
+    PathOut?: SortOrder
+    Location?: SortOrder
+    GateName?: SortOrder
+    InTime?: SortOrder
+    OutTime?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type OccTransactionSumOrderByAggregateInput = {
+    Id?: SortOrder
   }
 
   export type OccRefLocationScalarRelationFilter = {

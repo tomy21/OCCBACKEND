@@ -180,6 +180,20 @@ exports.Prisma.OccRefLocationScalarFieldEnum = {
   recordStatus: 'recordStatus'
 };
 
+exports.Prisma.OccTransactionScalarFieldEnum = {
+  Id: 'Id',
+  PlateNumberIn: 'PlateNumberIn',
+  PlateNumberOut: 'PlateNumberOut',
+  PathIn: 'PathIn',
+  PathOut: 'PathOut',
+  Location: 'Location',
+  GateName: 'GateName',
+  InTime: 'InTime',
+  OutTime: 'OutTime',
+  CreatedAt: 'CreatedAt',
+  UpdatedAt: 'UpdatedAt'
+};
+
 exports.Prisma.OccGateScalarFieldEnum = {
   id: 'id',
   id_location: 'id_location',
@@ -268,6 +282,15 @@ exports.Prisma.OccRefLocationOrderByRelevanceFieldEnum = {
   TimeZone: 'TimeZone'
 };
 
+exports.Prisma.OccTransactionOrderByRelevanceFieldEnum = {
+  PlateNumberIn: 'PlateNumberIn',
+  PlateNumberOut: 'PlateNumberOut',
+  PathIn: 'PathIn',
+  PathOut: 'PathOut',
+  Location: 'Location',
+  GateName: 'GateName'
+};
+
 exports.Prisma.OccGateOrderByRelevanceFieldEnum = {
   gate: 'gate',
   channel_cctv: 'channel_cctv',
@@ -309,6 +332,7 @@ exports.Prisma.ModelName = {
   OccDescription: 'OccDescription',
   OccIssue: 'OccIssue',
   OccRefLocation: 'OccRefLocation',
+  OccTransaction: 'OccTransaction',
   OccGate: 'OccGate',
   OccIntercome: 'OccIntercome',
   RefIssuer: 'RefIssuer'
