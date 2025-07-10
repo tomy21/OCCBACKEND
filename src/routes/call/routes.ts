@@ -68,7 +68,7 @@ export default function createGateStatusRoute(
           gate: gate?.gate,
           lokasi: locationName,
           foto_in: imagePath,
-          number_plate: plateNumber,
+          number_plate: plateNumber || "",
           createdBy: gate?.gate || "-",
         },
         select: {
@@ -188,7 +188,7 @@ export default function createGateStatusRoute(
             });
 
             const dataPOST = await axios.get(
-              `http://3ea6-111-95-130-108.ngrok-free.app/api/get-data-post?plateNumber=${detailGate.number_plate}`
+              `https://5fcd2aeba14d.ngrok-free.app/api/get-data-post?plateNumber=${detailGate.number_plate}`
             );
 
             io.to(users[idx].socketId!).emit("gate-status-update", {
@@ -198,7 +198,7 @@ export default function createGateStatusRoute(
               gate: gate?.gate,
               imageFileIn: getTransaction?.PathIn,
               imageFile: imageFile,
-              detailGate: dataPOST.data,
+              detailGate: dataPOST.data || [],
             });
 
             const dataGate = {
