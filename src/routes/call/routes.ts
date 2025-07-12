@@ -227,7 +227,7 @@ export default function createGateStatusRoute(
             });
 
             const dataPOST = await axios.get(
-              `${urlServer?.UrlServer}/api/v1/transaction?plateNumber=${detailGate.number_plate}`
+              `${urlServer?.UrlServer}/api/get-data-post?plateNumber=${detailGate.number_plate}`
             );
 
             io.to(users[idx].socketId!).emit("gate-status-update", {
