@@ -237,11 +237,11 @@ export default function createGateStatusRoute(
               gate: gate?.gate,
               imageFileIn: getTransaction?.PathIn,
               imageFile: imageFile,
-              // detailGate: dataPOST.data || [],
+              detailGate: dataPOST.data || [],
             });
 
             const dataGate = {
-              // detailGate: dataPOST.data,
+              detailGate: dataPOST.data,
             };
 
             res.status(200).json({
