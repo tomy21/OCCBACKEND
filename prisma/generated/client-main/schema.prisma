@@ -84,6 +84,7 @@ model OccRefLocation {
   EndTime           DateTime?
   DateNext          Int?
   TimeZone          String?
+  UrlServer         String?
   CreatedAt         DateTime  @default(now())
   UpdatedAt         DateTime  @updatedAt
   DeletedAt         DateTime?

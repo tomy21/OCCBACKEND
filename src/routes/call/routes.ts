@@ -7,6 +7,7 @@ import upload from "../../middleware/uploadImage";
 import { dbMain } from "../../prisma/client";
 import axios from "axios";
 import { get } from "http";
+import { createResponse } from "../../helper/responseCode";
 
 export default function createGateStatusRoute(
   io: Server,
@@ -61,6 +62,35 @@ export default function createGateStatusRoute(
       todayStart.setHours(0, 0, 0, 0);
 
       const noTicket = await generateTicketCode(gate?.location?.Code || "");
+
+      const cekPlatNomor = await dbMain.occTransaction.findFirst({
+        where: {
+          OR: [{ PlateNumberIn: plateNumber, PlateNumberOut: plateNumber }],
+          CreatedAt: {
+            gte: toZonedTime(new Date(), timeZone),
+          },
+        },
+      });
+
+      if (cekPlatNomor) {
+        res
+          .status(400)
+          .json(createResponse("TRANSACTION", "ERROR", "Plat Nomor Sudah Ada"));
+        return;
+      }
+
+      if (cekPlatNomor === null) {
+        const plus7hours = new Date(todayStart.getTime() + 7 * 60 * 60 * 1000);
+        await dbMain.occTransaction.create({
+          data: {
+            Location: locationName,
+            GateName: gate?.gate,
+            InTime: plus7hours,
+            PlateNumberIn: plateNumber.toUpperCase(),
+            PathIn: imagePath || "",
+          },
+        });
+      }
 
       const addIssue = await dbMain.occIssue.create({
         data: {
@@ -180,6 +210,15 @@ export default function createGateStatusRoute(
               },
             });
 
+            const urlServer = await dbMain.occRefLocation.findFirst({
+              where: {
+                id: gate?.id_location,
+              },
+              select: {
+                UrlServer: true,
+              },
+            });
+
             const getTransaction = await dbMain.occTransaction.findFirst({
               where: {
                 GateName: gate?.gate,
@@ -188,7 +227,7 @@ export default function createGateStatusRoute(
             });
 
             const dataPOST = await axios.get(
-              `https://5fcd2aeba14d.ngrok-free.app/api/get-data-post?plateNumber=${detailGate.number_plate}`
+              `${urlServer?.UrlServer}/api/v1/transaction?plateNumber=${detailGate.number_plate}`
             );
 
             io.to(users[idx].socketId!).emit("gate-status-update", {
@@ -198,11 +237,11 @@ export default function createGateStatusRoute(
               gate: gate?.gate,
               imageFileIn: getTransaction?.PathIn,
               imageFile: imageFile,
-              detailGate: dataPOST.data || [],
+              // detailGate: dataPOST.data || [],
             });
 
             const dataGate = {
-              detailGate: dataPOST.data,
+              // detailGate: dataPOST.data,
             };
 
             res.status(200).json({

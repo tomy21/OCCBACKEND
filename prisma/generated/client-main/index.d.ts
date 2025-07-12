@@ -4628,6 +4628,7 @@ export namespace Prisma {
     EndTime: Date | null
     DateNext: number | null
     TimeZone: string | null
+    UrlServer: string | null
     CreatedAt: Date | null
     UpdatedAt: Date | null
     DeletedAt: Date | null
@@ -4647,6 +4648,7 @@ export namespace Prisma {
     EndTime: Date | null
     DateNext: number | null
     TimeZone: string | null
+    UrlServer: string | null
     CreatedAt: Date | null
     UpdatedAt: Date | null
     DeletedAt: Date | null
@@ -4666,6 +4668,7 @@ export namespace Prisma {
     EndTime: number
     DateNext: number
     TimeZone: number
+    UrlServer: number
     CreatedAt: number
     UpdatedAt: number
     DeletedAt: number
@@ -4697,6 +4700,7 @@ export namespace Prisma {
     EndTime?: true
     DateNext?: true
     TimeZone?: true
+    UrlServer?: true
     CreatedAt?: true
     UpdatedAt?: true
     DeletedAt?: true
@@ -4716,6 +4720,7 @@ export namespace Prisma {
     EndTime?: true
     DateNext?: true
     TimeZone?: true
+    UrlServer?: true
     CreatedAt?: true
     UpdatedAt?: true
     DeletedAt?: true
@@ -4735,6 +4740,7 @@ export namespace Prisma {
     EndTime?: true
     DateNext?: true
     TimeZone?: true
+    UrlServer?: true
     CreatedAt?: true
     UpdatedAt?: true
     DeletedAt?: true
@@ -4841,6 +4847,7 @@ export namespace Prisma {
     EndTime: Date | null
     DateNext: number | null
     TimeZone: string | null
+    UrlServer: string | null
     CreatedAt: Date
     UpdatedAt: Date
     DeletedAt: Date | null
@@ -4879,6 +4886,7 @@ export namespace Prisma {
     EndTime?: boolean
     DateNext?: boolean
     TimeZone?: boolean
+    UrlServer?: boolean
     CreatedAt?: boolean
     UpdatedAt?: boolean
     DeletedAt?: boolean
@@ -4902,13 +4910,14 @@ export namespace Prisma {
     EndTime?: boolean
     DateNext?: boolean
     TimeZone?: boolean
+    UrlServer?: boolean
     CreatedAt?: boolean
     UpdatedAt?: boolean
     DeletedAt?: boolean
     recordStatus?: boolean
   }
 
-  export type OccRefLocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Code" | "Name" | "Region" | "Vendor" | "VendorParkingCode" | "ShortName" | "Address" | "StartTime" | "EndTime" | "DateNext" | "TimeZone" | "CreatedAt" | "UpdatedAt" | "DeletedAt" | "recordStatus", ExtArgs["result"]["occRefLocation"]>
+  export type OccRefLocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Code" | "Name" | "Region" | "Vendor" | "VendorParkingCode" | "ShortName" | "Address" | "StartTime" | "EndTime" | "DateNext" | "TimeZone" | "UrlServer" | "CreatedAt" | "UpdatedAt" | "DeletedAt" | "recordStatus", ExtArgs["result"]["occRefLocation"]>
   export type OccRefLocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     location?: boolean | OccRefLocation$locationArgs<ExtArgs>
     _count?: boolean | OccRefLocationCountOutputTypeDefaultArgs<ExtArgs>
@@ -4932,6 +4941,7 @@ export namespace Prisma {
       EndTime: Date | null
       DateNext: number | null
       TimeZone: string | null
+      UrlServer: string | null
       CreatedAt: Date
       UpdatedAt: Date
       DeletedAt: Date | null
@@ -5318,6 +5328,7 @@ export namespace Prisma {
     readonly EndTime: FieldRef<"OccRefLocation", 'DateTime'>
     readonly DateNext: FieldRef<"OccRefLocation", 'Int'>
     readonly TimeZone: FieldRef<"OccRefLocation", 'String'>
+    readonly UrlServer: FieldRef<"OccRefLocation", 'String'>
     readonly CreatedAt: FieldRef<"OccRefLocation", 'DateTime'>
     readonly UpdatedAt: FieldRef<"OccRefLocation", 'DateTime'>
     readonly DeletedAt: FieldRef<"OccRefLocation", 'DateTime'>
@@ -9757,6 +9768,7 @@ export namespace Prisma {
     EndTime: 'EndTime',
     DateNext: 'DateNext',
     TimeZone: 'TimeZone',
+    UrlServer: 'UrlServer',
     CreatedAt: 'CreatedAt',
     UpdatedAt: 'UpdatedAt',
     DeletedAt: 'DeletedAt',
@@ -9892,7 +9904,8 @@ export namespace Prisma {
     VendorParkingCode: 'VendorParkingCode',
     ShortName: 'ShortName',
     Address: 'Address',
-    TimeZone: 'TimeZone'
+    TimeZone: 'TimeZone',
+    UrlServer: 'UrlServer'
   };
 
   export type OccRefLocationOrderByRelevanceFieldEnum = (typeof OccRefLocationOrderByRelevanceFieldEnum)[keyof typeof OccRefLocationOrderByRelevanceFieldEnum]
@@ -10266,6 +10279,7 @@ export namespace Prisma {
     EndTime?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
     DateNext?: IntNullableFilter<"OccRefLocation"> | number | null
     TimeZone?: StringNullableFilter<"OccRefLocation"> | string | null
+    UrlServer?: StringNullableFilter<"OccRefLocation"> | string | null
     CreatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
@@ -10286,6 +10300,7 @@ export namespace Prisma {
     EndTime?: SortOrderInput | SortOrder
     DateNext?: SortOrderInput | SortOrder
     TimeZone?: SortOrderInput | SortOrder
+    UrlServer?: SortOrderInput | SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     DeletedAt?: SortOrderInput | SortOrder
@@ -10310,6 +10325,7 @@ export namespace Prisma {
     EndTime?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
     DateNext?: IntNullableFilter<"OccRefLocation"> | number | null
     TimeZone?: StringNullableFilter<"OccRefLocation"> | string | null
+    UrlServer?: StringNullableFilter<"OccRefLocation"> | string | null
     CreatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
@@ -10330,6 +10346,7 @@ export namespace Prisma {
     EndTime?: SortOrderInput | SortOrder
     DateNext?: SortOrderInput | SortOrder
     TimeZone?: SortOrderInput | SortOrder
+    UrlServer?: SortOrderInput | SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     DeletedAt?: SortOrderInput | SortOrder
@@ -10357,6 +10374,7 @@ export namespace Prisma {
     EndTime?: DateTimeNullableWithAggregatesFilter<"OccRefLocation"> | Date | string | null
     DateNext?: IntNullableWithAggregatesFilter<"OccRefLocation"> | number | null
     TimeZone?: StringNullableWithAggregatesFilter<"OccRefLocation"> | string | null
+    UrlServer?: StringNullableWithAggregatesFilter<"OccRefLocation"> | string | null
     CreatedAt?: DateTimeWithAggregatesFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeWithAggregatesFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableWithAggregatesFilter<"OccRefLocation"> | Date | string | null
@@ -10989,6 +11007,7 @@ export namespace Prisma {
     EndTime?: Date | string | null
     DateNext?: number | null
     TimeZone?: string | null
+    UrlServer?: string | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
@@ -11009,6 +11028,7 @@ export namespace Prisma {
     EndTime?: Date | string | null
     DateNext?: number | null
     TimeZone?: string | null
+    UrlServer?: string | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
@@ -11028,6 +11048,7 @@ export namespace Prisma {
     EndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     DateNext?: NullableIntFieldUpdateOperationsInput | number | null
     TimeZone?: NullableStringFieldUpdateOperationsInput | string | null
+    UrlServer?: NullableStringFieldUpdateOperationsInput | string | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11048,6 +11069,7 @@ export namespace Prisma {
     EndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     DateNext?: NullableIntFieldUpdateOperationsInput | number | null
     TimeZone?: NullableStringFieldUpdateOperationsInput | string | null
+    UrlServer?: NullableStringFieldUpdateOperationsInput | string | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11068,6 +11090,7 @@ export namespace Prisma {
     EndTime?: Date | string | null
     DateNext?: number | null
     TimeZone?: string | null
+    UrlServer?: string | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
@@ -11086,6 +11109,7 @@ export namespace Prisma {
     EndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     DateNext?: NullableIntFieldUpdateOperationsInput | number | null
     TimeZone?: NullableStringFieldUpdateOperationsInput | string | null
+    UrlServer?: NullableStringFieldUpdateOperationsInput | string | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11105,6 +11129,7 @@ export namespace Prisma {
     EndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     DateNext?: NullableIntFieldUpdateOperationsInput | number | null
     TimeZone?: NullableStringFieldUpdateOperationsInput | string | null
+    UrlServer?: NullableStringFieldUpdateOperationsInput | string | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -11870,6 +11895,7 @@ export namespace Prisma {
     EndTime?: SortOrder
     DateNext?: SortOrder
     TimeZone?: SortOrder
+    UrlServer?: SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     DeletedAt?: SortOrder
@@ -11894,6 +11920,7 @@ export namespace Prisma {
     EndTime?: SortOrder
     DateNext?: SortOrder
     TimeZone?: SortOrder
+    UrlServer?: SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     DeletedAt?: SortOrder
@@ -11913,6 +11940,7 @@ export namespace Prisma {
     EndTime?: SortOrder
     DateNext?: SortOrder
     TimeZone?: SortOrder
+    UrlServer?: SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     DeletedAt?: SortOrder
@@ -12751,6 +12779,7 @@ export namespace Prisma {
     EndTime?: Date | string | null
     DateNext?: number | null
     TimeZone?: string | null
+    UrlServer?: string | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
@@ -12770,6 +12799,7 @@ export namespace Prisma {
     EndTime?: Date | string | null
     DateNext?: number | null
     TimeZone?: string | null
+    UrlServer?: string | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
@@ -12804,6 +12834,7 @@ export namespace Prisma {
     EndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     DateNext?: NullableIntFieldUpdateOperationsInput | number | null
     TimeZone?: NullableStringFieldUpdateOperationsInput | string | null
+    UrlServer?: NullableStringFieldUpdateOperationsInput | string | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -12823,6 +12854,7 @@ export namespace Prisma {
     EndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     DateNext?: NullableIntFieldUpdateOperationsInput | number | null
     TimeZone?: NullableStringFieldUpdateOperationsInput | string | null
+    UrlServer?: NullableStringFieldUpdateOperationsInput | string | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null

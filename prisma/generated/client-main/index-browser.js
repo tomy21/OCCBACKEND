@@ -174,6 +174,7 @@ exports.Prisma.OccRefLocationScalarFieldEnum = {
   EndTime: 'EndTime',
   DateNext: 'DateNext',
   TimeZone: 'TimeZone',
+  UrlServer: 'UrlServer',
   CreatedAt: 'CreatedAt',
   UpdatedAt: 'UpdatedAt',
   DeletedAt: 'DeletedAt',
@@ -279,7 +280,8 @@ exports.Prisma.OccRefLocationOrderByRelevanceFieldEnum = {
   VendorParkingCode: 'VendorParkingCode',
   ShortName: 'ShortName',
   Address: 'Address',
-  TimeZone: 'TimeZone'
+  TimeZone: 'TimeZone',
+  UrlServer: 'UrlServer'
 };
 
 exports.Prisma.OccTransactionOrderByRelevanceFieldEnum = {
