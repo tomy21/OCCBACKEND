@@ -53,6 +53,11 @@ export type OccIntercome = $Result.DefaultSelection<Prisma.$OccIntercomePayload>
  * 
  */
 export type RefIssuer = $Result.DefaultSelection<Prisma.$RefIssuerPayload>
+/**
+ * Model OccListMemberStyle
+ * 
+ */
+export type OccListMemberStyle = $Result.DefaultSelection<Prisma.$OccListMemberStylePayload>
 
 /**
  * Enums
@@ -289,6 +294,16 @@ export class PrismaClient<
     * ```
     */
   get refIssuer(): Prisma.RefIssuerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.occListMemberStyle`: Exposes CRUD operations for the **OccListMemberStyle** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OccListMemberStyles
+    * const occListMemberStyles = await prisma.occListMemberStyle.findMany()
+    * ```
+    */
+  get occListMemberStyle(): Prisma.OccListMemberStyleDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -736,7 +751,8 @@ export namespace Prisma {
     OccTransaction: 'OccTransaction',
     OccGate: 'OccGate',
     OccIntercome: 'OccIntercome',
-    RefIssuer: 'RefIssuer'
+    RefIssuer: 'RefIssuer',
+    OccListMemberStyle: 'OccListMemberStyle'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -755,7 +771,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer"
+      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer" | "occListMemberStyle"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1287,6 +1303,72 @@ export namespace Prisma {
           }
         }
       }
+      OccListMemberStyle: {
+        payload: Prisma.$OccListMemberStylePayload<ExtArgs>
+        fields: Prisma.OccListMemberStyleFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OccListMemberStyleFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OccListMemberStyleFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload>
+          }
+          findFirst: {
+            args: Prisma.OccListMemberStyleFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OccListMemberStyleFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload>
+          }
+          findMany: {
+            args: Prisma.OccListMemberStyleFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload>[]
+          }
+          create: {
+            args: Prisma.OccListMemberStyleCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload>
+          }
+          createMany: {
+            args: Prisma.OccListMemberStyleCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.OccListMemberStyleDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload>
+          }
+          update: {
+            args: Prisma.OccListMemberStyleUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload>
+          }
+          deleteMany: {
+            args: Prisma.OccListMemberStyleDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OccListMemberStyleUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.OccListMemberStyleUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylePayload>
+          }
+          aggregate: {
+            args: Prisma.OccListMemberStyleAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOccListMemberStyle>
+          }
+          groupBy: {
+            args: Prisma.OccListMemberStyleGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OccListMemberStyleGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OccListMemberStyleCountArgs<ExtArgs>
+            result: $Utils.Optional<OccListMemberStyleCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1379,6 +1461,7 @@ export namespace Prisma {
     occGate?: OccGateOmit
     occIntercome?: OccIntercomeOmit
     refIssuer?: RefIssuerOmit
+    occListMemberStyle?: OccListMemberStyleOmit
   }
 
   /* Types for Logging */
@@ -9692,6 +9775,933 @@ export namespace Prisma {
 
 
   /**
+   * Model OccListMemberStyle
+   */
+
+  export type AggregateOccListMemberStyle = {
+    _count: OccListMemberStyleCountAggregateOutputType | null
+    _avg: OccListMemberStyleAvgAggregateOutputType | null
+    _sum: OccListMemberStyleSumAggregateOutputType | null
+    _min: OccListMemberStyleMinAggregateOutputType | null
+    _max: OccListMemberStyleMaxAggregateOutputType | null
+  }
+
+  export type OccListMemberStyleAvgAggregateOutputType = {
+    Id: number | null
+  }
+
+  export type OccListMemberStyleSumAggregateOutputType = {
+    Id: number | null
+  }
+
+  export type OccListMemberStyleMinAggregateOutputType = {
+    Id: number | null
+    Name: string | null
+    Email: string | null
+    PlateNumber: string | null
+    CreatedAt: Date | null
+    UpdatedAt: Date | null
+  }
+
+  export type OccListMemberStyleMaxAggregateOutputType = {
+    Id: number | null
+    Name: string | null
+    Email: string | null
+    PlateNumber: string | null
+    CreatedAt: Date | null
+    UpdatedAt: Date | null
+  }
+
+  export type OccListMemberStyleCountAggregateOutputType = {
+    Id: number
+    Name: number
+    Email: number
+    PlateNumber: number
+    CreatedAt: number
+    UpdatedAt: number
+    _all: number
+  }
+
+
+  export type OccListMemberStyleAvgAggregateInputType = {
+    Id?: true
+  }
+
+  export type OccListMemberStyleSumAggregateInputType = {
+    Id?: true
+  }
+
+  export type OccListMemberStyleMinAggregateInputType = {
+    Id?: true
+    Name?: true
+    Email?: true
+    PlateNumber?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+  }
+
+  export type OccListMemberStyleMaxAggregateInputType = {
+    Id?: true
+    Name?: true
+    Email?: true
+    PlateNumber?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+  }
+
+  export type OccListMemberStyleCountAggregateInputType = {
+    Id?: true
+    Name?: true
+    Email?: true
+    PlateNumber?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+    _all?: true
+  }
+
+  export type OccListMemberStyleAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OccListMemberStyle to aggregate.
+     */
+    where?: OccListMemberStyleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccListMemberStyles to fetch.
+     */
+    orderBy?: OccListMemberStyleOrderByWithRelationInput | OccListMemberStyleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OccListMemberStyleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccListMemberStyles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccListMemberStyles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OccListMemberStyles
+    **/
+    _count?: true | OccListMemberStyleCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OccListMemberStyleAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OccListMemberStyleSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OccListMemberStyleMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OccListMemberStyleMaxAggregateInputType
+  }
+
+  export type GetOccListMemberStyleAggregateType<T extends OccListMemberStyleAggregateArgs> = {
+        [P in keyof T & keyof AggregateOccListMemberStyle]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOccListMemberStyle[P]>
+      : GetScalarType<T[P], AggregateOccListMemberStyle[P]>
+  }
+
+
+
+
+  export type OccListMemberStyleGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OccListMemberStyleWhereInput
+    orderBy?: OccListMemberStyleOrderByWithAggregationInput | OccListMemberStyleOrderByWithAggregationInput[]
+    by: OccListMemberStyleScalarFieldEnum[] | OccListMemberStyleScalarFieldEnum
+    having?: OccListMemberStyleScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OccListMemberStyleCountAggregateInputType | true
+    _avg?: OccListMemberStyleAvgAggregateInputType
+    _sum?: OccListMemberStyleSumAggregateInputType
+    _min?: OccListMemberStyleMinAggregateInputType
+    _max?: OccListMemberStyleMaxAggregateInputType
+  }
+
+  export type OccListMemberStyleGroupByOutputType = {
+    Id: number
+    Name: string
+    Email: string | null
+    PlateNumber: string | null
+    CreatedAt: Date
+    UpdatedAt: Date
+    _count: OccListMemberStyleCountAggregateOutputType | null
+    _avg: OccListMemberStyleAvgAggregateOutputType | null
+    _sum: OccListMemberStyleSumAggregateOutputType | null
+    _min: OccListMemberStyleMinAggregateOutputType | null
+    _max: OccListMemberStyleMaxAggregateOutputType | null
+  }
+
+  type GetOccListMemberStyleGroupByPayload<T extends OccListMemberStyleGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OccListMemberStyleGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OccListMemberStyleGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OccListMemberStyleGroupByOutputType[P]>
+            : GetScalarType<T[P], OccListMemberStyleGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OccListMemberStyleSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    Name?: boolean
+    Email?: boolean
+    PlateNumber?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }, ExtArgs["result"]["occListMemberStyle"]>
+
+
+
+  export type OccListMemberStyleSelectScalar = {
+    Id?: boolean
+    Name?: boolean
+    Email?: boolean
+    PlateNumber?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }
+
+  export type OccListMemberStyleOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "Name" | "Email" | "PlateNumber" | "CreatedAt" | "UpdatedAt", ExtArgs["result"]["occListMemberStyle"]>
+
+  export type $OccListMemberStylePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OccListMemberStyle"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      Id: number
+      Name: string
+      Email: string | null
+      PlateNumber: string | null
+      CreatedAt: Date
+      UpdatedAt: Date
+    }, ExtArgs["result"]["occListMemberStyle"]>
+    composites: {}
+  }
+
+  type OccListMemberStyleGetPayload<S extends boolean | null | undefined | OccListMemberStyleDefaultArgs> = $Result.GetResult<Prisma.$OccListMemberStylePayload, S>
+
+  type OccListMemberStyleCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OccListMemberStyleFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OccListMemberStyleCountAggregateInputType | true
+    }
+
+  export interface OccListMemberStyleDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OccListMemberStyle'], meta: { name: 'OccListMemberStyle' } }
+    /**
+     * Find zero or one OccListMemberStyle that matches the filter.
+     * @param {OccListMemberStyleFindUniqueArgs} args - Arguments to find a OccListMemberStyle
+     * @example
+     * // Get one OccListMemberStyle
+     * const occListMemberStyle = await prisma.occListMemberStyle.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OccListMemberStyleFindUniqueArgs>(args: SelectSubset<T, OccListMemberStyleFindUniqueArgs<ExtArgs>>): Prisma__OccListMemberStyleClient<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OccListMemberStyle that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OccListMemberStyleFindUniqueOrThrowArgs} args - Arguments to find a OccListMemberStyle
+     * @example
+     * // Get one OccListMemberStyle
+     * const occListMemberStyle = await prisma.occListMemberStyle.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OccListMemberStyleFindUniqueOrThrowArgs>(args: SelectSubset<T, OccListMemberStyleFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OccListMemberStyleClient<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OccListMemberStyle that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccListMemberStyleFindFirstArgs} args - Arguments to find a OccListMemberStyle
+     * @example
+     * // Get one OccListMemberStyle
+     * const occListMemberStyle = await prisma.occListMemberStyle.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OccListMemberStyleFindFirstArgs>(args?: SelectSubset<T, OccListMemberStyleFindFirstArgs<ExtArgs>>): Prisma__OccListMemberStyleClient<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OccListMemberStyle that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccListMemberStyleFindFirstOrThrowArgs} args - Arguments to find a OccListMemberStyle
+     * @example
+     * // Get one OccListMemberStyle
+     * const occListMemberStyle = await prisma.occListMemberStyle.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OccListMemberStyleFindFirstOrThrowArgs>(args?: SelectSubset<T, OccListMemberStyleFindFirstOrThrowArgs<ExtArgs>>): Prisma__OccListMemberStyleClient<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OccListMemberStyles that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccListMemberStyleFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OccListMemberStyles
+     * const occListMemberStyles = await prisma.occListMemberStyle.findMany()
+     * 
+     * // Get first 10 OccListMemberStyles
+     * const occListMemberStyles = await prisma.occListMemberStyle.findMany({ take: 10 })
+     * 
+     * // Only select the `Id`
+     * const occListMemberStyleWithIdOnly = await prisma.occListMemberStyle.findMany({ select: { Id: true } })
+     * 
+     */
+    findMany<T extends OccListMemberStyleFindManyArgs>(args?: SelectSubset<T, OccListMemberStyleFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OccListMemberStyle.
+     * @param {OccListMemberStyleCreateArgs} args - Arguments to create a OccListMemberStyle.
+     * @example
+     * // Create one OccListMemberStyle
+     * const OccListMemberStyle = await prisma.occListMemberStyle.create({
+     *   data: {
+     *     // ... data to create a OccListMemberStyle
+     *   }
+     * })
+     * 
+     */
+    create<T extends OccListMemberStyleCreateArgs>(args: SelectSubset<T, OccListMemberStyleCreateArgs<ExtArgs>>): Prisma__OccListMemberStyleClient<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OccListMemberStyles.
+     * @param {OccListMemberStyleCreateManyArgs} args - Arguments to create many OccListMemberStyles.
+     * @example
+     * // Create many OccListMemberStyles
+     * const occListMemberStyle = await prisma.occListMemberStyle.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OccListMemberStyleCreateManyArgs>(args?: SelectSubset<T, OccListMemberStyleCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a OccListMemberStyle.
+     * @param {OccListMemberStyleDeleteArgs} args - Arguments to delete one OccListMemberStyle.
+     * @example
+     * // Delete one OccListMemberStyle
+     * const OccListMemberStyle = await prisma.occListMemberStyle.delete({
+     *   where: {
+     *     // ... filter to delete one OccListMemberStyle
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OccListMemberStyleDeleteArgs>(args: SelectSubset<T, OccListMemberStyleDeleteArgs<ExtArgs>>): Prisma__OccListMemberStyleClient<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OccListMemberStyle.
+     * @param {OccListMemberStyleUpdateArgs} args - Arguments to update one OccListMemberStyle.
+     * @example
+     * // Update one OccListMemberStyle
+     * const occListMemberStyle = await prisma.occListMemberStyle.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OccListMemberStyleUpdateArgs>(args: SelectSubset<T, OccListMemberStyleUpdateArgs<ExtArgs>>): Prisma__OccListMemberStyleClient<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OccListMemberStyles.
+     * @param {OccListMemberStyleDeleteManyArgs} args - Arguments to filter OccListMemberStyles to delete.
+     * @example
+     * // Delete a few OccListMemberStyles
+     * const { count } = await prisma.occListMemberStyle.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OccListMemberStyleDeleteManyArgs>(args?: SelectSubset<T, OccListMemberStyleDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccListMemberStyles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccListMemberStyleUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OccListMemberStyles
+     * const occListMemberStyle = await prisma.occListMemberStyle.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OccListMemberStyleUpdateManyArgs>(args: SelectSubset<T, OccListMemberStyleUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one OccListMemberStyle.
+     * @param {OccListMemberStyleUpsertArgs} args - Arguments to update or create a OccListMemberStyle.
+     * @example
+     * // Update or create a OccListMemberStyle
+     * const occListMemberStyle = await prisma.occListMemberStyle.upsert({
+     *   create: {
+     *     // ... data to create a OccListMemberStyle
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OccListMemberStyle we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OccListMemberStyleUpsertArgs>(args: SelectSubset<T, OccListMemberStyleUpsertArgs<ExtArgs>>): Prisma__OccListMemberStyleClient<$Result.GetResult<Prisma.$OccListMemberStylePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OccListMemberStyles.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccListMemberStyleCountArgs} args - Arguments to filter OccListMemberStyles to count.
+     * @example
+     * // Count the number of OccListMemberStyles
+     * const count = await prisma.occListMemberStyle.count({
+     *   where: {
+     *     // ... the filter for the OccListMemberStyles we want to count
+     *   }
+     * })
+    **/
+    count<T extends OccListMemberStyleCountArgs>(
+      args?: Subset<T, OccListMemberStyleCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OccListMemberStyleCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OccListMemberStyle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccListMemberStyleAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OccListMemberStyleAggregateArgs>(args: Subset<T, OccListMemberStyleAggregateArgs>): Prisma.PrismaPromise<GetOccListMemberStyleAggregateType<T>>
+
+    /**
+     * Group by OccListMemberStyle.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccListMemberStyleGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OccListMemberStyleGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OccListMemberStyleGroupByArgs['orderBy'] }
+        : { orderBy?: OccListMemberStyleGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OccListMemberStyleGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOccListMemberStyleGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OccListMemberStyle model
+   */
+  readonly fields: OccListMemberStyleFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OccListMemberStyle.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OccListMemberStyleClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OccListMemberStyle model
+   */
+  interface OccListMemberStyleFieldRefs {
+    readonly Id: FieldRef<"OccListMemberStyle", 'Int'>
+    readonly Name: FieldRef<"OccListMemberStyle", 'String'>
+    readonly Email: FieldRef<"OccListMemberStyle", 'String'>
+    readonly PlateNumber: FieldRef<"OccListMemberStyle", 'String'>
+    readonly CreatedAt: FieldRef<"OccListMemberStyle", 'DateTime'>
+    readonly UpdatedAt: FieldRef<"OccListMemberStyle", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OccListMemberStyle findUnique
+   */
+  export type OccListMemberStyleFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * Filter, which OccListMemberStyle to fetch.
+     */
+    where: OccListMemberStyleWhereUniqueInput
+  }
+
+  /**
+   * OccListMemberStyle findUniqueOrThrow
+   */
+  export type OccListMemberStyleFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * Filter, which OccListMemberStyle to fetch.
+     */
+    where: OccListMemberStyleWhereUniqueInput
+  }
+
+  /**
+   * OccListMemberStyle findFirst
+   */
+  export type OccListMemberStyleFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * Filter, which OccListMemberStyle to fetch.
+     */
+    where?: OccListMemberStyleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccListMemberStyles to fetch.
+     */
+    orderBy?: OccListMemberStyleOrderByWithRelationInput | OccListMemberStyleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OccListMemberStyles.
+     */
+    cursor?: OccListMemberStyleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccListMemberStyles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccListMemberStyles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OccListMemberStyles.
+     */
+    distinct?: OccListMemberStyleScalarFieldEnum | OccListMemberStyleScalarFieldEnum[]
+  }
+
+  /**
+   * OccListMemberStyle findFirstOrThrow
+   */
+  export type OccListMemberStyleFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * Filter, which OccListMemberStyle to fetch.
+     */
+    where?: OccListMemberStyleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccListMemberStyles to fetch.
+     */
+    orderBy?: OccListMemberStyleOrderByWithRelationInput | OccListMemberStyleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OccListMemberStyles.
+     */
+    cursor?: OccListMemberStyleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccListMemberStyles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccListMemberStyles.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OccListMemberStyles.
+     */
+    distinct?: OccListMemberStyleScalarFieldEnum | OccListMemberStyleScalarFieldEnum[]
+  }
+
+  /**
+   * OccListMemberStyle findMany
+   */
+  export type OccListMemberStyleFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * Filter, which OccListMemberStyles to fetch.
+     */
+    where?: OccListMemberStyleWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccListMemberStyles to fetch.
+     */
+    orderBy?: OccListMemberStyleOrderByWithRelationInput | OccListMemberStyleOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OccListMemberStyles.
+     */
+    cursor?: OccListMemberStyleWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccListMemberStyles from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccListMemberStyles.
+     */
+    skip?: number
+    distinct?: OccListMemberStyleScalarFieldEnum | OccListMemberStyleScalarFieldEnum[]
+  }
+
+  /**
+   * OccListMemberStyle create
+   */
+  export type OccListMemberStyleCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * The data needed to create a OccListMemberStyle.
+     */
+    data: XOR<OccListMemberStyleCreateInput, OccListMemberStyleUncheckedCreateInput>
+  }
+
+  /**
+   * OccListMemberStyle createMany
+   */
+  export type OccListMemberStyleCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OccListMemberStyles.
+     */
+    data: OccListMemberStyleCreateManyInput | OccListMemberStyleCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OccListMemberStyle update
+   */
+  export type OccListMemberStyleUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * The data needed to update a OccListMemberStyle.
+     */
+    data: XOR<OccListMemberStyleUpdateInput, OccListMemberStyleUncheckedUpdateInput>
+    /**
+     * Choose, which OccListMemberStyle to update.
+     */
+    where: OccListMemberStyleWhereUniqueInput
+  }
+
+  /**
+   * OccListMemberStyle updateMany
+   */
+  export type OccListMemberStyleUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccListMemberStyles.
+     */
+    data: XOR<OccListMemberStyleUpdateManyMutationInput, OccListMemberStyleUncheckedUpdateManyInput>
+    /**
+     * Filter which OccListMemberStyles to update
+     */
+    where?: OccListMemberStyleWhereInput
+    /**
+     * Limit how many OccListMemberStyles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccListMemberStyle upsert
+   */
+  export type OccListMemberStyleUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * The filter to search for the OccListMemberStyle to update in case it exists.
+     */
+    where: OccListMemberStyleWhereUniqueInput
+    /**
+     * In case the OccListMemberStyle found by the `where` argument doesn't exist, create a new OccListMemberStyle with this data.
+     */
+    create: XOR<OccListMemberStyleCreateInput, OccListMemberStyleUncheckedCreateInput>
+    /**
+     * In case the OccListMemberStyle was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OccListMemberStyleUpdateInput, OccListMemberStyleUncheckedUpdateInput>
+  }
+
+  /**
+   * OccListMemberStyle delete
+   */
+  export type OccListMemberStyleDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+    /**
+     * Filter which OccListMemberStyle to delete.
+     */
+    where: OccListMemberStyleWhereUniqueInput
+  }
+
+  /**
+   * OccListMemberStyle deleteMany
+   */
+  export type OccListMemberStyleDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OccListMemberStyles to delete
+     */
+    where?: OccListMemberStyleWhereInput
+    /**
+     * Limit how many OccListMemberStyles to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccListMemberStyle without action
+   */
+  export type OccListMemberStyleDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyle
+     */
+    select?: OccListMemberStyleSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyle
+     */
+    omit?: OccListMemberStyleOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -9844,6 +10854,18 @@ export namespace Prisma {
   export type RefIssuerScalarFieldEnum = (typeof RefIssuerScalarFieldEnum)[keyof typeof RefIssuerScalarFieldEnum]
 
 
+  export const OccListMemberStyleScalarFieldEnum: {
+    Id: 'Id',
+    Name: 'Name',
+    Email: 'Email',
+    PlateNumber: 'PlateNumber',
+    CreatedAt: 'CreatedAt',
+    UpdatedAt: 'UpdatedAt'
+  };
+
+  export type OccListMemberStyleScalarFieldEnum = (typeof OccListMemberStyleScalarFieldEnum)[keyof typeof OccListMemberStyleScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -9955,6 +10977,15 @@ export namespace Prisma {
   };
 
   export type RefIssuerOrderByRelevanceFieldEnum = (typeof RefIssuerOrderByRelevanceFieldEnum)[keyof typeof RefIssuerOrderByRelevanceFieldEnum]
+
+
+  export const OccListMemberStyleOrderByRelevanceFieldEnum: {
+    Name: 'Name',
+    Email: 'Email',
+    PlateNumber: 'PlateNumber'
+  };
+
+  export type OccListMemberStyleOrderByRelevanceFieldEnum = (typeof OccListMemberStyleOrderByRelevanceFieldEnum)[keyof typeof OccListMemberStyleOrderByRelevanceFieldEnum]
 
 
   /**
@@ -10712,6 +11743,66 @@ export namespace Prisma {
     DeletedOn?: StringNullableWithAggregatesFilter<"RefIssuer"> | string | null
     DeletedBy?: StringNullableWithAggregatesFilter<"RefIssuer"> | string | null
     RecordStatus?: IntWithAggregatesFilter<"RefIssuer"> | number
+  }
+
+  export type OccListMemberStyleWhereInput = {
+    AND?: OccListMemberStyleWhereInput | OccListMemberStyleWhereInput[]
+    OR?: OccListMemberStyleWhereInput[]
+    NOT?: OccListMemberStyleWhereInput | OccListMemberStyleWhereInput[]
+    Id?: IntFilter<"OccListMemberStyle"> | number
+    Name?: StringFilter<"OccListMemberStyle"> | string
+    Email?: StringNullableFilter<"OccListMemberStyle"> | string | null
+    PlateNumber?: StringNullableFilter<"OccListMemberStyle"> | string | null
+    CreatedAt?: DateTimeFilter<"OccListMemberStyle"> | Date | string
+    UpdatedAt?: DateTimeFilter<"OccListMemberStyle"> | Date | string
+  }
+
+  export type OccListMemberStyleOrderByWithRelationInput = {
+    Id?: SortOrder
+    Name?: SortOrder
+    Email?: SortOrderInput | SortOrder
+    PlateNumber?: SortOrderInput | SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+    _relevance?: OccListMemberStyleOrderByRelevanceInput
+  }
+
+  export type OccListMemberStyleWhereUniqueInput = Prisma.AtLeast<{
+    Id?: number
+    AND?: OccListMemberStyleWhereInput | OccListMemberStyleWhereInput[]
+    OR?: OccListMemberStyleWhereInput[]
+    NOT?: OccListMemberStyleWhereInput | OccListMemberStyleWhereInput[]
+    Name?: StringFilter<"OccListMemberStyle"> | string
+    Email?: StringNullableFilter<"OccListMemberStyle"> | string | null
+    PlateNumber?: StringNullableFilter<"OccListMemberStyle"> | string | null
+    CreatedAt?: DateTimeFilter<"OccListMemberStyle"> | Date | string
+    UpdatedAt?: DateTimeFilter<"OccListMemberStyle"> | Date | string
+  }, "Id">
+
+  export type OccListMemberStyleOrderByWithAggregationInput = {
+    Id?: SortOrder
+    Name?: SortOrder
+    Email?: SortOrderInput | SortOrder
+    PlateNumber?: SortOrderInput | SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+    _count?: OccListMemberStyleCountOrderByAggregateInput
+    _avg?: OccListMemberStyleAvgOrderByAggregateInput
+    _max?: OccListMemberStyleMaxOrderByAggregateInput
+    _min?: OccListMemberStyleMinOrderByAggregateInput
+    _sum?: OccListMemberStyleSumOrderByAggregateInput
+  }
+
+  export type OccListMemberStyleScalarWhereWithAggregatesInput = {
+    AND?: OccListMemberStyleScalarWhereWithAggregatesInput | OccListMemberStyleScalarWhereWithAggregatesInput[]
+    OR?: OccListMemberStyleScalarWhereWithAggregatesInput[]
+    NOT?: OccListMemberStyleScalarWhereWithAggregatesInput | OccListMemberStyleScalarWhereWithAggregatesInput[]
+    Id?: IntWithAggregatesFilter<"OccListMemberStyle"> | number
+    Name?: StringWithAggregatesFilter<"OccListMemberStyle"> | string
+    Email?: StringNullableWithAggregatesFilter<"OccListMemberStyle"> | string | null
+    PlateNumber?: StringNullableWithAggregatesFilter<"OccListMemberStyle"> | string | null
+    CreatedAt?: DateTimeWithAggregatesFilter<"OccListMemberStyle"> | Date | string
+    UpdatedAt?: DateTimeWithAggregatesFilter<"OccListMemberStyle"> | Date | string
   }
 
   export type OccCategoryCreateInput = {
@@ -11501,6 +12592,66 @@ export namespace Prisma {
     RecordStatus?: IntFieldUpdateOperationsInput | number
   }
 
+  export type OccListMemberStyleCreateInput = {
+    Name: string
+    Email?: string | null
+    PlateNumber?: string | null
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type OccListMemberStyleUncheckedCreateInput = {
+    Id?: number
+    Name: string
+    Email?: string | null
+    PlateNumber?: string | null
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type OccListMemberStyleUpdateInput = {
+    Name?: StringFieldUpdateOperationsInput | string
+    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    PlateNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccListMemberStyleUncheckedUpdateInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    Name?: StringFieldUpdateOperationsInput | string
+    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    PlateNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccListMemberStyleCreateManyInput = {
+    Id?: number
+    Name: string
+    Email?: string | null
+    PlateNumber?: string | null
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type OccListMemberStyleUpdateManyMutationInput = {
+    Name?: StringFieldUpdateOperationsInput | string
+    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    PlateNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccListMemberStyleUncheckedUpdateManyInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    Name?: StringFieldUpdateOperationsInput | string
+    Email?: NullableStringFieldUpdateOperationsInput | string | null
+    PlateNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -12209,6 +13360,47 @@ export namespace Prisma {
   export type RefIssuerSumOrderByAggregateInput = {
     id?: SortOrder
     RecordStatus?: SortOrder
+  }
+
+  export type OccListMemberStyleOrderByRelevanceInput = {
+    fields: OccListMemberStyleOrderByRelevanceFieldEnum | OccListMemberStyleOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type OccListMemberStyleCountOrderByAggregateInput = {
+    Id?: SortOrder
+    Name?: SortOrder
+    Email?: SortOrder
+    PlateNumber?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type OccListMemberStyleAvgOrderByAggregateInput = {
+    Id?: SortOrder
+  }
+
+  export type OccListMemberStyleMaxOrderByAggregateInput = {
+    Id?: SortOrder
+    Name?: SortOrder
+    Email?: SortOrder
+    PlateNumber?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type OccListMemberStyleMinOrderByAggregateInput = {
+    Id?: SortOrder
+    Name?: SortOrder
+    Email?: SortOrder
+    PlateNumber?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type OccListMemberStyleSumOrderByAggregateInput = {
+    Id?: SortOrder
   }
 
   export type OccDescriptionCreateNestedManyWithoutCategoryInput = {

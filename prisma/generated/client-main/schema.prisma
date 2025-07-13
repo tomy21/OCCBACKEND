@@ -148,3 +148,12 @@ model RefIssuer {
   DeletedBy               String?
   RecordStatus            Int       @default(1)
 }
+
+model OccListMemberStyle {
+  Id          Int      @id @default(autoincrement())
+  Name        String
+  Email       String?
+  PlateNumber String?
+  CreatedAt   DateTime @default(now())
+  UpdatedAt   DateTime @updatedAt
+}

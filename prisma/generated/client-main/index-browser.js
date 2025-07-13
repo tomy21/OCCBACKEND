@@ -235,6 +235,15 @@ exports.Prisma.RefIssuerScalarFieldEnum = {
   RecordStatus: 'RecordStatus'
 };
 
+exports.Prisma.OccListMemberStyleScalarFieldEnum = {
+  Id: 'Id',
+  Name: 'Name',
+  Email: 'Email',
+  PlateNumber: 'PlateNumber',
+  CreatedAt: 'CreatedAt',
+  UpdatedAt: 'UpdatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -317,6 +326,12 @@ exports.Prisma.RefIssuerOrderByRelevanceFieldEnum = {
   DeletedOn: 'DeletedOn',
   DeletedBy: 'DeletedBy'
 };
+
+exports.Prisma.OccListMemberStyleOrderByRelevanceFieldEnum = {
+  Name: 'Name',
+  Email: 'Email',
+  PlateNumber: 'PlateNumber'
+};
 exports.statusIssue = exports.$Enums.statusIssue = {
   new: 'new',
   progress: 'progress',
@@ -337,7 +352,8 @@ exports.Prisma.ModelName = {
   OccTransaction: 'OccTransaction',
   OccGate: 'OccGate',
   OccIntercome: 'OccIntercome',
-  RefIssuer: 'RefIssuer'
+  RefIssuer: 'RefIssuer',
+  OccListMemberStyle: 'OccListMemberStyle'
 };
 
 /**

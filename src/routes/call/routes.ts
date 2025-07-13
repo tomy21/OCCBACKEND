@@ -230,8 +230,20 @@ export default function createGateStatusRoute(
               `${urlServer?.UrlServer}/api/get-data-post?plateNumber=${detailGate.number_plate}`
             );
 
+            const checkMemberStyle = await dbMain.occListMemberStyle.findFirst({
+              where: {
+                PlateNumber: detailGate.number_plate,
+              },
+              select: {
+                PlateNumber: true,
+                Name: true,
+                Email: true,
+              },
+            });
+
             io.to(users[idx].socketId!).emit("gate-status-update", {
               gateId: id,
+              isMemberStyle: checkMemberStyle ? checkMemberStyle : "null",
               gateStatus: gate?.statusGate,
               location: gate?.location,
               gate: gate?.gate,
