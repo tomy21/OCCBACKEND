@@ -31,7 +31,8 @@ export const fetchIntercomeSummary = async (
     by: ["GateName", "Locations"],
     where: whereCondition,
     _sum: {
-      Count: true,
+      CountInCall: true,
+      CountMissCall: true,
     },
   });
 
