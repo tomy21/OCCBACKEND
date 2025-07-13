@@ -102,3 +102,46 @@ export const generateTicket = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const createTransaction = async (req: Request, res: Response) => {
+  try {
+    const { plateNumber, locationId, vehicleType, codeGate } = req.body;
+
+    const urlServer = await dbMain.occRefLocation.findUnique({
+      where: {
+        id: Number(locationId),
+      },
+      select: {
+        Code: true,
+        UrlServer: true,
+      },
+    });
+
+    const dataPOST = await axios.post(
+      `${urlServer?.UrlServer}/api/create-transaction`,
+      {
+        locationCode: urlServer?.Code,
+        vehicleType: vehicleType,
+        plateNumber: plateNumber,
+        codeGate: codeGate, // atau langsung `codeGate` kalau variabel sama
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Data berhasil diambil",
+      data: dataPOST.data,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: "Gagal mengirim data",
+      error: error.message,
+    });
+  }
+};
