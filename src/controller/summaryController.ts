@@ -34,7 +34,8 @@ export const getIntercomeSummary = async (req: Request, res: Response) => {
     const totalItems = await dbMain.occIntercome.aggregate({
       where: whereCondition,
       _sum: {
-        Count: true,
+        CountInCall: true,
+        CountMissCall: true,
       },
     });
 

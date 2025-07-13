@@ -8,6 +8,7 @@ import { dbMain } from "../../prisma/client";
 import axios from "axios";
 import { get } from "http";
 import { createResponse } from "../../helper/responseCode";
+import { sendFonnteMessage } from "../../service/sendMessageWA";
 
 export default function createGateStatusRoute(
   io: Server,
@@ -23,6 +24,7 @@ export default function createGateStatusRoute(
     res: any;
     imageFile: string;
     timeoutId: NodeJS.Timeout;
+    plateNumber: string;
     detailGate: any;
   }[] = [];
 
@@ -61,8 +63,6 @@ export default function createGateStatusRoute(
       const todayStart = new Date();
       todayStart.setHours(0, 0, 0, 0);
 
-      const noTicket = await generateTicketCode(gate?.location?.Code || "");
-
       const cekPlatNomor = await dbMain.occTransaction.findFirst({
         where: {
           OR: [{ PlateNumberIn: plateNumber, PlateNumberOut: plateNumber }],
@@ -73,13 +73,18 @@ export default function createGateStatusRoute(
       });
 
       if (cekPlatNomor) {
-        res
-          .status(400)
-          .json(createResponse("TRANSACTION", "ERROR", "Plat Nomor Sudah Ada"));
-        return;
-      }
-
-      if (cekPlatNomor === null) {
+        const plus7hours = new Date(todayStart.getTime() + 7 * 60 * 60 * 1000);
+        await dbMain.occTransaction.update({
+          where: { Id: cekPlatNomor.Id },
+          data: {
+            Location: locationName,
+            GateName: gate?.gate,
+            InTime: plus7hours,
+            PlateNumberIn: plateNumber.toUpperCase(),
+            PathIn: imagePath || "",
+          },
+        });
+      } else {
         const plus7hours = new Date(todayStart.getTime() + 7 * 60 * 60 * 1000);
         await dbMain.occTransaction.create({
           data: {
@@ -92,25 +97,6 @@ export default function createGateStatusRoute(
         });
       }
 
-      const addIssue = await dbMain.occIssue.create({
-        data: {
-          ticket: noTicket,
-          gate: gate?.gate,
-          lokasi: locationName,
-          foto_in: imagePath,
-          number_plate: plateNumber || "",
-          createdBy: gate?.gate || "-",
-        },
-        select: {
-          id: true,
-          ticket: true,
-          gate: true,
-          lokasi: true,
-          foto_in: true,
-          number_plate: true,
-        },
-      });
-
       const findIntercom = await dbMain.occIntercome.findFirst({
         where: {
           GateName: gate?.gate,
@@ -121,49 +107,53 @@ export default function createGateStatusRoute(
         },
       });
 
-      const now = new Date();
-      const plus7hours = new Date(now.getTime() + 7 * 60 * 60 * 1000);
-
-      if (!findIntercom) {
-        await dbMain.occIntercome.create({
-          data: {
-            GateName: gate?.gate || "-",
-            Locations: locationName || "-",
-            Count: 1,
-            CreatedAt: plus7hours,
-          },
-        });
-      } else {
-        await dbMain.occIntercome.update({
-          where: { Id: findIntercom.Id },
-          data: {
-            Count: findIntercom.Count + 1,
-            CreatedAt: plus7hours,
-          },
-        });
-      }
-
       const summary = await dbMain.occIntercome.groupBy({
         by: ["GateName", "Locations"],
         where: {
           CreatedAt: { gte: todayStart },
         },
-        _sum: { Count: true },
+        _sum: { CountInCall: true },
       });
 
       io.emit("intercome-summary", summary);
 
-      const timeoutId = setTimeout(() => {
+      const timeoutId = setTimeout(async () => {
         const index = queue.findIndex((q) => q.res === res);
         if (index !== -1) {
           queue.splice(index, 1);
-          res
-            .status(504)
-            .json({ error: "Timeout: no available user within 5 seconds" });
+
+          // ✅ Tambahkan CountMissCall jika intercom ditemukan
+          if (findIntercom) {
+            await dbMain.occIntercome.update({
+              where: { Id: findIntercom.Id },
+              data: {
+                CountMissCall: (findIntercom.CountMissCall || 0) + 1,
+              },
+            });
+          } else {
+            await dbMain.occIntercome.create({
+              data: {
+                GateName: gate?.gate || "-",
+                Locations: locationName || "-",
+                CountMissCall: 1,
+              },
+            });
+          }
+
+          res.status(504).json({
+            error: "Timeout: no available user within 5 seconds",
+          });
         }
       }, 5000);
 
-      queue.push({ id, res, imageFile, timeoutId, detailGate: addIssue });
+      queue.push({
+        id,
+        res,
+        imageFile,
+        timeoutId,
+        plateNumber,
+        detailGate: gate,
+      });
       processQueue();
     }
   );
@@ -191,7 +181,7 @@ export default function createGateStatusRoute(
     processing = true;
 
     while (queue.length > 0) {
-      const { id, res, imageFile, detailGate } = queue[0];
+      const { id, res, imageFile, plateNumber, detailGate } = queue[0];
 
       let allocated = false;
       const nextUserIndex = getNextUserIndex();
@@ -230,20 +220,28 @@ export default function createGateStatusRoute(
               `${urlServer?.UrlServer}/api/get-data-post?plateNumber=${detailGate.number_plate}`
             );
 
-            const checkMemberStyle = await dbMain.occListMemberStyle.findFirst({
-              where: {
-                PlateNumber: detailGate.number_plate,
-              },
-              select: {
-                PlateNumber: true,
-                Name: true,
-                Email: true,
-              },
-            });
+            const checkMemberStyle = await dbMain.occListMemberStyles.findFirst(
+              {
+                where: {
+                  PlateNumber: plateNumber.toUpperCase(),
+                },
+                select: {
+                  PlateNumber: true,
+                  Name: true,
+                  Email: true,
+                },
+              }
+            );
+
+            // await sendFonnteMessage({
+            //   noHandphone: "62895334447933",
+            //   message: `${detailGate.number_plate} - ${detailGate.ticket} - ${detailGate.gate} - ${detailGate.lokasi}`,
+            // });
 
             io.to(users[idx].socketId!).emit("gate-status-update", {
+              plateNumber: plateNumber.toUpperCase(),
               gateId: id,
-              isMemberStyle: checkMemberStyle ? checkMemberStyle : "null",
+              isMemberStyle: checkMemberStyle ? checkMemberStyle : [],
               gateStatus: gate?.statusGate,
               location: gate?.location,
               gate: gate?.gate,
@@ -259,8 +257,38 @@ export default function createGateStatusRoute(
             res.status(200).json({
               ResponseCode: 200,
               message: "Gate status fetched and sent to user",
-              data: dataGate,
+              data: "dataGate",
             });
+
+            const todayStart = new Date();
+            todayStart.setHours(0, 0, 0, 0);
+
+            const findIntercom = await dbMain.occIntercome.findFirst({
+              where: {
+                GateName: gate?.gate,
+                Locations: gate?.location.Name,
+                CreatedAt: {
+                  gte: todayStart,
+                },
+              },
+            });
+
+            if (!findIntercom) {
+              await dbMain.occIntercome.create({
+                data: {
+                  GateName: gate?.gate || "-",
+                  Locations: gate?.location?.Name || "-",
+                  CountInCall: 1,
+                },
+              });
+            } else {
+              await dbMain.occIntercome.update({
+                where: { Id: findIntercom.Id },
+                data: {
+                  CountInCall: (findIntercom.CountInCall || 0) + 1,
+                },
+              });
+            }
 
             clearTimeout(queue[0].timeoutId);
             queue.shift();

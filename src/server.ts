@@ -13,6 +13,7 @@ import IOTRoute from "./routes/iot/routes";
 import CallRoute from "./routes/call/routes";
 import SummaryRoute from "./routes/summary/routes";
 import TransactionRoute from "./routes/find-transaction/route";
+import SendWhatsappRoute from "./routes/sendWhatsapp/route";
 
 import Auth from "./routes/login/routes";
 
@@ -50,6 +51,7 @@ app.use("/api/issue", IssueRoute);
 app.use("/api/location", LocationRoute);
 app.use("/api/summary", SummaryRoute);
 app.use("/api/transaction", TransactionRoute);
+app.use("/api/message", SendWhatsappRoute);
 
 app.use("/api/iot", IOTRoute);
 app.use("/api/auth", Auth);

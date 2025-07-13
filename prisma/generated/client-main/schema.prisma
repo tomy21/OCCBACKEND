@@ -76,6 +76,7 @@ model OccRefLocation {
   Code              String
   Name              String
   Region            String?
+  TID               String?
   Vendor            String?
   VendorParkingCode String?
   ShortName         String?
@@ -123,11 +124,12 @@ model OccGate {
 }
 
 model OccIntercome {
-  Id        Int      @id @default(autoincrement())
-  GateName  String
-  Locations String
-  Count     Int
-  CreatedAt DateTime @default(now())
+  Id            Int      @id @default(autoincrement())
+  GateName      String
+  Locations     String
+  CountInCall   Int?
+  CountMissCall Int?
+  CreatedAt     DateTime @default(now())
 }
 
 model RefIssuer {
@@ -149,7 +151,7 @@ model RefIssuer {
   RecordStatus            Int       @default(1)
 }
 
-model OccListMemberStyle {
+model OccListMemberStyles {
   Id          Int      @id @default(autoincrement())
   Name        String
   Email       String?

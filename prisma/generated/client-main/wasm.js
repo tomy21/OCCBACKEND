@@ -166,6 +166,7 @@ exports.Prisma.OccRefLocationScalarFieldEnum = {
   Code: 'Code',
   Name: 'Name',
   Region: 'Region',
+  TID: 'TID',
   Vendor: 'Vendor',
   VendorParkingCode: 'VendorParkingCode',
   ShortName: 'ShortName',
@@ -212,7 +213,8 @@ exports.Prisma.OccIntercomeScalarFieldEnum = {
   Id: 'Id',
   GateName: 'GateName',
   Locations: 'Locations',
-  Count: 'Count',
+  CountInCall: 'CountInCall',
+  CountMissCall: 'CountMissCall',
   CreatedAt: 'CreatedAt'
 };
 
@@ -235,7 +237,7 @@ exports.Prisma.RefIssuerScalarFieldEnum = {
   RecordStatus: 'RecordStatus'
 };
 
-exports.Prisma.OccListMemberStyleScalarFieldEnum = {
+exports.Prisma.OccListMemberStylesScalarFieldEnum = {
   Id: 'Id',
   Name: 'Name',
   Email: 'Email',
@@ -285,6 +287,7 @@ exports.Prisma.OccRefLocationOrderByRelevanceFieldEnum = {
   Code: 'Code',
   Name: 'Name',
   Region: 'Region',
+  TID: 'TID',
   Vendor: 'Vendor',
   VendorParkingCode: 'VendorParkingCode',
   ShortName: 'ShortName',
@@ -327,7 +330,7 @@ exports.Prisma.RefIssuerOrderByRelevanceFieldEnum = {
   DeletedBy: 'DeletedBy'
 };
 
-exports.Prisma.OccListMemberStyleOrderByRelevanceFieldEnum = {
+exports.Prisma.OccListMemberStylesOrderByRelevanceFieldEnum = {
   Name: 'Name',
   Email: 'Email',
   PlateNumber: 'PlateNumber'
@@ -353,7 +356,7 @@ exports.Prisma.ModelName = {
   OccGate: 'OccGate',
   OccIntercome: 'OccIntercome',
   RefIssuer: 'RefIssuer',
-  OccListMemberStyle: 'OccListMemberStyle'
+  OccListMemberStyles: 'OccListMemberStyles'
 };
 
 /**
