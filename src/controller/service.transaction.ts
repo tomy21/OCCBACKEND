@@ -1,31 +1,50 @@
 import { Request, Response } from "express";
-import { sendFonnteMessage } from "../service/sendMessageWA";
+import { sendFonnteMessageWithQr } from "../service/sendMessageWA";
 import axios from "axios";
 import { dbMain } from "../prisma/client";
 import QRCode from "qrcode";
+import path from "path";
+import fs from "fs";
 
 export const sendMessageWhatsaapp = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
-    const { numberWhatsapp, plate_number, no_transaction } = req.body;
+    const { numberWhatsapp, plate_number, idLocation, no_transaction } =
+      req.body;
     console.log(numberWhatsapp, plate_number, no_transaction);
     if (!numberWhatsapp || !plate_number || !no_transaction) {
       res.status(400).json({ error: "Missing required fields" });
       return;
     }
 
-    const message = `*No Transaksi* : ${no_transaction}\n*Plat Nomor* : ${plate_number}`;
+    const tempFolder = path.join(__dirname, "..", "temp");
+    if (!fs.existsSync(tempFolder)) {
+      fs.mkdirSync(tempFolder); // <-- buat folder jika belum ada
+    }
 
-    const result = await sendFonnteMessage({
-      noHandphone: numberWhatsapp,
+    const findLocation = await dbMain.occRefLocation.findUnique({
+      where: {
+        id: Number(idLocation),
+      },
+      select: {
+        TID: true,
+      },
+    });
+
+    const ticketUrl = `https://billing.skyparking.online/Ebilling?p1=${findLocation?.TID}&p2=${no_transaction}`;
+    const message = `Berikut adalah tiket parkir Anda\nNo.Transaksi: ${no_transaction}`;
+
+    const result = await sendFonnteMessageWithQr({
+      noHandphone: numberWhatsapp as string,
       message,
+      ticketUrl,
     });
 
     res.status(200).json({
       success: true,
-      message: "Pesan berhasil dikirim",
+      message: "QR Code berhasil dikirim ke WhatsApp",
       result,
     });
   } catch (error: any) {
@@ -70,7 +89,12 @@ export const getTransactionPOST = async (req: Request, res: Response) => {
 
 export const generateTicket = async (req: Request, res: Response) => {
   try {
-    const { noTransaction, idLocation } = req.query;
+    const { noTransaction, idLocation, phone } = req.query;
+
+    if (!noTransaction || !idLocation || !phone) {
+      res.status(400).json({ error: "Missing required fields" });
+      return;
+    }
 
     const findLocation = await dbMain.occRefLocation.findUnique({
       where: {
@@ -81,24 +105,24 @@ export const generateTicket = async (req: Request, res: Response) => {
       },
     });
 
-    const ticket = `https://billing.skyparking.online/Ebilling?p1=${findLocation?.TID}&p2=${noTransaction}`;
+    const ticketUrl = `https://billing.skyparking.online/Ebilling?p1=${findLocation?.TID}&p2=${noTransaction}`;
+    const message = `Berikut adalah tiket parkir Anda\nNo.Transaksi: ${noTransaction}`;
 
-    const qrCodeBuffer = await QRCode.toBuffer(ticket, {
-      type: "png",
-      width: 300,
-      errorCorrectionLevel: "H",
+    const result = await sendFonnteMessageWithQr({
+      noHandphone: phone as string,
+      message,
+      ticketUrl,
     });
 
-    res.writeHead(200, {
-      "Content-Type": "image/png",
-      "Content-Length": qrCodeBuffer.length,
+    res.status(200).json({
+      success: true,
+      message: "QR Code berhasil dikirim ke WhatsApp",
+      result,
     });
-    res.end(qrCodeBuffer);
   } catch (error: any) {
     res.status(500).json({
       success: false,
-      message: "Gagal mengirim data",
-      error: error.message,
+      message: error.message,
     });
   }
 };
