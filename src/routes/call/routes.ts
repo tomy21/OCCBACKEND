@@ -6,9 +6,6 @@ import { generateTicketCode } from "../../helper/generateNoTrx";
 import upload from "../../middleware/uploadImage";
 import { dbMain } from "../../prisma/client";
 import axios from "axios";
-import { get } from "http";
-import { createResponse } from "../../helper/responseCode";
-import { sendFonnteMessage } from "../../service/sendMessageWA";
 
 export default function createGateStatusRoute(
   io: Server,
