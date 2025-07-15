@@ -3,8 +3,10 @@ import { sendFonnteMessageWithQr } from "../service/sendMessageWA";
 import axios from "axios";
 import { dbMain } from "../prisma/client";
 import QRCode from "qrcode";
-import path from "path";
+import path, { format } from "path";
 import fs from "fs";
+import { get } from "http";
+import { formatDateTime } from "../helper/formatTanggal";
 
 export const sendMessageWhatsaapp = async (
   req: Request,
@@ -13,7 +15,7 @@ export const sendMessageWhatsaapp = async (
   try {
     const { numberWhatsapp, plate_number, idLocation, no_transaction } =
       req.body;
-    console.log(numberWhatsapp, plate_number, no_transaction);
+
     if (!numberWhatsapp || !plate_number || !no_transaction) {
       res.status(400).json({ error: "Missing required fields" });
       return;
@@ -160,6 +162,100 @@ export const createTransaction = async (req: Request, res: Response) => {
       success: true,
       message: "Data berhasil diambil",
       data: dataPOST.data,
+    });
+  } catch (error: any) {
+    res.status(500).json({
+      success: false,
+      message: "Gagal mengirim data",
+      error: error.message,
+    });
+  }
+};
+
+export const updateTransaction = async (req: Request, res: Response) => {
+  try {
+    const { plateNumber } = req.params;
+    const { locationId, vehicleType, codeGate } = req.body;
+
+    const urlServer = await dbMain.occRefLocation.findUnique({
+      where: {
+        id: Number(locationId),
+      },
+      select: {
+        Name: true,
+        Code: true,
+        UrlServer: true,
+      },
+    });
+
+    const getDataPOST = await axios.get(
+      `${urlServer?.UrlServer}/api/get-data-post?plateNumber=${plateNumber}`
+    );
+    const dataResult = getDataPOST.data.data;
+    const {
+      transactionNo,
+      transactionStatus,
+      inTime,
+      duration,
+      tariffParking,
+      outTime,
+      gracePeriod,
+      location,
+      paymentStatus,
+      paymentTime,
+      paymentMethod,
+      issuerName,
+      issuerCode,
+    } = dataResult;
+    console.log(dataResult);
+    if (getDataPOST.data.length === 0) {
+      res.status(200).json({
+        success: true,
+        message: "Data not found",
+      });
+      return;
+    }
+
+    if (getDataPOST.data.data.paymentStatus === "UNPAID") {
+      res.status(404).json({
+        success: true,
+        message: "Transaction UNPAID",
+      });
+      return;
+    }
+    const dataPut = await axios.put(
+      `${urlServer?.UrlServer}/api/update-transaction`,
+      {
+        transactionNo,
+        transactionStatus,
+        inTime,
+        duration,
+        tariffParking,
+        vehicleType,
+        codeGate,
+        plateNumber,
+        outTime: formatDateTime(new Date()),
+        gracePeriod,
+        location: `${urlServer?.Name}`,
+        paymentStatus,
+        paymentTime: formatDateTime(new Date()),
+        paymentMethod,
+        issuerName,
+        issuerCode,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(getDataPOST);
+
+    res.status(200).json({
+      success: true,
+      message: "Data berhasil diambil",
+      data: dataPut.data,
     });
   } catch (error: any) {
     res.status(500).json({

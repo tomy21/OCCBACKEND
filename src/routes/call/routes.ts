@@ -52,7 +52,7 @@ export default function createGateStatusRoute(
       const gate = await dbMain.occGate.findUnique({
         where: { id },
         include: {
-          location: { select: { Name: true, Code: true } },
+          location: { select: { id: true, Name: true, Code: true } },
         },
       });
 
