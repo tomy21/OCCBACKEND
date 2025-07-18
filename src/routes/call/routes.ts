@@ -209,12 +209,12 @@ export default function createGateStatusRoute(
             const getTransaction = await dbMain.occTransaction.findFirst({
               where: {
                 GateName: gate?.gate,
-                PlateNumberIn: detailGate.number_plate,
+                PlateNumberIn: plateNumber.toUpperCase(),
               },
             });
 
             const dataPOST = await axios.get(
-              `${urlServer?.UrlServer}/api/get-data-post?plateNumber=${detailGate.number_plate}`
+              `${urlServer?.UrlServer}/api/get-data-post?plateNumber=${plateNumber}`
             );
 
             const checkMemberStyle = await dbMain.occListMemberStyles.findFirst(

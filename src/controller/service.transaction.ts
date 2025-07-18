@@ -198,9 +198,7 @@ export const updateTransaction = async (req: Request, res: Response) => {
       inTime,
       duration,
       tariffParking,
-      outTime,
       gracePeriod,
-      location,
       paymentStatus,
       paymentTime,
       paymentMethod,
@@ -223,7 +221,7 @@ export const updateTransaction = async (req: Request, res: Response) => {
       });
       return;
     }
-    const dataPut = await axios.put(
+    const dataPut = await axios.post(
       `${urlServer?.UrlServer}/api/update-transaction`,
       {
         transactionNo,
@@ -250,7 +248,7 @@ export const updateTransaction = async (req: Request, res: Response) => {
       }
     );
 
-    console.log(getDataPOST);
+    console.log(dataPut.data);
 
     res.status(200).json({
       success: true,

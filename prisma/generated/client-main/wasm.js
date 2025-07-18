@@ -246,6 +246,17 @@ exports.Prisma.OccListMemberStylesScalarFieldEnum = {
   UpdatedAt: 'UpdatedAt'
 };
 
+exports.Prisma.CounterGateScalarFieldEnum = {
+  Id: 'Id',
+  LocationCode: 'LocationCode',
+  LocationName: 'LocationName',
+  CodeGate: 'CodeGate',
+  CountIn: 'CountIn',
+  CountOut: 'CountOut',
+  CreatedAt: 'CreatedAt',
+  UpdatedAt: 'UpdatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -335,6 +346,12 @@ exports.Prisma.OccListMemberStylesOrderByRelevanceFieldEnum = {
   Email: 'Email',
   PlateNumber: 'PlateNumber'
 };
+
+exports.Prisma.CounterGateOrderByRelevanceFieldEnum = {
+  LocationCode: 'LocationCode',
+  LocationName: 'LocationName',
+  CodeGate: 'CodeGate'
+};
 exports.statusIssue = exports.$Enums.statusIssue = {
   new: 'new',
   progress: 'progress',
@@ -356,7 +373,8 @@ exports.Prisma.ModelName = {
   OccGate: 'OccGate',
   OccIntercome: 'OccIntercome',
   RefIssuer: 'RefIssuer',
-  OccListMemberStyles: 'OccListMemberStyles'
+  OccListMemberStyles: 'OccListMemberStyles',
+  CounterGate: 'CounterGate'
 };
 
 /**

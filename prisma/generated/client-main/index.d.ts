@@ -58,6 +58,11 @@ export type RefIssuer = $Result.DefaultSelection<Prisma.$RefIssuerPayload>
  * 
  */
 export type OccListMemberStyles = $Result.DefaultSelection<Prisma.$OccListMemberStylesPayload>
+/**
+ * Model CounterGate
+ * 
+ */
+export type CounterGate = $Result.DefaultSelection<Prisma.$CounterGatePayload>
 
 /**
  * Enums
@@ -304,6 +309,16 @@ export class PrismaClient<
     * ```
     */
   get occListMemberStyles(): Prisma.OccListMemberStylesDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.counterGate`: Exposes CRUD operations for the **CounterGate** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more CounterGates
+    * const counterGates = await prisma.counterGate.findMany()
+    * ```
+    */
+  get counterGate(): Prisma.CounterGateDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -752,7 +767,8 @@ export namespace Prisma {
     OccGate: 'OccGate',
     OccIntercome: 'OccIntercome',
     RefIssuer: 'RefIssuer',
-    OccListMemberStyles: 'OccListMemberStyles'
+    OccListMemberStyles: 'OccListMemberStyles',
+    CounterGate: 'CounterGate'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -771,7 +787,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer" | "occListMemberStyles"
+      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer" | "occListMemberStyles" | "counterGate"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1369,6 +1385,72 @@ export namespace Prisma {
           }
         }
       }
+      CounterGate: {
+        payload: Prisma.$CounterGatePayload<ExtArgs>
+        fields: Prisma.CounterGateFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CounterGateFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CounterGateFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>
+          }
+          findFirst: {
+            args: Prisma.CounterGateFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CounterGateFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>
+          }
+          findMany: {
+            args: Prisma.CounterGateFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>[]
+          }
+          create: {
+            args: Prisma.CounterGateCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>
+          }
+          createMany: {
+            args: Prisma.CounterGateCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CounterGateDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>
+          }
+          update: {
+            args: Prisma.CounterGateUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>
+          }
+          deleteMany: {
+            args: Prisma.CounterGateDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CounterGateUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CounterGateUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>
+          }
+          aggregate: {
+            args: Prisma.CounterGateAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCounterGate>
+          }
+          groupBy: {
+            args: Prisma.CounterGateGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CounterGateGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CounterGateCountArgs<ExtArgs>
+            result: $Utils.Optional<CounterGateCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1462,6 +1544,7 @@ export namespace Prisma {
     occIntercome?: OccIntercomeOmit
     refIssuer?: RefIssuerOmit
     occListMemberStyles?: OccListMemberStylesOmit
+    counterGate?: CounterGateOmit
   }
 
   /* Types for Logging */
@@ -1588,10 +1671,12 @@ export namespace Prisma {
 
   export type OccRefLocationCountOutputType = {
     location: number
+    locationConter: number
   }
 
   export type OccRefLocationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     location?: boolean | OccRefLocationCountOutputTypeCountLocationArgs
+    locationConter?: boolean | OccRefLocationCountOutputTypeCountLocationConterArgs
   }
 
   // Custom InputTypes
@@ -1610,6 +1695,13 @@ export namespace Prisma {
    */
   export type OccRefLocationCountOutputTypeCountLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: OccGateWhereInput
+  }
+
+  /**
+   * OccRefLocationCountOutputType without action
+   */
+  export type OccRefLocationCountOutputTypeCountLocationConterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CounterGateWhereInput
   }
 
 
@@ -4983,6 +5075,7 @@ export namespace Prisma {
     DeletedAt?: boolean
     recordStatus?: boolean
     location?: boolean | OccRefLocation$locationArgs<ExtArgs>
+    locationConter?: boolean | OccRefLocation$locationConterArgs<ExtArgs>
     _count?: boolean | OccRefLocationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occRefLocation"]>
 
@@ -5012,6 +5105,7 @@ export namespace Prisma {
   export type OccRefLocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Code" | "Name" | "Region" | "TID" | "Vendor" | "VendorParkingCode" | "ShortName" | "Address" | "StartTime" | "EndTime" | "DateNext" | "TimeZone" | "UrlServer" | "CreatedAt" | "UpdatedAt" | "DeletedAt" | "recordStatus", ExtArgs["result"]["occRefLocation"]>
   export type OccRefLocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     location?: boolean | OccRefLocation$locationArgs<ExtArgs>
+    locationConter?: boolean | OccRefLocation$locationConterArgs<ExtArgs>
     _count?: boolean | OccRefLocationCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -5019,6 +5113,7 @@ export namespace Prisma {
     name: "OccRefLocation"
     objects: {
       location: Prisma.$OccGatePayload<ExtArgs>[]
+      locationConter: Prisma.$CounterGatePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5380,6 +5475,7 @@ export namespace Prisma {
   export interface Prisma__OccRefLocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     location<T extends OccRefLocation$locationArgs<ExtArgs> = {}>(args?: Subset<T, OccRefLocation$locationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccGatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    locationConter<T extends OccRefLocation$locationConterArgs<ExtArgs> = {}>(args?: Subset<T, OccRefLocation$locationConterArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5791,6 +5887,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: OccGateScalarFieldEnum | OccGateScalarFieldEnum[]
+  }
+
+  /**
+   * OccRefLocation.locationConter
+   */
+  export type OccRefLocation$locationConterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    where?: CounterGateWhereInput
+    orderBy?: CounterGateOrderByWithRelationInput | CounterGateOrderByWithRelationInput[]
+    cursor?: CounterGateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CounterGateScalarFieldEnum | CounterGateScalarFieldEnum[]
   }
 
   /**
@@ -10728,6 +10848,1010 @@ export namespace Prisma {
 
 
   /**
+   * Model CounterGate
+   */
+
+  export type AggregateCounterGate = {
+    _count: CounterGateCountAggregateOutputType | null
+    _avg: CounterGateAvgAggregateOutputType | null
+    _sum: CounterGateSumAggregateOutputType | null
+    _min: CounterGateMinAggregateOutputType | null
+    _max: CounterGateMaxAggregateOutputType | null
+  }
+
+  export type CounterGateAvgAggregateOutputType = {
+    Id: number | null
+    CountIn: number | null
+    CountOut: number | null
+  }
+
+  export type CounterGateSumAggregateOutputType = {
+    Id: number | null
+    CountIn: number | null
+    CountOut: number | null
+  }
+
+  export type CounterGateMinAggregateOutputType = {
+    Id: number | null
+    LocationCode: string | null
+    LocationName: string | null
+    CodeGate: string | null
+    CountIn: number | null
+    CountOut: number | null
+    CreatedAt: Date | null
+    UpdatedAt: Date | null
+  }
+
+  export type CounterGateMaxAggregateOutputType = {
+    Id: number | null
+    LocationCode: string | null
+    LocationName: string | null
+    CodeGate: string | null
+    CountIn: number | null
+    CountOut: number | null
+    CreatedAt: Date | null
+    UpdatedAt: Date | null
+  }
+
+  export type CounterGateCountAggregateOutputType = {
+    Id: number
+    LocationCode: number
+    LocationName: number
+    CodeGate: number
+    CountIn: number
+    CountOut: number
+    CreatedAt: number
+    UpdatedAt: number
+    _all: number
+  }
+
+
+  export type CounterGateAvgAggregateInputType = {
+    Id?: true
+    CountIn?: true
+    CountOut?: true
+  }
+
+  export type CounterGateSumAggregateInputType = {
+    Id?: true
+    CountIn?: true
+    CountOut?: true
+  }
+
+  export type CounterGateMinAggregateInputType = {
+    Id?: true
+    LocationCode?: true
+    LocationName?: true
+    CodeGate?: true
+    CountIn?: true
+    CountOut?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+  }
+
+  export type CounterGateMaxAggregateInputType = {
+    Id?: true
+    LocationCode?: true
+    LocationName?: true
+    CodeGate?: true
+    CountIn?: true
+    CountOut?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+  }
+
+  export type CounterGateCountAggregateInputType = {
+    Id?: true
+    LocationCode?: true
+    LocationName?: true
+    CodeGate?: true
+    CountIn?: true
+    CountOut?: true
+    CreatedAt?: true
+    UpdatedAt?: true
+    _all?: true
+  }
+
+  export type CounterGateAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CounterGate to aggregate.
+     */
+    where?: CounterGateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CounterGates to fetch.
+     */
+    orderBy?: CounterGateOrderByWithRelationInput | CounterGateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CounterGateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CounterGates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CounterGates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned CounterGates
+    **/
+    _count?: true | CounterGateCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CounterGateAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CounterGateSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CounterGateMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CounterGateMaxAggregateInputType
+  }
+
+  export type GetCounterGateAggregateType<T extends CounterGateAggregateArgs> = {
+        [P in keyof T & keyof AggregateCounterGate]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCounterGate[P]>
+      : GetScalarType<T[P], AggregateCounterGate[P]>
+  }
+
+
+
+
+  export type CounterGateGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CounterGateWhereInput
+    orderBy?: CounterGateOrderByWithAggregationInput | CounterGateOrderByWithAggregationInput[]
+    by: CounterGateScalarFieldEnum[] | CounterGateScalarFieldEnum
+    having?: CounterGateScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CounterGateCountAggregateInputType | true
+    _avg?: CounterGateAvgAggregateInputType
+    _sum?: CounterGateSumAggregateInputType
+    _min?: CounterGateMinAggregateInputType
+    _max?: CounterGateMaxAggregateInputType
+  }
+
+  export type CounterGateGroupByOutputType = {
+    Id: number
+    LocationCode: string
+    LocationName: string | null
+    CodeGate: string | null
+    CountIn: number
+    CountOut: number
+    CreatedAt: Date
+    UpdatedAt: Date
+    _count: CounterGateCountAggregateOutputType | null
+    _avg: CounterGateAvgAggregateOutputType | null
+    _sum: CounterGateSumAggregateOutputType | null
+    _min: CounterGateMinAggregateOutputType | null
+    _max: CounterGateMaxAggregateOutputType | null
+  }
+
+  type GetCounterGateGroupByPayload<T extends CounterGateGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CounterGateGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CounterGateGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CounterGateGroupByOutputType[P]>
+            : GetScalarType<T[P], CounterGateGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CounterGateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    LocationCode?: boolean
+    LocationName?: boolean
+    CodeGate?: boolean
+    CountIn?: boolean
+    CountOut?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+    locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["counterGate"]>
+
+
+
+  export type CounterGateSelectScalar = {
+    Id?: boolean
+    LocationCode?: boolean
+    LocationName?: boolean
+    CodeGate?: boolean
+    CountIn?: boolean
+    CountOut?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }
+
+  export type CounterGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "LocationCode" | "LocationName" | "CodeGate" | "CountIn" | "CountOut" | "CreatedAt" | "UpdatedAt", ExtArgs["result"]["counterGate"]>
+  export type CounterGateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }
+
+  export type $CounterGatePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "CounterGate"
+    objects: {
+      locationConter: Prisma.$OccRefLocationPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      Id: number
+      LocationCode: string
+      LocationName: string | null
+      CodeGate: string | null
+      CountIn: number
+      CountOut: number
+      CreatedAt: Date
+      UpdatedAt: Date
+    }, ExtArgs["result"]["counterGate"]>
+    composites: {}
+  }
+
+  type CounterGateGetPayload<S extends boolean | null | undefined | CounterGateDefaultArgs> = $Result.GetResult<Prisma.$CounterGatePayload, S>
+
+  type CounterGateCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CounterGateFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CounterGateCountAggregateInputType | true
+    }
+
+  export interface CounterGateDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['CounterGate'], meta: { name: 'CounterGate' } }
+    /**
+     * Find zero or one CounterGate that matches the filter.
+     * @param {CounterGateFindUniqueArgs} args - Arguments to find a CounterGate
+     * @example
+     * // Get one CounterGate
+     * const counterGate = await prisma.counterGate.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CounterGateFindUniqueArgs>(args: SelectSubset<T, CounterGateFindUniqueArgs<ExtArgs>>): Prisma__CounterGateClient<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one CounterGate that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CounterGateFindUniqueOrThrowArgs} args - Arguments to find a CounterGate
+     * @example
+     * // Get one CounterGate
+     * const counterGate = await prisma.counterGate.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CounterGateFindUniqueOrThrowArgs>(args: SelectSubset<T, CounterGateFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CounterGateClient<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CounterGate that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CounterGateFindFirstArgs} args - Arguments to find a CounterGate
+     * @example
+     * // Get one CounterGate
+     * const counterGate = await prisma.counterGate.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CounterGateFindFirstArgs>(args?: SelectSubset<T, CounterGateFindFirstArgs<ExtArgs>>): Prisma__CounterGateClient<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first CounterGate that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CounterGateFindFirstOrThrowArgs} args - Arguments to find a CounterGate
+     * @example
+     * // Get one CounterGate
+     * const counterGate = await prisma.counterGate.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CounterGateFindFirstOrThrowArgs>(args?: SelectSubset<T, CounterGateFindFirstOrThrowArgs<ExtArgs>>): Prisma__CounterGateClient<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more CounterGates that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CounterGateFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all CounterGates
+     * const counterGates = await prisma.counterGate.findMany()
+     * 
+     * // Get first 10 CounterGates
+     * const counterGates = await prisma.counterGate.findMany({ take: 10 })
+     * 
+     * // Only select the `Id`
+     * const counterGateWithIdOnly = await prisma.counterGate.findMany({ select: { Id: true } })
+     * 
+     */
+    findMany<T extends CounterGateFindManyArgs>(args?: SelectSubset<T, CounterGateFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a CounterGate.
+     * @param {CounterGateCreateArgs} args - Arguments to create a CounterGate.
+     * @example
+     * // Create one CounterGate
+     * const CounterGate = await prisma.counterGate.create({
+     *   data: {
+     *     // ... data to create a CounterGate
+     *   }
+     * })
+     * 
+     */
+    create<T extends CounterGateCreateArgs>(args: SelectSubset<T, CounterGateCreateArgs<ExtArgs>>): Prisma__CounterGateClient<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many CounterGates.
+     * @param {CounterGateCreateManyArgs} args - Arguments to create many CounterGates.
+     * @example
+     * // Create many CounterGates
+     * const counterGate = await prisma.counterGate.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CounterGateCreateManyArgs>(args?: SelectSubset<T, CounterGateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a CounterGate.
+     * @param {CounterGateDeleteArgs} args - Arguments to delete one CounterGate.
+     * @example
+     * // Delete one CounterGate
+     * const CounterGate = await prisma.counterGate.delete({
+     *   where: {
+     *     // ... filter to delete one CounterGate
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CounterGateDeleteArgs>(args: SelectSubset<T, CounterGateDeleteArgs<ExtArgs>>): Prisma__CounterGateClient<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one CounterGate.
+     * @param {CounterGateUpdateArgs} args - Arguments to update one CounterGate.
+     * @example
+     * // Update one CounterGate
+     * const counterGate = await prisma.counterGate.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CounterGateUpdateArgs>(args: SelectSubset<T, CounterGateUpdateArgs<ExtArgs>>): Prisma__CounterGateClient<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more CounterGates.
+     * @param {CounterGateDeleteManyArgs} args - Arguments to filter CounterGates to delete.
+     * @example
+     * // Delete a few CounterGates
+     * const { count } = await prisma.counterGate.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CounterGateDeleteManyArgs>(args?: SelectSubset<T, CounterGateDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CounterGates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CounterGateUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many CounterGates
+     * const counterGate = await prisma.counterGate.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CounterGateUpdateManyArgs>(args: SelectSubset<T, CounterGateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one CounterGate.
+     * @param {CounterGateUpsertArgs} args - Arguments to update or create a CounterGate.
+     * @example
+     * // Update or create a CounterGate
+     * const counterGate = await prisma.counterGate.upsert({
+     *   create: {
+     *     // ... data to create a CounterGate
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the CounterGate we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CounterGateUpsertArgs>(args: SelectSubset<T, CounterGateUpsertArgs<ExtArgs>>): Prisma__CounterGateClient<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of CounterGates.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CounterGateCountArgs} args - Arguments to filter CounterGates to count.
+     * @example
+     * // Count the number of CounterGates
+     * const count = await prisma.counterGate.count({
+     *   where: {
+     *     // ... the filter for the CounterGates we want to count
+     *   }
+     * })
+    **/
+    count<T extends CounterGateCountArgs>(
+      args?: Subset<T, CounterGateCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CounterGateCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a CounterGate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CounterGateAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CounterGateAggregateArgs>(args: Subset<T, CounterGateAggregateArgs>): Prisma.PrismaPromise<GetCounterGateAggregateType<T>>
+
+    /**
+     * Group by CounterGate.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CounterGateGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CounterGateGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CounterGateGroupByArgs['orderBy'] }
+        : { orderBy?: CounterGateGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CounterGateGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCounterGateGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the CounterGate model
+   */
+  readonly fields: CounterGateFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for CounterGate.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CounterGateClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    locationConter<T extends OccRefLocationDefaultArgs<ExtArgs> = {}>(args?: Subset<T, OccRefLocationDefaultArgs<ExtArgs>>): Prisma__OccRefLocationClient<$Result.GetResult<Prisma.$OccRefLocationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the CounterGate model
+   */
+  interface CounterGateFieldRefs {
+    readonly Id: FieldRef<"CounterGate", 'Int'>
+    readonly LocationCode: FieldRef<"CounterGate", 'String'>
+    readonly LocationName: FieldRef<"CounterGate", 'String'>
+    readonly CodeGate: FieldRef<"CounterGate", 'String'>
+    readonly CountIn: FieldRef<"CounterGate", 'Int'>
+    readonly CountOut: FieldRef<"CounterGate", 'Int'>
+    readonly CreatedAt: FieldRef<"CounterGate", 'DateTime'>
+    readonly UpdatedAt: FieldRef<"CounterGate", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * CounterGate findUnique
+   */
+  export type CounterGateFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * Filter, which CounterGate to fetch.
+     */
+    where: CounterGateWhereUniqueInput
+  }
+
+  /**
+   * CounterGate findUniqueOrThrow
+   */
+  export type CounterGateFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * Filter, which CounterGate to fetch.
+     */
+    where: CounterGateWhereUniqueInput
+  }
+
+  /**
+   * CounterGate findFirst
+   */
+  export type CounterGateFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * Filter, which CounterGate to fetch.
+     */
+    where?: CounterGateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CounterGates to fetch.
+     */
+    orderBy?: CounterGateOrderByWithRelationInput | CounterGateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CounterGates.
+     */
+    cursor?: CounterGateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CounterGates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CounterGates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CounterGates.
+     */
+    distinct?: CounterGateScalarFieldEnum | CounterGateScalarFieldEnum[]
+  }
+
+  /**
+   * CounterGate findFirstOrThrow
+   */
+  export type CounterGateFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * Filter, which CounterGate to fetch.
+     */
+    where?: CounterGateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CounterGates to fetch.
+     */
+    orderBy?: CounterGateOrderByWithRelationInput | CounterGateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for CounterGates.
+     */
+    cursor?: CounterGateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CounterGates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CounterGates.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of CounterGates.
+     */
+    distinct?: CounterGateScalarFieldEnum | CounterGateScalarFieldEnum[]
+  }
+
+  /**
+   * CounterGate findMany
+   */
+  export type CounterGateFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * Filter, which CounterGates to fetch.
+     */
+    where?: CounterGateWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of CounterGates to fetch.
+     */
+    orderBy?: CounterGateOrderByWithRelationInput | CounterGateOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing CounterGates.
+     */
+    cursor?: CounterGateWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` CounterGates from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` CounterGates.
+     */
+    skip?: number
+    distinct?: CounterGateScalarFieldEnum | CounterGateScalarFieldEnum[]
+  }
+
+  /**
+   * CounterGate create
+   */
+  export type CounterGateCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * The data needed to create a CounterGate.
+     */
+    data: XOR<CounterGateCreateInput, CounterGateUncheckedCreateInput>
+  }
+
+  /**
+   * CounterGate createMany
+   */
+  export type CounterGateCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many CounterGates.
+     */
+    data: CounterGateCreateManyInput | CounterGateCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * CounterGate update
+   */
+  export type CounterGateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * The data needed to update a CounterGate.
+     */
+    data: XOR<CounterGateUpdateInput, CounterGateUncheckedUpdateInput>
+    /**
+     * Choose, which CounterGate to update.
+     */
+    where: CounterGateWhereUniqueInput
+  }
+
+  /**
+   * CounterGate updateMany
+   */
+  export type CounterGateUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update CounterGates.
+     */
+    data: XOR<CounterGateUpdateManyMutationInput, CounterGateUncheckedUpdateManyInput>
+    /**
+     * Filter which CounterGates to update
+     */
+    where?: CounterGateWhereInput
+    /**
+     * Limit how many CounterGates to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * CounterGate upsert
+   */
+  export type CounterGateUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * The filter to search for the CounterGate to update in case it exists.
+     */
+    where: CounterGateWhereUniqueInput
+    /**
+     * In case the CounterGate found by the `where` argument doesn't exist, create a new CounterGate with this data.
+     */
+    create: XOR<CounterGateCreateInput, CounterGateUncheckedCreateInput>
+    /**
+     * In case the CounterGate was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CounterGateUpdateInput, CounterGateUncheckedUpdateInput>
+  }
+
+  /**
+   * CounterGate delete
+   */
+  export type CounterGateDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+    /**
+     * Filter which CounterGate to delete.
+     */
+    where: CounterGateWhereUniqueInput
+  }
+
+  /**
+   * CounterGate deleteMany
+   */
+  export type CounterGateDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which CounterGates to delete
+     */
+    where?: CounterGateWhereInput
+    /**
+     * Limit how many CounterGates to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * CounterGate without action
+   */
+  export type CounterGateDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -10894,6 +12018,20 @@ export namespace Prisma {
   export type OccListMemberStylesScalarFieldEnum = (typeof OccListMemberStylesScalarFieldEnum)[keyof typeof OccListMemberStylesScalarFieldEnum]
 
 
+  export const CounterGateScalarFieldEnum: {
+    Id: 'Id',
+    LocationCode: 'LocationCode',
+    LocationName: 'LocationName',
+    CodeGate: 'CodeGate',
+    CountIn: 'CountIn',
+    CountOut: 'CountOut',
+    CreatedAt: 'CreatedAt',
+    UpdatedAt: 'UpdatedAt'
+  };
+
+  export type CounterGateScalarFieldEnum = (typeof CounterGateScalarFieldEnum)[keyof typeof CounterGateScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -11015,6 +12153,15 @@ export namespace Prisma {
   };
 
   export type OccListMemberStylesOrderByRelevanceFieldEnum = (typeof OccListMemberStylesOrderByRelevanceFieldEnum)[keyof typeof OccListMemberStylesOrderByRelevanceFieldEnum]
+
+
+  export const CounterGateOrderByRelevanceFieldEnum: {
+    LocationCode: 'LocationCode',
+    LocationName: 'LocationName',
+    CodeGate: 'CodeGate'
+  };
+
+  export type CounterGateOrderByRelevanceFieldEnum = (typeof CounterGateOrderByRelevanceFieldEnum)[keyof typeof CounterGateOrderByRelevanceFieldEnum]
 
 
   /**
@@ -11346,6 +12493,7 @@ export namespace Prisma {
     DeletedAt?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
     recordStatus?: EnumrecordFilter<"OccRefLocation"> | $Enums.record
     location?: OccGateListRelationFilter
+    locationConter?: CounterGateListRelationFilter
   }
 
   export type OccRefLocationOrderByWithRelationInput = {
@@ -11368,15 +12516,16 @@ export namespace Prisma {
     DeletedAt?: SortOrderInput | SortOrder
     recordStatus?: SortOrder
     location?: OccGateOrderByRelationAggregateInput
+    locationConter?: CounterGateOrderByRelationAggregateInput
     _relevance?: OccRefLocationOrderByRelevanceInput
   }
 
   export type OccRefLocationWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    Code?: string
     AND?: OccRefLocationWhereInput | OccRefLocationWhereInput[]
     OR?: OccRefLocationWhereInput[]
     NOT?: OccRefLocationWhereInput | OccRefLocationWhereInput[]
-    Code?: StringFilter<"OccRefLocation"> | string
     Name?: StringFilter<"OccRefLocation"> | string
     Region?: StringNullableFilter<"OccRefLocation"> | string | null
     TID?: StringNullableFilter<"OccRefLocation"> | string | null
@@ -11394,7 +12543,8 @@ export namespace Prisma {
     DeletedAt?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
     recordStatus?: EnumrecordFilter<"OccRefLocation"> | $Enums.record
     location?: OccGateListRelationFilter
-  }, "id">
+    locationConter?: CounterGateListRelationFilter
+  }, "id" | "Code">
 
   export type OccRefLocationOrderByWithAggregationInput = {
     id?: SortOrder
@@ -11844,6 +12994,79 @@ export namespace Prisma {
     UpdatedAt?: DateTimeWithAggregatesFilter<"OccListMemberStyles"> | Date | string
   }
 
+  export type CounterGateWhereInput = {
+    AND?: CounterGateWhereInput | CounterGateWhereInput[]
+    OR?: CounterGateWhereInput[]
+    NOT?: CounterGateWhereInput | CounterGateWhereInput[]
+    Id?: IntFilter<"CounterGate"> | number
+    LocationCode?: StringFilter<"CounterGate"> | string
+    LocationName?: StringNullableFilter<"CounterGate"> | string | null
+    CodeGate?: StringNullableFilter<"CounterGate"> | string | null
+    CountIn?: IntFilter<"CounterGate"> | number
+    CountOut?: IntFilter<"CounterGate"> | number
+    CreatedAt?: DateTimeFilter<"CounterGate"> | Date | string
+    UpdatedAt?: DateTimeFilter<"CounterGate"> | Date | string
+    locationConter?: XOR<OccRefLocationScalarRelationFilter, OccRefLocationWhereInput>
+  }
+
+  export type CounterGateOrderByWithRelationInput = {
+    Id?: SortOrder
+    LocationCode?: SortOrder
+    LocationName?: SortOrderInput | SortOrder
+    CodeGate?: SortOrderInput | SortOrder
+    CountIn?: SortOrder
+    CountOut?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+    locationConter?: OccRefLocationOrderByWithRelationInput
+    _relevance?: CounterGateOrderByRelevanceInput
+  }
+
+  export type CounterGateWhereUniqueInput = Prisma.AtLeast<{
+    Id?: number
+    AND?: CounterGateWhereInput | CounterGateWhereInput[]
+    OR?: CounterGateWhereInput[]
+    NOT?: CounterGateWhereInput | CounterGateWhereInput[]
+    LocationCode?: StringFilter<"CounterGate"> | string
+    LocationName?: StringNullableFilter<"CounterGate"> | string | null
+    CodeGate?: StringNullableFilter<"CounterGate"> | string | null
+    CountIn?: IntFilter<"CounterGate"> | number
+    CountOut?: IntFilter<"CounterGate"> | number
+    CreatedAt?: DateTimeFilter<"CounterGate"> | Date | string
+    UpdatedAt?: DateTimeFilter<"CounterGate"> | Date | string
+    locationConter?: XOR<OccRefLocationScalarRelationFilter, OccRefLocationWhereInput>
+  }, "Id">
+
+  export type CounterGateOrderByWithAggregationInput = {
+    Id?: SortOrder
+    LocationCode?: SortOrder
+    LocationName?: SortOrderInput | SortOrder
+    CodeGate?: SortOrderInput | SortOrder
+    CountIn?: SortOrder
+    CountOut?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+    _count?: CounterGateCountOrderByAggregateInput
+    _avg?: CounterGateAvgOrderByAggregateInput
+    _max?: CounterGateMaxOrderByAggregateInput
+    _min?: CounterGateMinOrderByAggregateInput
+    _sum?: CounterGateSumOrderByAggregateInput
+  }
+
+  export type CounterGateScalarWhereWithAggregatesInput = {
+    AND?: CounterGateScalarWhereWithAggregatesInput | CounterGateScalarWhereWithAggregatesInput[]
+    OR?: CounterGateScalarWhereWithAggregatesInput[]
+    NOT?: CounterGateScalarWhereWithAggregatesInput | CounterGateScalarWhereWithAggregatesInput[]
+    Id?: IntWithAggregatesFilter<"CounterGate"> | number
+    LocationCode?: StringWithAggregatesFilter<"CounterGate"> | string
+    LocationName?: StringNullableWithAggregatesFilter<"CounterGate"> | string | null
+    CodeGate?: StringNullableWithAggregatesFilter<"CounterGate"> | string | null
+    CountIn?: IntWithAggregatesFilter<"CounterGate"> | number
+    CountOut?: IntWithAggregatesFilter<"CounterGate"> | number
+    CreatedAt?: DateTimeWithAggregatesFilter<"CounterGate"> | Date | string
+    UpdatedAt?: DateTimeWithAggregatesFilter<"CounterGate"> | Date | string
+  }
+
   export type OccCategoryCreateInput = {
     category: string
     createdBy: string
@@ -12144,6 +13367,7 @@ export namespace Prisma {
     DeletedAt?: Date | string | null
     recordStatus: $Enums.record
     location?: OccGateCreateNestedManyWithoutLocationInput
+    locationConter?: CounterGateCreateNestedManyWithoutLocationConterInput
   }
 
   export type OccRefLocationUncheckedCreateInput = {
@@ -12166,6 +13390,7 @@ export namespace Prisma {
     DeletedAt?: Date | string | null
     recordStatus: $Enums.record
     location?: OccGateUncheckedCreateNestedManyWithoutLocationInput
+    locationConter?: CounterGateUncheckedCreateNestedManyWithoutLocationConterInput
   }
 
   export type OccRefLocationUpdateInput = {
@@ -12187,6 +13412,7 @@ export namespace Prisma {
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
     location?: OccGateUpdateManyWithoutLocationNestedInput
+    locationConter?: CounterGateUpdateManyWithoutLocationConterNestedInput
   }
 
   export type OccRefLocationUncheckedUpdateInput = {
@@ -12209,6 +13435,7 @@ export namespace Prisma {
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
     location?: OccGateUncheckedUpdateManyWithoutLocationNestedInput
+    locationConter?: CounterGateUncheckedUpdateManyWithoutLocationConterNestedInput
   }
 
   export type OccRefLocationCreateManyInput = {
@@ -12705,6 +13932,79 @@ export namespace Prisma {
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type CounterGateCreateInput = {
+    LocationName?: string | null
+    CodeGate?: string | null
+    CountIn?: number
+    CountOut?: number
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+    locationConter: OccRefLocationCreateNestedOneWithoutLocationConterInput
+  }
+
+  export type CounterGateUncheckedCreateInput = {
+    Id?: number
+    LocationCode: string
+    LocationName?: string | null
+    CodeGate?: string | null
+    CountIn?: number
+    CountOut?: number
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type CounterGateUpdateInput = {
+    LocationName?: NullableStringFieldUpdateOperationsInput | string | null
+    CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
+    CountIn?: IntFieldUpdateOperationsInput | number
+    CountOut?: IntFieldUpdateOperationsInput | number
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    locationConter?: OccRefLocationUpdateOneRequiredWithoutLocationConterNestedInput
+  }
+
+  export type CounterGateUncheckedUpdateInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    LocationCode?: StringFieldUpdateOperationsInput | string
+    LocationName?: NullableStringFieldUpdateOperationsInput | string | null
+    CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
+    CountIn?: IntFieldUpdateOperationsInput | number
+    CountOut?: IntFieldUpdateOperationsInput | number
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CounterGateCreateManyInput = {
+    Id?: number
+    LocationCode: string
+    LocationName?: string | null
+    CodeGate?: string | null
+    CountIn?: number
+    CountOut?: number
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type CounterGateUpdateManyMutationInput = {
+    LocationName?: NullableStringFieldUpdateOperationsInput | string | null
+    CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
+    CountIn?: IntFieldUpdateOperationsInput | number
+    CountOut?: IntFieldUpdateOperationsInput | number
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CounterGateUncheckedUpdateManyInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    LocationCode?: StringFieldUpdateOperationsInput | string
+    LocationName?: NullableStringFieldUpdateOperationsInput | string | null
+    CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
+    CountIn?: IntFieldUpdateOperationsInput | number
+    CountOut?: IntFieldUpdateOperationsInput | number
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -13076,7 +14376,17 @@ export namespace Prisma {
     none?: OccGateWhereInput
   }
 
+  export type CounterGateListRelationFilter = {
+    every?: CounterGateWhereInput
+    some?: CounterGateWhereInput
+    none?: CounterGateWhereInput
+  }
+
   export type OccGateOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CounterGateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -13464,6 +14774,57 @@ export namespace Prisma {
     Id?: SortOrder
   }
 
+  export type CounterGateOrderByRelevanceInput = {
+    fields: CounterGateOrderByRelevanceFieldEnum | CounterGateOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CounterGateCountOrderByAggregateInput = {
+    Id?: SortOrder
+    LocationCode?: SortOrder
+    LocationName?: SortOrder
+    CodeGate?: SortOrder
+    CountIn?: SortOrder
+    CountOut?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type CounterGateAvgOrderByAggregateInput = {
+    Id?: SortOrder
+    CountIn?: SortOrder
+    CountOut?: SortOrder
+  }
+
+  export type CounterGateMaxOrderByAggregateInput = {
+    Id?: SortOrder
+    LocationCode?: SortOrder
+    LocationName?: SortOrder
+    CodeGate?: SortOrder
+    CountIn?: SortOrder
+    CountOut?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type CounterGateMinOrderByAggregateInput = {
+    Id?: SortOrder
+    LocationCode?: SortOrder
+    LocationName?: SortOrder
+    CodeGate?: SortOrder
+    CountIn?: SortOrder
+    CountOut?: SortOrder
+    CreatedAt?: SortOrder
+    UpdatedAt?: SortOrder
+  }
+
+  export type CounterGateSumOrderByAggregateInput = {
+    Id?: SortOrder
+    CountIn?: SortOrder
+    CountOut?: SortOrder
+  }
+
   export type OccDescriptionCreateNestedManyWithoutCategoryInput = {
     create?: XOR<OccDescriptionCreateWithoutCategoryInput, OccDescriptionUncheckedCreateWithoutCategoryInput> | OccDescriptionCreateWithoutCategoryInput[] | OccDescriptionUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: OccDescriptionCreateOrConnectWithoutCategoryInput | OccDescriptionCreateOrConnectWithoutCategoryInput[]
@@ -13555,11 +14916,25 @@ export namespace Prisma {
     connect?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
   }
 
+  export type CounterGateCreateNestedManyWithoutLocationConterInput = {
+    create?: XOR<CounterGateCreateWithoutLocationConterInput, CounterGateUncheckedCreateWithoutLocationConterInput> | CounterGateCreateWithoutLocationConterInput[] | CounterGateUncheckedCreateWithoutLocationConterInput[]
+    connectOrCreate?: CounterGateCreateOrConnectWithoutLocationConterInput | CounterGateCreateOrConnectWithoutLocationConterInput[]
+    createMany?: CounterGateCreateManyLocationConterInputEnvelope
+    connect?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+  }
+
   export type OccGateUncheckedCreateNestedManyWithoutLocationInput = {
     create?: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput> | OccGateCreateWithoutLocationInput[] | OccGateUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: OccGateCreateOrConnectWithoutLocationInput | OccGateCreateOrConnectWithoutLocationInput[]
     createMany?: OccGateCreateManyLocationInputEnvelope
     connect?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
+  }
+
+  export type CounterGateUncheckedCreateNestedManyWithoutLocationConterInput = {
+    create?: XOR<CounterGateCreateWithoutLocationConterInput, CounterGateUncheckedCreateWithoutLocationConterInput> | CounterGateCreateWithoutLocationConterInput[] | CounterGateUncheckedCreateWithoutLocationConterInput[]
+    connectOrCreate?: CounterGateCreateOrConnectWithoutLocationConterInput | CounterGateCreateOrConnectWithoutLocationConterInput[]
+    createMany?: CounterGateCreateManyLocationConterInputEnvelope
+    connect?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
   }
 
   export type NullableIntFieldUpdateOperationsInput = {
@@ -13588,6 +14963,20 @@ export namespace Prisma {
     deleteMany?: OccGateScalarWhereInput | OccGateScalarWhereInput[]
   }
 
+  export type CounterGateUpdateManyWithoutLocationConterNestedInput = {
+    create?: XOR<CounterGateCreateWithoutLocationConterInput, CounterGateUncheckedCreateWithoutLocationConterInput> | CounterGateCreateWithoutLocationConterInput[] | CounterGateUncheckedCreateWithoutLocationConterInput[]
+    connectOrCreate?: CounterGateCreateOrConnectWithoutLocationConterInput | CounterGateCreateOrConnectWithoutLocationConterInput[]
+    upsert?: CounterGateUpsertWithWhereUniqueWithoutLocationConterInput | CounterGateUpsertWithWhereUniqueWithoutLocationConterInput[]
+    createMany?: CounterGateCreateManyLocationConterInputEnvelope
+    set?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+    disconnect?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+    delete?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+    connect?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+    update?: CounterGateUpdateWithWhereUniqueWithoutLocationConterInput | CounterGateUpdateWithWhereUniqueWithoutLocationConterInput[]
+    updateMany?: CounterGateUpdateManyWithWhereWithoutLocationConterInput | CounterGateUpdateManyWithWhereWithoutLocationConterInput[]
+    deleteMany?: CounterGateScalarWhereInput | CounterGateScalarWhereInput[]
+  }
+
   export type OccGateUncheckedUpdateManyWithoutLocationNestedInput = {
     create?: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput> | OccGateCreateWithoutLocationInput[] | OccGateUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: OccGateCreateOrConnectWithoutLocationInput | OccGateCreateOrConnectWithoutLocationInput[]
@@ -13602,6 +14991,20 @@ export namespace Prisma {
     deleteMany?: OccGateScalarWhereInput | OccGateScalarWhereInput[]
   }
 
+  export type CounterGateUncheckedUpdateManyWithoutLocationConterNestedInput = {
+    create?: XOR<CounterGateCreateWithoutLocationConterInput, CounterGateUncheckedCreateWithoutLocationConterInput> | CounterGateCreateWithoutLocationConterInput[] | CounterGateUncheckedCreateWithoutLocationConterInput[]
+    connectOrCreate?: CounterGateCreateOrConnectWithoutLocationConterInput | CounterGateCreateOrConnectWithoutLocationConterInput[]
+    upsert?: CounterGateUpsertWithWhereUniqueWithoutLocationConterInput | CounterGateUpsertWithWhereUniqueWithoutLocationConterInput[]
+    createMany?: CounterGateCreateManyLocationConterInputEnvelope
+    set?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+    disconnect?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+    delete?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+    connect?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
+    update?: CounterGateUpdateWithWhereUniqueWithoutLocationConterInput | CounterGateUpdateWithWhereUniqueWithoutLocationConterInput[]
+    updateMany?: CounterGateUpdateManyWithWhereWithoutLocationConterInput | CounterGateUpdateManyWithWhereWithoutLocationConterInput[]
+    deleteMany?: CounterGateScalarWhereInput | CounterGateScalarWhereInput[]
+  }
+
   export type OccRefLocationCreateNestedOneWithoutLocationInput = {
     create?: XOR<OccRefLocationCreateWithoutLocationInput, OccRefLocationUncheckedCreateWithoutLocationInput>
     connectOrCreate?: OccRefLocationCreateOrConnectWithoutLocationInput
@@ -13614,6 +15017,20 @@ export namespace Prisma {
     upsert?: OccRefLocationUpsertWithoutLocationInput
     connect?: OccRefLocationWhereUniqueInput
     update?: XOR<XOR<OccRefLocationUpdateToOneWithWhereWithoutLocationInput, OccRefLocationUpdateWithoutLocationInput>, OccRefLocationUncheckedUpdateWithoutLocationInput>
+  }
+
+  export type OccRefLocationCreateNestedOneWithoutLocationConterInput = {
+    create?: XOR<OccRefLocationCreateWithoutLocationConterInput, OccRefLocationUncheckedCreateWithoutLocationConterInput>
+    connectOrCreate?: OccRefLocationCreateOrConnectWithoutLocationConterInput
+    connect?: OccRefLocationWhereUniqueInput
+  }
+
+  export type OccRefLocationUpdateOneRequiredWithoutLocationConterNestedInput = {
+    create?: XOR<OccRefLocationCreateWithoutLocationConterInput, OccRefLocationUncheckedCreateWithoutLocationConterInput>
+    connectOrCreate?: OccRefLocationCreateOrConnectWithoutLocationConterInput
+    upsert?: OccRefLocationUpsertWithoutLocationConterInput
+    connect?: OccRefLocationWhereUniqueInput
+    update?: XOR<XOR<OccRefLocationUpdateToOneWithWhereWithoutLocationConterInput, OccRefLocationUpdateWithoutLocationConterInput>, OccRefLocationUncheckedUpdateWithoutLocationConterInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -13988,6 +15405,35 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type CounterGateCreateWithoutLocationConterInput = {
+    LocationName?: string | null
+    CodeGate?: string | null
+    CountIn?: number
+    CountOut?: number
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type CounterGateUncheckedCreateWithoutLocationConterInput = {
+    Id?: number
+    LocationName?: string | null
+    CodeGate?: string | null
+    CountIn?: number
+    CountOut?: number
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
+  export type CounterGateCreateOrConnectWithoutLocationConterInput = {
+    where: CounterGateWhereUniqueInput
+    create: XOR<CounterGateCreateWithoutLocationConterInput, CounterGateUncheckedCreateWithoutLocationConterInput>
+  }
+
+  export type CounterGateCreateManyLocationConterInputEnvelope = {
+    data: CounterGateCreateManyLocationConterInput | CounterGateCreateManyLocationConterInput[]
+    skipDuplicates?: boolean
+  }
+
   export type OccGateUpsertWithWhereUniqueWithoutLocationInput = {
     where: OccGateWhereUniqueInput
     update: XOR<OccGateUpdateWithoutLocationInput, OccGateUncheckedUpdateWithoutLocationInput>
@@ -14020,6 +15466,36 @@ export namespace Prisma {
     deletedAt?: DateTimeNullableFilter<"OccGate"> | Date | string | null
   }
 
+  export type CounterGateUpsertWithWhereUniqueWithoutLocationConterInput = {
+    where: CounterGateWhereUniqueInput
+    update: XOR<CounterGateUpdateWithoutLocationConterInput, CounterGateUncheckedUpdateWithoutLocationConterInput>
+    create: XOR<CounterGateCreateWithoutLocationConterInput, CounterGateUncheckedCreateWithoutLocationConterInput>
+  }
+
+  export type CounterGateUpdateWithWhereUniqueWithoutLocationConterInput = {
+    where: CounterGateWhereUniqueInput
+    data: XOR<CounterGateUpdateWithoutLocationConterInput, CounterGateUncheckedUpdateWithoutLocationConterInput>
+  }
+
+  export type CounterGateUpdateManyWithWhereWithoutLocationConterInput = {
+    where: CounterGateScalarWhereInput
+    data: XOR<CounterGateUpdateManyMutationInput, CounterGateUncheckedUpdateManyWithoutLocationConterInput>
+  }
+
+  export type CounterGateScalarWhereInput = {
+    AND?: CounterGateScalarWhereInput | CounterGateScalarWhereInput[]
+    OR?: CounterGateScalarWhereInput[]
+    NOT?: CounterGateScalarWhereInput | CounterGateScalarWhereInput[]
+    Id?: IntFilter<"CounterGate"> | number
+    LocationCode?: StringFilter<"CounterGate"> | string
+    LocationName?: StringNullableFilter<"CounterGate"> | string | null
+    CodeGate?: StringNullableFilter<"CounterGate"> | string | null
+    CountIn?: IntFilter<"CounterGate"> | number
+    CountOut?: IntFilter<"CounterGate"> | number
+    CreatedAt?: DateTimeFilter<"CounterGate"> | Date | string
+    UpdatedAt?: DateTimeFilter<"CounterGate"> | Date | string
+  }
+
   export type OccRefLocationCreateWithoutLocationInput = {
     Code: string
     Name: string
@@ -14038,6 +15514,7 @@ export namespace Prisma {
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
     recordStatus: $Enums.record
+    locationConter?: CounterGateCreateNestedManyWithoutLocationConterInput
   }
 
   export type OccRefLocationUncheckedCreateWithoutLocationInput = {
@@ -14059,6 +15536,7 @@ export namespace Prisma {
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
     recordStatus: $Enums.record
+    locationConter?: CounterGateUncheckedCreateNestedManyWithoutLocationConterInput
   }
 
   export type OccRefLocationCreateOrConnectWithoutLocationInput = {
@@ -14095,6 +15573,7 @@ export namespace Prisma {
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    locationConter?: CounterGateUpdateManyWithoutLocationConterNestedInput
   }
 
   export type OccRefLocationUncheckedUpdateWithoutLocationInput = {
@@ -14116,6 +15595,109 @@ export namespace Prisma {
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    locationConter?: CounterGateUncheckedUpdateManyWithoutLocationConterNestedInput
+  }
+
+  export type OccRefLocationCreateWithoutLocationConterInput = {
+    Code: string
+    Name: string
+    Region?: string | null
+    TID?: string | null
+    Vendor?: string | null
+    VendorParkingCode?: string | null
+    ShortName?: string | null
+    Address?: string | null
+    StartTime?: Date | string | null
+    EndTime?: Date | string | null
+    DateNext?: number | null
+    TimeZone?: string | null
+    UrlServer?: string | null
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+    DeletedAt?: Date | string | null
+    recordStatus: $Enums.record
+    location?: OccGateCreateNestedManyWithoutLocationInput
+  }
+
+  export type OccRefLocationUncheckedCreateWithoutLocationConterInput = {
+    id?: number
+    Code: string
+    Name: string
+    Region?: string | null
+    TID?: string | null
+    Vendor?: string | null
+    VendorParkingCode?: string | null
+    ShortName?: string | null
+    Address?: string | null
+    StartTime?: Date | string | null
+    EndTime?: Date | string | null
+    DateNext?: number | null
+    TimeZone?: string | null
+    UrlServer?: string | null
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+    DeletedAt?: Date | string | null
+    recordStatus: $Enums.record
+    location?: OccGateUncheckedCreateNestedManyWithoutLocationInput
+  }
+
+  export type OccRefLocationCreateOrConnectWithoutLocationConterInput = {
+    where: OccRefLocationWhereUniqueInput
+    create: XOR<OccRefLocationCreateWithoutLocationConterInput, OccRefLocationUncheckedCreateWithoutLocationConterInput>
+  }
+
+  export type OccRefLocationUpsertWithoutLocationConterInput = {
+    update: XOR<OccRefLocationUpdateWithoutLocationConterInput, OccRefLocationUncheckedUpdateWithoutLocationConterInput>
+    create: XOR<OccRefLocationCreateWithoutLocationConterInput, OccRefLocationUncheckedCreateWithoutLocationConterInput>
+    where?: OccRefLocationWhereInput
+  }
+
+  export type OccRefLocationUpdateToOneWithWhereWithoutLocationConterInput = {
+    where?: OccRefLocationWhereInput
+    data: XOR<OccRefLocationUpdateWithoutLocationConterInput, OccRefLocationUncheckedUpdateWithoutLocationConterInput>
+  }
+
+  export type OccRefLocationUpdateWithoutLocationConterInput = {
+    Code?: StringFieldUpdateOperationsInput | string
+    Name?: StringFieldUpdateOperationsInput | string
+    Region?: NullableStringFieldUpdateOperationsInput | string | null
+    TID?: NullableStringFieldUpdateOperationsInput | string | null
+    Vendor?: NullableStringFieldUpdateOperationsInput | string | null
+    VendorParkingCode?: NullableStringFieldUpdateOperationsInput | string | null
+    ShortName?: NullableStringFieldUpdateOperationsInput | string | null
+    Address?: NullableStringFieldUpdateOperationsInput | string | null
+    StartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    EndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    DateNext?: NullableIntFieldUpdateOperationsInput | number | null
+    TimeZone?: NullableStringFieldUpdateOperationsInput | string | null
+    UrlServer?: NullableStringFieldUpdateOperationsInput | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    location?: OccGateUpdateManyWithoutLocationNestedInput
+  }
+
+  export type OccRefLocationUncheckedUpdateWithoutLocationConterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    Code?: StringFieldUpdateOperationsInput | string
+    Name?: StringFieldUpdateOperationsInput | string
+    Region?: NullableStringFieldUpdateOperationsInput | string | null
+    TID?: NullableStringFieldUpdateOperationsInput | string | null
+    Vendor?: NullableStringFieldUpdateOperationsInput | string | null
+    VendorParkingCode?: NullableStringFieldUpdateOperationsInput | string | null
+    ShortName?: NullableStringFieldUpdateOperationsInput | string | null
+    Address?: NullableStringFieldUpdateOperationsInput | string | null
+    StartTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    EndTime?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    DateNext?: NullableIntFieldUpdateOperationsInput | number | null
+    TimeZone?: NullableStringFieldUpdateOperationsInput | string | null
+    UrlServer?: NullableStringFieldUpdateOperationsInput | string | null
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    location?: OccGateUncheckedUpdateManyWithoutLocationNestedInput
   }
 
   export type OccDescriptionCreateManyCategoryInput = {
@@ -14169,6 +15751,16 @@ export namespace Prisma {
     deletedAt?: Date | string | null
   }
 
+  export type CounterGateCreateManyLocationConterInput = {
+    Id?: number
+    LocationName?: string | null
+    CodeGate?: string | null
+    CountIn?: number
+    CountOut?: number
+    CreatedAt?: Date | string
+    UpdatedAt?: Date | string
+  }
+
   export type OccGateUpdateWithoutLocationInput = {
     gate?: StringFieldUpdateOperationsInput | string
     channel_cctv?: StringFieldUpdateOperationsInput | string
@@ -14202,6 +15794,35 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type CounterGateUpdateWithoutLocationConterInput = {
+    LocationName?: NullableStringFieldUpdateOperationsInput | string | null
+    CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
+    CountIn?: IntFieldUpdateOperationsInput | number
+    CountOut?: IntFieldUpdateOperationsInput | number
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CounterGateUncheckedUpdateWithoutLocationConterInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    LocationName?: NullableStringFieldUpdateOperationsInput | string | null
+    CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
+    CountIn?: IntFieldUpdateOperationsInput | number
+    CountOut?: IntFieldUpdateOperationsInput | number
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CounterGateUncheckedUpdateManyWithoutLocationConterInput = {
+    Id?: IntFieldUpdateOperationsInput | number
+    LocationName?: NullableStringFieldUpdateOperationsInput | string | null
+    CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
+    CountIn?: IntFieldUpdateOperationsInput | number
+    CountOut?: IntFieldUpdateOperationsInput | number
+    CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

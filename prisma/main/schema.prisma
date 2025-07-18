@@ -73,7 +73,7 @@ model OccIssue {
 
 model OccRefLocation {
   id                Int       @id @default(autoincrement())
-  Code              String
+  Code              String    @unique
   Name              String
   Region            String?
   TID               String?
@@ -91,7 +91,8 @@ model OccRefLocation {
   DeletedAt         DateTime?
   recordStatus      record
 
-  location OccGate[]
+  location       OccGate[]
+  locationConter CounterGate[]
 }
 
 model OccTransaction {
@@ -158,4 +159,17 @@ model OccListMemberStyles {
   PlateNumber String?
   CreatedAt   DateTime @default(now())
   UpdatedAt   DateTime @updatedAt
+}
+
+model CounterGate {
+  Id           Int      @id @default(autoincrement())
+  LocationCode String
+  LocationName String?
+  CodeGate     String?
+  CountIn      Int      @default(0)
+  CountOut     Int      @default(0)
+  CreatedAt    DateTime @default(now())
+  UpdatedAt    DateTime @updatedAt
+
+  locationConter OccRefLocation @relation(fields: [LocationCode], references: [Code])
 }

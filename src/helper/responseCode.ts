@@ -6,6 +6,7 @@ export const RESPONSE_CODES = {
   LOCATION: 24,
   GATE: 25,
   TRANSACTION: 26,
+  COUNTER: 27,
 };
 
 export type ResponseType = "CREATE" | "READ" | "UPDATE" | "DELETE" | "ERROR";
