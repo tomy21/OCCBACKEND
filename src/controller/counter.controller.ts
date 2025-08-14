@@ -43,6 +43,7 @@ export const createCounter = async (
         LocationCode,
         LocationName,
         CodeGate,
+        Date: formatWIB(new Date()),
       },
       select: {
         Id: true,
@@ -65,27 +66,54 @@ export const createCounter = async (
   }
 };
 
-export const incrementCountIn = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const incrementCountIn = async (req: Request, res: Response) => {
   const { locationCode } = req.params;
+  const today = format(new Date(), "yyyy-MM-dd");
 
   try {
-    const updated = await dbMain.counterGate.updateMany({
-      where: { LocationCode: locationCode },
-      data: { CountIn: { increment: 1 } },
+    // Ambil nama lokasi dari tabel OccRefLocation
+    const location = await dbMain.occRefLocation.findUnique({
+      where: { Code: locationCode },
+      select: { Name: true },
     });
 
-    if (updated.count === 0) {
-      res
+    if (!location) {
+      return res
         .status(404)
         .json(createResponse("COUNTER", "ERROR", "Location not found"));
     }
 
-    res.json(
-      createResponse("COUNTER", "UPDATE", "CountIn incremented successfully")
-    );
+    // Cek apakah sudah ada counter untuk location + tanggal ini
+    const existingCounter = await dbMain.counterGate.findFirst({
+      where: {
+        LocationCode: locationCode,
+        Date: today,
+      },
+    });
+
+    if (existingCounter) {
+      // Kalau ada → update
+      await dbMain.counterGate.update({
+        where: { Id: existingCounter.Id },
+        data: { CountIn: { increment: 1 } },
+      });
+      return res.json(
+        createResponse("COUNTER", "UPDATE", "CountIn incremented successfully")
+      );
+    }
+
+    // Kalau belum ada → insert row baru dengan LocationName
+    await dbMain.counterGate.create({
+      data: {
+        LocationCode: locationCode,
+        LocationName: location.Name, // isi dari OccRefLocation
+        Date: today,
+        CountIn: 1,
+        CountOut: 0,
+      },
+    });
+
+    res.json(createResponse("COUNTER", "CREATE", "New counter created"));
   } catch (err) {
     console.error(err);
     res
@@ -95,27 +123,53 @@ export const incrementCountIn = async (
 };
 
 // Increment CountOut
-export const incrementCountOut = async (
-  req: Request,
-  res: Response
-): Promise<void> => {
+export const incrementCountOut = async (req: Request, res: Response) => {
   const { locationCode } = req.params;
+  const today = format(new Date(), "yyyy-MM-dd"); // Tanggal sekarang
 
   try {
-    const updated = await dbMain.counterGate.updateMany({
-      where: { LocationCode: locationCode },
-      data: { CountOut: { increment: 1 } },
+    const location = await dbMain.occRefLocation.findUnique({
+      where: { Code: locationCode },
+      select: { Name: true },
     });
 
-    if (updated.count === 0) {
-      res
+    if (!location) {
+      return res
         .status(404)
         .json(createResponse("COUNTER", "ERROR", "Location not found"));
     }
 
-    res.json(
-      createResponse("COUNTER", "UPDATE", "CountOut incremented successfully")
-    );
+    // Cek apakah sudah ada counter untuk location + tanggal ini
+    const existingCounter = await dbMain.counterGate.findFirst({
+      where: {
+        LocationCode: locationCode,
+        Date: today, // kolom ini harus ada di tabel counterGate
+      },
+    });
+
+    if (existingCounter) {
+      // Kalau ada → update
+      await dbMain.counterGate.update({
+        where: { Id: existingCounter.Id },
+        data: { CountOut: { increment: 1 } },
+      });
+      return res.json(
+        createResponse("COUNTER", "UPDATE", "CountOut incremented successfully")
+      );
+    }
+
+    // Kalau belum ada → insert row baru dengan LocationName
+    await dbMain.counterGate.create({
+      data: {
+        LocationCode: locationCode,
+        LocationName: location.Name, // isi dari OccRefLocation
+        Date: today,
+        CountOut: 1,
+        CountIn: 0,
+      },
+    });
+
+    res.json(createResponse("COUNTER", "CREATE", "New counter created"));
   } catch (err) {
     console.error(err);
     res
@@ -133,52 +187,21 @@ export const getAllCounters = async (
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
-    const start = new Date();
-    start.setHours(0, 0, 0, 0);
-
-    const end = new Date();
-    end.setHours(23, 59, 59, 999);
-
+    // Ambil data + total count sekaligus
     const [counters, total] = await Promise.all([
       dbMain.counterGate.findMany({
         skip,
         take: limit,
-        orderBy: { CreatedAt: "desc" },
+        orderBy: { CreatedAt: "desc" }, // pastikan format string tanggal konsisten
       }),
       dbMain.counterGate.count(),
     ]);
 
-    // const transactionCountsToday =
-    //   await dbSecondary.transactionParkingIntegration.groupBy({
-    //     by: ["LocationCode"],
-    //     _count: true,
-    //     where: {
-    //       LocationCode: {
-    //         in: (
-    //           await dbMain.counterGate.findMany({
-    //             select: { LocationCode: true },
-    //           })
-    //         )
-    //           .map((item) => item.LocationCode)
-    //           .filter((code): code is string => !!code),
-    //       },
-    //       CreatedOn: {
-    //         gte: start,
-    //         lte: end,
-    //       },
-    //     },
-    //   });
-
-    // const txMap = new Map(
-    //   transactionCountsToday.map((tx) => [tx.LocationCode, tx._count])
-    // );
-
-    // Format waktu menjadi WIB
+    // Format CreatedAt dan UpdatedAt menjadi WIB
     const countersFormatted = counters.map((item) => ({
       ...item,
       CreatedAt: formatWIB(item.CreatedAt),
       UpdatedAt: formatWIB(item.UpdatedAt),
-      // TotalTransactionToday: txMap.get(item.LocationCode) || 0,
     }));
 
     res.json(

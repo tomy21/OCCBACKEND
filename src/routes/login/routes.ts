@@ -45,7 +45,7 @@ router.post("/login", async (req: Request, res: Response): Promise<void> => {
     }
     console.error("Login proxy error:", error.message);
 
-    res.status(500).json({ error: "Internal server error" });
+    // res.status(500).json({ error: "Internal server error" });
   }
 });
 

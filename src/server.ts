@@ -35,6 +35,8 @@ const users = [
   { id: null as number | null, socketId: null as string | null, busy: false },
   { id: null as number | null, socketId: null as string | null, busy: false },
   { id: null as number | null, socketId: null as string | null, busy: false },
+  { id: null as number | null, socketId: null as string | null, busy: false },
+  { id: null as number | null, socketId: null as string | null, busy: false },
 ];
 
 let nextUserIndex = 0;

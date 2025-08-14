@@ -163,6 +163,7 @@ model OccListMemberStyles {
 
 model CounterGate {
   Id           Int      @id @default(autoincrement())
+  Date         String?
   LocationCode String
   LocationName String?
   CodeGate     String?

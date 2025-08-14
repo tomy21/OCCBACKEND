@@ -10873,6 +10873,7 @@ export namespace Prisma {
 
   export type CounterGateMinAggregateOutputType = {
     Id: number | null
+    Date: string | null
     LocationCode: string | null
     LocationName: string | null
     CodeGate: string | null
@@ -10884,6 +10885,7 @@ export namespace Prisma {
 
   export type CounterGateMaxAggregateOutputType = {
     Id: number | null
+    Date: string | null
     LocationCode: string | null
     LocationName: string | null
     CodeGate: string | null
@@ -10895,6 +10897,7 @@ export namespace Prisma {
 
   export type CounterGateCountAggregateOutputType = {
     Id: number
+    Date: number
     LocationCode: number
     LocationName: number
     CodeGate: number
@@ -10920,6 +10923,7 @@ export namespace Prisma {
 
   export type CounterGateMinAggregateInputType = {
     Id?: true
+    Date?: true
     LocationCode?: true
     LocationName?: true
     CodeGate?: true
@@ -10931,6 +10935,7 @@ export namespace Prisma {
 
   export type CounterGateMaxAggregateInputType = {
     Id?: true
+    Date?: true
     LocationCode?: true
     LocationName?: true
     CodeGate?: true
@@ -10942,6 +10947,7 @@ export namespace Prisma {
 
   export type CounterGateCountAggregateInputType = {
     Id?: true
+    Date?: true
     LocationCode?: true
     LocationName?: true
     CodeGate?: true
@@ -11040,6 +11046,7 @@ export namespace Prisma {
 
   export type CounterGateGroupByOutputType = {
     Id: number
+    Date: string | null
     LocationCode: string
     LocationName: string | null
     CodeGate: string | null
@@ -11070,6 +11077,7 @@ export namespace Prisma {
 
   export type CounterGateSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     Id?: boolean
+    Date?: boolean
     LocationCode?: boolean
     LocationName?: boolean
     CodeGate?: boolean
@@ -11084,6 +11092,7 @@ export namespace Prisma {
 
   export type CounterGateSelectScalar = {
     Id?: boolean
+    Date?: boolean
     LocationCode?: boolean
     LocationName?: boolean
     CodeGate?: boolean
@@ -11093,7 +11102,7 @@ export namespace Prisma {
     UpdatedAt?: boolean
   }
 
-  export type CounterGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "LocationCode" | "LocationName" | "CodeGate" | "CountIn" | "CountOut" | "CreatedAt" | "UpdatedAt", ExtArgs["result"]["counterGate"]>
+  export type CounterGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "Date" | "LocationCode" | "LocationName" | "CodeGate" | "CountIn" | "CountOut" | "CreatedAt" | "UpdatedAt", ExtArgs["result"]["counterGate"]>
   export type CounterGateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }
@@ -11105,6 +11114,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       Id: number
+      Date: string | null
       LocationCode: string
       LocationName: string | null
       CodeGate: string | null
@@ -11483,6 +11493,7 @@ export namespace Prisma {
    */
   interface CounterGateFieldRefs {
     readonly Id: FieldRef<"CounterGate", 'Int'>
+    readonly Date: FieldRef<"CounterGate", 'String'>
     readonly LocationCode: FieldRef<"CounterGate", 'String'>
     readonly LocationName: FieldRef<"CounterGate", 'String'>
     readonly CodeGate: FieldRef<"CounterGate", 'String'>
@@ -12020,6 +12031,7 @@ export namespace Prisma {
 
   export const CounterGateScalarFieldEnum: {
     Id: 'Id',
+    Date: 'Date',
     LocationCode: 'LocationCode',
     LocationName: 'LocationName',
     CodeGate: 'CodeGate',
@@ -12156,6 +12168,7 @@ export namespace Prisma {
 
 
   export const CounterGateOrderByRelevanceFieldEnum: {
+    Date: 'Date',
     LocationCode: 'LocationCode',
     LocationName: 'LocationName',
     CodeGate: 'CodeGate'
@@ -12999,6 +13012,7 @@ export namespace Prisma {
     OR?: CounterGateWhereInput[]
     NOT?: CounterGateWhereInput | CounterGateWhereInput[]
     Id?: IntFilter<"CounterGate"> | number
+    Date?: StringNullableFilter<"CounterGate"> | string | null
     LocationCode?: StringFilter<"CounterGate"> | string
     LocationName?: StringNullableFilter<"CounterGate"> | string | null
     CodeGate?: StringNullableFilter<"CounterGate"> | string | null
@@ -13011,6 +13025,7 @@ export namespace Prisma {
 
   export type CounterGateOrderByWithRelationInput = {
     Id?: SortOrder
+    Date?: SortOrderInput | SortOrder
     LocationCode?: SortOrder
     LocationName?: SortOrderInput | SortOrder
     CodeGate?: SortOrderInput | SortOrder
@@ -13027,6 +13042,7 @@ export namespace Prisma {
     AND?: CounterGateWhereInput | CounterGateWhereInput[]
     OR?: CounterGateWhereInput[]
     NOT?: CounterGateWhereInput | CounterGateWhereInput[]
+    Date?: StringNullableFilter<"CounterGate"> | string | null
     LocationCode?: StringFilter<"CounterGate"> | string
     LocationName?: StringNullableFilter<"CounterGate"> | string | null
     CodeGate?: StringNullableFilter<"CounterGate"> | string | null
@@ -13039,6 +13055,7 @@ export namespace Prisma {
 
   export type CounterGateOrderByWithAggregationInput = {
     Id?: SortOrder
+    Date?: SortOrderInput | SortOrder
     LocationCode?: SortOrder
     LocationName?: SortOrderInput | SortOrder
     CodeGate?: SortOrderInput | SortOrder
@@ -13058,6 +13075,7 @@ export namespace Prisma {
     OR?: CounterGateScalarWhereWithAggregatesInput[]
     NOT?: CounterGateScalarWhereWithAggregatesInput | CounterGateScalarWhereWithAggregatesInput[]
     Id?: IntWithAggregatesFilter<"CounterGate"> | number
+    Date?: StringNullableWithAggregatesFilter<"CounterGate"> | string | null
     LocationCode?: StringWithAggregatesFilter<"CounterGate"> | string
     LocationName?: StringNullableWithAggregatesFilter<"CounterGate"> | string | null
     CodeGate?: StringNullableWithAggregatesFilter<"CounterGate"> | string | null
@@ -13933,6 +13951,7 @@ export namespace Prisma {
   }
 
   export type CounterGateCreateInput = {
+    Date?: string | null
     LocationName?: string | null
     CodeGate?: string | null
     CountIn?: number
@@ -13944,6 +13963,7 @@ export namespace Prisma {
 
   export type CounterGateUncheckedCreateInput = {
     Id?: number
+    Date?: string | null
     LocationCode: string
     LocationName?: string | null
     CodeGate?: string | null
@@ -13954,6 +13974,7 @@ export namespace Prisma {
   }
 
   export type CounterGateUpdateInput = {
+    Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
     CountIn?: IntFieldUpdateOperationsInput | number
@@ -13965,6 +13986,7 @@ export namespace Prisma {
 
   export type CounterGateUncheckedUpdateInput = {
     Id?: IntFieldUpdateOperationsInput | number
+    Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationCode?: StringFieldUpdateOperationsInput | string
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13976,6 +13998,7 @@ export namespace Prisma {
 
   export type CounterGateCreateManyInput = {
     Id?: number
+    Date?: string | null
     LocationCode: string
     LocationName?: string | null
     CodeGate?: string | null
@@ -13986,6 +14009,7 @@ export namespace Prisma {
   }
 
   export type CounterGateUpdateManyMutationInput = {
+    Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
     CountIn?: IntFieldUpdateOperationsInput | number
@@ -13996,6 +14020,7 @@ export namespace Prisma {
 
   export type CounterGateUncheckedUpdateManyInput = {
     Id?: IntFieldUpdateOperationsInput | number
+    Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationCode?: StringFieldUpdateOperationsInput | string
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14782,6 +14807,7 @@ export namespace Prisma {
 
   export type CounterGateCountOrderByAggregateInput = {
     Id?: SortOrder
+    Date?: SortOrder
     LocationCode?: SortOrder
     LocationName?: SortOrder
     CodeGate?: SortOrder
@@ -14799,6 +14825,7 @@ export namespace Prisma {
 
   export type CounterGateMaxOrderByAggregateInput = {
     Id?: SortOrder
+    Date?: SortOrder
     LocationCode?: SortOrder
     LocationName?: SortOrder
     CodeGate?: SortOrder
@@ -14810,6 +14837,7 @@ export namespace Prisma {
 
   export type CounterGateMinOrderByAggregateInput = {
     Id?: SortOrder
+    Date?: SortOrder
     LocationCode?: SortOrder
     LocationName?: SortOrder
     CodeGate?: SortOrder
@@ -15406,6 +15434,7 @@ export namespace Prisma {
   }
 
   export type CounterGateCreateWithoutLocationConterInput = {
+    Date?: string | null
     LocationName?: string | null
     CodeGate?: string | null
     CountIn?: number
@@ -15416,6 +15445,7 @@ export namespace Prisma {
 
   export type CounterGateUncheckedCreateWithoutLocationConterInput = {
     Id?: number
+    Date?: string | null
     LocationName?: string | null
     CodeGate?: string | null
     CountIn?: number
@@ -15487,6 +15517,7 @@ export namespace Prisma {
     OR?: CounterGateScalarWhereInput[]
     NOT?: CounterGateScalarWhereInput | CounterGateScalarWhereInput[]
     Id?: IntFilter<"CounterGate"> | number
+    Date?: StringNullableFilter<"CounterGate"> | string | null
     LocationCode?: StringFilter<"CounterGate"> | string
     LocationName?: StringNullableFilter<"CounterGate"> | string | null
     CodeGate?: StringNullableFilter<"CounterGate"> | string | null
@@ -15753,6 +15784,7 @@ export namespace Prisma {
 
   export type CounterGateCreateManyLocationConterInput = {
     Id?: number
+    Date?: string | null
     LocationName?: string | null
     CodeGate?: string | null
     CountIn?: number
@@ -15797,6 +15829,7 @@ export namespace Prisma {
   }
 
   export type CounterGateUpdateWithoutLocationConterInput = {
+    Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
     CountIn?: IntFieldUpdateOperationsInput | number
@@ -15807,6 +15840,7 @@ export namespace Prisma {
 
   export type CounterGateUncheckedUpdateWithoutLocationConterInput = {
     Id?: IntFieldUpdateOperationsInput | number
+    Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
     CountIn?: IntFieldUpdateOperationsInput | number
@@ -15817,6 +15851,7 @@ export namespace Prisma {
 
   export type CounterGateUncheckedUpdateManyWithoutLocationConterInput = {
     Id?: IntFieldUpdateOperationsInput | number
+    Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
     CountIn?: IntFieldUpdateOperationsInput | number

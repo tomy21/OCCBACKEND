@@ -248,6 +248,7 @@ exports.Prisma.OccListMemberStylesScalarFieldEnum = {
 
 exports.Prisma.CounterGateScalarFieldEnum = {
   Id: 'Id',
+  Date: 'Date',
   LocationCode: 'LocationCode',
   LocationName: 'LocationName',
   CodeGate: 'CodeGate',
@@ -348,6 +349,7 @@ exports.Prisma.OccListMemberStylesOrderByRelevanceFieldEnum = {
 };
 
 exports.Prisma.CounterGateOrderByRelevanceFieldEnum = {
+  Date: 'Date',
   LocationCode: 'LocationCode',
   LocationName: 'LocationName',
   CodeGate: 'CodeGate'
