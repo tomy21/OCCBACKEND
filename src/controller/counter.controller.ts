@@ -50,8 +50,10 @@ export const createCounter = async (
         LocationCode: true,
         LocationName: true,
         CodeGate: true,
-        CountIn: true,
-        CountOut: true,
+        CountInMotor: true,
+        CountOutMotor: true,
+        CountInMobil: true,
+        CountOutMobil: true,
       },
     });
 
@@ -71,6 +73,7 @@ export const incrementCountIn = async (
   res: Response
 ): Promise<void> => {
   const { locationCode } = req.params;
+  const { type } = req.query;
   const today = format(new Date(), "yyyy-MM-dd");
 
   try {
@@ -96,28 +99,59 @@ export const incrementCountIn = async (
     });
 
     if (existingCounter) {
-      // Kalau ada → update
-      await dbMain.counterGate.update({
-        where: { Id: existingCounter.Id },
-        data: { CountIn: { increment: 1 } },
-      });
-      res.json(
-        createResponse("COUNTER", "UPDATE", "CountIn incremented successfully")
-      );
-      return;
+      if (type === "motor") {
+        // Kalau ada → update
+        await dbMain.counterGate.update({
+          where: { Id: existingCounter.Id },
+          data: { CountInMotor: { increment: 1 } },
+        });
+        res.json(
+          createResponse(
+            "COUNTER",
+            "UPDATE",
+            "CountIn incremented successfully"
+          )
+        );
+        return;
+      } else {
+        await dbMain.counterGate.update({
+          where: { Id: existingCounter.Id },
+          data: { CountInMobil: { increment: 1 } },
+        });
+        res.json(
+          createResponse(
+            "COUNTER",
+            "UPDATE",
+            "CountIn incremented successfully"
+          )
+        );
+        return;
+      }
     } else {
       // Kalau belum ada → insert row baru dengan LocationName
-      await dbMain.counterGate.create({
-        data: {
-          LocationCode: locationCode,
-          LocationName: location.Name, // isi dari OccRefLocation
-          Date: today,
-          CountIn: 1,
-          CountOut: 0,
-        },
-      });
+      if (type === "motor") {
+        await dbMain.counterGate.create({
+          data: {
+            LocationCode: locationCode,
+            LocationName: location.Name,
+            Date: today,
+            CountInMotor: 1,
+          },
+        });
+      } else {
+        await dbMain.counterGate.create({
+          data: {
+            LocationCode: locationCode,
+            LocationName: location.Name,
+            Date: today,
+            CountInMobil: 1,
+          },
+        });
+      }
+      res.json(
+        createResponse("COUNTER", "CREATE", "CountIn incremented successfully")
+      );
 
-      res.json(createResponse("COUNTER", "CREATE", "New counter created"));
       return;
     }
   } catch (err) {
@@ -134,9 +168,11 @@ export const incrementCountOut = async (
   res: Response
 ): Promise<void> => {
   const { locationCode } = req.params;
-  const today = format(new Date(), "yyyy-MM-dd"); // Tanggal sekarang
+  const { type } = req.query;
+  const today = format(new Date(), "yyyy-MM-dd");
 
   try {
+    // Ambil nama lokasi dari tabel OccRefLocation
     const location = await dbMain.occRefLocation.findUnique({
       where: { Code: locationCode },
       select: { Name: true },
@@ -153,41 +189,71 @@ export const incrementCountOut = async (
     const existingCounter = await dbMain.counterGate.findFirst({
       where: {
         LocationCode: locationCode,
-        Date: today, // kolom ini harus ada di tabel counterGate
+        Date: today,
       },
     });
 
     if (existingCounter) {
-      // Kalau ada → update
-      await dbMain.counterGate.update({
-        where: { Id: existingCounter.Id },
-        data: { CountOut: { increment: 1 } },
-      });
-      res.json(
-        createResponse("COUNTER", "UPDATE", "CountOut incremented successfully")
-      );
-      return;
+      if (type === "motor") {
+        // Kalau ada → update
+        await dbMain.counterGate.update({
+          where: { Id: existingCounter.Id },
+          data: { CountOutMotor: { increment: 1 } },
+        });
+        res.json(
+          createResponse(
+            "COUNTER",
+            "UPDATE",
+            "CountOut incremented successfully"
+          )
+        );
+        return;
+      } else {
+        await dbMain.counterGate.update({
+          where: { Id: existingCounter.Id },
+          data: { CountOutMobil: { increment: 1 } },
+        });
+        res.json(
+          createResponse(
+            "COUNTER",
+            "UPDATE",
+            "CountIn incremented successfully"
+          )
+        );
+        return;
+      }
     } else {
-      await dbMain.counterGate.create({
-        data: {
-          LocationCode: locationCode,
-          LocationName: location.Name, // isi dari OccRefLocation
-          Date: today,
-          CountOut: 1,
-          CountIn: 0,
-        },
-      });
+      // Kalau belum ada → insert row baru dengan LocationName
+      if (type === "motor") {
+        await dbMain.counterGate.create({
+          data: {
+            LocationCode: locationCode,
+            LocationName: location.Name,
+            Date: today,
+            CountOutMotor: 1,
+          },
+        });
+      } else {
+        await dbMain.counterGate.create({
+          data: {
+            LocationCode: locationCode,
+            LocationName: location.Name,
+            Date: today,
+            CountOutMobil: 1,
+          },
+        });
+      }
+      res.json(
+        createResponse("COUNTER", "CREATE", "CountIn incremented successfully")
+      );
 
-      res.json(createResponse("COUNTER", "CREATE", "New counter created"));
       return;
     }
-
-    // Kalau belum ada → insert row baru dengan LocationName
   } catch (err) {
     console.error(err);
     res
       .status(500)
-      .json(createResponse("COUNTER", "ERROR", "Failed to increment CountOut"));
+      .json(createResponse("COUNTER", "ERROR", "Failed to increment CountIn"));
   }
 };
 

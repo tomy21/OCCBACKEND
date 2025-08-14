@@ -162,15 +162,17 @@ model OccListMemberStyles {
 }
 
 model CounterGate {
-  Id           Int      @id @default(autoincrement())
-  Date         String?
-  LocationCode String
-  LocationName String?
-  CodeGate     String?
-  CountIn      Int      @default(0)
-  CountOut     Int      @default(0)
-  CreatedAt    DateTime @default(now())
-  UpdatedAt    DateTime @updatedAt
+  Id            Int      @id @default(autoincrement())
+  Date          String?
+  LocationCode  String
+  LocationName  String?
+  CodeGate      String?
+  CountInMotor  Int?     @default(0)
+  CountOutMotor Int?     @default(0)
+  CountInMobil  Int?     @default(0)
+  CountOutMobil Int?     @default(0)
+  CreatedAt     DateTime @default(now())
+  UpdatedAt     DateTime @updatedAt
 
   locationConter OccRefLocation @relation(fields: [LocationCode], references: [Code])
 }

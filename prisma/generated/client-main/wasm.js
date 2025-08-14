@@ -252,8 +252,10 @@ exports.Prisma.CounterGateScalarFieldEnum = {
   LocationCode: 'LocationCode',
   LocationName: 'LocationName',
   CodeGate: 'CodeGate',
-  CountIn: 'CountIn',
-  CountOut: 'CountOut',
+  CountInMotor: 'CountInMotor',
+  CountOutMotor: 'CountOutMotor',
+  CountInMobil: 'CountInMobil',
+  CountOutMobil: 'CountOutMobil',
   CreatedAt: 'CreatedAt',
   UpdatedAt: 'UpdatedAt'
 };

@@ -10861,14 +10861,18 @@ export namespace Prisma {
 
   export type CounterGateAvgAggregateOutputType = {
     Id: number | null
-    CountIn: number | null
-    CountOut: number | null
+    CountInMotor: number | null
+    CountOutMotor: number | null
+    CountInMobil: number | null
+    CountOutMobil: number | null
   }
 
   export type CounterGateSumAggregateOutputType = {
     Id: number | null
-    CountIn: number | null
-    CountOut: number | null
+    CountInMotor: number | null
+    CountOutMotor: number | null
+    CountInMobil: number | null
+    CountOutMobil: number | null
   }
 
   export type CounterGateMinAggregateOutputType = {
@@ -10877,8 +10881,10 @@ export namespace Prisma {
     LocationCode: string | null
     LocationName: string | null
     CodeGate: string | null
-    CountIn: number | null
-    CountOut: number | null
+    CountInMotor: number | null
+    CountOutMotor: number | null
+    CountInMobil: number | null
+    CountOutMobil: number | null
     CreatedAt: Date | null
     UpdatedAt: Date | null
   }
@@ -10889,8 +10895,10 @@ export namespace Prisma {
     LocationCode: string | null
     LocationName: string | null
     CodeGate: string | null
-    CountIn: number | null
-    CountOut: number | null
+    CountInMotor: number | null
+    CountOutMotor: number | null
+    CountInMobil: number | null
+    CountOutMobil: number | null
     CreatedAt: Date | null
     UpdatedAt: Date | null
   }
@@ -10901,8 +10909,10 @@ export namespace Prisma {
     LocationCode: number
     LocationName: number
     CodeGate: number
-    CountIn: number
-    CountOut: number
+    CountInMotor: number
+    CountOutMotor: number
+    CountInMobil: number
+    CountOutMobil: number
     CreatedAt: number
     UpdatedAt: number
     _all: number
@@ -10911,14 +10921,18 @@ export namespace Prisma {
 
   export type CounterGateAvgAggregateInputType = {
     Id?: true
-    CountIn?: true
-    CountOut?: true
+    CountInMotor?: true
+    CountOutMotor?: true
+    CountInMobil?: true
+    CountOutMobil?: true
   }
 
   export type CounterGateSumAggregateInputType = {
     Id?: true
-    CountIn?: true
-    CountOut?: true
+    CountInMotor?: true
+    CountOutMotor?: true
+    CountInMobil?: true
+    CountOutMobil?: true
   }
 
   export type CounterGateMinAggregateInputType = {
@@ -10927,8 +10941,10 @@ export namespace Prisma {
     LocationCode?: true
     LocationName?: true
     CodeGate?: true
-    CountIn?: true
-    CountOut?: true
+    CountInMotor?: true
+    CountOutMotor?: true
+    CountInMobil?: true
+    CountOutMobil?: true
     CreatedAt?: true
     UpdatedAt?: true
   }
@@ -10939,8 +10955,10 @@ export namespace Prisma {
     LocationCode?: true
     LocationName?: true
     CodeGate?: true
-    CountIn?: true
-    CountOut?: true
+    CountInMotor?: true
+    CountOutMotor?: true
+    CountInMobil?: true
+    CountOutMobil?: true
     CreatedAt?: true
     UpdatedAt?: true
   }
@@ -10951,8 +10969,10 @@ export namespace Prisma {
     LocationCode?: true
     LocationName?: true
     CodeGate?: true
-    CountIn?: true
-    CountOut?: true
+    CountInMotor?: true
+    CountOutMotor?: true
+    CountInMobil?: true
+    CountOutMobil?: true
     CreatedAt?: true
     UpdatedAt?: true
     _all?: true
@@ -11050,8 +11070,10 @@ export namespace Prisma {
     LocationCode: string
     LocationName: string | null
     CodeGate: string | null
-    CountIn: number
-    CountOut: number
+    CountInMotor: number | null
+    CountOutMotor: number | null
+    CountInMobil: number | null
+    CountOutMobil: number | null
     CreatedAt: Date
     UpdatedAt: Date
     _count: CounterGateCountAggregateOutputType | null
@@ -11081,8 +11103,10 @@ export namespace Prisma {
     LocationCode?: boolean
     LocationName?: boolean
     CodeGate?: boolean
-    CountIn?: boolean
-    CountOut?: boolean
+    CountInMotor?: boolean
+    CountOutMotor?: boolean
+    CountInMobil?: boolean
+    CountOutMobil?: boolean
     CreatedAt?: boolean
     UpdatedAt?: boolean
     locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
@@ -11096,13 +11120,15 @@ export namespace Prisma {
     LocationCode?: boolean
     LocationName?: boolean
     CodeGate?: boolean
-    CountIn?: boolean
-    CountOut?: boolean
+    CountInMotor?: boolean
+    CountOutMotor?: boolean
+    CountInMobil?: boolean
+    CountOutMobil?: boolean
     CreatedAt?: boolean
     UpdatedAt?: boolean
   }
 
-  export type CounterGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "Date" | "LocationCode" | "LocationName" | "CodeGate" | "CountIn" | "CountOut" | "CreatedAt" | "UpdatedAt", ExtArgs["result"]["counterGate"]>
+  export type CounterGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "Date" | "LocationCode" | "LocationName" | "CodeGate" | "CountInMotor" | "CountOutMotor" | "CountInMobil" | "CountOutMobil" | "CreatedAt" | "UpdatedAt", ExtArgs["result"]["counterGate"]>
   export type CounterGateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }
@@ -11118,8 +11144,10 @@ export namespace Prisma {
       LocationCode: string
       LocationName: string | null
       CodeGate: string | null
-      CountIn: number
-      CountOut: number
+      CountInMotor: number | null
+      CountOutMotor: number | null
+      CountInMobil: number | null
+      CountOutMobil: number | null
       CreatedAt: Date
       UpdatedAt: Date
     }, ExtArgs["result"]["counterGate"]>
@@ -11497,8 +11525,10 @@ export namespace Prisma {
     readonly LocationCode: FieldRef<"CounterGate", 'String'>
     readonly LocationName: FieldRef<"CounterGate", 'String'>
     readonly CodeGate: FieldRef<"CounterGate", 'String'>
-    readonly CountIn: FieldRef<"CounterGate", 'Int'>
-    readonly CountOut: FieldRef<"CounterGate", 'Int'>
+    readonly CountInMotor: FieldRef<"CounterGate", 'Int'>
+    readonly CountOutMotor: FieldRef<"CounterGate", 'Int'>
+    readonly CountInMobil: FieldRef<"CounterGate", 'Int'>
+    readonly CountOutMobil: FieldRef<"CounterGate", 'Int'>
     readonly CreatedAt: FieldRef<"CounterGate", 'DateTime'>
     readonly UpdatedAt: FieldRef<"CounterGate", 'DateTime'>
   }
@@ -12035,8 +12065,10 @@ export namespace Prisma {
     LocationCode: 'LocationCode',
     LocationName: 'LocationName',
     CodeGate: 'CodeGate',
-    CountIn: 'CountIn',
-    CountOut: 'CountOut',
+    CountInMotor: 'CountInMotor',
+    CountOutMotor: 'CountOutMotor',
+    CountInMobil: 'CountInMobil',
+    CountOutMobil: 'CountOutMobil',
     CreatedAt: 'CreatedAt',
     UpdatedAt: 'UpdatedAt'
   };
@@ -13016,8 +13048,10 @@ export namespace Prisma {
     LocationCode?: StringFilter<"CounterGate"> | string
     LocationName?: StringNullableFilter<"CounterGate"> | string | null
     CodeGate?: StringNullableFilter<"CounterGate"> | string | null
-    CountIn?: IntFilter<"CounterGate"> | number
-    CountOut?: IntFilter<"CounterGate"> | number
+    CountInMotor?: IntNullableFilter<"CounterGate"> | number | null
+    CountOutMotor?: IntNullableFilter<"CounterGate"> | number | null
+    CountInMobil?: IntNullableFilter<"CounterGate"> | number | null
+    CountOutMobil?: IntNullableFilter<"CounterGate"> | number | null
     CreatedAt?: DateTimeFilter<"CounterGate"> | Date | string
     UpdatedAt?: DateTimeFilter<"CounterGate"> | Date | string
     locationConter?: XOR<OccRefLocationScalarRelationFilter, OccRefLocationWhereInput>
@@ -13029,8 +13063,10 @@ export namespace Prisma {
     LocationCode?: SortOrder
     LocationName?: SortOrderInput | SortOrder
     CodeGate?: SortOrderInput | SortOrder
-    CountIn?: SortOrder
-    CountOut?: SortOrder
+    CountInMotor?: SortOrderInput | SortOrder
+    CountOutMotor?: SortOrderInput | SortOrder
+    CountInMobil?: SortOrderInput | SortOrder
+    CountOutMobil?: SortOrderInput | SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     locationConter?: OccRefLocationOrderByWithRelationInput
@@ -13046,8 +13082,10 @@ export namespace Prisma {
     LocationCode?: StringFilter<"CounterGate"> | string
     LocationName?: StringNullableFilter<"CounterGate"> | string | null
     CodeGate?: StringNullableFilter<"CounterGate"> | string | null
-    CountIn?: IntFilter<"CounterGate"> | number
-    CountOut?: IntFilter<"CounterGate"> | number
+    CountInMotor?: IntNullableFilter<"CounterGate"> | number | null
+    CountOutMotor?: IntNullableFilter<"CounterGate"> | number | null
+    CountInMobil?: IntNullableFilter<"CounterGate"> | number | null
+    CountOutMobil?: IntNullableFilter<"CounterGate"> | number | null
     CreatedAt?: DateTimeFilter<"CounterGate"> | Date | string
     UpdatedAt?: DateTimeFilter<"CounterGate"> | Date | string
     locationConter?: XOR<OccRefLocationScalarRelationFilter, OccRefLocationWhereInput>
@@ -13059,8 +13097,10 @@ export namespace Prisma {
     LocationCode?: SortOrder
     LocationName?: SortOrderInput | SortOrder
     CodeGate?: SortOrderInput | SortOrder
-    CountIn?: SortOrder
-    CountOut?: SortOrder
+    CountInMotor?: SortOrderInput | SortOrder
+    CountOutMotor?: SortOrderInput | SortOrder
+    CountInMobil?: SortOrderInput | SortOrder
+    CountOutMobil?: SortOrderInput | SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     _count?: CounterGateCountOrderByAggregateInput
@@ -13079,8 +13119,10 @@ export namespace Prisma {
     LocationCode?: StringWithAggregatesFilter<"CounterGate"> | string
     LocationName?: StringNullableWithAggregatesFilter<"CounterGate"> | string | null
     CodeGate?: StringNullableWithAggregatesFilter<"CounterGate"> | string | null
-    CountIn?: IntWithAggregatesFilter<"CounterGate"> | number
-    CountOut?: IntWithAggregatesFilter<"CounterGate"> | number
+    CountInMotor?: IntNullableWithAggregatesFilter<"CounterGate"> | number | null
+    CountOutMotor?: IntNullableWithAggregatesFilter<"CounterGate"> | number | null
+    CountInMobil?: IntNullableWithAggregatesFilter<"CounterGate"> | number | null
+    CountOutMobil?: IntNullableWithAggregatesFilter<"CounterGate"> | number | null
     CreatedAt?: DateTimeWithAggregatesFilter<"CounterGate"> | Date | string
     UpdatedAt?: DateTimeWithAggregatesFilter<"CounterGate"> | Date | string
   }
@@ -13954,8 +13996,10 @@ export namespace Prisma {
     Date?: string | null
     LocationName?: string | null
     CodeGate?: string | null
-    CountIn?: number
-    CountOut?: number
+    CountInMotor?: number | null
+    CountOutMotor?: number | null
+    CountInMobil?: number | null
+    CountOutMobil?: number | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     locationConter: OccRefLocationCreateNestedOneWithoutLocationConterInput
@@ -13967,8 +14011,10 @@ export namespace Prisma {
     LocationCode: string
     LocationName?: string | null
     CodeGate?: string | null
-    CountIn?: number
-    CountOut?: number
+    CountInMotor?: number | null
+    CountOutMotor?: number | null
+    CountInMobil?: number | null
+    CountOutMobil?: number | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
   }
@@ -13977,8 +14023,10 @@ export namespace Prisma {
     Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
-    CountIn?: IntFieldUpdateOperationsInput | number
-    CountOut?: IntFieldUpdateOperationsInput | number
+    CountInMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountInMobil?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMobil?: NullableIntFieldUpdateOperationsInput | number | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     locationConter?: OccRefLocationUpdateOneRequiredWithoutLocationConterNestedInput
@@ -13990,8 +14038,10 @@ export namespace Prisma {
     LocationCode?: StringFieldUpdateOperationsInput | string
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
-    CountIn?: IntFieldUpdateOperationsInput | number
-    CountOut?: IntFieldUpdateOperationsInput | number
+    CountInMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountInMobil?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMobil?: NullableIntFieldUpdateOperationsInput | number | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14002,8 +14052,10 @@ export namespace Prisma {
     LocationCode: string
     LocationName?: string | null
     CodeGate?: string | null
-    CountIn?: number
-    CountOut?: number
+    CountInMotor?: number | null
+    CountOutMotor?: number | null
+    CountInMobil?: number | null
+    CountOutMobil?: number | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
   }
@@ -14012,8 +14064,10 @@ export namespace Prisma {
     Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
-    CountIn?: IntFieldUpdateOperationsInput | number
-    CountOut?: IntFieldUpdateOperationsInput | number
+    CountInMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountInMobil?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMobil?: NullableIntFieldUpdateOperationsInput | number | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14024,8 +14078,10 @@ export namespace Prisma {
     LocationCode?: StringFieldUpdateOperationsInput | string
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
-    CountIn?: IntFieldUpdateOperationsInput | number
-    CountOut?: IntFieldUpdateOperationsInput | number
+    CountInMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountInMobil?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMobil?: NullableIntFieldUpdateOperationsInput | number | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -14811,16 +14867,20 @@ export namespace Prisma {
     LocationCode?: SortOrder
     LocationName?: SortOrder
     CodeGate?: SortOrder
-    CountIn?: SortOrder
-    CountOut?: SortOrder
+    CountInMotor?: SortOrder
+    CountOutMotor?: SortOrder
+    CountInMobil?: SortOrder
+    CountOutMobil?: SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
   }
 
   export type CounterGateAvgOrderByAggregateInput = {
     Id?: SortOrder
-    CountIn?: SortOrder
-    CountOut?: SortOrder
+    CountInMotor?: SortOrder
+    CountOutMotor?: SortOrder
+    CountInMobil?: SortOrder
+    CountOutMobil?: SortOrder
   }
 
   export type CounterGateMaxOrderByAggregateInput = {
@@ -14829,8 +14889,10 @@ export namespace Prisma {
     LocationCode?: SortOrder
     LocationName?: SortOrder
     CodeGate?: SortOrder
-    CountIn?: SortOrder
-    CountOut?: SortOrder
+    CountInMotor?: SortOrder
+    CountOutMotor?: SortOrder
+    CountInMobil?: SortOrder
+    CountOutMobil?: SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
   }
@@ -14841,16 +14903,20 @@ export namespace Prisma {
     LocationCode?: SortOrder
     LocationName?: SortOrder
     CodeGate?: SortOrder
-    CountIn?: SortOrder
-    CountOut?: SortOrder
+    CountInMotor?: SortOrder
+    CountOutMotor?: SortOrder
+    CountInMobil?: SortOrder
+    CountOutMobil?: SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
   }
 
   export type CounterGateSumOrderByAggregateInput = {
     Id?: SortOrder
-    CountIn?: SortOrder
-    CountOut?: SortOrder
+    CountInMotor?: SortOrder
+    CountOutMotor?: SortOrder
+    CountInMobil?: SortOrder
+    CountOutMobil?: SortOrder
   }
 
   export type OccDescriptionCreateNestedManyWithoutCategoryInput = {
@@ -15437,8 +15503,10 @@ export namespace Prisma {
     Date?: string | null
     LocationName?: string | null
     CodeGate?: string | null
-    CountIn?: number
-    CountOut?: number
+    CountInMotor?: number | null
+    CountOutMotor?: number | null
+    CountInMobil?: number | null
+    CountOutMobil?: number | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
   }
@@ -15448,8 +15516,10 @@ export namespace Prisma {
     Date?: string | null
     LocationName?: string | null
     CodeGate?: string | null
-    CountIn?: number
-    CountOut?: number
+    CountInMotor?: number | null
+    CountOutMotor?: number | null
+    CountInMobil?: number | null
+    CountOutMobil?: number | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
   }
@@ -15521,8 +15591,10 @@ export namespace Prisma {
     LocationCode?: StringFilter<"CounterGate"> | string
     LocationName?: StringNullableFilter<"CounterGate"> | string | null
     CodeGate?: StringNullableFilter<"CounterGate"> | string | null
-    CountIn?: IntFilter<"CounterGate"> | number
-    CountOut?: IntFilter<"CounterGate"> | number
+    CountInMotor?: IntNullableFilter<"CounterGate"> | number | null
+    CountOutMotor?: IntNullableFilter<"CounterGate"> | number | null
+    CountInMobil?: IntNullableFilter<"CounterGate"> | number | null
+    CountOutMobil?: IntNullableFilter<"CounterGate"> | number | null
     CreatedAt?: DateTimeFilter<"CounterGate"> | Date | string
     UpdatedAt?: DateTimeFilter<"CounterGate"> | Date | string
   }
@@ -15787,8 +15859,10 @@ export namespace Prisma {
     Date?: string | null
     LocationName?: string | null
     CodeGate?: string | null
-    CountIn?: number
-    CountOut?: number
+    CountInMotor?: number | null
+    CountOutMotor?: number | null
+    CountInMobil?: number | null
+    CountOutMobil?: number | null
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
   }
@@ -15832,8 +15906,10 @@ export namespace Prisma {
     Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
-    CountIn?: IntFieldUpdateOperationsInput | number
-    CountOut?: IntFieldUpdateOperationsInput | number
+    CountInMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountInMobil?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMobil?: NullableIntFieldUpdateOperationsInput | number | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15843,8 +15919,10 @@ export namespace Prisma {
     Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
-    CountIn?: IntFieldUpdateOperationsInput | number
-    CountOut?: IntFieldUpdateOperationsInput | number
+    CountInMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountInMobil?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMobil?: NullableIntFieldUpdateOperationsInput | number | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15854,8 +15932,10 @@ export namespace Prisma {
     Date?: NullableStringFieldUpdateOperationsInput | string | null
     LocationName?: NullableStringFieldUpdateOperationsInput | string | null
     CodeGate?: NullableStringFieldUpdateOperationsInput | string | null
-    CountIn?: IntFieldUpdateOperationsInput | number
-    CountOut?: IntFieldUpdateOperationsInput | number
+    CountInMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMotor?: NullableIntFieldUpdateOperationsInput | number | null
+    CountInMobil?: NullableIntFieldUpdateOperationsInput | number | null
+    CountOutMobil?: NullableIntFieldUpdateOperationsInput | number | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
