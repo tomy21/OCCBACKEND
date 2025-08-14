@@ -66,7 +66,10 @@ export const createCounter = async (
   }
 };
 
-export const incrementCountIn = async (req: Request, res: Response) => {
+export const incrementCountIn = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { locationCode } = req.params;
   const today = format(new Date(), "yyyy-MM-dd");
 
@@ -78,9 +81,10 @@ export const incrementCountIn = async (req: Request, res: Response) => {
     });
 
     if (!location) {
-      return res
+      res
         .status(404)
         .json(createResponse("COUNTER", "ERROR", "Location not found"));
+      return;
     }
 
     // Cek apakah sudah ada counter untuk location + tanggal ini
@@ -97,23 +101,25 @@ export const incrementCountIn = async (req: Request, res: Response) => {
         where: { Id: existingCounter.Id },
         data: { CountIn: { increment: 1 } },
       });
-      return res.json(
+      res.json(
         createResponse("COUNTER", "UPDATE", "CountIn incremented successfully")
       );
+      return;
+    } else {
+      // Kalau belum ada → insert row baru dengan LocationName
+      await dbMain.counterGate.create({
+        data: {
+          LocationCode: locationCode,
+          LocationName: location.Name, // isi dari OccRefLocation
+          Date: today,
+          CountIn: 1,
+          CountOut: 0,
+        },
+      });
+
+      res.json(createResponse("COUNTER", "CREATE", "New counter created"));
+      return;
     }
-
-    // Kalau belum ada → insert row baru dengan LocationName
-    await dbMain.counterGate.create({
-      data: {
-        LocationCode: locationCode,
-        LocationName: location.Name, // isi dari OccRefLocation
-        Date: today,
-        CountIn: 1,
-        CountOut: 0,
-      },
-    });
-
-    res.json(createResponse("COUNTER", "CREATE", "New counter created"));
   } catch (err) {
     console.error(err);
     res
@@ -123,7 +129,10 @@ export const incrementCountIn = async (req: Request, res: Response) => {
 };
 
 // Increment CountOut
-export const incrementCountOut = async (req: Request, res: Response) => {
+export const incrementCountOut = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
   const { locationCode } = req.params;
   const today = format(new Date(), "yyyy-MM-dd"); // Tanggal sekarang
 
@@ -134,9 +143,10 @@ export const incrementCountOut = async (req: Request, res: Response) => {
     });
 
     if (!location) {
-      return res
+      res
         .status(404)
         .json(createResponse("COUNTER", "ERROR", "Location not found"));
+      return;
     }
 
     // Cek apakah sudah ada counter untuk location + tanggal ini
@@ -153,23 +163,26 @@ export const incrementCountOut = async (req: Request, res: Response) => {
         where: { Id: existingCounter.Id },
         data: { CountOut: { increment: 1 } },
       });
-      return res.json(
+      res.json(
         createResponse("COUNTER", "UPDATE", "CountOut incremented successfully")
       );
+      return;
+    } else {
+      await dbMain.counterGate.create({
+        data: {
+          LocationCode: locationCode,
+          LocationName: location.Name, // isi dari OccRefLocation
+          Date: today,
+          CountOut: 1,
+          CountIn: 0,
+        },
+      });
+
+      res.json(createResponse("COUNTER", "CREATE", "New counter created"));
+      return;
     }
 
     // Kalau belum ada → insert row baru dengan LocationName
-    await dbMain.counterGate.create({
-      data: {
-        LocationCode: locationCode,
-        LocationName: location.Name, // isi dari OccRefLocation
-        Date: today,
-        CountOut: 1,
-        CountIn: 0,
-      },
-    });
-
-    res.json(createResponse("COUNTER", "CREATE", "New counter created"));
   } catch (err) {
     console.error(err);
     res
