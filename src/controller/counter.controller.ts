@@ -204,7 +204,7 @@ export const incrementCountOut = async (
           createResponse(
             "COUNTER",
             "UPDATE",
-            "CountOut incremented successfully"
+            "Count Out incremented successfully"
           )
         );
         return;
@@ -217,7 +217,7 @@ export const incrementCountOut = async (
           createResponse(
             "COUNTER",
             "UPDATE",
-            "CountIn incremented successfully"
+            "Count Out incremented successfully"
           )
         );
         return;
@@ -244,7 +244,11 @@ export const incrementCountOut = async (
         });
       }
       res.json(
-        createResponse("COUNTER", "CREATE", "CountIn incremented successfully")
+        createResponse(
+          "COUNTER",
+          "CREATE",
+          "Count Out incremented successfully"
+        )
       );
 
       return;
