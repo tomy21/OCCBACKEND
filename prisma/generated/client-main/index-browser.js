@@ -260,6 +260,14 @@ exports.Prisma.CounterGateScalarFieldEnum = {
   UpdatedAt: 'UpdatedAt'
 };
 
+exports.Prisma.UserEventNobuScalarFieldEnum = {
+  id: 'id',
+  nik: 'nik',
+  event: 'event',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -356,6 +364,11 @@ exports.Prisma.CounterGateOrderByRelevanceFieldEnum = {
   LocationName: 'LocationName',
   CodeGate: 'CodeGate'
 };
+
+exports.Prisma.userEventNobuOrderByRelevanceFieldEnum = {
+  nik: 'nik',
+  event: 'event'
+};
 exports.statusIssue = exports.$Enums.statusIssue = {
   new: 'new',
   progress: 'progress',
@@ -378,7 +391,8 @@ exports.Prisma.ModelName = {
   OccIntercome: 'OccIntercome',
   RefIssuer: 'RefIssuer',
   OccListMemberStyles: 'OccListMemberStyles',
-  CounterGate: 'CounterGate'
+  CounterGate: 'CounterGate',
+  userEventNobu: 'userEventNobu'
 };
 
 /**

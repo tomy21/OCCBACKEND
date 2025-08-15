@@ -176,3 +176,11 @@ model CounterGate {
 
   locationConter OccRefLocation @relation(fields: [LocationCode], references: [Code])
 }
+
+model userEventNobu {
+  id        Int      @id @default(autoincrement())
+  nik       String   @unique
+  event     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

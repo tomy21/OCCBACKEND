@@ -63,6 +63,11 @@ export type OccListMemberStyles = $Result.DefaultSelection<Prisma.$OccListMember
  * 
  */
 export type CounterGate = $Result.DefaultSelection<Prisma.$CounterGatePayload>
+/**
+ * Model userEventNobu
+ * 
+ */
+export type userEventNobu = $Result.DefaultSelection<Prisma.$userEventNobuPayload>
 
 /**
  * Enums
@@ -319,6 +324,16 @@ export class PrismaClient<
     * ```
     */
   get counterGate(): Prisma.CounterGateDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.userEventNobu`: Exposes CRUD operations for the **userEventNobu** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more UserEventNobus
+    * const userEventNobus = await prisma.userEventNobu.findMany()
+    * ```
+    */
+  get userEventNobu(): Prisma.userEventNobuDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -768,7 +783,8 @@ export namespace Prisma {
     OccIntercome: 'OccIntercome',
     RefIssuer: 'RefIssuer',
     OccListMemberStyles: 'OccListMemberStyles',
-    CounterGate: 'CounterGate'
+    CounterGate: 'CounterGate',
+    userEventNobu: 'userEventNobu'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -787,7 +803,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer" | "occListMemberStyles" | "counterGate"
+      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer" | "occListMemberStyles" | "counterGate" | "userEventNobu"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1451,6 +1467,72 @@ export namespace Prisma {
           }
         }
       }
+      userEventNobu: {
+        payload: Prisma.$userEventNobuPayload<ExtArgs>
+        fields: Prisma.userEventNobuFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.userEventNobuFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.userEventNobuFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>
+          }
+          findFirst: {
+            args: Prisma.userEventNobuFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.userEventNobuFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>
+          }
+          findMany: {
+            args: Prisma.userEventNobuFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>[]
+          }
+          create: {
+            args: Prisma.userEventNobuCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>
+          }
+          createMany: {
+            args: Prisma.userEventNobuCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.userEventNobuDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>
+          }
+          update: {
+            args: Prisma.userEventNobuUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>
+          }
+          deleteMany: {
+            args: Prisma.userEventNobuDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.userEventNobuUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.userEventNobuUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>
+          }
+          aggregate: {
+            args: Prisma.UserEventNobuAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUserEventNobu>
+          }
+          groupBy: {
+            args: Prisma.userEventNobuGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserEventNobuGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.userEventNobuCountArgs<ExtArgs>
+            result: $Utils.Optional<UserEventNobuCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1545,6 +1627,7 @@ export namespace Prisma {
     refIssuer?: RefIssuerOmit
     occListMemberStyles?: OccListMemberStylesOmit
     counterGate?: CounterGateOmit
+    userEventNobu?: userEventNobuOmit
   }
 
   /* Types for Logging */
@@ -11893,6 +11976,922 @@ export namespace Prisma {
 
 
   /**
+   * Model userEventNobu
+   */
+
+  export type AggregateUserEventNobu = {
+    _count: UserEventNobuCountAggregateOutputType | null
+    _avg: UserEventNobuAvgAggregateOutputType | null
+    _sum: UserEventNobuSumAggregateOutputType | null
+    _min: UserEventNobuMinAggregateOutputType | null
+    _max: UserEventNobuMaxAggregateOutputType | null
+  }
+
+  export type UserEventNobuAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type UserEventNobuSumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type UserEventNobuMinAggregateOutputType = {
+    id: number | null
+    nik: string | null
+    event: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserEventNobuMaxAggregateOutputType = {
+    id: number | null
+    nik: string | null
+    event: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type UserEventNobuCountAggregateOutputType = {
+    id: number
+    nik: number
+    event: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type UserEventNobuAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type UserEventNobuSumAggregateInputType = {
+    id?: true
+  }
+
+  export type UserEventNobuMinAggregateInputType = {
+    id?: true
+    nik?: true
+    event?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserEventNobuMaxAggregateInputType = {
+    id?: true
+    nik?: true
+    event?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type UserEventNobuCountAggregateInputType = {
+    id?: true
+    nik?: true
+    event?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type UserEventNobuAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which userEventNobu to aggregate.
+     */
+    where?: userEventNobuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of userEventNobus to fetch.
+     */
+    orderBy?: userEventNobuOrderByWithRelationInput | userEventNobuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: userEventNobuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` userEventNobus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` userEventNobus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned userEventNobus
+    **/
+    _count?: true | UserEventNobuCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserEventNobuAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserEventNobuSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserEventNobuMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserEventNobuMaxAggregateInputType
+  }
+
+  export type GetUserEventNobuAggregateType<T extends UserEventNobuAggregateArgs> = {
+        [P in keyof T & keyof AggregateUserEventNobu]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUserEventNobu[P]>
+      : GetScalarType<T[P], AggregateUserEventNobu[P]>
+  }
+
+
+
+
+  export type userEventNobuGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: userEventNobuWhereInput
+    orderBy?: userEventNobuOrderByWithAggregationInput | userEventNobuOrderByWithAggregationInput[]
+    by: UserEventNobuScalarFieldEnum[] | UserEventNobuScalarFieldEnum
+    having?: userEventNobuScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserEventNobuCountAggregateInputType | true
+    _avg?: UserEventNobuAvgAggregateInputType
+    _sum?: UserEventNobuSumAggregateInputType
+    _min?: UserEventNobuMinAggregateInputType
+    _max?: UserEventNobuMaxAggregateInputType
+  }
+
+  export type UserEventNobuGroupByOutputType = {
+    id: number
+    nik: string
+    event: string
+    createdAt: Date
+    updatedAt: Date
+    _count: UserEventNobuCountAggregateOutputType | null
+    _avg: UserEventNobuAvgAggregateOutputType | null
+    _sum: UserEventNobuSumAggregateOutputType | null
+    _min: UserEventNobuMinAggregateOutputType | null
+    _max: UserEventNobuMaxAggregateOutputType | null
+  }
+
+  type GetUserEventNobuGroupByPayload<T extends userEventNobuGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserEventNobuGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserEventNobuGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserEventNobuGroupByOutputType[P]>
+            : GetScalarType<T[P], UserEventNobuGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type userEventNobuSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nik?: boolean
+    event?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["userEventNobu"]>
+
+
+
+  export type userEventNobuSelectScalar = {
+    id?: boolean
+    nik?: boolean
+    event?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type userEventNobuOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nik" | "event" | "createdAt" | "updatedAt", ExtArgs["result"]["userEventNobu"]>
+
+  export type $userEventNobuPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "userEventNobu"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      nik: string
+      event: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["userEventNobu"]>
+    composites: {}
+  }
+
+  type userEventNobuGetPayload<S extends boolean | null | undefined | userEventNobuDefaultArgs> = $Result.GetResult<Prisma.$userEventNobuPayload, S>
+
+  type userEventNobuCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<userEventNobuFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserEventNobuCountAggregateInputType | true
+    }
+
+  export interface userEventNobuDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['userEventNobu'], meta: { name: 'userEventNobu' } }
+    /**
+     * Find zero or one UserEventNobu that matches the filter.
+     * @param {userEventNobuFindUniqueArgs} args - Arguments to find a UserEventNobu
+     * @example
+     * // Get one UserEventNobu
+     * const userEventNobu = await prisma.userEventNobu.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends userEventNobuFindUniqueArgs>(args: SelectSubset<T, userEventNobuFindUniqueArgs<ExtArgs>>): Prisma__userEventNobuClient<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one UserEventNobu that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {userEventNobuFindUniqueOrThrowArgs} args - Arguments to find a UserEventNobu
+     * @example
+     * // Get one UserEventNobu
+     * const userEventNobu = await prisma.userEventNobu.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends userEventNobuFindUniqueOrThrowArgs>(args: SelectSubset<T, userEventNobuFindUniqueOrThrowArgs<ExtArgs>>): Prisma__userEventNobuClient<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserEventNobu that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userEventNobuFindFirstArgs} args - Arguments to find a UserEventNobu
+     * @example
+     * // Get one UserEventNobu
+     * const userEventNobu = await prisma.userEventNobu.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends userEventNobuFindFirstArgs>(args?: SelectSubset<T, userEventNobuFindFirstArgs<ExtArgs>>): Prisma__userEventNobuClient<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first UserEventNobu that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userEventNobuFindFirstOrThrowArgs} args - Arguments to find a UserEventNobu
+     * @example
+     * // Get one UserEventNobu
+     * const userEventNobu = await prisma.userEventNobu.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends userEventNobuFindFirstOrThrowArgs>(args?: SelectSubset<T, userEventNobuFindFirstOrThrowArgs<ExtArgs>>): Prisma__userEventNobuClient<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more UserEventNobus that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userEventNobuFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all UserEventNobus
+     * const userEventNobus = await prisma.userEventNobu.findMany()
+     * 
+     * // Get first 10 UserEventNobus
+     * const userEventNobus = await prisma.userEventNobu.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userEventNobuWithIdOnly = await prisma.userEventNobu.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends userEventNobuFindManyArgs>(args?: SelectSubset<T, userEventNobuFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a UserEventNobu.
+     * @param {userEventNobuCreateArgs} args - Arguments to create a UserEventNobu.
+     * @example
+     * // Create one UserEventNobu
+     * const UserEventNobu = await prisma.userEventNobu.create({
+     *   data: {
+     *     // ... data to create a UserEventNobu
+     *   }
+     * })
+     * 
+     */
+    create<T extends userEventNobuCreateArgs>(args: SelectSubset<T, userEventNobuCreateArgs<ExtArgs>>): Prisma__userEventNobuClient<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many UserEventNobus.
+     * @param {userEventNobuCreateManyArgs} args - Arguments to create many UserEventNobus.
+     * @example
+     * // Create many UserEventNobus
+     * const userEventNobu = await prisma.userEventNobu.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends userEventNobuCreateManyArgs>(args?: SelectSubset<T, userEventNobuCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a UserEventNobu.
+     * @param {userEventNobuDeleteArgs} args - Arguments to delete one UserEventNobu.
+     * @example
+     * // Delete one UserEventNobu
+     * const UserEventNobu = await prisma.userEventNobu.delete({
+     *   where: {
+     *     // ... filter to delete one UserEventNobu
+     *   }
+     * })
+     * 
+     */
+    delete<T extends userEventNobuDeleteArgs>(args: SelectSubset<T, userEventNobuDeleteArgs<ExtArgs>>): Prisma__userEventNobuClient<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one UserEventNobu.
+     * @param {userEventNobuUpdateArgs} args - Arguments to update one UserEventNobu.
+     * @example
+     * // Update one UserEventNobu
+     * const userEventNobu = await prisma.userEventNobu.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends userEventNobuUpdateArgs>(args: SelectSubset<T, userEventNobuUpdateArgs<ExtArgs>>): Prisma__userEventNobuClient<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more UserEventNobus.
+     * @param {userEventNobuDeleteManyArgs} args - Arguments to filter UserEventNobus to delete.
+     * @example
+     * // Delete a few UserEventNobus
+     * const { count } = await prisma.userEventNobu.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends userEventNobuDeleteManyArgs>(args?: SelectSubset<T, userEventNobuDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserEventNobus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userEventNobuUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many UserEventNobus
+     * const userEventNobu = await prisma.userEventNobu.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends userEventNobuUpdateManyArgs>(args: SelectSubset<T, userEventNobuUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one UserEventNobu.
+     * @param {userEventNobuUpsertArgs} args - Arguments to update or create a UserEventNobu.
+     * @example
+     * // Update or create a UserEventNobu
+     * const userEventNobu = await prisma.userEventNobu.upsert({
+     *   create: {
+     *     // ... data to create a UserEventNobu
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the UserEventNobu we want to update
+     *   }
+     * })
+     */
+    upsert<T extends userEventNobuUpsertArgs>(args: SelectSubset<T, userEventNobuUpsertArgs<ExtArgs>>): Prisma__userEventNobuClient<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of UserEventNobus.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userEventNobuCountArgs} args - Arguments to filter UserEventNobus to count.
+     * @example
+     * // Count the number of UserEventNobus
+     * const count = await prisma.userEventNobu.count({
+     *   where: {
+     *     // ... the filter for the UserEventNobus we want to count
+     *   }
+     * })
+    **/
+    count<T extends userEventNobuCountArgs>(
+      args?: Subset<T, userEventNobuCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserEventNobuCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a UserEventNobu.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserEventNobuAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserEventNobuAggregateArgs>(args: Subset<T, UserEventNobuAggregateArgs>): Prisma.PrismaPromise<GetUserEventNobuAggregateType<T>>
+
+    /**
+     * Group by UserEventNobu.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {userEventNobuGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends userEventNobuGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: userEventNobuGroupByArgs['orderBy'] }
+        : { orderBy?: userEventNobuGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, userEventNobuGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserEventNobuGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the userEventNobu model
+   */
+  readonly fields: userEventNobuFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for userEventNobu.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__userEventNobuClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the userEventNobu model
+   */
+  interface userEventNobuFieldRefs {
+    readonly id: FieldRef<"userEventNobu", 'Int'>
+    readonly nik: FieldRef<"userEventNobu", 'String'>
+    readonly event: FieldRef<"userEventNobu", 'String'>
+    readonly createdAt: FieldRef<"userEventNobu", 'DateTime'>
+    readonly updatedAt: FieldRef<"userEventNobu", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * userEventNobu findUnique
+   */
+  export type userEventNobuFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * Filter, which userEventNobu to fetch.
+     */
+    where: userEventNobuWhereUniqueInput
+  }
+
+  /**
+   * userEventNobu findUniqueOrThrow
+   */
+  export type userEventNobuFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * Filter, which userEventNobu to fetch.
+     */
+    where: userEventNobuWhereUniqueInput
+  }
+
+  /**
+   * userEventNobu findFirst
+   */
+  export type userEventNobuFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * Filter, which userEventNobu to fetch.
+     */
+    where?: userEventNobuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of userEventNobus to fetch.
+     */
+    orderBy?: userEventNobuOrderByWithRelationInput | userEventNobuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for userEventNobus.
+     */
+    cursor?: userEventNobuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` userEventNobus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` userEventNobus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of userEventNobus.
+     */
+    distinct?: UserEventNobuScalarFieldEnum | UserEventNobuScalarFieldEnum[]
+  }
+
+  /**
+   * userEventNobu findFirstOrThrow
+   */
+  export type userEventNobuFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * Filter, which userEventNobu to fetch.
+     */
+    where?: userEventNobuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of userEventNobus to fetch.
+     */
+    orderBy?: userEventNobuOrderByWithRelationInput | userEventNobuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for userEventNobus.
+     */
+    cursor?: userEventNobuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` userEventNobus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` userEventNobus.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of userEventNobus.
+     */
+    distinct?: UserEventNobuScalarFieldEnum | UserEventNobuScalarFieldEnum[]
+  }
+
+  /**
+   * userEventNobu findMany
+   */
+  export type userEventNobuFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * Filter, which userEventNobus to fetch.
+     */
+    where?: userEventNobuWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of userEventNobus to fetch.
+     */
+    orderBy?: userEventNobuOrderByWithRelationInput | userEventNobuOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing userEventNobus.
+     */
+    cursor?: userEventNobuWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` userEventNobus from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` userEventNobus.
+     */
+    skip?: number
+    distinct?: UserEventNobuScalarFieldEnum | UserEventNobuScalarFieldEnum[]
+  }
+
+  /**
+   * userEventNobu create
+   */
+  export type userEventNobuCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * The data needed to create a userEventNobu.
+     */
+    data: XOR<userEventNobuCreateInput, userEventNobuUncheckedCreateInput>
+  }
+
+  /**
+   * userEventNobu createMany
+   */
+  export type userEventNobuCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many userEventNobus.
+     */
+    data: userEventNobuCreateManyInput | userEventNobuCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * userEventNobu update
+   */
+  export type userEventNobuUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * The data needed to update a userEventNobu.
+     */
+    data: XOR<userEventNobuUpdateInput, userEventNobuUncheckedUpdateInput>
+    /**
+     * Choose, which userEventNobu to update.
+     */
+    where: userEventNobuWhereUniqueInput
+  }
+
+  /**
+   * userEventNobu updateMany
+   */
+  export type userEventNobuUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update userEventNobus.
+     */
+    data: XOR<userEventNobuUpdateManyMutationInput, userEventNobuUncheckedUpdateManyInput>
+    /**
+     * Filter which userEventNobus to update
+     */
+    where?: userEventNobuWhereInput
+    /**
+     * Limit how many userEventNobus to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * userEventNobu upsert
+   */
+  export type userEventNobuUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * The filter to search for the userEventNobu to update in case it exists.
+     */
+    where: userEventNobuWhereUniqueInput
+    /**
+     * In case the userEventNobu found by the `where` argument doesn't exist, create a new userEventNobu with this data.
+     */
+    create: XOR<userEventNobuCreateInput, userEventNobuUncheckedCreateInput>
+    /**
+     * In case the userEventNobu was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<userEventNobuUpdateInput, userEventNobuUncheckedUpdateInput>
+  }
+
+  /**
+   * userEventNobu delete
+   */
+  export type userEventNobuDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * Filter which userEventNobu to delete.
+     */
+    where: userEventNobuWhereUniqueInput
+  }
+
+  /**
+   * userEventNobu deleteMany
+   */
+  export type userEventNobuDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which userEventNobus to delete
+     */
+    where?: userEventNobuWhereInput
+    /**
+     * Limit how many userEventNobus to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * userEventNobu without action
+   */
+  export type userEventNobuDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -12076,6 +13075,17 @@ export namespace Prisma {
   export type CounterGateScalarFieldEnum = (typeof CounterGateScalarFieldEnum)[keyof typeof CounterGateScalarFieldEnum]
 
 
+  export const UserEventNobuScalarFieldEnum: {
+    id: 'id',
+    nik: 'nik',
+    event: 'event',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type UserEventNobuScalarFieldEnum = (typeof UserEventNobuScalarFieldEnum)[keyof typeof UserEventNobuScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -12207,6 +13217,14 @@ export namespace Prisma {
   };
 
   export type CounterGateOrderByRelevanceFieldEnum = (typeof CounterGateOrderByRelevanceFieldEnum)[keyof typeof CounterGateOrderByRelevanceFieldEnum]
+
+
+  export const userEventNobuOrderByRelevanceFieldEnum: {
+    nik: 'nik',
+    event: 'event'
+  };
+
+  export type userEventNobuOrderByRelevanceFieldEnum = (typeof userEventNobuOrderByRelevanceFieldEnum)[keyof typeof userEventNobuOrderByRelevanceFieldEnum]
 
 
   /**
@@ -13125,6 +14143,61 @@ export namespace Prisma {
     CountOutMobil?: IntNullableWithAggregatesFilter<"CounterGate"> | number | null
     CreatedAt?: DateTimeWithAggregatesFilter<"CounterGate"> | Date | string
     UpdatedAt?: DateTimeWithAggregatesFilter<"CounterGate"> | Date | string
+  }
+
+  export type userEventNobuWhereInput = {
+    AND?: userEventNobuWhereInput | userEventNobuWhereInput[]
+    OR?: userEventNobuWhereInput[]
+    NOT?: userEventNobuWhereInput | userEventNobuWhereInput[]
+    id?: IntFilter<"userEventNobu"> | number
+    nik?: StringFilter<"userEventNobu"> | string
+    event?: StringFilter<"userEventNobu"> | string
+    createdAt?: DateTimeFilter<"userEventNobu"> | Date | string
+    updatedAt?: DateTimeFilter<"userEventNobu"> | Date | string
+  }
+
+  export type userEventNobuOrderByWithRelationInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    event?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _relevance?: userEventNobuOrderByRelevanceInput
+  }
+
+  export type userEventNobuWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    nik?: string
+    AND?: userEventNobuWhereInput | userEventNobuWhereInput[]
+    OR?: userEventNobuWhereInput[]
+    NOT?: userEventNobuWhereInput | userEventNobuWhereInput[]
+    event?: StringFilter<"userEventNobu"> | string
+    createdAt?: DateTimeFilter<"userEventNobu"> | Date | string
+    updatedAt?: DateTimeFilter<"userEventNobu"> | Date | string
+  }, "id" | "nik">
+
+  export type userEventNobuOrderByWithAggregationInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    event?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: userEventNobuCountOrderByAggregateInput
+    _avg?: userEventNobuAvgOrderByAggregateInput
+    _max?: userEventNobuMaxOrderByAggregateInput
+    _min?: userEventNobuMinOrderByAggregateInput
+    _sum?: userEventNobuSumOrderByAggregateInput
+  }
+
+  export type userEventNobuScalarWhereWithAggregatesInput = {
+    AND?: userEventNobuScalarWhereWithAggregatesInput | userEventNobuScalarWhereWithAggregatesInput[]
+    OR?: userEventNobuScalarWhereWithAggregatesInput[]
+    NOT?: userEventNobuScalarWhereWithAggregatesInput | userEventNobuScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"userEventNobu"> | number
+    nik?: StringWithAggregatesFilter<"userEventNobu"> | string
+    event?: StringWithAggregatesFilter<"userEventNobu"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"userEventNobu"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"userEventNobu"> | Date | string
   }
 
   export type OccCategoryCreateInput = {
@@ -14086,6 +15159,59 @@ export namespace Prisma {
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type userEventNobuCreateInput = {
+    nik: string
+    event: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type userEventNobuUncheckedCreateInput = {
+    id?: number
+    nik: string
+    event: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type userEventNobuUpdateInput = {
+    nik?: StringFieldUpdateOperationsInput | string
+    event?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type userEventNobuUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nik?: StringFieldUpdateOperationsInput | string
+    event?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type userEventNobuCreateManyInput = {
+    id?: number
+    nik: string
+    event: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type userEventNobuUpdateManyMutationInput = {
+    nik?: StringFieldUpdateOperationsInput | string
+    event?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type userEventNobuUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nik?: StringFieldUpdateOperationsInput | string
+    event?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[]
@@ -14917,6 +16043,44 @@ export namespace Prisma {
     CountOutMotor?: SortOrder
     CountInMobil?: SortOrder
     CountOutMobil?: SortOrder
+  }
+
+  export type userEventNobuOrderByRelevanceInput = {
+    fields: userEventNobuOrderByRelevanceFieldEnum | userEventNobuOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type userEventNobuCountOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    event?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type userEventNobuAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type userEventNobuMaxOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    event?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type userEventNobuMinOrderByAggregateInput = {
+    id?: SortOrder
+    nik?: SortOrder
+    event?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type userEventNobuSumOrderByAggregateInput = {
+    id?: SortOrder
   }
 
   export type OccDescriptionCreateNestedManyWithoutCategoryInput = {

@@ -16,7 +16,7 @@ import TransactionRoute from "./routes/find-transaction/route";
 import SendWhatsappRoute from "./routes/sendWhatsapp/route";
 
 import CounterRoute from "./routes/counter/routes";
-
+import eventNobu from "./routes/eventNobu/route";
 import Auth from "./routes/login/routes";
 
 import { checkArduinoTimeout } from "./jobs/cekStatusArduino";
@@ -59,6 +59,8 @@ app.use("/api/message", SendWhatsappRoute);
 
 app.use("/api/iot", IOTRoute);
 app.use("/api/auth", Auth);
+
+app.use("/api/nobu", eventNobu);
 
 app.use("/api/counter", CounterRoute);
 
