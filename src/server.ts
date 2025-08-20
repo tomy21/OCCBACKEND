@@ -19,7 +19,7 @@ import CounterRoute from "./routes/counter/routes";
 import eventNobu from "./routes/eventNobu/route";
 import Auth from "./routes/login/routes";
 
-import { checkArduinoTimeout } from "./jobs/cekStatusArduino";
+// import { checkArduinoTimeout } from "./jobs/cekStatusArduino";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import path from "path";
@@ -74,45 +74,45 @@ app.use(
   )
 );
 
-io.on("connection", (socket) => {
-  console.log("New client connected:", socket.id);
+// io.on("connection", (socket) => {
+//   console.log("New client connected:", socket.id);
 
-  socket.on("register", (userId: number) => {
-    // Cari slot yang masih kosong
-    const availableSlot = users.find((u) => u.id === null);
+//   socket.on("register", (userId: number) => {
+//     // Cari slot yang masih kosong
+//     const availableSlot = users.find((u) => u.id === null);
 
-    if (availableSlot) {
-      availableSlot.id = userId;
-      availableSlot.socketId = socket.id;
-      availableSlot.busy = false;
+//     if (availableSlot) {
+//       availableSlot.id = userId;
+//       availableSlot.socketId = socket.id;
+//       availableSlot.busy = false;
 
-      console.log(`✅ User ${userId} registered with socket id ${socket.id}`);
-    } else {
-      console.log("⚠️ Semua slot user sudah terisi.");
-    }
-  });
+//       console.log(`✅ User ${userId} registered with socket id ${socket.id}`);
+//     } else {
+//       console.log("⚠️ Semua slot user sudah terisi.");
+//     }
+//   });
 
-  socket.on("disconnect", () => {
-    const user = users.find((u) => u.socketId === socket.id);
-    if (user) {
-      console.log(`❌ User ${user.id} disconnected`);
-      user.busy = false;
-      user.socketId = null;
-      user.id = null;
-    }
-  });
+//   socket.on("disconnect", () => {
+//     const user = users.find((u) => u.socketId === socket.id);
+//     if (user) {
+//       console.log(`❌ User ${user.id} disconnected`);
+//       user.busy = false;
+//       user.socketId = null;
+//       user.id = null;
+//     }
+//   });
 
-  socket.on("disconnect", () => {
-    const user = users.find((u) => u.socketId === socket.id);
-    if (user) {
-      user.busy = false;
-      user.id = null;
-      console.log(`User ${socket.id} disconnected`);
-    }
-  });
-});
+//   socket.on("disconnect", () => {
+//     const user = users.find((u) => u.socketId === socket.id);
+//     if (user) {
+//       user.busy = false;
+//       user.id = null;
+//       console.log(`User ${socket.id} disconnected`);
+//     }
+//   });
+// });
 
-checkArduinoTimeout();
+// checkArduinoTimeout();
 
 server.listen(port, () => {
   console.log(`🚀 Server running at http://localhost:${port}`);

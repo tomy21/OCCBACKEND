@@ -78,7 +78,7 @@ export const incrementCountIn = async (
 
   try {
     // Ambil nama lokasi dari tabel OccRefLocation
-    const location = await dbMain.occRefLocation.findUnique({
+    const location = await dbMain.occRefLocation.findFirst({
       where: { Code: locationCode },
       select: { Name: true },
     });
@@ -154,8 +154,8 @@ export const incrementCountIn = async (
 
       return;
     }
-  } catch (err) {
-    console.error(err);
+  } catch (err: any) {
+    console.error(" Error incrementing CountIn:", err.message);
     res
       .status(500)
       .json(createResponse("COUNTER", "ERROR", "Failed to increment CountIn"));
