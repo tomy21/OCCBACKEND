@@ -32,17 +32,22 @@ export const sendMessageWhatsaapp = async (
       },
       select: {
         TID: true,
+        Name: true,
       },
     });
 
     const ticketUrl = `https://billing.skyparking.online/Ebilling?p1=${findLocation?.TID}&p2=${no_transaction}`;
-    const message = `Berikut adalah tiket parkir Anda\nNo.Transaksi: ${no_transaction}`;
+    const message = `Berikut adalah tiket parkir Anda\nNo.Transaksi: ${no_transaction}
+    \nPlat Nomor: ${plate_number}
+    \nLokasi: ${findLocation?.Name}`;
 
     const result = await sendFonnteMessageWithQr({
       noHandphone: numberWhatsapp as string,
       message,
       ticketUrl,
     });
+
+    console.log(result);
 
     res.status(200).json({
       success: true,

@@ -5,7 +5,7 @@ dotenv.config();
 const JWT_SECRET = process.env.JWT_SECRET!;
 export interface TokeUserPayload {
   id: string;
-  email: string;
+  username: string;
   role: string;
 }
 

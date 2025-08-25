@@ -63,6 +63,8 @@ model OccIssue {
   foto_out     String?
   number_plate String?
   TrxNo        String?
+  solusi       String?
+  duration     String?
   status       statusIssue @default(new)
   createdBy    String
   modifiedBy   String?

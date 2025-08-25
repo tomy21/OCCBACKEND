@@ -40,7 +40,7 @@ const users = [
 ];
 
 let nextUserIndex = 0;
-console.log(users);
+
 app.use(cookieParser());
 app.use(cors());
 app.use(express.json());

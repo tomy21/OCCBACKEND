@@ -153,6 +153,8 @@ exports.Prisma.OccIssueScalarFieldEnum = {
   foto_out: 'foto_out',
   number_plate: 'number_plate',
   TrxNo: 'TrxNo',
+  solusi: 'solusi',
+  duration: 'duration',
   status: 'status',
   createdBy: 'createdBy',
   modifiedBy: 'modifiedBy',
@@ -301,6 +303,8 @@ exports.Prisma.OccIssueOrderByRelevanceFieldEnum = {
   foto_out: 'foto_out',
   number_plate: 'number_plate',
   TrxNo: 'TrxNo',
+  solusi: 'solusi',
+  duration: 'duration',
   createdBy: 'createdBy',
   modifiedBy: 'modifiedBy'
 };

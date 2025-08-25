@@ -3835,6 +3835,8 @@ export namespace Prisma {
     foto_out: string | null
     number_plate: string | null
     TrxNo: string | null
+    solusi: string | null
+    duration: string | null
     status: $Enums.statusIssue | null
     createdBy: string | null
     modifiedBy: string | null
@@ -3855,6 +3857,8 @@ export namespace Prisma {
     foto_out: string | null
     number_plate: string | null
     TrxNo: string | null
+    solusi: string | null
+    duration: string | null
     status: $Enums.statusIssue | null
     createdBy: string | null
     modifiedBy: string | null
@@ -3875,6 +3879,8 @@ export namespace Prisma {
     foto_out: number
     number_plate: number
     TrxNo: number
+    solusi: number
+    duration: number
     status: number
     createdBy: number
     modifiedBy: number
@@ -3905,6 +3911,8 @@ export namespace Prisma {
     foto_out?: true
     number_plate?: true
     TrxNo?: true
+    solusi?: true
+    duration?: true
     status?: true
     createdBy?: true
     modifiedBy?: true
@@ -3925,6 +3933,8 @@ export namespace Prisma {
     foto_out?: true
     number_plate?: true
     TrxNo?: true
+    solusi?: true
+    duration?: true
     status?: true
     createdBy?: true
     modifiedBy?: true
@@ -3945,6 +3955,8 @@ export namespace Prisma {
     foto_out?: true
     number_plate?: true
     TrxNo?: true
+    solusi?: true
+    duration?: true
     status?: true
     createdBy?: true
     modifiedBy?: true
@@ -4052,6 +4064,8 @@ export namespace Prisma {
     foto_out: string | null
     number_plate: string | null
     TrxNo: string | null
+    solusi: string | null
+    duration: string | null
     status: $Enums.statusIssue
     createdBy: string
     modifiedBy: string | null
@@ -4091,6 +4105,8 @@ export namespace Prisma {
     foto_out?: boolean
     number_plate?: boolean
     TrxNo?: boolean
+    solusi?: boolean
+    duration?: boolean
     status?: boolean
     createdBy?: boolean
     modifiedBy?: boolean
@@ -4113,6 +4129,8 @@ export namespace Prisma {
     foto_out?: boolean
     number_plate?: boolean
     TrxNo?: boolean
+    solusi?: boolean
+    duration?: boolean
     status?: boolean
     createdBy?: boolean
     modifiedBy?: boolean
@@ -4121,7 +4139,7 @@ export namespace Prisma {
     deletedAt?: boolean
   }
 
-  export type OccIssueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticket" | "category" | "lokasi" | "description" | "gate" | "action" | "foto_in" | "foto_out" | "number_plate" | "TrxNo" | "status" | "createdBy" | "modifiedBy" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["occIssue"]>
+  export type OccIssueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticket" | "category" | "lokasi" | "description" | "gate" | "action" | "foto_in" | "foto_out" | "number_plate" | "TrxNo" | "solusi" | "duration" | "status" | "createdBy" | "modifiedBy" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["occIssue"]>
 
   export type $OccIssuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OccIssue"
@@ -4138,6 +4156,8 @@ export namespace Prisma {
       foto_out: string | null
       number_plate: string | null
       TrxNo: string | null
+      solusi: string | null
+      duration: string | null
       status: $Enums.statusIssue
       createdBy: string
       modifiedBy: string | null
@@ -4524,6 +4544,8 @@ export namespace Prisma {
     readonly foto_out: FieldRef<"OccIssue", 'String'>
     readonly number_plate: FieldRef<"OccIssue", 'String'>
     readonly TrxNo: FieldRef<"OccIssue", 'String'>
+    readonly solusi: FieldRef<"OccIssue", 'String'>
+    readonly duration: FieldRef<"OccIssue", 'String'>
     readonly status: FieldRef<"OccIssue", 'statusIssue'>
     readonly createdBy: FieldRef<"OccIssue", 'String'>
     readonly modifiedBy: FieldRef<"OccIssue", 'String'>
@@ -12944,6 +12966,8 @@ export namespace Prisma {
     foto_out: 'foto_out',
     number_plate: 'number_plate',
     TrxNo: 'TrxNo',
+    solusi: 'solusi',
+    duration: 'duration',
     status: 'status',
     createdBy: 'createdBy',
     modifiedBy: 'modifiedBy',
@@ -13131,6 +13155,8 @@ export namespace Prisma {
     foto_out: 'foto_out',
     number_plate: 'number_plate',
     TrxNo: 'TrxNo',
+    solusi: 'solusi',
+    duration: 'duration',
     createdBy: 'createdBy',
     modifiedBy: 'modifiedBy'
   };
@@ -13433,6 +13459,8 @@ export namespace Prisma {
     foto_out?: StringNullableFilter<"OccIssue"> | string | null
     number_plate?: StringNullableFilter<"OccIssue"> | string | null
     TrxNo?: StringNullableFilter<"OccIssue"> | string | null
+    solusi?: StringNullableFilter<"OccIssue"> | string | null
+    duration?: StringNullableFilter<"OccIssue"> | string | null
     status?: EnumstatusIssueFilter<"OccIssue"> | $Enums.statusIssue
     createdBy?: StringFilter<"OccIssue"> | string
     modifiedBy?: StringNullableFilter<"OccIssue"> | string | null
@@ -13453,6 +13481,8 @@ export namespace Prisma {
     foto_out?: SortOrderInput | SortOrder
     number_plate?: SortOrderInput | SortOrder
     TrxNo?: SortOrderInput | SortOrder
+    solusi?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
     status?: SortOrder
     createdBy?: SortOrder
     modifiedBy?: SortOrderInput | SortOrder
@@ -13477,6 +13507,8 @@ export namespace Prisma {
     foto_out?: StringNullableFilter<"OccIssue"> | string | null
     number_plate?: StringNullableFilter<"OccIssue"> | string | null
     TrxNo?: StringNullableFilter<"OccIssue"> | string | null
+    solusi?: StringNullableFilter<"OccIssue"> | string | null
+    duration?: StringNullableFilter<"OccIssue"> | string | null
     status?: EnumstatusIssueFilter<"OccIssue"> | $Enums.statusIssue
     createdBy?: StringFilter<"OccIssue"> | string
     modifiedBy?: StringNullableFilter<"OccIssue"> | string | null
@@ -13497,6 +13529,8 @@ export namespace Prisma {
     foto_out?: SortOrderInput | SortOrder
     number_plate?: SortOrderInput | SortOrder
     TrxNo?: SortOrderInput | SortOrder
+    solusi?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
     status?: SortOrder
     createdBy?: SortOrder
     modifiedBy?: SortOrderInput | SortOrder
@@ -13525,6 +13559,8 @@ export namespace Prisma {
     foto_out?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
     number_plate?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
     TrxNo?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
+    solusi?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
+    duration?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
     status?: EnumstatusIssueWithAggregatesFilter<"OccIssue"> | $Enums.statusIssue
     createdBy?: StringWithAggregatesFilter<"OccIssue"> | string
     modifiedBy?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
@@ -14355,6 +14391,8 @@ export namespace Prisma {
     foto_out?: string | null
     number_plate?: string | null
     TrxNo?: string | null
+    solusi?: string | null
+    duration?: string | null
     status?: $Enums.statusIssue
     createdBy: string
     modifiedBy?: string | null
@@ -14375,6 +14413,8 @@ export namespace Prisma {
     foto_out?: string | null
     number_plate?: string | null
     TrxNo?: string | null
+    solusi?: string | null
+    duration?: string | null
     status?: $Enums.statusIssue
     createdBy: string
     modifiedBy?: string | null
@@ -14394,6 +14434,8 @@ export namespace Prisma {
     foto_out?: NullableStringFieldUpdateOperationsInput | string | null
     number_plate?: NullableStringFieldUpdateOperationsInput | string | null
     TrxNo?: NullableStringFieldUpdateOperationsInput | string | null
+    solusi?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumstatusIssueFieldUpdateOperationsInput | $Enums.statusIssue
     createdBy?: StringFieldUpdateOperationsInput | string
     modifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14414,6 +14456,8 @@ export namespace Prisma {
     foto_out?: NullableStringFieldUpdateOperationsInput | string | null
     number_plate?: NullableStringFieldUpdateOperationsInput | string | null
     TrxNo?: NullableStringFieldUpdateOperationsInput | string | null
+    solusi?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumstatusIssueFieldUpdateOperationsInput | $Enums.statusIssue
     createdBy?: StringFieldUpdateOperationsInput | string
     modifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14434,6 +14478,8 @@ export namespace Prisma {
     foto_out?: string | null
     number_plate?: string | null
     TrxNo?: string | null
+    solusi?: string | null
+    duration?: string | null
     status?: $Enums.statusIssue
     createdBy: string
     modifiedBy?: string | null
@@ -14453,6 +14499,8 @@ export namespace Prisma {
     foto_out?: NullableStringFieldUpdateOperationsInput | string | null
     number_plate?: NullableStringFieldUpdateOperationsInput | string | null
     TrxNo?: NullableStringFieldUpdateOperationsInput | string | null
+    solusi?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumstatusIssueFieldUpdateOperationsInput | $Enums.statusIssue
     createdBy?: StringFieldUpdateOperationsInput | string
     modifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14473,6 +14521,8 @@ export namespace Prisma {
     foto_out?: NullableStringFieldUpdateOperationsInput | string | null
     number_plate?: NullableStringFieldUpdateOperationsInput | string | null
     TrxNo?: NullableStringFieldUpdateOperationsInput | string | null
+    solusi?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
     status?: EnumstatusIssueFieldUpdateOperationsInput | $Enums.statusIssue
     createdBy?: StringFieldUpdateOperationsInput | string
     modifiedBy?: NullableStringFieldUpdateOperationsInput | string | null
@@ -15493,6 +15543,8 @@ export namespace Prisma {
     foto_out?: SortOrder
     number_plate?: SortOrder
     TrxNo?: SortOrder
+    solusi?: SortOrder
+    duration?: SortOrder
     status?: SortOrder
     createdBy?: SortOrder
     modifiedBy?: SortOrder
@@ -15517,6 +15569,8 @@ export namespace Prisma {
     foto_out?: SortOrder
     number_plate?: SortOrder
     TrxNo?: SortOrder
+    solusi?: SortOrder
+    duration?: SortOrder
     status?: SortOrder
     createdBy?: SortOrder
     modifiedBy?: SortOrder
@@ -15537,6 +15591,8 @@ export namespace Prisma {
     foto_out?: SortOrder
     number_plate?: SortOrder
     TrxNo?: SortOrder
+    solusi?: SortOrder
+    duration?: SortOrder
     status?: SortOrder
     createdBy?: SortOrder
     modifiedBy?: SortOrder

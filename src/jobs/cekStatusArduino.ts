@@ -1,33 +1,31 @@
 import { dbMain } from "../prisma/client";
 
+let retryDelay = 5000; // 5 detik awal
+
 export const checkArduinoTimeout = async () => {
-  const timeoutDuration = 30000; // 30 detik
+  const timeoutDuration = 30000;
   const now = new Date();
 
   try {
     await dbMain.occGate.updateMany({
-      where: {
-        updatedAt: {
-          lt: new Date(now.getTime() - timeoutDuration),
-        },
-      },
-      data: {
-        arduino: 0,
-      },
+      where: { updatedAt: { lt: new Date(now.getTime() - timeoutDuration) } },
+      data: { arduino: 0 },
     });
 
-    console.log("Checked for disconnected Arduinos");
+    retryDelay = 5000; // reset kalau berhasil
   } catch (err: any) {
     console.error("[ERROR] checkArduinoTimeout:", err.message);
 
-    // Optional: reconnect Prisma jika koneksi drop
-    try {
-      await dbMain.$disconnect();
-      await dbMain.$connect();
-      console.log("Reconnected Prisma after error");
-    } catch (reErr: any) {
-      console.error("Failed to reconnect Prisma:", reErr.message);
-    }
+    setTimeout(async () => {
+      try {
+        await dbMain.$connect();
+        console.log("Reconnected Prisma after error");
+        retryDelay = 5000; // reset kalau berhasil
+      } catch (reErr) {
+        console.error("Reconnect failed, retrying later…");
+        retryDelay = Math.min(retryDelay * 2, 60000); // max 1 menit
+      }
+    }, retryDelay);
   }
 };
 
