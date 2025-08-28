@@ -6,6 +6,7 @@ import {
   createPaginatedResponse,
   createResponse,
 } from "../helper/responseCode";
+import { Prisma } from "../../prisma/generated/client-main";
 
 // GET dengan paging + search
 export const getUserEvents = async (req: Request, res: Response) => {
@@ -17,8 +18,18 @@ export const getUserEvents = async (req: Request, res: Response) => {
     const where = search
       ? {
           OR: [
-            { nik: { contains: search as string, mode: "insensitive" } },
-            { event: { contains: search as string, mode: "insensitive" } },
+            {
+              nik: {
+                contains: search as string,
+                mode: Prisma.QueryMode.insensitive,
+              },
+            },
+            {
+              event: {
+                contains: search as string,
+                mode: Prisma.QueryMode.insensitive,
+              },
+            },
           ],
         }
       : {};
