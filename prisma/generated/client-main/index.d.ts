@@ -82,13 +82,13 @@ export namespace $Enums {
 export type statusIssue = (typeof statusIssue)[keyof typeof statusIssue]
 
 
-export const record: {
+export const RecordStatus: {
   INACTIVE: 'INACTIVE',
   ACTIVE: 'ACTIVE',
   DELETE: 'DELETE'
 };
 
-export type record = (typeof record)[keyof typeof record]
+export type RecordStatus = (typeof RecordStatus)[keyof typeof RecordStatus]
 
 }
 
@@ -96,9 +96,9 @@ export type statusIssue = $Enums.statusIssue
 
 export const statusIssue: typeof $Enums.statusIssue
 
-export type record = $Enums.record
+export type RecordStatus = $Enums.RecordStatus
 
-export const record: typeof $Enums.record
+export const RecordStatus: typeof $Enums.RecordStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -839,6 +839,10 @@ export namespace Prisma {
             args: Prisma.OccCategoryCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.OccCategoryCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccCategoryPayload>[]
+          }
           delete: {
             args: Prisma.OccCategoryDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$OccCategoryPayload>
@@ -854,6 +858,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.OccCategoryUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccCategoryUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccCategoryPayload>[]
           }
           upsert: {
             args: Prisma.OccCategoryUpsertArgs<ExtArgs>
@@ -905,6 +913,10 @@ export namespace Prisma {
             args: Prisma.OccDescriptionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.OccDescriptionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccDescriptionPayload>[]
+          }
           delete: {
             args: Prisma.OccDescriptionDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$OccDescriptionPayload>
@@ -920,6 +932,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.OccDescriptionUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccDescriptionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccDescriptionPayload>[]
           }
           upsert: {
             args: Prisma.OccDescriptionUpsertArgs<ExtArgs>
@@ -971,6 +987,10 @@ export namespace Prisma {
             args: Prisma.OccIssueCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.OccIssueCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccIssuePayload>[]
+          }
           delete: {
             args: Prisma.OccIssueDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$OccIssuePayload>
@@ -986,6 +1006,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.OccIssueUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccIssueUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccIssuePayload>[]
           }
           upsert: {
             args: Prisma.OccIssueUpsertArgs<ExtArgs>
@@ -1037,6 +1061,10 @@ export namespace Prisma {
             args: Prisma.OccRefLocationCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.OccRefLocationCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccRefLocationPayload>[]
+          }
           delete: {
             args: Prisma.OccRefLocationDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$OccRefLocationPayload>
@@ -1052,6 +1080,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.OccRefLocationUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccRefLocationUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccRefLocationPayload>[]
           }
           upsert: {
             args: Prisma.OccRefLocationUpsertArgs<ExtArgs>
@@ -1103,6 +1135,10 @@ export namespace Prisma {
             args: Prisma.OccTransactionCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.OccTransactionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>[]
+          }
           delete: {
             args: Prisma.OccTransactionDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>
@@ -1118,6 +1154,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.OccTransactionUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccTransactionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccTransactionPayload>[]
           }
           upsert: {
             args: Prisma.OccTransactionUpsertArgs<ExtArgs>
@@ -1169,6 +1209,10 @@ export namespace Prisma {
             args: Prisma.OccGateCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.OccGateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccGatePayload>[]
+          }
           delete: {
             args: Prisma.OccGateDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$OccGatePayload>
@@ -1184,6 +1228,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.OccGateUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccGateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccGatePayload>[]
           }
           upsert: {
             args: Prisma.OccGateUpsertArgs<ExtArgs>
@@ -1235,6 +1283,10 @@ export namespace Prisma {
             args: Prisma.OccIntercomeCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.OccIntercomeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccIntercomePayload>[]
+          }
           delete: {
             args: Prisma.OccIntercomeDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$OccIntercomePayload>
@@ -1250,6 +1302,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.OccIntercomeUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccIntercomeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccIntercomePayload>[]
           }
           upsert: {
             args: Prisma.OccIntercomeUpsertArgs<ExtArgs>
@@ -1301,6 +1357,10 @@ export namespace Prisma {
             args: Prisma.RefIssuerCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.RefIssuerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefIssuerPayload>[]
+          }
           delete: {
             args: Prisma.RefIssuerDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$RefIssuerPayload>
@@ -1316,6 +1376,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.RefIssuerUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.RefIssuerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$RefIssuerPayload>[]
           }
           upsert: {
             args: Prisma.RefIssuerUpsertArgs<ExtArgs>
@@ -1367,6 +1431,10 @@ export namespace Prisma {
             args: Prisma.OccListMemberStylesCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.OccListMemberStylesCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylesPayload>[]
+          }
           delete: {
             args: Prisma.OccListMemberStylesDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$OccListMemberStylesPayload>
@@ -1382,6 +1450,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.OccListMemberStylesUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccListMemberStylesUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccListMemberStylesPayload>[]
           }
           upsert: {
             args: Prisma.OccListMemberStylesUpsertArgs<ExtArgs>
@@ -1433,6 +1505,10 @@ export namespace Prisma {
             args: Prisma.CounterGateCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.CounterGateCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>[]
+          }
           delete: {
             args: Prisma.CounterGateDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>
@@ -1448,6 +1524,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.CounterGateUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.CounterGateUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CounterGatePayload>[]
           }
           upsert: {
             args: Prisma.CounterGateUpsertArgs<ExtArgs>
@@ -1499,6 +1579,10 @@ export namespace Prisma {
             args: Prisma.userEventNobuCreateManyArgs<ExtArgs>
             result: BatchPayload
           }
+          createManyAndReturn: {
+            args: Prisma.userEventNobuCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>[]
+          }
           delete: {
             args: Prisma.userEventNobuDeleteArgs<ExtArgs>
             result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>
@@ -1514,6 +1598,10 @@ export namespace Prisma {
           updateMany: {
             args: Prisma.userEventNobuUpdateManyArgs<ExtArgs>
             result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.userEventNobuUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$userEventNobuPayload>[]
           }
           upsert: {
             args: Prisma.userEventNobuUpsertArgs<ExtArgs>
@@ -2010,7 +2098,25 @@ export namespace Prisma {
     _count?: boolean | OccCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occCategory"]>
 
+  export type OccCategorySelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    category?: boolean
+    createdBy?: boolean
+    modifyBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+  }, ExtArgs["result"]["occCategory"]>
 
+  export type OccCategorySelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    category?: boolean
+    createdBy?: boolean
+    modifyBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+  }, ExtArgs["result"]["occCategory"]>
 
   export type OccCategorySelectScalar = {
     id?: boolean
@@ -2027,6 +2133,8 @@ export namespace Prisma {
     occCategory?: boolean | OccCategory$occCategoryArgs<ExtArgs>
     _count?: boolean | OccCategoryCountOutputTypeDefaultArgs<ExtArgs>
   }
+  export type OccCategoryIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type OccCategoryIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $OccCategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OccCategory"
@@ -2159,6 +2267,30 @@ export namespace Prisma {
     createMany<T extends OccCategoryCreateManyArgs>(args?: SelectSubset<T, OccCategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many OccCategories and returns the data saved in the database.
+     * @param {OccCategoryCreateManyAndReturnArgs} args - Arguments to create many OccCategories.
+     * @example
+     * // Create many OccCategories
+     * const occCategory = await prisma.occCategory.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccCategories and only return the `id`
+     * const occCategoryWithIdOnly = await prisma.occCategory.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccCategoryCreateManyAndReturnArgs>(args?: SelectSubset<T, OccCategoryCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccCategoryPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a OccCategory.
      * @param {OccCategoryDeleteArgs} args - Arguments to delete one OccCategory.
      * @example
@@ -2221,6 +2353,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends OccCategoryUpdateManyArgs>(args: SelectSubset<T, OccCategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccCategories and returns the data updated in the database.
+     * @param {OccCategoryUpdateManyAndReturnArgs} args - Arguments to update many OccCategories.
+     * @example
+     * // Update many OccCategories
+     * const occCategory = await prisma.occCategory.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccCategories and only return the `id`
+     * const occCategoryWithIdOnly = await prisma.occCategory.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccCategoryUpdateManyAndReturnArgs>(args: SelectSubset<T, OccCategoryUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccCategoryPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one OccCategory.
@@ -2651,6 +2813,25 @@ export namespace Prisma {
   }
 
   /**
+   * OccCategory createManyAndReturn
+   */
+  export type OccCategoryCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccCategory
+     */
+    select?: OccCategorySelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccCategory
+     */
+    omit?: OccCategoryOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccCategories.
+     */
+    data: OccCategoryCreateManyInput | OccCategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * OccCategory update
    */
   export type OccCategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2680,6 +2861,32 @@ export namespace Prisma {
    * OccCategory updateMany
    */
   export type OccCategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccCategories.
+     */
+    data: XOR<OccCategoryUpdateManyMutationInput, OccCategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which OccCategories to update
+     */
+    where?: OccCategoryWhereInput
+    /**
+     * Limit how many OccCategories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccCategory updateManyAndReturn
+   */
+  export type OccCategoryUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccCategory
+     */
+    select?: OccCategorySelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccCategory
+     */
+    omit?: OccCategoryOmit<ExtArgs> | null
     /**
      * The data used to update OccCategories.
      */
@@ -3032,7 +3239,29 @@ export namespace Prisma {
     category?: boolean | OccCategoryDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occDescription"]>
 
+  export type OccDescriptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    id_category?: boolean
+    object?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+    createdBy?: boolean
+    modifyBy?: boolean
+    category?: boolean | OccCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["occDescription"]>
 
+  export type OccDescriptionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    id_category?: boolean
+    object?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+    createdBy?: boolean
+    modifyBy?: boolean
+    category?: boolean | OccCategoryDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["occDescription"]>
 
   export type OccDescriptionSelectScalar = {
     id?: boolean
@@ -3047,6 +3276,12 @@ export namespace Prisma {
 
   export type OccDescriptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_category" | "object" | "createdAt" | "updatedAt" | "deletedAt" | "createdBy" | "modifyBy", ExtArgs["result"]["occDescription"]>
   export type OccDescriptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | OccCategoryDefaultArgs<ExtArgs>
+  }
+  export type OccDescriptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    category?: boolean | OccCategoryDefaultArgs<ExtArgs>
+  }
+  export type OccDescriptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | OccCategoryDefaultArgs<ExtArgs>
   }
 
@@ -3182,6 +3417,30 @@ export namespace Prisma {
     createMany<T extends OccDescriptionCreateManyArgs>(args?: SelectSubset<T, OccDescriptionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many OccDescriptions and returns the data saved in the database.
+     * @param {OccDescriptionCreateManyAndReturnArgs} args - Arguments to create many OccDescriptions.
+     * @example
+     * // Create many OccDescriptions
+     * const occDescription = await prisma.occDescription.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccDescriptions and only return the `id`
+     * const occDescriptionWithIdOnly = await prisma.occDescription.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccDescriptionCreateManyAndReturnArgs>(args?: SelectSubset<T, OccDescriptionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccDescriptionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a OccDescription.
      * @param {OccDescriptionDeleteArgs} args - Arguments to delete one OccDescription.
      * @example
@@ -3244,6 +3503,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends OccDescriptionUpdateManyArgs>(args: SelectSubset<T, OccDescriptionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccDescriptions and returns the data updated in the database.
+     * @param {OccDescriptionUpdateManyAndReturnArgs} args - Arguments to update many OccDescriptions.
+     * @example
+     * // Update many OccDescriptions
+     * const occDescription = await prisma.occDescription.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccDescriptions and only return the `id`
+     * const occDescriptionWithIdOnly = await prisma.occDescription.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccDescriptionUpdateManyAndReturnArgs>(args: SelectSubset<T, OccDescriptionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccDescriptionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one OccDescription.
@@ -3675,6 +3964,29 @@ export namespace Prisma {
   }
 
   /**
+   * OccDescription createManyAndReturn
+   */
+  export type OccDescriptionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccDescription
+     */
+    select?: OccDescriptionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccDescription
+     */
+    omit?: OccDescriptionOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccDescriptions.
+     */
+    data: OccDescriptionCreateManyInput | OccDescriptionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccDescriptionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
    * OccDescription update
    */
   export type OccDescriptionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -3716,6 +4028,36 @@ export namespace Prisma {
      * Limit how many OccDescriptions to update.
      */
     limit?: number
+  }
+
+  /**
+   * OccDescription updateManyAndReturn
+   */
+  export type OccDescriptionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccDescription
+     */
+    select?: OccDescriptionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccDescription
+     */
+    omit?: OccDescriptionOmit<ExtArgs> | null
+    /**
+     * The data used to update OccDescriptions.
+     */
+    data: XOR<OccDescriptionUpdateManyMutationInput, OccDescriptionUncheckedUpdateManyInput>
+    /**
+     * Filter which OccDescriptions to update
+     */
+    where?: OccDescriptionWhereInput
+    /**
+     * Limit how many OccDescriptions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccDescriptionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4115,7 +4457,49 @@ export namespace Prisma {
     deletedAt?: boolean
   }, ExtArgs["result"]["occIssue"]>
 
+  export type OccIssueSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticket?: boolean
+    category?: boolean
+    lokasi?: boolean
+    description?: boolean
+    gate?: boolean
+    action?: boolean
+    foto_in?: boolean
+    foto_out?: boolean
+    number_plate?: boolean
+    TrxNo?: boolean
+    solusi?: boolean
+    duration?: boolean
+    status?: boolean
+    createdBy?: boolean
+    modifiedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+  }, ExtArgs["result"]["occIssue"]>
 
+  export type OccIssueSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    ticket?: boolean
+    category?: boolean
+    lokasi?: boolean
+    description?: boolean
+    gate?: boolean
+    action?: boolean
+    foto_in?: boolean
+    foto_out?: boolean
+    number_plate?: boolean
+    TrxNo?: boolean
+    solusi?: boolean
+    duration?: boolean
+    status?: boolean
+    createdBy?: boolean
+    modifiedBy?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+  }, ExtArgs["result"]["occIssue"]>
 
   export type OccIssueSelectScalar = {
     id?: boolean
@@ -4282,6 +4666,30 @@ export namespace Prisma {
     createMany<T extends OccIssueCreateManyArgs>(args?: SelectSubset<T, OccIssueCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many OccIssues and returns the data saved in the database.
+     * @param {OccIssueCreateManyAndReturnArgs} args - Arguments to create many OccIssues.
+     * @example
+     * // Create many OccIssues
+     * const occIssue = await prisma.occIssue.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccIssues and only return the `id`
+     * const occIssueWithIdOnly = await prisma.occIssue.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccIssueCreateManyAndReturnArgs>(args?: SelectSubset<T, OccIssueCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccIssuePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a OccIssue.
      * @param {OccIssueDeleteArgs} args - Arguments to delete one OccIssue.
      * @example
@@ -4344,6 +4752,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends OccIssueUpdateManyArgs>(args: SelectSubset<T, OccIssueUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccIssues and returns the data updated in the database.
+     * @param {OccIssueUpdateManyAndReturnArgs} args - Arguments to update many OccIssues.
+     * @example
+     * // Update many OccIssues
+     * const occIssue = await prisma.occIssue.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccIssues and only return the `id`
+     * const occIssueWithIdOnly = await prisma.occIssue.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccIssueUpdateManyAndReturnArgs>(args: SelectSubset<T, OccIssueUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccIssuePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one OccIssue.
@@ -4761,6 +5199,25 @@ export namespace Prisma {
   }
 
   /**
+   * OccIssue createManyAndReturn
+   */
+  export type OccIssueCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccIssue
+     */
+    select?: OccIssueSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccIssue
+     */
+    omit?: OccIssueOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccIssues.
+     */
+    data: OccIssueCreateManyInput | OccIssueCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * OccIssue update
    */
   export type OccIssueUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4786,6 +5243,32 @@ export namespace Prisma {
    * OccIssue updateMany
    */
   export type OccIssueUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccIssues.
+     */
+    data: XOR<OccIssueUpdateManyMutationInput, OccIssueUncheckedUpdateManyInput>
+    /**
+     * Filter which OccIssues to update
+     */
+    where?: OccIssueWhereInput
+    /**
+     * Limit how many OccIssues to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccIssue updateManyAndReturn
+   */
+  export type OccIssueUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccIssue
+     */
+    select?: OccIssueSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccIssue
+     */
+    omit?: OccIssueOmit<ExtArgs> | null
     /**
      * The data used to update OccIssues.
      */
@@ -4913,7 +5396,7 @@ export namespace Prisma {
     CreatedAt: Date | null
     UpdatedAt: Date | null
     DeletedAt: Date | null
-    recordStatus: $Enums.record | null
+    recordStatus: $Enums.RecordStatus | null
   }
 
   export type OccRefLocationMaxAggregateOutputType = {
@@ -4934,7 +5417,7 @@ export namespace Prisma {
     CreatedAt: Date | null
     UpdatedAt: Date | null
     DeletedAt: Date | null
-    recordStatus: $Enums.record | null
+    recordStatus: $Enums.RecordStatus | null
   }
 
   export type OccRefLocationCountAggregateOutputType = {
@@ -5138,7 +5621,7 @@ export namespace Prisma {
     CreatedAt: Date
     UpdatedAt: Date
     DeletedAt: Date | null
-    recordStatus: $Enums.record
+    recordStatus: $Enums.RecordStatus
     _count: OccRefLocationCountAggregateOutputType | null
     _avg: OccRefLocationAvgAggregateOutputType | null
     _sum: OccRefLocationSumAggregateOutputType | null
@@ -5184,7 +5667,47 @@ export namespace Prisma {
     _count?: boolean | OccRefLocationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occRefLocation"]>
 
+  export type OccRefLocationSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    Code?: boolean
+    Name?: boolean
+    Region?: boolean
+    TID?: boolean
+    Vendor?: boolean
+    VendorParkingCode?: boolean
+    ShortName?: boolean
+    Address?: boolean
+    StartTime?: boolean
+    EndTime?: boolean
+    DateNext?: boolean
+    TimeZone?: boolean
+    UrlServer?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+    DeletedAt?: boolean
+    recordStatus?: boolean
+  }, ExtArgs["result"]["occRefLocation"]>
 
+  export type OccRefLocationSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    Code?: boolean
+    Name?: boolean
+    Region?: boolean
+    TID?: boolean
+    Vendor?: boolean
+    VendorParkingCode?: boolean
+    ShortName?: boolean
+    Address?: boolean
+    StartTime?: boolean
+    EndTime?: boolean
+    DateNext?: boolean
+    TimeZone?: boolean
+    UrlServer?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+    DeletedAt?: boolean
+    recordStatus?: boolean
+  }, ExtArgs["result"]["occRefLocation"]>
 
   export type OccRefLocationSelectScalar = {
     id?: boolean
@@ -5213,6 +5736,8 @@ export namespace Prisma {
     locationConter?: boolean | OccRefLocation$locationConterArgs<ExtArgs>
     _count?: boolean | OccRefLocationCountOutputTypeDefaultArgs<ExtArgs>
   }
+  export type OccRefLocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type OccRefLocationIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $OccRefLocationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OccRefLocation"
@@ -5238,7 +5763,7 @@ export namespace Prisma {
       CreatedAt: Date
       UpdatedAt: Date
       DeletedAt: Date | null
-      recordStatus: $Enums.record
+      recordStatus: $Enums.RecordStatus
     }, ExtArgs["result"]["occRefLocation"]>
     composites: {}
   }
@@ -5357,6 +5882,30 @@ export namespace Prisma {
     createMany<T extends OccRefLocationCreateManyArgs>(args?: SelectSubset<T, OccRefLocationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many OccRefLocations and returns the data saved in the database.
+     * @param {OccRefLocationCreateManyAndReturnArgs} args - Arguments to create many OccRefLocations.
+     * @example
+     * // Create many OccRefLocations
+     * const occRefLocation = await prisma.occRefLocation.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccRefLocations and only return the `id`
+     * const occRefLocationWithIdOnly = await prisma.occRefLocation.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccRefLocationCreateManyAndReturnArgs>(args?: SelectSubset<T, OccRefLocationCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccRefLocationPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a OccRefLocation.
      * @param {OccRefLocationDeleteArgs} args - Arguments to delete one OccRefLocation.
      * @example
@@ -5419,6 +5968,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends OccRefLocationUpdateManyArgs>(args: SelectSubset<T, OccRefLocationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccRefLocations and returns the data updated in the database.
+     * @param {OccRefLocationUpdateManyAndReturnArgs} args - Arguments to update many OccRefLocations.
+     * @example
+     * // Update many OccRefLocations
+     * const occRefLocation = await prisma.occRefLocation.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccRefLocations and only return the `id`
+     * const occRefLocationWithIdOnly = await prisma.occRefLocation.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccRefLocationUpdateManyAndReturnArgs>(args: SelectSubset<T, OccRefLocationUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccRefLocationPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one OccRefLocation.
@@ -5627,7 +6206,7 @@ export namespace Prisma {
     readonly CreatedAt: FieldRef<"OccRefLocation", 'DateTime'>
     readonly UpdatedAt: FieldRef<"OccRefLocation", 'DateTime'>
     readonly DeletedAt: FieldRef<"OccRefLocation", 'DateTime'>
-    readonly recordStatus: FieldRef<"OccRefLocation", 'record'>
+    readonly recordStatus: FieldRef<"OccRefLocation", 'RecordStatus'>
   }
     
 
@@ -5861,6 +6440,25 @@ export namespace Prisma {
   }
 
   /**
+   * OccRefLocation createManyAndReturn
+   */
+  export type OccRefLocationCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccRefLocation
+     */
+    select?: OccRefLocationSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccRefLocation
+     */
+    omit?: OccRefLocationOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccRefLocations.
+     */
+    data: OccRefLocationCreateManyInput | OccRefLocationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * OccRefLocation update
    */
   export type OccRefLocationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5890,6 +6488,32 @@ export namespace Prisma {
    * OccRefLocation updateMany
    */
   export type OccRefLocationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccRefLocations.
+     */
+    data: XOR<OccRefLocationUpdateManyMutationInput, OccRefLocationUncheckedUpdateManyInput>
+    /**
+     * Filter which OccRefLocations to update
+     */
+    where?: OccRefLocationWhereInput
+    /**
+     * Limit how many OccRefLocations to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccRefLocation updateManyAndReturn
+   */
+  export type OccRefLocationUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccRefLocation
+     */
+    select?: OccRefLocationSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccRefLocation
+     */
+    omit?: OccRefLocationOmit<ExtArgs> | null
     /**
      * The data used to update OccRefLocations.
      */
@@ -6285,7 +6909,33 @@ export namespace Prisma {
     UpdatedAt?: boolean
   }, ExtArgs["result"]["occTransaction"]>
 
+  export type OccTransactionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    PlateNumberIn?: boolean
+    PlateNumberOut?: boolean
+    PathIn?: boolean
+    PathOut?: boolean
+    Location?: boolean
+    GateName?: boolean
+    InTime?: boolean
+    OutTime?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }, ExtArgs["result"]["occTransaction"]>
 
+  export type OccTransactionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    PlateNumberIn?: boolean
+    PlateNumberOut?: boolean
+    PathIn?: boolean
+    PathOut?: boolean
+    Location?: boolean
+    GateName?: boolean
+    InTime?: boolean
+    OutTime?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }, ExtArgs["result"]["occTransaction"]>
 
   export type OccTransactionSelectScalar = {
     Id?: boolean
@@ -6436,6 +7086,30 @@ export namespace Prisma {
     createMany<T extends OccTransactionCreateManyArgs>(args?: SelectSubset<T, OccTransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many OccTransactions and returns the data saved in the database.
+     * @param {OccTransactionCreateManyAndReturnArgs} args - Arguments to create many OccTransactions.
+     * @example
+     * // Create many OccTransactions
+     * const occTransaction = await prisma.occTransaction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccTransactions and only return the `Id`
+     * const occTransactionWithIdOnly = await prisma.occTransaction.createManyAndReturn({
+     *   select: { Id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccTransactionCreateManyAndReturnArgs>(args?: SelectSubset<T, OccTransactionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a OccTransaction.
      * @param {OccTransactionDeleteArgs} args - Arguments to delete one OccTransaction.
      * @example
@@ -6498,6 +7172,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends OccTransactionUpdateManyArgs>(args: SelectSubset<T, OccTransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccTransactions and returns the data updated in the database.
+     * @param {OccTransactionUpdateManyAndReturnArgs} args - Arguments to update many OccTransactions.
+     * @example
+     * // Update many OccTransactions
+     * const occTransaction = await prisma.occTransaction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccTransactions and only return the `Id`
+     * const occTransactionWithIdOnly = await prisma.occTransaction.updateManyAndReturn({
+     *   select: { Id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccTransactionUpdateManyAndReturnArgs>(args: SelectSubset<T, OccTransactionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccTransactionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one OccTransaction.
@@ -6907,6 +7611,25 @@ export namespace Prisma {
   }
 
   /**
+   * OccTransaction createManyAndReturn
+   */
+  export type OccTransactionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccTransactions.
+     */
+    data: OccTransactionCreateManyInput | OccTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * OccTransaction update
    */
   export type OccTransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6932,6 +7655,32 @@ export namespace Prisma {
    * OccTransaction updateMany
    */
   export type OccTransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccTransactions.
+     */
+    data: XOR<OccTransactionUpdateManyMutationInput, OccTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which OccTransactions to update
+     */
+    where?: OccTransactionWhereInput
+    /**
+     * Limit how many OccTransactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccTransaction updateManyAndReturn
+   */
+  export type OccTransactionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccTransaction
+     */
+    select?: OccTransactionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccTransaction
+     */
+    omit?: OccTransactionOmit<ExtArgs> | null
     /**
      * The data used to update OccTransactions.
      */
@@ -7272,7 +8021,33 @@ export namespace Prisma {
     location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occGate"]>
 
+  export type OccGateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    id_location?: boolean
+    gate?: boolean
+    channel_cctv?: boolean
+    arduino?: boolean
+    statusGate?: boolean
+    id_tele?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+    location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["occGate"]>
 
+  export type OccGateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    id_location?: boolean
+    gate?: boolean
+    channel_cctv?: boolean
+    arduino?: boolean
+    statusGate?: boolean
+    id_tele?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    deletedAt?: boolean
+    location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["occGate"]>
 
   export type OccGateSelectScalar = {
     id?: boolean
@@ -7289,6 +8064,12 @@ export namespace Prisma {
 
   export type OccGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_location" | "gate" | "channel_cctv" | "arduino" | "statusGate" | "id_tele" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["occGate"]>
   export type OccGateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }
+  export type OccGateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }
+  export type OccGateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }
 
@@ -7426,6 +8207,30 @@ export namespace Prisma {
     createMany<T extends OccGateCreateManyArgs>(args?: SelectSubset<T, OccGateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many OccGates and returns the data saved in the database.
+     * @param {OccGateCreateManyAndReturnArgs} args - Arguments to create many OccGates.
+     * @example
+     * // Create many OccGates
+     * const occGate = await prisma.occGate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccGates and only return the `id`
+     * const occGateWithIdOnly = await prisma.occGate.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccGateCreateManyAndReturnArgs>(args?: SelectSubset<T, OccGateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccGatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a OccGate.
      * @param {OccGateDeleteArgs} args - Arguments to delete one OccGate.
      * @example
@@ -7488,6 +8293,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends OccGateUpdateManyArgs>(args: SelectSubset<T, OccGateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccGates and returns the data updated in the database.
+     * @param {OccGateUpdateManyAndReturnArgs} args - Arguments to update many OccGates.
+     * @example
+     * // Update many OccGates
+     * const occGate = await prisma.occGate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccGates and only return the `id`
+     * const occGateWithIdOnly = await prisma.occGate.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccGateUpdateManyAndReturnArgs>(args: SelectSubset<T, OccGateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccGatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one OccGate.
@@ -7921,6 +8756,29 @@ export namespace Prisma {
   }
 
   /**
+   * OccGate createManyAndReturn
+   */
+  export type OccGateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccGate
+     */
+    select?: OccGateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccGate
+     */
+    omit?: OccGateOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccGates.
+     */
+    data: OccGateCreateManyInput | OccGateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccGateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
    * OccGate update
    */
   export type OccGateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7962,6 +8820,36 @@ export namespace Prisma {
      * Limit how many OccGates to update.
      */
     limit?: number
+  }
+
+  /**
+   * OccGate updateManyAndReturn
+   */
+  export type OccGateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccGate
+     */
+    select?: OccGateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccGate
+     */
+    omit?: OccGateOmit<ExtArgs> | null
+    /**
+     * The data used to update OccGates.
+     */
+    data: XOR<OccGateUpdateManyMutationInput, OccGateUncheckedUpdateManyInput>
+    /**
+     * Filter which OccGates to update
+     */
+    where?: OccGateWhereInput
+    /**
+     * Limit how many OccGates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccGateIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -8265,7 +9153,23 @@ export namespace Prisma {
     CreatedAt?: boolean
   }, ExtArgs["result"]["occIntercome"]>
 
+  export type OccIntercomeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    GateName?: boolean
+    Locations?: boolean
+    CountInCall?: boolean
+    CountMissCall?: boolean
+    CreatedAt?: boolean
+  }, ExtArgs["result"]["occIntercome"]>
 
+  export type OccIntercomeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    GateName?: boolean
+    Locations?: boolean
+    CountInCall?: boolean
+    CountMissCall?: boolean
+    CreatedAt?: boolean
+  }, ExtArgs["result"]["occIntercome"]>
 
   export type OccIntercomeSelectScalar = {
     Id?: boolean
@@ -8406,6 +9310,30 @@ export namespace Prisma {
     createMany<T extends OccIntercomeCreateManyArgs>(args?: SelectSubset<T, OccIntercomeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many OccIntercomes and returns the data saved in the database.
+     * @param {OccIntercomeCreateManyAndReturnArgs} args - Arguments to create many OccIntercomes.
+     * @example
+     * // Create many OccIntercomes
+     * const occIntercome = await prisma.occIntercome.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccIntercomes and only return the `Id`
+     * const occIntercomeWithIdOnly = await prisma.occIntercome.createManyAndReturn({
+     *   select: { Id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccIntercomeCreateManyAndReturnArgs>(args?: SelectSubset<T, OccIntercomeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccIntercomePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a OccIntercome.
      * @param {OccIntercomeDeleteArgs} args - Arguments to delete one OccIntercome.
      * @example
@@ -8468,6 +9396,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends OccIntercomeUpdateManyArgs>(args: SelectSubset<T, OccIntercomeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccIntercomes and returns the data updated in the database.
+     * @param {OccIntercomeUpdateManyAndReturnArgs} args - Arguments to update many OccIntercomes.
+     * @example
+     * // Update many OccIntercomes
+     * const occIntercome = await prisma.occIntercome.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccIntercomes and only return the `Id`
+     * const occIntercomeWithIdOnly = await prisma.occIntercome.updateManyAndReturn({
+     *   select: { Id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccIntercomeUpdateManyAndReturnArgs>(args: SelectSubset<T, OccIntercomeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccIntercomePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one OccIntercome.
@@ -8872,6 +9830,25 @@ export namespace Prisma {
   }
 
   /**
+   * OccIntercome createManyAndReturn
+   */
+  export type OccIntercomeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccIntercome
+     */
+    select?: OccIntercomeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccIntercome
+     */
+    omit?: OccIntercomeOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccIntercomes.
+     */
+    data: OccIntercomeCreateManyInput | OccIntercomeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * OccIntercome update
    */
   export type OccIntercomeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -8897,6 +9874,32 @@ export namespace Prisma {
    * OccIntercome updateMany
    */
   export type OccIntercomeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccIntercomes.
+     */
+    data: XOR<OccIntercomeUpdateManyMutationInput, OccIntercomeUncheckedUpdateManyInput>
+    /**
+     * Filter which OccIntercomes to update
+     */
+    where?: OccIntercomeWhereInput
+    /**
+     * Limit how many OccIntercomes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccIntercome updateManyAndReturn
+   */
+  export type OccIntercomeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccIntercome
+     */
+    select?: OccIntercomeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccIntercome
+     */
+    omit?: OccIntercomeOmit<ExtArgs> | null
     /**
      * The data used to update OccIntercomes.
      */
@@ -9276,7 +10279,43 @@ export namespace Prisma {
     RecordStatus?: boolean
   }, ExtArgs["result"]["refIssuer"]>
 
+  export type RefIssuerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    issuerId?: boolean
+    issuerName?: boolean
+    IssuerLongName?: boolean
+    Color?: boolean
+    LogoUrl?: boolean
+    SettlementPath?: boolean
+    SettlementExtensionFile?: boolean
+    FlagRecon?: boolean
+    CreatedOn?: boolean
+    CreatedBy?: boolean
+    UpdatedOn?: boolean
+    UpdatedBy?: boolean
+    DeletedOn?: boolean
+    DeletedBy?: boolean
+    RecordStatus?: boolean
+  }, ExtArgs["result"]["refIssuer"]>
 
+  export type RefIssuerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    issuerId?: boolean
+    issuerName?: boolean
+    IssuerLongName?: boolean
+    Color?: boolean
+    LogoUrl?: boolean
+    SettlementPath?: boolean
+    SettlementExtensionFile?: boolean
+    FlagRecon?: boolean
+    CreatedOn?: boolean
+    CreatedBy?: boolean
+    UpdatedOn?: boolean
+    UpdatedBy?: boolean
+    DeletedOn?: boolean
+    DeletedBy?: boolean
+    RecordStatus?: boolean
+  }, ExtArgs["result"]["refIssuer"]>
 
   export type RefIssuerSelectScalar = {
     id?: boolean
@@ -9437,6 +10476,30 @@ export namespace Prisma {
     createMany<T extends RefIssuerCreateManyArgs>(args?: SelectSubset<T, RefIssuerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many RefIssuers and returns the data saved in the database.
+     * @param {RefIssuerCreateManyAndReturnArgs} args - Arguments to create many RefIssuers.
+     * @example
+     * // Create many RefIssuers
+     * const refIssuer = await prisma.refIssuer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many RefIssuers and only return the `id`
+     * const refIssuerWithIdOnly = await prisma.refIssuer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends RefIssuerCreateManyAndReturnArgs>(args?: SelectSubset<T, RefIssuerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefIssuerPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a RefIssuer.
      * @param {RefIssuerDeleteArgs} args - Arguments to delete one RefIssuer.
      * @example
@@ -9499,6 +10562,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends RefIssuerUpdateManyArgs>(args: SelectSubset<T, RefIssuerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more RefIssuers and returns the data updated in the database.
+     * @param {RefIssuerUpdateManyAndReturnArgs} args - Arguments to update many RefIssuers.
+     * @example
+     * // Update many RefIssuers
+     * const refIssuer = await prisma.refIssuer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more RefIssuers and only return the `id`
+     * const refIssuerWithIdOnly = await prisma.refIssuer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends RefIssuerUpdateManyAndReturnArgs>(args: SelectSubset<T, RefIssuerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefIssuerPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one RefIssuer.
@@ -9913,6 +11006,25 @@ export namespace Prisma {
   }
 
   /**
+   * RefIssuer createManyAndReturn
+   */
+  export type RefIssuerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefIssuer
+     */
+    select?: RefIssuerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefIssuer
+     */
+    omit?: RefIssuerOmit<ExtArgs> | null
+    /**
+     * The data used to create many RefIssuers.
+     */
+    data: RefIssuerCreateManyInput | RefIssuerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * RefIssuer update
    */
   export type RefIssuerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9938,6 +11050,32 @@ export namespace Prisma {
    * RefIssuer updateMany
    */
   export type RefIssuerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update RefIssuers.
+     */
+    data: XOR<RefIssuerUpdateManyMutationInput, RefIssuerUncheckedUpdateManyInput>
+    /**
+     * Filter which RefIssuers to update
+     */
+    where?: RefIssuerWhereInput
+    /**
+     * Limit how many RefIssuers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * RefIssuer updateManyAndReturn
+   */
+  export type RefIssuerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the RefIssuer
+     */
+    select?: RefIssuerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the RefIssuer
+     */
+    omit?: RefIssuerOmit<ExtArgs> | null
     /**
      * The data used to update RefIssuers.
      */
@@ -10233,7 +11371,23 @@ export namespace Prisma {
     UpdatedAt?: boolean
   }, ExtArgs["result"]["occListMemberStyles"]>
 
+  export type OccListMemberStylesSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    Name?: boolean
+    Email?: boolean
+    PlateNumber?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }, ExtArgs["result"]["occListMemberStyles"]>
 
+  export type OccListMemberStylesSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    Name?: boolean
+    Email?: boolean
+    PlateNumber?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+  }, ExtArgs["result"]["occListMemberStyles"]>
 
   export type OccListMemberStylesSelectScalar = {
     Id?: boolean
@@ -10374,6 +11528,30 @@ export namespace Prisma {
     createMany<T extends OccListMemberStylesCreateManyArgs>(args?: SelectSubset<T, OccListMemberStylesCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many OccListMemberStyles and returns the data saved in the database.
+     * @param {OccListMemberStylesCreateManyAndReturnArgs} args - Arguments to create many OccListMemberStyles.
+     * @example
+     * // Create many OccListMemberStyles
+     * const occListMemberStyles = await prisma.occListMemberStyles.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccListMemberStyles and only return the `Id`
+     * const occListMemberStylesWithIdOnly = await prisma.occListMemberStyles.createManyAndReturn({
+     *   select: { Id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccListMemberStylesCreateManyAndReturnArgs>(args?: SelectSubset<T, OccListMemberStylesCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccListMemberStylesPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a OccListMemberStyles.
      * @param {OccListMemberStylesDeleteArgs} args - Arguments to delete one OccListMemberStyles.
      * @example
@@ -10436,6 +11614,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends OccListMemberStylesUpdateManyArgs>(args: SelectSubset<T, OccListMemberStylesUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccListMemberStyles and returns the data updated in the database.
+     * @param {OccListMemberStylesUpdateManyAndReturnArgs} args - Arguments to update many OccListMemberStyles.
+     * @example
+     * // Update many OccListMemberStyles
+     * const occListMemberStyles = await prisma.occListMemberStyles.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccListMemberStyles and only return the `Id`
+     * const occListMemberStylesWithIdOnly = await prisma.occListMemberStyles.updateManyAndReturn({
+     *   select: { Id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccListMemberStylesUpdateManyAndReturnArgs>(args: SelectSubset<T, OccListMemberStylesUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccListMemberStylesPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one OccListMemberStyles.
@@ -10840,6 +12048,25 @@ export namespace Prisma {
   }
 
   /**
+   * OccListMemberStyles createManyAndReturn
+   */
+  export type OccListMemberStylesCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyles
+     */
+    select?: OccListMemberStylesSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyles
+     */
+    omit?: OccListMemberStylesOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccListMemberStyles.
+     */
+    data: OccListMemberStylesCreateManyInput | OccListMemberStylesCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * OccListMemberStyles update
    */
   export type OccListMemberStylesUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10865,6 +12092,32 @@ export namespace Prisma {
    * OccListMemberStyles updateMany
    */
   export type OccListMemberStylesUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccListMemberStyles.
+     */
+    data: XOR<OccListMemberStylesUpdateManyMutationInput, OccListMemberStylesUncheckedUpdateManyInput>
+    /**
+     * Filter which OccListMemberStyles to update
+     */
+    where?: OccListMemberStylesWhereInput
+    /**
+     * Limit how many OccListMemberStyles to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccListMemberStyles updateManyAndReturn
+   */
+  export type OccListMemberStylesUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccListMemberStyles
+     */
+    select?: OccListMemberStylesSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccListMemberStyles
+     */
+    omit?: OccListMemberStylesOmit<ExtArgs> | null
     /**
      * The data used to update OccListMemberStyles.
      */
@@ -11217,7 +12470,35 @@ export namespace Prisma {
     locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["counterGate"]>
 
+  export type CounterGateSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    Date?: boolean
+    LocationCode?: boolean
+    LocationName?: boolean
+    CodeGate?: boolean
+    CountInMotor?: boolean
+    CountOutMotor?: boolean
+    CountInMobil?: boolean
+    CountOutMobil?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+    locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["counterGate"]>
 
+  export type CounterGateSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    Id?: boolean
+    Date?: boolean
+    LocationCode?: boolean
+    LocationName?: boolean
+    CodeGate?: boolean
+    CountInMotor?: boolean
+    CountOutMotor?: boolean
+    CountInMobil?: boolean
+    CountOutMobil?: boolean
+    CreatedAt?: boolean
+    UpdatedAt?: boolean
+    locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["counterGate"]>
 
   export type CounterGateSelectScalar = {
     Id?: boolean
@@ -11235,6 +12516,12 @@ export namespace Prisma {
 
   export type CounterGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"Id" | "Date" | "LocationCode" | "LocationName" | "CodeGate" | "CountInMotor" | "CountOutMotor" | "CountInMobil" | "CountOutMobil" | "CreatedAt" | "UpdatedAt", ExtArgs["result"]["counterGate"]>
   export type CounterGateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }
+  export type CounterGateIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
+  }
+  export type CounterGateIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     locationConter?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }
 
@@ -11373,6 +12660,30 @@ export namespace Prisma {
     createMany<T extends CounterGateCreateManyArgs>(args?: SelectSubset<T, CounterGateCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many CounterGates and returns the data saved in the database.
+     * @param {CounterGateCreateManyAndReturnArgs} args - Arguments to create many CounterGates.
+     * @example
+     * // Create many CounterGates
+     * const counterGate = await prisma.counterGate.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many CounterGates and only return the `Id`
+     * const counterGateWithIdOnly = await prisma.counterGate.createManyAndReturn({
+     *   select: { Id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends CounterGateCreateManyAndReturnArgs>(args?: SelectSubset<T, CounterGateCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a CounterGate.
      * @param {CounterGateDeleteArgs} args - Arguments to delete one CounterGate.
      * @example
@@ -11435,6 +12746,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends CounterGateUpdateManyArgs>(args: SelectSubset<T, CounterGateUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more CounterGates and returns the data updated in the database.
+     * @param {CounterGateUpdateManyAndReturnArgs} args - Arguments to update many CounterGates.
+     * @example
+     * // Update many CounterGates
+     * const counterGate = await prisma.counterGate.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more CounterGates and only return the `Id`
+     * const counterGateWithIdOnly = await prisma.counterGate.updateManyAndReturn({
+     *   select: { Id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends CounterGateUpdateManyAndReturnArgs>(args: SelectSubset<T, CounterGateUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one CounterGate.
@@ -11869,6 +13210,29 @@ export namespace Prisma {
   }
 
   /**
+   * CounterGate createManyAndReturn
+   */
+  export type CounterGateCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * The data used to create many CounterGates.
+     */
+    data: CounterGateCreateManyInput | CounterGateCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
    * CounterGate update
    */
   export type CounterGateUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11910,6 +13274,36 @@ export namespace Prisma {
      * Limit how many CounterGates to update.
      */
     limit?: number
+  }
+
+  /**
+   * CounterGate updateManyAndReturn
+   */
+  export type CounterGateUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CounterGate
+     */
+    select?: CounterGateSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the CounterGate
+     */
+    omit?: CounterGateOmit<ExtArgs> | null
+    /**
+     * The data used to update CounterGates.
+     */
+    data: XOR<CounterGateUpdateManyMutationInput, CounterGateUncheckedUpdateManyInput>
+    /**
+     * Filter which CounterGates to update
+     */
+    where?: CounterGateWhereInput
+    /**
+     * Limit how many CounterGates to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CounterGateIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -12197,7 +13591,21 @@ export namespace Prisma {
     updatedAt?: boolean
   }, ExtArgs["result"]["userEventNobu"]>
 
+  export type userEventNobuSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nik?: boolean
+    event?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["userEventNobu"]>
 
+  export type userEventNobuSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    nik?: boolean
+    event?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["userEventNobu"]>
 
   export type userEventNobuSelectScalar = {
     id?: boolean
@@ -12336,6 +13744,30 @@ export namespace Prisma {
     createMany<T extends userEventNobuCreateManyArgs>(args?: SelectSubset<T, userEventNobuCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
 
     /**
+     * Create many UserEventNobus and returns the data saved in the database.
+     * @param {userEventNobuCreateManyAndReturnArgs} args - Arguments to create many UserEventNobus.
+     * @example
+     * // Create many UserEventNobus
+     * const userEventNobu = await prisma.userEventNobu.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many UserEventNobus and only return the `id`
+     * const userEventNobuWithIdOnly = await prisma.userEventNobu.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends userEventNobuCreateManyAndReturnArgs>(args?: SelectSubset<T, userEventNobuCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
      * Delete a UserEventNobu.
      * @param {userEventNobuDeleteArgs} args - Arguments to delete one UserEventNobu.
      * @example
@@ -12398,6 +13830,36 @@ export namespace Prisma {
      * 
      */
     updateMany<T extends userEventNobuUpdateManyArgs>(args: SelectSubset<T, userEventNobuUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more UserEventNobus and returns the data updated in the database.
+     * @param {userEventNobuUpdateManyAndReturnArgs} args - Arguments to update many UserEventNobus.
+     * @example
+     * // Update many UserEventNobus
+     * const userEventNobu = await prisma.userEventNobu.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more UserEventNobus and only return the `id`
+     * const userEventNobuWithIdOnly = await prisma.userEventNobu.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends userEventNobuUpdateManyAndReturnArgs>(args: SelectSubset<T, userEventNobuUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$userEventNobuPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
 
     /**
      * Create or update one UserEventNobu.
@@ -12801,6 +14263,25 @@ export namespace Prisma {
   }
 
   /**
+   * userEventNobu createManyAndReturn
+   */
+  export type userEventNobuCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
+    /**
+     * The data used to create many userEventNobus.
+     */
+    data: userEventNobuCreateManyInput | userEventNobuCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
    * userEventNobu update
    */
   export type userEventNobuUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -12826,6 +14307,32 @@ export namespace Prisma {
    * userEventNobu updateMany
    */
   export type userEventNobuUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update userEventNobus.
+     */
+    data: XOR<userEventNobuUpdateManyMutationInput, userEventNobuUncheckedUpdateManyInput>
+    /**
+     * Filter which userEventNobus to update
+     */
+    where?: userEventNobuWhereInput
+    /**
+     * Limit how many userEventNobus to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * userEventNobu updateManyAndReturn
+   */
+  export type userEventNobuUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the userEventNobu
+     */
+    select?: userEventNobuSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the userEventNobu
+     */
+    omit?: userEventNobuOmit<ExtArgs> | null
     /**
      * The data used to update userEventNobus.
      */
@@ -13118,139 +14625,20 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
+  export const QueryMode: {
+    default: 'default',
+    insensitive: 'insensitive'
+  };
+
+  export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
   export const NullsOrder: {
     first: 'first',
     last: 'last'
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
-  export const OccCategoryOrderByRelevanceFieldEnum: {
-    category: 'category',
-    createdBy: 'createdBy',
-    modifyBy: 'modifyBy'
-  };
-
-  export type OccCategoryOrderByRelevanceFieldEnum = (typeof OccCategoryOrderByRelevanceFieldEnum)[keyof typeof OccCategoryOrderByRelevanceFieldEnum]
-
-
-  export const OccDescriptionOrderByRelevanceFieldEnum: {
-    object: 'object',
-    createdBy: 'createdBy',
-    modifyBy: 'modifyBy'
-  };
-
-  export type OccDescriptionOrderByRelevanceFieldEnum = (typeof OccDescriptionOrderByRelevanceFieldEnum)[keyof typeof OccDescriptionOrderByRelevanceFieldEnum]
-
-
-  export const OccIssueOrderByRelevanceFieldEnum: {
-    ticket: 'ticket',
-    category: 'category',
-    lokasi: 'lokasi',
-    description: 'description',
-    gate: 'gate',
-    action: 'action',
-    foto_in: 'foto_in',
-    foto_out: 'foto_out',
-    number_plate: 'number_plate',
-    TrxNo: 'TrxNo',
-    solusi: 'solusi',
-    duration: 'duration',
-    createdBy: 'createdBy',
-    modifiedBy: 'modifiedBy'
-  };
-
-  export type OccIssueOrderByRelevanceFieldEnum = (typeof OccIssueOrderByRelevanceFieldEnum)[keyof typeof OccIssueOrderByRelevanceFieldEnum]
-
-
-  export const OccRefLocationOrderByRelevanceFieldEnum: {
-    Code: 'Code',
-    Name: 'Name',
-    Region: 'Region',
-    TID: 'TID',
-    Vendor: 'Vendor',
-    VendorParkingCode: 'VendorParkingCode',
-    ShortName: 'ShortName',
-    Address: 'Address',
-    TimeZone: 'TimeZone',
-    UrlServer: 'UrlServer'
-  };
-
-  export type OccRefLocationOrderByRelevanceFieldEnum = (typeof OccRefLocationOrderByRelevanceFieldEnum)[keyof typeof OccRefLocationOrderByRelevanceFieldEnum]
-
-
-  export const OccTransactionOrderByRelevanceFieldEnum: {
-    PlateNumberIn: 'PlateNumberIn',
-    PlateNumberOut: 'PlateNumberOut',
-    PathIn: 'PathIn',
-    PathOut: 'PathOut',
-    Location: 'Location',
-    GateName: 'GateName'
-  };
-
-  export type OccTransactionOrderByRelevanceFieldEnum = (typeof OccTransactionOrderByRelevanceFieldEnum)[keyof typeof OccTransactionOrderByRelevanceFieldEnum]
-
-
-  export const OccGateOrderByRelevanceFieldEnum: {
-    gate: 'gate',
-    channel_cctv: 'channel_cctv',
-    id_tele: 'id_tele'
-  };
-
-  export type OccGateOrderByRelevanceFieldEnum = (typeof OccGateOrderByRelevanceFieldEnum)[keyof typeof OccGateOrderByRelevanceFieldEnum]
-
-
-  export const OccIntercomeOrderByRelevanceFieldEnum: {
-    GateName: 'GateName',
-    Locations: 'Locations'
-  };
-
-  export type OccIntercomeOrderByRelevanceFieldEnum = (typeof OccIntercomeOrderByRelevanceFieldEnum)[keyof typeof OccIntercomeOrderByRelevanceFieldEnum]
-
-
-  export const RefIssuerOrderByRelevanceFieldEnum: {
-    issuerId: 'issuerId',
-    issuerName: 'issuerName',
-    IssuerLongName: 'IssuerLongName',
-    Color: 'Color',
-    LogoUrl: 'LogoUrl',
-    SettlementPath: 'SettlementPath',
-    SettlementExtensionFile: 'SettlementExtensionFile',
-    FlagRecon: 'FlagRecon',
-    CreatedBy: 'CreatedBy',
-    DeletedOn: 'DeletedOn',
-    DeletedBy: 'DeletedBy'
-  };
-
-  export type RefIssuerOrderByRelevanceFieldEnum = (typeof RefIssuerOrderByRelevanceFieldEnum)[keyof typeof RefIssuerOrderByRelevanceFieldEnum]
-
-
-  export const OccListMemberStylesOrderByRelevanceFieldEnum: {
-    Name: 'Name',
-    Email: 'Email',
-    PlateNumber: 'PlateNumber'
-  };
-
-  export type OccListMemberStylesOrderByRelevanceFieldEnum = (typeof OccListMemberStylesOrderByRelevanceFieldEnum)[keyof typeof OccListMemberStylesOrderByRelevanceFieldEnum]
-
-
-  export const CounterGateOrderByRelevanceFieldEnum: {
-    Date: 'Date',
-    LocationCode: 'LocationCode',
-    LocationName: 'LocationName',
-    CodeGate: 'CodeGate'
-  };
-
-  export type CounterGateOrderByRelevanceFieldEnum = (typeof CounterGateOrderByRelevanceFieldEnum)[keyof typeof CounterGateOrderByRelevanceFieldEnum]
-
-
-  export const userEventNobuOrderByRelevanceFieldEnum: {
-    nik: 'nik',
-    event: 'event'
-  };
-
-  export type userEventNobuOrderByRelevanceFieldEnum = (typeof userEventNobuOrderByRelevanceFieldEnum)[keyof typeof userEventNobuOrderByRelevanceFieldEnum]
 
 
   /**
@@ -13266,9 +14654,23 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Int[]'
+   */
+  export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
+    
+
+
+  /**
    * Reference to a field of type 'String'
    */
   export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'String[]'
+   */
+  export type ListStringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String[]'>
     
 
 
@@ -13280,6 +14682,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'DateTime[]'
+   */
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
    * Reference to a field of type 'statusIssue'
    */
   export type EnumstatusIssueFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'statusIssue'>
@@ -13287,9 +14696,23 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'record'
+   * Reference to a field of type 'statusIssue[]'
    */
-  export type EnumrecordFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'record'>
+  export type ListEnumstatusIssueFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'statusIssue[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'RecordStatus'
+   */
+  export type EnumRecordStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RecordStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'RecordStatus[]'
+   */
+  export type ListEnumRecordStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'RecordStatus[]'>
     
 
 
@@ -13297,6 +14720,13 @@ export namespace Prisma {
    * Reference to a field of type 'Float'
    */
   export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
   /**
    * Deep Input Types
@@ -13326,7 +14756,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     occCategory?: OccDescriptionOrderByRelationAggregateInput
-    _relevance?: OccCategoryOrderByRelevanceInput
   }
 
   export type OccCategoryWhereUniqueInput = Prisma.AtLeast<{
@@ -13396,7 +14825,6 @@ export namespace Prisma {
     createdBy?: SortOrder
     modifyBy?: SortOrderInput | SortOrder
     category?: OccCategoryOrderByWithRelationInput
-    _relevance?: OccDescriptionOrderByRelevanceInput
   }
 
   export type OccDescriptionWhereUniqueInput = Prisma.AtLeast<{
@@ -13489,7 +14917,6 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
-    _relevance?: OccIssueOrderByRelevanceInput
   }
 
   export type OccIssueWhereUniqueInput = Prisma.AtLeast<{
@@ -13590,7 +15017,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
-    recordStatus?: EnumrecordFilter<"OccRefLocation"> | $Enums.record
+    recordStatus?: EnumRecordStatusFilter<"OccRefLocation"> | $Enums.RecordStatus
     location?: OccGateListRelationFilter
     locationConter?: CounterGateListRelationFilter
   }
@@ -13616,7 +15043,6 @@ export namespace Prisma {
     recordStatus?: SortOrder
     location?: OccGateOrderByRelationAggregateInput
     locationConter?: CounterGateOrderByRelationAggregateInput
-    _relevance?: OccRefLocationOrderByRelevanceInput
   }
 
   export type OccRefLocationWhereUniqueInput = Prisma.AtLeast<{
@@ -13640,7 +15066,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
-    recordStatus?: EnumrecordFilter<"OccRefLocation"> | $Enums.record
+    recordStatus?: EnumRecordStatusFilter<"OccRefLocation"> | $Enums.RecordStatus
     location?: OccGateListRelationFilter
     locationConter?: CounterGateListRelationFilter
   }, "id" | "Code">
@@ -13692,7 +15118,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeWithAggregatesFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeWithAggregatesFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableWithAggregatesFilter<"OccRefLocation"> | Date | string | null
-    recordStatus?: EnumrecordWithAggregatesFilter<"OccRefLocation"> | $Enums.record
+    recordStatus?: EnumRecordStatusWithAggregatesFilter<"OccRefLocation"> | $Enums.RecordStatus
   }
 
   export type OccTransactionWhereInput = {
@@ -13724,7 +15150,6 @@ export namespace Prisma {
     OutTime?: SortOrderInput | SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
-    _relevance?: OccTransactionOrderByRelevanceInput
   }
 
   export type OccTransactionWhereUniqueInput = Prisma.AtLeast<{
@@ -13809,7 +15234,6 @@ export namespace Prisma {
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
     location?: OccRefLocationOrderByWithRelationInput
-    _relevance?: OccGateOrderByRelevanceInput
   }
 
   export type OccGateWhereUniqueInput = Prisma.AtLeast<{
@@ -13882,7 +15306,6 @@ export namespace Prisma {
     CountInCall?: SortOrderInput | SortOrder
     CountMissCall?: SortOrderInput | SortOrder
     CreatedAt?: SortOrder
-    _relevance?: OccIntercomeOrderByRelevanceInput
   }
 
   export type OccIntercomeWhereUniqueInput = Prisma.AtLeast<{
@@ -13962,7 +15385,6 @@ export namespace Prisma {
     DeletedOn?: SortOrderInput | SortOrder
     DeletedBy?: SortOrderInput | SortOrder
     RecordStatus?: SortOrder
-    _relevance?: RefIssuerOrderByRelevanceInput
   }
 
   export type RefIssuerWhereUniqueInput = Prisma.AtLeast<{
@@ -14052,7 +15474,6 @@ export namespace Prisma {
     PlateNumber?: SortOrderInput | SortOrder
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
-    _relevance?: OccListMemberStylesOrderByRelevanceInput
   }
 
   export type OccListMemberStylesWhereUniqueInput = Prisma.AtLeast<{
@@ -14124,7 +15545,6 @@ export namespace Prisma {
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     locationConter?: OccRefLocationOrderByWithRelationInput
-    _relevance?: CounterGateOrderByRelevanceInput
   }
 
   export type CounterGateWhereUniqueInput = Prisma.AtLeast<{
@@ -14198,7 +15618,6 @@ export namespace Prisma {
     event?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    _relevance?: userEventNobuOrderByRelevanceInput
   }
 
   export type userEventNobuWhereUniqueInput = Prisma.AtLeast<{
@@ -14548,7 +15967,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.record
+    recordStatus: $Enums.RecordStatus
     location?: OccGateCreateNestedManyWithoutLocationInput
     locationConter?: CounterGateCreateNestedManyWithoutLocationConterInput
   }
@@ -14571,7 +15990,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.record
+    recordStatus: $Enums.RecordStatus
     location?: OccGateUncheckedCreateNestedManyWithoutLocationInput
     locationConter?: CounterGateUncheckedCreateNestedManyWithoutLocationConterInput
   }
@@ -14593,7 +16012,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
     location?: OccGateUpdateManyWithoutLocationNestedInput
     locationConter?: CounterGateUpdateManyWithoutLocationConterNestedInput
   }
@@ -14616,7 +16035,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
     location?: OccGateUncheckedUpdateManyWithoutLocationNestedInput
     locationConter?: CounterGateUncheckedUpdateManyWithoutLocationConterNestedInput
   }
@@ -14639,7 +16058,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.record
+    recordStatus: $Enums.RecordStatus
   }
 
   export type OccRefLocationUpdateManyMutationInput = {
@@ -14659,7 +16078,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   }
 
   export type OccRefLocationUncheckedUpdateManyInput = {
@@ -14680,7 +16099,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
   }
 
   export type OccTransactionCreateInput = {
@@ -15264,8 +16683,8 @@ export namespace Prisma {
 
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -15275,8 +16694,8 @@ export namespace Prisma {
 
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -15284,14 +16703,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
+    mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -15299,14 +16718,14 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
+    mode?: QueryMode
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -15316,8 +16735,8 @@ export namespace Prisma {
 
   export type DateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -15338,12 +16757,6 @@ export namespace Prisma {
 
   export type OccDescriptionOrderByRelationAggregateInput = {
     _count?: SortOrder
-  }
-
-  export type OccCategoryOrderByRelevanceInput = {
-    fields: OccCategoryOrderByRelevanceFieldEnum | OccCategoryOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type OccCategoryCountOrderByAggregateInput = {
@@ -15386,8 +16799,8 @@ export namespace Prisma {
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -15402,8 +16815,8 @@ export namespace Prisma {
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -15411,7 +16824,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
+    mode?: QueryMode
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -15420,8 +16833,8 @@ export namespace Prisma {
 
   export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -15429,7 +16842,7 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
+    mode?: QueryMode
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
@@ -15438,8 +16851,8 @@ export namespace Prisma {
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -15452,8 +16865,8 @@ export namespace Prisma {
 
   export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -15467,12 +16880,6 @@ export namespace Prisma {
   export type OccCategoryScalarRelationFilter = {
     is?: OccCategoryWhereInput
     isNot?: OccCategoryWhereInput
-  }
-
-  export type OccDescriptionOrderByRelevanceInput = {
-    fields: OccDescriptionOrderByRelevanceFieldEnum | OccDescriptionOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type OccDescriptionCountOrderByAggregateInput = {
@@ -15520,15 +16927,9 @@ export namespace Prisma {
 
   export type EnumstatusIssueFilter<$PrismaModel = never> = {
     equals?: $Enums.statusIssue | EnumstatusIssueFieldRefInput<$PrismaModel>
-    in?: $Enums.statusIssue[]
-    notIn?: $Enums.statusIssue[]
+    in?: $Enums.statusIssue[] | ListEnumstatusIssueFieldRefInput<$PrismaModel>
+    notIn?: $Enums.statusIssue[] | ListEnumstatusIssueFieldRefInput<$PrismaModel>
     not?: NestedEnumstatusIssueFilter<$PrismaModel> | $Enums.statusIssue
-  }
-
-  export type OccIssueOrderByRelevanceInput = {
-    fields: OccIssueOrderByRelevanceFieldEnum | OccIssueOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type OccIssueCountOrderByAggregateInput = {
@@ -15607,8 +17008,8 @@ export namespace Prisma {
 
   export type EnumstatusIssueWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.statusIssue | EnumstatusIssueFieldRefInput<$PrismaModel>
-    in?: $Enums.statusIssue[]
-    notIn?: $Enums.statusIssue[]
+    in?: $Enums.statusIssue[] | ListEnumstatusIssueFieldRefInput<$PrismaModel>
+    notIn?: $Enums.statusIssue[] | ListEnumstatusIssueFieldRefInput<$PrismaModel>
     not?: NestedEnumstatusIssueWithAggregatesFilter<$PrismaModel> | $Enums.statusIssue
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumstatusIssueFilter<$PrismaModel>
@@ -15617,8 +17018,8 @@ export namespace Prisma {
 
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -15626,11 +17027,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type EnumrecordFilter<$PrismaModel = never> = {
-    equals?: $Enums.record | EnumrecordFieldRefInput<$PrismaModel>
-    in?: $Enums.record[]
-    notIn?: $Enums.record[]
-    not?: NestedEnumrecordFilter<$PrismaModel> | $Enums.record
+  export type EnumRecordStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRecordStatusFilter<$PrismaModel> | $Enums.RecordStatus
   }
 
   export type OccGateListRelationFilter = {
@@ -15651,12 +17052,6 @@ export namespace Prisma {
 
   export type CounterGateOrderByRelationAggregateInput = {
     _count?: SortOrder
-  }
-
-  export type OccRefLocationOrderByRelevanceInput = {
-    fields: OccRefLocationOrderByRelevanceFieldEnum | OccRefLocationOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type OccRefLocationCountOrderByAggregateInput = {
@@ -15734,8 +17129,8 @@ export namespace Prisma {
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -15748,20 +17143,14 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type EnumrecordWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.record | EnumrecordFieldRefInput<$PrismaModel>
-    in?: $Enums.record[]
-    notIn?: $Enums.record[]
-    not?: NestedEnumrecordWithAggregatesFilter<$PrismaModel> | $Enums.record
+  export type EnumRecordStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRecordStatusWithAggregatesFilter<$PrismaModel> | $Enums.RecordStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumrecordFilter<$PrismaModel>
-    _max?: NestedEnumrecordFilter<$PrismaModel>
-  }
-
-  export type OccTransactionOrderByRelevanceInput = {
-    fields: OccTransactionOrderByRelevanceFieldEnum | OccTransactionOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
+    _min?: NestedEnumRecordStatusFilter<$PrismaModel>
+    _max?: NestedEnumRecordStatusFilter<$PrismaModel>
   }
 
   export type OccTransactionCountOrderByAggregateInput = {
@@ -15819,12 +17208,6 @@ export namespace Prisma {
     isNot?: OccRefLocationWhereInput
   }
 
-  export type OccGateOrderByRelevanceInput = {
-    fields: OccGateOrderByRelevanceFieldEnum | OccGateOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
   export type OccGateCountOrderByAggregateInput = {
     id?: SortOrder
     id_location?: SortOrder
@@ -15878,12 +17261,6 @@ export namespace Prisma {
     statusGate?: SortOrder
   }
 
-  export type OccIntercomeOrderByRelevanceInput = {
-    fields: OccIntercomeOrderByRelevanceFieldEnum | OccIntercomeOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
   export type OccIntercomeCountOrderByAggregateInput = {
     Id?: SortOrder
     GateName?: SortOrder
@@ -15921,12 +17298,6 @@ export namespace Prisma {
     Id?: SortOrder
     CountInCall?: SortOrder
     CountMissCall?: SortOrder
-  }
-
-  export type RefIssuerOrderByRelevanceInput = {
-    fields: RefIssuerOrderByRelevanceFieldEnum | RefIssuerOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type RefIssuerCountOrderByAggregateInput = {
@@ -15996,12 +17367,6 @@ export namespace Prisma {
     RecordStatus?: SortOrder
   }
 
-  export type OccListMemberStylesOrderByRelevanceInput = {
-    fields: OccListMemberStylesOrderByRelevanceFieldEnum | OccListMemberStylesOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
-  }
-
   export type OccListMemberStylesCountOrderByAggregateInput = {
     Id?: SortOrder
     Name?: SortOrder
@@ -16035,12 +17400,6 @@ export namespace Prisma {
 
   export type OccListMemberStylesSumOrderByAggregateInput = {
     Id?: SortOrder
-  }
-
-  export type CounterGateOrderByRelevanceInput = {
-    fields: CounterGateOrderByRelevanceFieldEnum | CounterGateOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type CounterGateCountOrderByAggregateInput = {
@@ -16099,12 +17458,6 @@ export namespace Prisma {
     CountOutMotor?: SortOrder
     CountInMobil?: SortOrder
     CountOutMobil?: SortOrder
-  }
-
-  export type userEventNobuOrderByRelevanceInput = {
-    fields: userEventNobuOrderByRelevanceFieldEnum | userEventNobuOrderByRelevanceFieldEnum[]
-    sort: SortOrder
-    search: string
   }
 
   export type userEventNobuCountOrderByAggregateInput = {
@@ -16259,8 +17612,8 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type EnumrecordFieldUpdateOperationsInput = {
-    set?: $Enums.record
+  export type EnumRecordStatusFieldUpdateOperationsInput = {
+    set?: $Enums.RecordStatus
   }
 
   export type OccGateUpdateManyWithoutLocationNestedInput = {
@@ -16349,8 +17702,8 @@ export namespace Prisma {
 
   export type NestedIntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -16360,8 +17713,8 @@ export namespace Prisma {
 
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -16369,14 +17722,13 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -16384,14 +17736,13 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -16401,8 +17752,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -16412,8 +17763,8 @@ export namespace Prisma {
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -16428,8 +17779,8 @@ export namespace Prisma {
 
   export type NestedFloatFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -16439,8 +17790,8 @@ export namespace Prisma {
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
-    in?: string[]
-    notIn?: string[]
+    in?: string[] | ListStringFieldRefInput<$PrismaModel>
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel>
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -16448,7 +17799,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
     not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
@@ -16457,8 +17807,8 @@ export namespace Prisma {
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | null
-    notIn?: string[] | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     lt?: string | StringFieldRefInput<$PrismaModel>
     lte?: string | StringFieldRefInput<$PrismaModel>
     gt?: string | StringFieldRefInput<$PrismaModel>
@@ -16466,7 +17816,6 @@ export namespace Prisma {
     contains?: string | StringFieldRefInput<$PrismaModel>
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
-    search?: string
     not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
     _count?: NestedIntNullableFilter<$PrismaModel>
     _min?: NestedStringNullableFilter<$PrismaModel>
@@ -16475,8 +17824,8 @@ export namespace Prisma {
 
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -16486,8 +17835,8 @@ export namespace Prisma {
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -16500,8 +17849,8 @@ export namespace Prisma {
 
   export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | null
-    notIn?: Date[] | string[] | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
     lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
@@ -16514,32 +17863,32 @@ export namespace Prisma {
 
   export type NestedEnumstatusIssueFilter<$PrismaModel = never> = {
     equals?: $Enums.statusIssue | EnumstatusIssueFieldRefInput<$PrismaModel>
-    in?: $Enums.statusIssue[]
-    notIn?: $Enums.statusIssue[]
+    in?: $Enums.statusIssue[] | ListEnumstatusIssueFieldRefInput<$PrismaModel>
+    notIn?: $Enums.statusIssue[] | ListEnumstatusIssueFieldRefInput<$PrismaModel>
     not?: NestedEnumstatusIssueFilter<$PrismaModel> | $Enums.statusIssue
   }
 
   export type NestedEnumstatusIssueWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.statusIssue | EnumstatusIssueFieldRefInput<$PrismaModel>
-    in?: $Enums.statusIssue[]
-    notIn?: $Enums.statusIssue[]
+    in?: $Enums.statusIssue[] | ListEnumstatusIssueFieldRefInput<$PrismaModel>
+    notIn?: $Enums.statusIssue[] | ListEnumstatusIssueFieldRefInput<$PrismaModel>
     not?: NestedEnumstatusIssueWithAggregatesFilter<$PrismaModel> | $Enums.statusIssue
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumstatusIssueFilter<$PrismaModel>
     _max?: NestedEnumstatusIssueFilter<$PrismaModel>
   }
 
-  export type NestedEnumrecordFilter<$PrismaModel = never> = {
-    equals?: $Enums.record | EnumrecordFieldRefInput<$PrismaModel>
-    in?: $Enums.record[]
-    notIn?: $Enums.record[]
-    not?: NestedEnumrecordFilter<$PrismaModel> | $Enums.record
+  export type NestedEnumRecordStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRecordStatusFilter<$PrismaModel> | $Enums.RecordStatus
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
     lt?: number | IntFieldRefInput<$PrismaModel>
     lte?: number | IntFieldRefInput<$PrismaModel>
     gt?: number | IntFieldRefInput<$PrismaModel>
@@ -16554,8 +17903,8 @@ export namespace Prisma {
 
   export type NestedFloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
     lt?: number | FloatFieldRefInput<$PrismaModel>
     lte?: number | FloatFieldRefInput<$PrismaModel>
     gt?: number | FloatFieldRefInput<$PrismaModel>
@@ -16563,14 +17912,14 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedEnumrecordWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.record | EnumrecordFieldRefInput<$PrismaModel>
-    in?: $Enums.record[]
-    notIn?: $Enums.record[]
-    not?: NestedEnumrecordWithAggregatesFilter<$PrismaModel> | $Enums.record
+  export type NestedEnumRecordStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumRecordStatusWithAggregatesFilter<$PrismaModel> | $Enums.RecordStatus
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumrecordFilter<$PrismaModel>
-    _max?: NestedEnumrecordFilter<$PrismaModel>
+    _min?: NestedEnumRecordStatusFilter<$PrismaModel>
+    _max?: NestedEnumRecordStatusFilter<$PrismaModel>
   }
 
   export type OccDescriptionCreateWithoutCategoryInput = {
@@ -16836,7 +18185,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.record
+    recordStatus: $Enums.RecordStatus
     locationConter?: CounterGateCreateNestedManyWithoutLocationConterInput
   }
 
@@ -16858,7 +18207,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.record
+    recordStatus: $Enums.RecordStatus
     locationConter?: CounterGateUncheckedCreateNestedManyWithoutLocationConterInput
   }
 
@@ -16895,7 +18244,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
     locationConter?: CounterGateUpdateManyWithoutLocationConterNestedInput
   }
 
@@ -16917,7 +18266,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
     locationConter?: CounterGateUncheckedUpdateManyWithoutLocationConterNestedInput
   }
 
@@ -16938,7 +18287,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.record
+    recordStatus: $Enums.RecordStatus
     location?: OccGateCreateNestedManyWithoutLocationInput
   }
 
@@ -16960,7 +18309,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.record
+    recordStatus: $Enums.RecordStatus
     location?: OccGateUncheckedCreateNestedManyWithoutLocationInput
   }
 
@@ -16997,7 +18346,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
     location?: OccGateUpdateManyWithoutLocationNestedInput
   }
 
@@ -17019,7 +18368,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumrecordFieldUpdateOperationsInput | $Enums.record
+    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
     location?: OccGateUncheckedUpdateManyWithoutLocationNestedInput
   }
 

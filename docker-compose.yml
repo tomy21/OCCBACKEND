@@ -6,9 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "9229:3005"
+      - "7001:3005"
     environment:
-      - DATABASE_URL_MAIN=mysql://root:50p4y5ky0v0!@8.215.44.147:3306/db_skyccc?connection_limit=5
+      - DATABASE_URL_MAIN=postgresql://postgres:1Nihidupku!@103.196.155.0:5433/db_occ?schema=public
       - DATABASE_URL_SECONDARY=mysql://unikas:5ky50p4y123!.@147.139.137.204:3306/parkingasservices
       - NODE_ENV=production
       - JWT_SECRET=158243e2-ccc0-4798-a944-2a5b0d1c90f3

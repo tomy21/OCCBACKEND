@@ -10,7 +10,8 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  // provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL_MAIN")
 }
 
@@ -20,14 +21,14 @@ enum statusIssue {
   solved
 }
 
-enum record {
+enum RecordStatus {
   INACTIVE @map("0")
   ACTIVE   @map("1")
   DELETE   @map("2")
 }
 
 model OccCategory {
-  id        Int       @id @default(autoincrement())
+  id        Int       @id @default(autoincrement()) @db.Integer
   category  String
   createdBy String
   modifyBy  String?
@@ -39,7 +40,7 @@ model OccCategory {
 }
 
 model OccDescription {
-  id          Int       @id @default(autoincrement())
+  id          Int       @id @default(autoincrement()) @db.Integer
   id_category Int
   object      String
   createdAt   DateTime  @default(now())
@@ -52,7 +53,7 @@ model OccDescription {
 }
 
 model OccIssue {
-  id           Int         @id @default(autoincrement())
+  id           Int         @id @default(autoincrement()) @db.Integer
   ticket       String
   category     String?
   lokasi       String?
@@ -74,8 +75,8 @@ model OccIssue {
 }
 
 model OccRefLocation {
-  id                Int       @id @default(autoincrement())
-  Code              String    @unique
+  id                Int          @id @default(autoincrement()) @db.Integer
+  Code              String       @unique
   Name              String
   Region            String?
   TID               String?
@@ -88,17 +89,17 @@ model OccRefLocation {
   DateNext          Int?
   TimeZone          String?
   UrlServer         String?
-  CreatedAt         DateTime  @default(now())
-  UpdatedAt         DateTime  @updatedAt
+  CreatedAt         DateTime     @default(now())
+  UpdatedAt         DateTime     @updatedAt
   DeletedAt         DateTime?
-  recordStatus      record
+  recordStatus      RecordStatus
 
   location       OccGate[]
   locationConter CounterGate[]
 }
 
 model OccTransaction {
-  Id             Int       @id @default(autoincrement())
+  Id             Int       @id @default(autoincrement()) @db.Integer
   PlateNumberIn  String
   PlateNumberOut String?
   PathIn         String
@@ -112,7 +113,7 @@ model OccTransaction {
 }
 
 model OccGate {
-  id           Int       @id @default(autoincrement())
+  id           Int       @id @default(autoincrement()) @db.Integer
   id_location  Int
   gate         String
   channel_cctv String
@@ -127,7 +128,7 @@ model OccGate {
 }
 
 model OccIntercome {
-  Id            Int      @id @default(autoincrement())
+  Id            Int      @id @default(autoincrement()) @db.Integer
   GateName      String
   Locations     String
   CountInCall   Int?
@@ -136,7 +137,7 @@ model OccIntercome {
 }
 
 model RefIssuer {
-  id                      Int       @id @default(autoincrement())
+  id                      Int       @id @default(autoincrement()) @db.Integer
   issuerId                String?
   issuerName              String?
   IssuerLongName          String?
@@ -155,7 +156,7 @@ model RefIssuer {
 }
 
 model OccListMemberStyles {
-  Id          Int      @id @default(autoincrement())
+  Id          Int      @id @default(autoincrement()) @db.Integer
   Name        String
   Email       String?
   PlateNumber String?
@@ -164,7 +165,7 @@ model OccListMemberStyles {
 }
 
 model CounterGate {
-  Id            Int      @id @default(autoincrement())
+  Id            Int      @id @default(autoincrement()) @db.Integer
   Date          String?
   LocationCode  String
   LocationName  String?
@@ -180,7 +181,7 @@ model CounterGate {
 }
 
 model userEventNobu {
-  id        Int      @id @default(autoincrement())
+  id        Int      @id @default(autoincrement()) @db.Integer
   nik       String   @unique
   event     String
   createdAt DateTime @default(now())

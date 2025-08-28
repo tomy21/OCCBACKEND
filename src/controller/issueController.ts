@@ -54,6 +54,8 @@ export const createIssue = async (
       return;
     }
 
+    console.log(req.body);
+
     const category = await dbMain.occCategory.findFirst({
       where: {
         id: parseInt(idCategory),
@@ -121,6 +123,8 @@ export const createIssue = async (
         TrxNo: true,
       },
     });
+
+    console.log(issue);
 
     res
       .status(201)

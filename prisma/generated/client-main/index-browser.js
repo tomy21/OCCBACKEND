@@ -275,103 +275,14 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
+};
+
 exports.Prisma.NullsOrder = {
   first: 'first',
   last: 'last'
-};
-
-exports.Prisma.OccCategoryOrderByRelevanceFieldEnum = {
-  category: 'category',
-  createdBy: 'createdBy',
-  modifyBy: 'modifyBy'
-};
-
-exports.Prisma.OccDescriptionOrderByRelevanceFieldEnum = {
-  object: 'object',
-  createdBy: 'createdBy',
-  modifyBy: 'modifyBy'
-};
-
-exports.Prisma.OccIssueOrderByRelevanceFieldEnum = {
-  ticket: 'ticket',
-  category: 'category',
-  lokasi: 'lokasi',
-  description: 'description',
-  gate: 'gate',
-  action: 'action',
-  foto_in: 'foto_in',
-  foto_out: 'foto_out',
-  number_plate: 'number_plate',
-  TrxNo: 'TrxNo',
-  solusi: 'solusi',
-  duration: 'duration',
-  createdBy: 'createdBy',
-  modifiedBy: 'modifiedBy'
-};
-
-exports.Prisma.OccRefLocationOrderByRelevanceFieldEnum = {
-  Code: 'Code',
-  Name: 'Name',
-  Region: 'Region',
-  TID: 'TID',
-  Vendor: 'Vendor',
-  VendorParkingCode: 'VendorParkingCode',
-  ShortName: 'ShortName',
-  Address: 'Address',
-  TimeZone: 'TimeZone',
-  UrlServer: 'UrlServer'
-};
-
-exports.Prisma.OccTransactionOrderByRelevanceFieldEnum = {
-  PlateNumberIn: 'PlateNumberIn',
-  PlateNumberOut: 'PlateNumberOut',
-  PathIn: 'PathIn',
-  PathOut: 'PathOut',
-  Location: 'Location',
-  GateName: 'GateName'
-};
-
-exports.Prisma.OccGateOrderByRelevanceFieldEnum = {
-  gate: 'gate',
-  channel_cctv: 'channel_cctv',
-  id_tele: 'id_tele'
-};
-
-exports.Prisma.OccIntercomeOrderByRelevanceFieldEnum = {
-  GateName: 'GateName',
-  Locations: 'Locations'
-};
-
-exports.Prisma.RefIssuerOrderByRelevanceFieldEnum = {
-  issuerId: 'issuerId',
-  issuerName: 'issuerName',
-  IssuerLongName: 'IssuerLongName',
-  Color: 'Color',
-  LogoUrl: 'LogoUrl',
-  SettlementPath: 'SettlementPath',
-  SettlementExtensionFile: 'SettlementExtensionFile',
-  FlagRecon: 'FlagRecon',
-  CreatedBy: 'CreatedBy',
-  DeletedOn: 'DeletedOn',
-  DeletedBy: 'DeletedBy'
-};
-
-exports.Prisma.OccListMemberStylesOrderByRelevanceFieldEnum = {
-  Name: 'Name',
-  Email: 'Email',
-  PlateNumber: 'PlateNumber'
-};
-
-exports.Prisma.CounterGateOrderByRelevanceFieldEnum = {
-  Date: 'Date',
-  LocationCode: 'LocationCode',
-  LocationName: 'LocationName',
-  CodeGate: 'CodeGate'
-};
-
-exports.Prisma.userEventNobuOrderByRelevanceFieldEnum = {
-  nik: 'nik',
-  event: 'event'
 };
 exports.statusIssue = exports.$Enums.statusIssue = {
   new: 'new',
@@ -379,7 +290,7 @@ exports.statusIssue = exports.$Enums.statusIssue = {
   solved: 'solved'
 };
 
-exports.record = exports.$Enums.record = {
+exports.RecordStatus = exports.$Enums.RecordStatus = {
   INACTIVE: 'INACTIVE',
   ACTIVE: 'ACTIVE',
   DELETE: 'DELETE'
