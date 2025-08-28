@@ -20,4 +20,4 @@ services:
     restart: always
 
     volumes:
-      - ./uploads:/app/uploads
+      - ./uploads:/usr/src/app/uploads
