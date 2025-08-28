@@ -16,6 +16,7 @@ services:
       - URL_LOGIN=https://devtest08.skyparking.online
       - PLATE_RECOGNIZER_TOKEN=2ee83fb34e74d1bd32772ac11129862e8f8161e1
       - TOKEN_FONTEE=YJF6FhPtZJVuQafteWFX
+      - PORT=7001
 
     restart: always
 
