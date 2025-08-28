@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "7001:3005"
+      - "7001:7001"
     environment:
       - DATABASE_URL_MAIN=postgresql://postgres:1Nihidupku!@103.196.155.0:5433/db_occ?schema=public
       - DATABASE_URL_SECONDARY=mysql://unikas:5ky50p4y123!.@147.139.137.204:3306/parkingasservices
