@@ -26,7 +26,7 @@ RUN yarn generate
 RUN yarn build
 
 # Optional: Expose port (ubah sesuai port kamu)
-EXPOSE 7001
+EXPOSE 3005
 
 # ✅ Jalankan aplikasi
 CMD ["node", "dist/server.js"]

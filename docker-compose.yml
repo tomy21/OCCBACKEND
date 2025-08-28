@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "7001:7001"
+      - "7001:3005"
     environment:
       - DATABASE_URL_MAIN=postgresql://postgres:1Nihidupku!@103.196.155.0:5433/db_occ?schema=public
       - DATABASE_URL_SECONDARY=mysql://unikas:5ky50p4y123!.@147.139.137.204:3306/parkingasservices
@@ -16,7 +16,7 @@ services:
       - URL_LOGIN=https://devtest08.skyparking.online
       - PLATE_RECOGNIZER_TOKEN=2ee83fb34e74d1bd32772ac11129862e8f8161e1
       - TOKEN_FONTEE=YJF6FhPtZJVuQafteWFX
-      - PORT=7001
+      - PORT=3005
 
     restart: always
 
