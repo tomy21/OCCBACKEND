@@ -106,7 +106,6 @@ export const getLocationById = async (req: Request, res: Response) => {
 export const detailGateByLocation = async (req: Request, res: Response) => {
   try {
     const { locationId } = req.params;
-    console.log(locationId);
     const { search } = req.query;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
@@ -125,9 +124,10 @@ export const detailGateByLocation = async (req: Request, res: Response) => {
           },
         },
       },
+      orderBy: {
+        gate: "asc",
+      },
     });
-
-    console.log("data Gate", gatesRaw);
 
     // Manual filtering
     const filteredGates = gatesRaw.filter((gate) => {
