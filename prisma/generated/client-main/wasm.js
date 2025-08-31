@@ -202,13 +202,18 @@ exports.Prisma.OccGateScalarFieldEnum = {
   id: 'id',
   id_location: 'id_location',
   gate: 'gate',
-  channel_cctv: 'channel_cctv',
+  ip_lpr: 'ip_lpr',
   arduino: 'arduino',
   statusGate: 'statusGate',
   id_tele: 'id_tele',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  user_lpr: 'user_lpr',
+  password_lpr: 'password_lpr',
+  ip_intercome: 'ip_intercome',
+  user_intercome: 'user_intercome',
+  password_intercome: 'password_intercome'
 };
 
 exports.Prisma.OccIntercomeScalarFieldEnum = {

@@ -1841,13 +1841,13 @@ export namespace Prisma {
    */
 
   export type OccRefLocationCountOutputType = {
-    location: number
     locationConter: number
+    location: number
   }
 
   export type OccRefLocationCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    location?: boolean | OccRefLocationCountOutputTypeCountLocationArgs
     locationConter?: boolean | OccRefLocationCountOutputTypeCountLocationConterArgs
+    location?: boolean | OccRefLocationCountOutputTypeCountLocationArgs
   }
 
   // Custom InputTypes
@@ -1864,15 +1864,15 @@ export namespace Prisma {
   /**
    * OccRefLocationCountOutputType without action
    */
-  export type OccRefLocationCountOutputTypeCountLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: OccGateWhereInput
+  export type OccRefLocationCountOutputTypeCountLocationConterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CounterGateWhereInput
   }
 
   /**
    * OccRefLocationCountOutputType without action
    */
-  export type OccRefLocationCountOutputTypeCountLocationConterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: CounterGateWhereInput
+  export type OccRefLocationCountOutputTypeCountLocationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OccGateWhereInput
   }
 
 
@@ -5621,7 +5621,7 @@ export namespace Prisma {
     CreatedAt: Date
     UpdatedAt: Date
     DeletedAt: Date | null
-    recordStatus: $Enums.RecordStatus
+    recordStatus: $Enums.RecordStatus | null
     _count: OccRefLocationCountAggregateOutputType | null
     _avg: OccRefLocationAvgAggregateOutputType | null
     _sum: OccRefLocationSumAggregateOutputType | null
@@ -5662,8 +5662,8 @@ export namespace Prisma {
     UpdatedAt?: boolean
     DeletedAt?: boolean
     recordStatus?: boolean
-    location?: boolean | OccRefLocation$locationArgs<ExtArgs>
     locationConter?: boolean | OccRefLocation$locationConterArgs<ExtArgs>
+    location?: boolean | OccRefLocation$locationArgs<ExtArgs>
     _count?: boolean | OccRefLocationCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occRefLocation"]>
 
@@ -5732,8 +5732,8 @@ export namespace Prisma {
 
   export type OccRefLocationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "Code" | "Name" | "Region" | "TID" | "Vendor" | "VendorParkingCode" | "ShortName" | "Address" | "StartTime" | "EndTime" | "DateNext" | "TimeZone" | "UrlServer" | "CreatedAt" | "UpdatedAt" | "DeletedAt" | "recordStatus", ExtArgs["result"]["occRefLocation"]>
   export type OccRefLocationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    location?: boolean | OccRefLocation$locationArgs<ExtArgs>
     locationConter?: boolean | OccRefLocation$locationConterArgs<ExtArgs>
+    location?: boolean | OccRefLocation$locationArgs<ExtArgs>
     _count?: boolean | OccRefLocationCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type OccRefLocationIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -5742,8 +5742,8 @@ export namespace Prisma {
   export type $OccRefLocationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OccRefLocation"
     objects: {
-      location: Prisma.$OccGatePayload<ExtArgs>[]
       locationConter: Prisma.$CounterGatePayload<ExtArgs>[]
+      location: Prisma.$OccGatePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -5763,7 +5763,7 @@ export namespace Prisma {
       CreatedAt: Date
       UpdatedAt: Date
       DeletedAt: Date | null
-      recordStatus: $Enums.RecordStatus
+      recordStatus: $Enums.RecordStatus | null
     }, ExtArgs["result"]["occRefLocation"]>
     composites: {}
   }
@@ -6158,8 +6158,8 @@ export namespace Prisma {
    */
   export interface Prisma__OccRefLocationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    location<T extends OccRefLocation$locationArgs<ExtArgs> = {}>(args?: Subset<T, OccRefLocation$locationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccGatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     locationConter<T extends OccRefLocation$locationConterArgs<ExtArgs> = {}>(args?: Subset<T, OccRefLocation$locationConterArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CounterGatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    location<T extends OccRefLocation$locationArgs<ExtArgs> = {}>(args?: Subset<T, OccRefLocation$locationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccGatePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6595,30 +6595,6 @@ export namespace Prisma {
   }
 
   /**
-   * OccRefLocation.location
-   */
-  export type OccRefLocation$locationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the OccGate
-     */
-    select?: OccGateSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the OccGate
-     */
-    omit?: OccGateOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: OccGateInclude<ExtArgs> | null
-    where?: OccGateWhereInput
-    orderBy?: OccGateOrderByWithRelationInput | OccGateOrderByWithRelationInput[]
-    cursor?: OccGateWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: OccGateScalarFieldEnum | OccGateScalarFieldEnum[]
-  }
-
-  /**
    * OccRefLocation.locationConter
    */
   export type OccRefLocation$locationConterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6640,6 +6616,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CounterGateScalarFieldEnum | CounterGateScalarFieldEnum[]
+  }
+
+  /**
+   * OccRefLocation.location
+   */
+  export type OccRefLocation$locationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccGate
+     */
+    select?: OccGateSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccGate
+     */
+    omit?: OccGateOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: OccGateInclude<ExtArgs> | null
+    where?: OccGateWhereInput
+    orderBy?: OccGateOrderByWithRelationInput | OccGateOrderByWithRelationInput[]
+    cursor?: OccGateWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: OccGateScalarFieldEnum | OccGateScalarFieldEnum[]
   }
 
   /**
@@ -7798,39 +7798,54 @@ export namespace Prisma {
     id: number | null
     id_location: number | null
     gate: string | null
-    channel_cctv: string | null
+    ip_lpr: string | null
     arduino: number | null
     statusGate: number | null
     id_tele: string | null
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
+    user_lpr: string | null
+    password_lpr: string | null
+    ip_intercome: string | null
+    user_intercome: string | null
+    password_intercome: string | null
   }
 
   export type OccGateMaxAggregateOutputType = {
     id: number | null
     id_location: number | null
     gate: string | null
-    channel_cctv: string | null
+    ip_lpr: string | null
     arduino: number | null
     statusGate: number | null
     id_tele: string | null
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
+    user_lpr: string | null
+    password_lpr: string | null
+    ip_intercome: string | null
+    user_intercome: string | null
+    password_intercome: string | null
   }
 
   export type OccGateCountAggregateOutputType = {
     id: number
     id_location: number
     gate: number
-    channel_cctv: number
+    ip_lpr: number
     arduino: number
     statusGate: number
     id_tele: number
     createdAt: number
     updatedAt: number
     deletedAt: number
+    user_lpr: number
+    password_lpr: number
+    ip_intercome: number
+    user_intercome: number
+    password_intercome: number
     _all: number
   }
 
@@ -7853,39 +7868,54 @@ export namespace Prisma {
     id?: true
     id_location?: true
     gate?: true
-    channel_cctv?: true
+    ip_lpr?: true
     arduino?: true
     statusGate?: true
     id_tele?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    user_lpr?: true
+    password_lpr?: true
+    ip_intercome?: true
+    user_intercome?: true
+    password_intercome?: true
   }
 
   export type OccGateMaxAggregateInputType = {
     id?: true
     id_location?: true
     gate?: true
-    channel_cctv?: true
+    ip_lpr?: true
     arduino?: true
     statusGate?: true
     id_tele?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    user_lpr?: true
+    password_lpr?: true
+    ip_intercome?: true
+    user_intercome?: true
+    password_intercome?: true
   }
 
   export type OccGateCountAggregateInputType = {
     id?: true
     id_location?: true
     gate?: true
-    channel_cctv?: true
+    ip_lpr?: true
     arduino?: true
     statusGate?: true
     id_tele?: true
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    user_lpr?: true
+    password_lpr?: true
+    ip_intercome?: true
+    user_intercome?: true
+    password_intercome?: true
     _all?: true
   }
 
@@ -7979,13 +8009,18 @@ export namespace Prisma {
     id: number
     id_location: number
     gate: string
-    channel_cctv: string
-    arduino: number
-    statusGate: number
+    ip_lpr: string | null
+    arduino: number | null
+    statusGate: number | null
     id_tele: string | null
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    user_lpr: string | null
+    password_lpr: string | null
+    ip_intercome: string | null
+    user_intercome: string | null
+    password_intercome: string | null
     _count: OccGateCountAggregateOutputType | null
     _avg: OccGateAvgAggregateOutputType | null
     _sum: OccGateSumAggregateOutputType | null
@@ -8011,13 +8046,18 @@ export namespace Prisma {
     id?: boolean
     id_location?: boolean
     gate?: boolean
-    channel_cctv?: boolean
+    ip_lpr?: boolean
     arduino?: boolean
     statusGate?: boolean
     id_tele?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    user_lpr?: boolean
+    password_lpr?: boolean
+    ip_intercome?: boolean
+    user_intercome?: boolean
+    password_intercome?: boolean
     location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occGate"]>
 
@@ -8025,13 +8065,18 @@ export namespace Prisma {
     id?: boolean
     id_location?: boolean
     gate?: boolean
-    channel_cctv?: boolean
+    ip_lpr?: boolean
     arduino?: boolean
     statusGate?: boolean
     id_tele?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    user_lpr?: boolean
+    password_lpr?: boolean
+    ip_intercome?: boolean
+    user_intercome?: boolean
+    password_intercome?: boolean
     location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occGate"]>
 
@@ -8039,13 +8084,18 @@ export namespace Prisma {
     id?: boolean
     id_location?: boolean
     gate?: boolean
-    channel_cctv?: boolean
+    ip_lpr?: boolean
     arduino?: boolean
     statusGate?: boolean
     id_tele?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    user_lpr?: boolean
+    password_lpr?: boolean
+    ip_intercome?: boolean
+    user_intercome?: boolean
+    password_intercome?: boolean
     location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["occGate"]>
 
@@ -8053,16 +8103,21 @@ export namespace Prisma {
     id?: boolean
     id_location?: boolean
     gate?: boolean
-    channel_cctv?: boolean
+    ip_lpr?: boolean
     arduino?: boolean
     statusGate?: boolean
     id_tele?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    user_lpr?: boolean
+    password_lpr?: boolean
+    ip_intercome?: boolean
+    user_intercome?: boolean
+    password_intercome?: boolean
   }
 
-  export type OccGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_location" | "gate" | "channel_cctv" | "arduino" | "statusGate" | "id_tele" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["occGate"]>
+  export type OccGateOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "id_location" | "gate" | "ip_lpr" | "arduino" | "statusGate" | "id_tele" | "createdAt" | "updatedAt" | "deletedAt" | "user_lpr" | "password_lpr" | "ip_intercome" | "user_intercome" | "password_intercome", ExtArgs["result"]["occGate"]>
   export type OccGateInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     location?: boolean | OccRefLocationDefaultArgs<ExtArgs>
   }
@@ -8082,13 +8137,18 @@ export namespace Prisma {
       id: number
       id_location: number
       gate: string
-      channel_cctv: string
-      arduino: number
-      statusGate: number
+      ip_lpr: string | null
+      arduino: number | null
+      statusGate: number | null
       id_tele: string | null
       createdAt: Date
       updatedAt: Date
       deletedAt: Date | null
+      user_lpr: string | null
+      password_lpr: string | null
+      ip_intercome: string | null
+      user_intercome: string | null
+      password_intercome: string | null
     }, ExtArgs["result"]["occGate"]>
     composites: {}
   }
@@ -8516,13 +8576,18 @@ export namespace Prisma {
     readonly id: FieldRef<"OccGate", 'Int'>
     readonly id_location: FieldRef<"OccGate", 'Int'>
     readonly gate: FieldRef<"OccGate", 'String'>
-    readonly channel_cctv: FieldRef<"OccGate", 'String'>
+    readonly ip_lpr: FieldRef<"OccGate", 'String'>
     readonly arduino: FieldRef<"OccGate", 'Int'>
     readonly statusGate: FieldRef<"OccGate", 'Int'>
     readonly id_tele: FieldRef<"OccGate", 'String'>
     readonly createdAt: FieldRef<"OccGate", 'DateTime'>
     readonly updatedAt: FieldRef<"OccGate", 'DateTime'>
     readonly deletedAt: FieldRef<"OccGate", 'DateTime'>
+    readonly user_lpr: FieldRef<"OccGate", 'String'>
+    readonly password_lpr: FieldRef<"OccGate", 'String'>
+    readonly ip_intercome: FieldRef<"OccGate", 'String'>
+    readonly user_intercome: FieldRef<"OccGate", 'String'>
+    readonly password_intercome: FieldRef<"OccGate", 'String'>
   }
     
 
@@ -14531,13 +14596,18 @@ export namespace Prisma {
     id: 'id',
     id_location: 'id_location',
     gate: 'gate',
-    channel_cctv: 'channel_cctv',
+    ip_lpr: 'ip_lpr',
     arduino: 'arduino',
     statusGate: 'statusGate',
     id_tele: 'id_tele',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt'
+    deletedAt: 'deletedAt',
+    user_lpr: 'user_lpr',
+    password_lpr: 'password_lpr',
+    ip_intercome: 'ip_intercome',
+    user_intercome: 'user_intercome',
+    password_intercome: 'password_intercome'
   };
 
   export type OccGateScalarFieldEnum = (typeof OccGateScalarFieldEnum)[keyof typeof OccGateScalarFieldEnum]
@@ -15017,9 +15087,9 @@ export namespace Prisma {
     CreatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
-    recordStatus?: EnumRecordStatusFilter<"OccRefLocation"> | $Enums.RecordStatus
-    location?: OccGateListRelationFilter
+    recordStatus?: EnumRecordStatusNullableFilter<"OccRefLocation"> | $Enums.RecordStatus | null
     locationConter?: CounterGateListRelationFilter
+    location?: OccGateListRelationFilter
   }
 
   export type OccRefLocationOrderByWithRelationInput = {
@@ -15040,9 +15110,9 @@ export namespace Prisma {
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     DeletedAt?: SortOrderInput | SortOrder
-    recordStatus?: SortOrder
-    location?: OccGateOrderByRelationAggregateInput
+    recordStatus?: SortOrderInput | SortOrder
     locationConter?: CounterGateOrderByRelationAggregateInput
+    location?: OccGateOrderByRelationAggregateInput
   }
 
   export type OccRefLocationWhereUniqueInput = Prisma.AtLeast<{
@@ -15066,9 +15136,9 @@ export namespace Prisma {
     CreatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableFilter<"OccRefLocation"> | Date | string | null
-    recordStatus?: EnumRecordStatusFilter<"OccRefLocation"> | $Enums.RecordStatus
-    location?: OccGateListRelationFilter
+    recordStatus?: EnumRecordStatusNullableFilter<"OccRefLocation"> | $Enums.RecordStatus | null
     locationConter?: CounterGateListRelationFilter
+    location?: OccGateListRelationFilter
   }, "id" | "Code">
 
   export type OccRefLocationOrderByWithAggregationInput = {
@@ -15089,7 +15159,7 @@ export namespace Prisma {
     CreatedAt?: SortOrder
     UpdatedAt?: SortOrder
     DeletedAt?: SortOrderInput | SortOrder
-    recordStatus?: SortOrder
+    recordStatus?: SortOrderInput | SortOrder
     _count?: OccRefLocationCountOrderByAggregateInput
     _avg?: OccRefLocationAvgOrderByAggregateInput
     _max?: OccRefLocationMaxOrderByAggregateInput
@@ -15118,7 +15188,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeWithAggregatesFilter<"OccRefLocation"> | Date | string
     UpdatedAt?: DateTimeWithAggregatesFilter<"OccRefLocation"> | Date | string
     DeletedAt?: DateTimeNullableWithAggregatesFilter<"OccRefLocation"> | Date | string | null
-    recordStatus?: EnumRecordStatusWithAggregatesFilter<"OccRefLocation"> | $Enums.RecordStatus
+    recordStatus?: EnumRecordStatusNullableWithAggregatesFilter<"OccRefLocation"> | $Enums.RecordStatus | null
   }
 
   export type OccTransactionWhereInput = {
@@ -15212,13 +15282,18 @@ export namespace Prisma {
     id?: IntFilter<"OccGate"> | number
     id_location?: IntFilter<"OccGate"> | number
     gate?: StringFilter<"OccGate"> | string
-    channel_cctv?: StringFilter<"OccGate"> | string
-    arduino?: IntFilter<"OccGate"> | number
-    statusGate?: IntFilter<"OccGate"> | number
+    ip_lpr?: StringNullableFilter<"OccGate"> | string | null
+    arduino?: IntNullableFilter<"OccGate"> | number | null
+    statusGate?: IntNullableFilter<"OccGate"> | number | null
     id_tele?: StringNullableFilter<"OccGate"> | string | null
     createdAt?: DateTimeFilter<"OccGate"> | Date | string
     updatedAt?: DateTimeFilter<"OccGate"> | Date | string
     deletedAt?: DateTimeNullableFilter<"OccGate"> | Date | string | null
+    user_lpr?: StringNullableFilter<"OccGate"> | string | null
+    password_lpr?: StringNullableFilter<"OccGate"> | string | null
+    ip_intercome?: StringNullableFilter<"OccGate"> | string | null
+    user_intercome?: StringNullableFilter<"OccGate"> | string | null
+    password_intercome?: StringNullableFilter<"OccGate"> | string | null
     location?: XOR<OccRefLocationScalarRelationFilter, OccRefLocationWhereInput>
   }
 
@@ -15226,13 +15301,18 @@ export namespace Prisma {
     id?: SortOrder
     id_location?: SortOrder
     gate?: SortOrder
-    channel_cctv?: SortOrder
-    arduino?: SortOrder
-    statusGate?: SortOrder
+    ip_lpr?: SortOrderInput | SortOrder
+    arduino?: SortOrderInput | SortOrder
+    statusGate?: SortOrderInput | SortOrder
     id_tele?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    user_lpr?: SortOrderInput | SortOrder
+    password_lpr?: SortOrderInput | SortOrder
+    ip_intercome?: SortOrderInput | SortOrder
+    user_intercome?: SortOrderInput | SortOrder
+    password_intercome?: SortOrderInput | SortOrder
     location?: OccRefLocationOrderByWithRelationInput
   }
 
@@ -15243,13 +15323,18 @@ export namespace Prisma {
     NOT?: OccGateWhereInput | OccGateWhereInput[]
     id_location?: IntFilter<"OccGate"> | number
     gate?: StringFilter<"OccGate"> | string
-    channel_cctv?: StringFilter<"OccGate"> | string
-    arduino?: IntFilter<"OccGate"> | number
-    statusGate?: IntFilter<"OccGate"> | number
+    ip_lpr?: StringNullableFilter<"OccGate"> | string | null
+    arduino?: IntNullableFilter<"OccGate"> | number | null
+    statusGate?: IntNullableFilter<"OccGate"> | number | null
     id_tele?: StringNullableFilter<"OccGate"> | string | null
     createdAt?: DateTimeFilter<"OccGate"> | Date | string
     updatedAt?: DateTimeFilter<"OccGate"> | Date | string
     deletedAt?: DateTimeNullableFilter<"OccGate"> | Date | string | null
+    user_lpr?: StringNullableFilter<"OccGate"> | string | null
+    password_lpr?: StringNullableFilter<"OccGate"> | string | null
+    ip_intercome?: StringNullableFilter<"OccGate"> | string | null
+    user_intercome?: StringNullableFilter<"OccGate"> | string | null
+    password_intercome?: StringNullableFilter<"OccGate"> | string | null
     location?: XOR<OccRefLocationScalarRelationFilter, OccRefLocationWhereInput>
   }, "id">
 
@@ -15257,13 +15342,18 @@ export namespace Prisma {
     id?: SortOrder
     id_location?: SortOrder
     gate?: SortOrder
-    channel_cctv?: SortOrder
-    arduino?: SortOrder
-    statusGate?: SortOrder
+    ip_lpr?: SortOrderInput | SortOrder
+    arduino?: SortOrderInput | SortOrder
+    statusGate?: SortOrderInput | SortOrder
     id_tele?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    user_lpr?: SortOrderInput | SortOrder
+    password_lpr?: SortOrderInput | SortOrder
+    ip_intercome?: SortOrderInput | SortOrder
+    user_intercome?: SortOrderInput | SortOrder
+    password_intercome?: SortOrderInput | SortOrder
     _count?: OccGateCountOrderByAggregateInput
     _avg?: OccGateAvgOrderByAggregateInput
     _max?: OccGateMaxOrderByAggregateInput
@@ -15278,13 +15368,18 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"OccGate"> | number
     id_location?: IntWithAggregatesFilter<"OccGate"> | number
     gate?: StringWithAggregatesFilter<"OccGate"> | string
-    channel_cctv?: StringWithAggregatesFilter<"OccGate"> | string
-    arduino?: IntWithAggregatesFilter<"OccGate"> | number
-    statusGate?: IntWithAggregatesFilter<"OccGate"> | number
+    ip_lpr?: StringNullableWithAggregatesFilter<"OccGate"> | string | null
+    arduino?: IntNullableWithAggregatesFilter<"OccGate"> | number | null
+    statusGate?: IntNullableWithAggregatesFilter<"OccGate"> | number | null
     id_tele?: StringNullableWithAggregatesFilter<"OccGate"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"OccGate"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"OccGate"> | Date | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"OccGate"> | Date | string | null
+    user_lpr?: StringNullableWithAggregatesFilter<"OccGate"> | string | null
+    password_lpr?: StringNullableWithAggregatesFilter<"OccGate"> | string | null
+    ip_intercome?: StringNullableWithAggregatesFilter<"OccGate"> | string | null
+    user_intercome?: StringNullableWithAggregatesFilter<"OccGate"> | string | null
+    password_intercome?: StringNullableWithAggregatesFilter<"OccGate"> | string | null
   }
 
   export type OccIntercomeWhereInput = {
@@ -15967,9 +16062,9 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.RecordStatus
-    location?: OccGateCreateNestedManyWithoutLocationInput
+    recordStatus?: $Enums.RecordStatus | null
     locationConter?: CounterGateCreateNestedManyWithoutLocationConterInput
+    location?: OccGateCreateNestedManyWithoutLocationInput
   }
 
   export type OccRefLocationUncheckedCreateInput = {
@@ -15990,9 +16085,9 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.RecordStatus
-    location?: OccGateUncheckedCreateNestedManyWithoutLocationInput
+    recordStatus?: $Enums.RecordStatus | null
     locationConter?: CounterGateUncheckedCreateNestedManyWithoutLocationConterInput
+    location?: OccGateUncheckedCreateNestedManyWithoutLocationInput
   }
 
   export type OccRefLocationUpdateInput = {
@@ -16012,9 +16107,9 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
-    location?: OccGateUpdateManyWithoutLocationNestedInput
+    recordStatus?: NullableEnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus | null
     locationConter?: CounterGateUpdateManyWithoutLocationConterNestedInput
+    location?: OccGateUpdateManyWithoutLocationNestedInput
   }
 
   export type OccRefLocationUncheckedUpdateInput = {
@@ -16035,9 +16130,9 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
-    location?: OccGateUncheckedUpdateManyWithoutLocationNestedInput
+    recordStatus?: NullableEnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus | null
     locationConter?: CounterGateUncheckedUpdateManyWithoutLocationConterNestedInput
+    location?: OccGateUncheckedUpdateManyWithoutLocationNestedInput
   }
 
   export type OccRefLocationCreateManyInput = {
@@ -16058,7 +16153,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.RecordStatus
+    recordStatus?: $Enums.RecordStatus | null
   }
 
   export type OccRefLocationUpdateManyMutationInput = {
@@ -16078,7 +16173,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+    recordStatus?: NullableEnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus | null
   }
 
   export type OccRefLocationUncheckedUpdateManyInput = {
@@ -16099,7 +16194,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+    recordStatus?: NullableEnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus | null
   }
 
   export type OccTransactionCreateInput = {
@@ -16199,13 +16294,18 @@ export namespace Prisma {
 
   export type OccGateCreateInput = {
     gate: string
-    channel_cctv: string
-    arduino?: number
-    statusGate?: number
+    ip_lpr?: string | null
+    arduino?: number | null
+    statusGate?: number | null
     id_tele?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    user_lpr?: string | null
+    password_lpr?: string | null
+    ip_intercome?: string | null
+    user_intercome?: string | null
+    password_intercome?: string | null
     location: OccRefLocationCreateNestedOneWithoutLocationInput
   }
 
@@ -16213,24 +16313,34 @@ export namespace Prisma {
     id?: number
     id_location: number
     gate: string
-    channel_cctv: string
-    arduino?: number
-    statusGate?: number
+    ip_lpr?: string | null
+    arduino?: number | null
+    statusGate?: number | null
     id_tele?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    user_lpr?: string | null
+    password_lpr?: string | null
+    ip_intercome?: string | null
+    user_intercome?: string | null
+    password_intercome?: string | null
   }
 
   export type OccGateUpdateInput = {
     gate?: StringFieldUpdateOperationsInput | string
-    channel_cctv?: StringFieldUpdateOperationsInput | string
-    arduino?: IntFieldUpdateOperationsInput | number
-    statusGate?: IntFieldUpdateOperationsInput | number
+    ip_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    arduino?: NullableIntFieldUpdateOperationsInput | number | null
+    statusGate?: NullableIntFieldUpdateOperationsInput | number | null
     id_tele?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    password_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    user_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    password_intercome?: NullableStringFieldUpdateOperationsInput | string | null
     location?: OccRefLocationUpdateOneRequiredWithoutLocationNestedInput
   }
 
@@ -16238,50 +16348,70 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     id_location?: IntFieldUpdateOperationsInput | number
     gate?: StringFieldUpdateOperationsInput | string
-    channel_cctv?: StringFieldUpdateOperationsInput | string
-    arduino?: IntFieldUpdateOperationsInput | number
-    statusGate?: IntFieldUpdateOperationsInput | number
+    ip_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    arduino?: NullableIntFieldUpdateOperationsInput | number | null
+    statusGate?: NullableIntFieldUpdateOperationsInput | number | null
     id_tele?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    password_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    user_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    password_intercome?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OccGateCreateManyInput = {
     id?: number
     id_location: number
     gate: string
-    channel_cctv: string
-    arduino?: number
-    statusGate?: number
+    ip_lpr?: string | null
+    arduino?: number | null
+    statusGate?: number | null
     id_tele?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    user_lpr?: string | null
+    password_lpr?: string | null
+    ip_intercome?: string | null
+    user_intercome?: string | null
+    password_intercome?: string | null
   }
 
   export type OccGateUpdateManyMutationInput = {
     gate?: StringFieldUpdateOperationsInput | string
-    channel_cctv?: StringFieldUpdateOperationsInput | string
-    arduino?: IntFieldUpdateOperationsInput | number
-    statusGate?: IntFieldUpdateOperationsInput | number
+    ip_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    arduino?: NullableIntFieldUpdateOperationsInput | number | null
+    statusGate?: NullableIntFieldUpdateOperationsInput | number | null
     id_tele?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    password_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    user_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    password_intercome?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OccGateUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     id_location?: IntFieldUpdateOperationsInput | number
     gate?: StringFieldUpdateOperationsInput | string
-    channel_cctv?: StringFieldUpdateOperationsInput | string
-    arduino?: IntFieldUpdateOperationsInput | number
-    statusGate?: IntFieldUpdateOperationsInput | number
+    ip_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    arduino?: NullableIntFieldUpdateOperationsInput | number | null
+    statusGate?: NullableIntFieldUpdateOperationsInput | number | null
     id_tele?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    password_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    user_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    password_intercome?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OccIntercomeCreateInput = {
@@ -17027,17 +17157,11 @@ export namespace Prisma {
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
-  export type EnumRecordStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumRecordStatusFilter<$PrismaModel> | $Enums.RecordStatus
-  }
-
-  export type OccGateListRelationFilter = {
-    every?: OccGateWhereInput
-    some?: OccGateWhereInput
-    none?: OccGateWhereInput
+  export type EnumRecordStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRecordStatusNullableFilter<$PrismaModel> | $Enums.RecordStatus | null
   }
 
   export type CounterGateListRelationFilter = {
@@ -17046,11 +17170,17 @@ export namespace Prisma {
     none?: CounterGateWhereInput
   }
 
-  export type OccGateOrderByRelationAggregateInput = {
-    _count?: SortOrder
+  export type OccGateListRelationFilter = {
+    every?: OccGateWhereInput
+    some?: OccGateWhereInput
+    none?: OccGateWhereInput
   }
 
   export type CounterGateOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type OccGateOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -17143,14 +17273,14 @@ export namespace Prisma {
     _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
-  export type EnumRecordStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumRecordStatusWithAggregatesFilter<$PrismaModel> | $Enums.RecordStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumRecordStatusFilter<$PrismaModel>
-    _max?: NestedEnumRecordStatusFilter<$PrismaModel>
+  export type EnumRecordStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRecordStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.RecordStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumRecordStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumRecordStatusNullableFilter<$PrismaModel>
   }
 
   export type OccTransactionCountOrderByAggregateInput = {
@@ -17212,13 +17342,18 @@ export namespace Prisma {
     id?: SortOrder
     id_location?: SortOrder
     gate?: SortOrder
-    channel_cctv?: SortOrder
+    ip_lpr?: SortOrder
     arduino?: SortOrder
     statusGate?: SortOrder
     id_tele?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    user_lpr?: SortOrder
+    password_lpr?: SortOrder
+    ip_intercome?: SortOrder
+    user_intercome?: SortOrder
+    password_intercome?: SortOrder
   }
 
   export type OccGateAvgOrderByAggregateInput = {
@@ -17232,26 +17367,36 @@ export namespace Prisma {
     id?: SortOrder
     id_location?: SortOrder
     gate?: SortOrder
-    channel_cctv?: SortOrder
+    ip_lpr?: SortOrder
     arduino?: SortOrder
     statusGate?: SortOrder
     id_tele?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    user_lpr?: SortOrder
+    password_lpr?: SortOrder
+    ip_intercome?: SortOrder
+    user_intercome?: SortOrder
+    password_intercome?: SortOrder
   }
 
   export type OccGateMinOrderByAggregateInput = {
     id?: SortOrder
     id_location?: SortOrder
     gate?: SortOrder
-    channel_cctv?: SortOrder
+    ip_lpr?: SortOrder
     arduino?: SortOrder
     statusGate?: SortOrder
     id_tele?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    user_lpr?: SortOrder
+    password_lpr?: SortOrder
+    ip_intercome?: SortOrder
+    user_intercome?: SortOrder
+    password_intercome?: SortOrder
   }
 
   export type OccGateSumOrderByAggregateInput = {
@@ -17576,13 +17721,6 @@ export namespace Prisma {
     set?: $Enums.statusIssue
   }
 
-  export type OccGateCreateNestedManyWithoutLocationInput = {
-    create?: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput> | OccGateCreateWithoutLocationInput[] | OccGateUncheckedCreateWithoutLocationInput[]
-    connectOrCreate?: OccGateCreateOrConnectWithoutLocationInput | OccGateCreateOrConnectWithoutLocationInput[]
-    createMany?: OccGateCreateManyLocationInputEnvelope
-    connect?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
-  }
-
   export type CounterGateCreateNestedManyWithoutLocationConterInput = {
     create?: XOR<CounterGateCreateWithoutLocationConterInput, CounterGateUncheckedCreateWithoutLocationConterInput> | CounterGateCreateWithoutLocationConterInput[] | CounterGateUncheckedCreateWithoutLocationConterInput[]
     connectOrCreate?: CounterGateCreateOrConnectWithoutLocationConterInput | CounterGateCreateOrConnectWithoutLocationConterInput[]
@@ -17590,7 +17728,7 @@ export namespace Prisma {
     connect?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
   }
 
-  export type OccGateUncheckedCreateNestedManyWithoutLocationInput = {
+  export type OccGateCreateNestedManyWithoutLocationInput = {
     create?: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput> | OccGateCreateWithoutLocationInput[] | OccGateUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: OccGateCreateOrConnectWithoutLocationInput | OccGateCreateOrConnectWithoutLocationInput[]
     createMany?: OccGateCreateManyLocationInputEnvelope
@@ -17604,6 +17742,13 @@ export namespace Prisma {
     connect?: CounterGateWhereUniqueInput | CounterGateWhereUniqueInput[]
   }
 
+  export type OccGateUncheckedCreateNestedManyWithoutLocationInput = {
+    create?: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput> | OccGateCreateWithoutLocationInput[] | OccGateUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: OccGateCreateOrConnectWithoutLocationInput | OccGateCreateOrConnectWithoutLocationInput[]
+    createMany?: OccGateCreateManyLocationInputEnvelope
+    connect?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -17612,22 +17757,8 @@ export namespace Prisma {
     divide?: number
   }
 
-  export type EnumRecordStatusFieldUpdateOperationsInput = {
-    set?: $Enums.RecordStatus
-  }
-
-  export type OccGateUpdateManyWithoutLocationNestedInput = {
-    create?: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput> | OccGateCreateWithoutLocationInput[] | OccGateUncheckedCreateWithoutLocationInput[]
-    connectOrCreate?: OccGateCreateOrConnectWithoutLocationInput | OccGateCreateOrConnectWithoutLocationInput[]
-    upsert?: OccGateUpsertWithWhereUniqueWithoutLocationInput | OccGateUpsertWithWhereUniqueWithoutLocationInput[]
-    createMany?: OccGateCreateManyLocationInputEnvelope
-    set?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
-    disconnect?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
-    delete?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
-    connect?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
-    update?: OccGateUpdateWithWhereUniqueWithoutLocationInput | OccGateUpdateWithWhereUniqueWithoutLocationInput[]
-    updateMany?: OccGateUpdateManyWithWhereWithoutLocationInput | OccGateUpdateManyWithWhereWithoutLocationInput[]
-    deleteMany?: OccGateScalarWhereInput | OccGateScalarWhereInput[]
+  export type NullableEnumRecordStatusFieldUpdateOperationsInput = {
+    set?: $Enums.RecordStatus | null
   }
 
   export type CounterGateUpdateManyWithoutLocationConterNestedInput = {
@@ -17644,7 +17775,7 @@ export namespace Prisma {
     deleteMany?: CounterGateScalarWhereInput | CounterGateScalarWhereInput[]
   }
 
-  export type OccGateUncheckedUpdateManyWithoutLocationNestedInput = {
+  export type OccGateUpdateManyWithoutLocationNestedInput = {
     create?: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput> | OccGateCreateWithoutLocationInput[] | OccGateUncheckedCreateWithoutLocationInput[]
     connectOrCreate?: OccGateCreateOrConnectWithoutLocationInput | OccGateCreateOrConnectWithoutLocationInput[]
     upsert?: OccGateUpsertWithWhereUniqueWithoutLocationInput | OccGateUpsertWithWhereUniqueWithoutLocationInput[]
@@ -17670,6 +17801,20 @@ export namespace Prisma {
     update?: CounterGateUpdateWithWhereUniqueWithoutLocationConterInput | CounterGateUpdateWithWhereUniqueWithoutLocationConterInput[]
     updateMany?: CounterGateUpdateManyWithWhereWithoutLocationConterInput | CounterGateUpdateManyWithWhereWithoutLocationConterInput[]
     deleteMany?: CounterGateScalarWhereInput | CounterGateScalarWhereInput[]
+  }
+
+  export type OccGateUncheckedUpdateManyWithoutLocationNestedInput = {
+    create?: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput> | OccGateCreateWithoutLocationInput[] | OccGateUncheckedCreateWithoutLocationInput[]
+    connectOrCreate?: OccGateCreateOrConnectWithoutLocationInput | OccGateCreateOrConnectWithoutLocationInput[]
+    upsert?: OccGateUpsertWithWhereUniqueWithoutLocationInput | OccGateUpsertWithWhereUniqueWithoutLocationInput[]
+    createMany?: OccGateCreateManyLocationInputEnvelope
+    set?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
+    disconnect?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
+    delete?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
+    connect?: OccGateWhereUniqueInput | OccGateWhereUniqueInput[]
+    update?: OccGateUpdateWithWhereUniqueWithoutLocationInput | OccGateUpdateWithWhereUniqueWithoutLocationInput[]
+    updateMany?: OccGateUpdateManyWithWhereWithoutLocationInput | OccGateUpdateManyWithWhereWithoutLocationInput[]
+    deleteMany?: OccGateScalarWhereInput | OccGateScalarWhereInput[]
   }
 
   export type OccRefLocationCreateNestedOneWithoutLocationInput = {
@@ -17878,11 +18023,11 @@ export namespace Prisma {
     _max?: NestedEnumstatusIssueFilter<$PrismaModel>
   }
 
-  export type NestedEnumRecordStatusFilter<$PrismaModel = never> = {
-    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumRecordStatusFilter<$PrismaModel> | $Enums.RecordStatus
+  export type NestedEnumRecordStatusNullableFilter<$PrismaModel = never> = {
+    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRecordStatusNullableFilter<$PrismaModel> | $Enums.RecordStatus | null
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -17912,14 +18057,14 @@ export namespace Prisma {
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
-  export type NestedEnumRecordStatusWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel>
-    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
-    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel>
-    not?: NestedEnumRecordStatusWithAggregatesFilter<$PrismaModel> | $Enums.RecordStatus
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedEnumRecordStatusFilter<$PrismaModel>
-    _max?: NestedEnumRecordStatusFilter<$PrismaModel>
+  export type NestedEnumRecordStatusNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.RecordStatus | EnumRecordStatusFieldRefInput<$PrismaModel> | null
+    in?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel> | null
+    notIn?: $Enums.RecordStatus[] | ListEnumRecordStatusFieldRefInput<$PrismaModel> | null
+    not?: NestedEnumRecordStatusNullableWithAggregatesFilter<$PrismaModel> | $Enums.RecordStatus | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedEnumRecordStatusNullableFilter<$PrismaModel>
+    _max?: NestedEnumRecordStatusNullableFilter<$PrismaModel>
   }
 
   export type OccDescriptionCreateWithoutCategoryInput = {
@@ -18035,39 +18180,6 @@ export namespace Prisma {
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
-  export type OccGateCreateWithoutLocationInput = {
-    gate: string
-    channel_cctv: string
-    arduino?: number
-    statusGate?: number
-    id_tele?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-  }
-
-  export type OccGateUncheckedCreateWithoutLocationInput = {
-    id?: number
-    gate: string
-    channel_cctv: string
-    arduino?: number
-    statusGate?: number
-    id_tele?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-  }
-
-  export type OccGateCreateOrConnectWithoutLocationInput = {
-    where: OccGateWhereUniqueInput
-    create: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput>
-  }
-
-  export type OccGateCreateManyLocationInputEnvelope = {
-    data: OccGateCreateManyLocationInput | OccGateCreateManyLocationInput[]
-    skipDuplicates?: boolean
-  }
-
   export type CounterGateCreateWithoutLocationConterInput = {
     Date?: string | null
     LocationName?: string | null
@@ -18103,36 +18215,47 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
-  export type OccGateUpsertWithWhereUniqueWithoutLocationInput = {
+  export type OccGateCreateWithoutLocationInput = {
+    gate: string
+    ip_lpr?: string | null
+    arduino?: number | null
+    statusGate?: number | null
+    id_tele?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    user_lpr?: string | null
+    password_lpr?: string | null
+    ip_intercome?: string | null
+    user_intercome?: string | null
+    password_intercome?: string | null
+  }
+
+  export type OccGateUncheckedCreateWithoutLocationInput = {
+    id?: number
+    gate: string
+    ip_lpr?: string | null
+    arduino?: number | null
+    statusGate?: number | null
+    id_tele?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    user_lpr?: string | null
+    password_lpr?: string | null
+    ip_intercome?: string | null
+    user_intercome?: string | null
+    password_intercome?: string | null
+  }
+
+  export type OccGateCreateOrConnectWithoutLocationInput = {
     where: OccGateWhereUniqueInput
-    update: XOR<OccGateUpdateWithoutLocationInput, OccGateUncheckedUpdateWithoutLocationInput>
     create: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput>
   }
 
-  export type OccGateUpdateWithWhereUniqueWithoutLocationInput = {
-    where: OccGateWhereUniqueInput
-    data: XOR<OccGateUpdateWithoutLocationInput, OccGateUncheckedUpdateWithoutLocationInput>
-  }
-
-  export type OccGateUpdateManyWithWhereWithoutLocationInput = {
-    where: OccGateScalarWhereInput
-    data: XOR<OccGateUpdateManyMutationInput, OccGateUncheckedUpdateManyWithoutLocationInput>
-  }
-
-  export type OccGateScalarWhereInput = {
-    AND?: OccGateScalarWhereInput | OccGateScalarWhereInput[]
-    OR?: OccGateScalarWhereInput[]
-    NOT?: OccGateScalarWhereInput | OccGateScalarWhereInput[]
-    id?: IntFilter<"OccGate"> | number
-    id_location?: IntFilter<"OccGate"> | number
-    gate?: StringFilter<"OccGate"> | string
-    channel_cctv?: StringFilter<"OccGate"> | string
-    arduino?: IntFilter<"OccGate"> | number
-    statusGate?: IntFilter<"OccGate"> | number
-    id_tele?: StringNullableFilter<"OccGate"> | string | null
-    createdAt?: DateTimeFilter<"OccGate"> | Date | string
-    updatedAt?: DateTimeFilter<"OccGate"> | Date | string
-    deletedAt?: DateTimeNullableFilter<"OccGate"> | Date | string | null
+  export type OccGateCreateManyLocationInputEnvelope = {
+    data: OccGateCreateManyLocationInput | OccGateCreateManyLocationInput[]
+    skipDuplicates?: boolean
   }
 
   export type CounterGateUpsertWithWhereUniqueWithoutLocationConterInput = {
@@ -18168,6 +18291,43 @@ export namespace Prisma {
     UpdatedAt?: DateTimeFilter<"CounterGate"> | Date | string
   }
 
+  export type OccGateUpsertWithWhereUniqueWithoutLocationInput = {
+    where: OccGateWhereUniqueInput
+    update: XOR<OccGateUpdateWithoutLocationInput, OccGateUncheckedUpdateWithoutLocationInput>
+    create: XOR<OccGateCreateWithoutLocationInput, OccGateUncheckedCreateWithoutLocationInput>
+  }
+
+  export type OccGateUpdateWithWhereUniqueWithoutLocationInput = {
+    where: OccGateWhereUniqueInput
+    data: XOR<OccGateUpdateWithoutLocationInput, OccGateUncheckedUpdateWithoutLocationInput>
+  }
+
+  export type OccGateUpdateManyWithWhereWithoutLocationInput = {
+    where: OccGateScalarWhereInput
+    data: XOR<OccGateUpdateManyMutationInput, OccGateUncheckedUpdateManyWithoutLocationInput>
+  }
+
+  export type OccGateScalarWhereInput = {
+    AND?: OccGateScalarWhereInput | OccGateScalarWhereInput[]
+    OR?: OccGateScalarWhereInput[]
+    NOT?: OccGateScalarWhereInput | OccGateScalarWhereInput[]
+    id?: IntFilter<"OccGate"> | number
+    id_location?: IntFilter<"OccGate"> | number
+    gate?: StringFilter<"OccGate"> | string
+    ip_lpr?: StringNullableFilter<"OccGate"> | string | null
+    arduino?: IntNullableFilter<"OccGate"> | number | null
+    statusGate?: IntNullableFilter<"OccGate"> | number | null
+    id_tele?: StringNullableFilter<"OccGate"> | string | null
+    createdAt?: DateTimeFilter<"OccGate"> | Date | string
+    updatedAt?: DateTimeFilter<"OccGate"> | Date | string
+    deletedAt?: DateTimeNullableFilter<"OccGate"> | Date | string | null
+    user_lpr?: StringNullableFilter<"OccGate"> | string | null
+    password_lpr?: StringNullableFilter<"OccGate"> | string | null
+    ip_intercome?: StringNullableFilter<"OccGate"> | string | null
+    user_intercome?: StringNullableFilter<"OccGate"> | string | null
+    password_intercome?: StringNullableFilter<"OccGate"> | string | null
+  }
+
   export type OccRefLocationCreateWithoutLocationInput = {
     Code: string
     Name: string
@@ -18185,7 +18345,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.RecordStatus
+    recordStatus?: $Enums.RecordStatus | null
     locationConter?: CounterGateCreateNestedManyWithoutLocationConterInput
   }
 
@@ -18207,7 +18367,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.RecordStatus
+    recordStatus?: $Enums.RecordStatus | null
     locationConter?: CounterGateUncheckedCreateNestedManyWithoutLocationConterInput
   }
 
@@ -18244,7 +18404,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+    recordStatus?: NullableEnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus | null
     locationConter?: CounterGateUpdateManyWithoutLocationConterNestedInput
   }
 
@@ -18266,7 +18426,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+    recordStatus?: NullableEnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus | null
     locationConter?: CounterGateUncheckedUpdateManyWithoutLocationConterNestedInput
   }
 
@@ -18287,7 +18447,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.RecordStatus
+    recordStatus?: $Enums.RecordStatus | null
     location?: OccGateCreateNestedManyWithoutLocationInput
   }
 
@@ -18309,7 +18469,7 @@ export namespace Prisma {
     CreatedAt?: Date | string
     UpdatedAt?: Date | string
     DeletedAt?: Date | string | null
-    recordStatus: $Enums.RecordStatus
+    recordStatus?: $Enums.RecordStatus | null
     location?: OccGateUncheckedCreateNestedManyWithoutLocationInput
   }
 
@@ -18346,7 +18506,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+    recordStatus?: NullableEnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus | null
     location?: OccGateUpdateManyWithoutLocationNestedInput
   }
 
@@ -18368,7 +18528,7 @@ export namespace Prisma {
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     DeletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    recordStatus?: EnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus
+    recordStatus?: NullableEnumRecordStatusFieldUpdateOperationsInput | $Enums.RecordStatus | null
     location?: OccGateUncheckedUpdateManyWithoutLocationNestedInput
   }
 
@@ -18411,18 +18571,6 @@ export namespace Prisma {
     modifyBy?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type OccGateCreateManyLocationInput = {
-    id?: number
-    gate: string
-    channel_cctv: string
-    arduino?: number
-    statusGate?: number
-    id_tele?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    deletedAt?: Date | string | null
-  }
-
   export type CounterGateCreateManyLocationConterInput = {
     Id?: number
     Date?: string | null
@@ -18436,39 +18584,21 @@ export namespace Prisma {
     UpdatedAt?: Date | string
   }
 
-  export type OccGateUpdateWithoutLocationInput = {
-    gate?: StringFieldUpdateOperationsInput | string
-    channel_cctv?: StringFieldUpdateOperationsInput | string
-    arduino?: IntFieldUpdateOperationsInput | number
-    statusGate?: IntFieldUpdateOperationsInput | number
-    id_tele?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type OccGateUncheckedUpdateWithoutLocationInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    gate?: StringFieldUpdateOperationsInput | string
-    channel_cctv?: StringFieldUpdateOperationsInput | string
-    arduino?: IntFieldUpdateOperationsInput | number
-    statusGate?: IntFieldUpdateOperationsInput | number
-    id_tele?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  }
-
-  export type OccGateUncheckedUpdateManyWithoutLocationInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    gate?: StringFieldUpdateOperationsInput | string
-    channel_cctv?: StringFieldUpdateOperationsInput | string
-    arduino?: IntFieldUpdateOperationsInput | number
-    statusGate?: IntFieldUpdateOperationsInput | number
-    id_tele?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  export type OccGateCreateManyLocationInput = {
+    id?: number
+    gate: string
+    ip_lpr?: string | null
+    arduino?: number | null
+    statusGate?: number | null
+    id_tele?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    deletedAt?: Date | string | null
+    user_lpr?: string | null
+    password_lpr?: string | null
+    ip_intercome?: string | null
+    user_intercome?: string | null
+    password_intercome?: string | null
   }
 
   export type CounterGateUpdateWithoutLocationConterInput = {
@@ -18507,6 +18637,56 @@ export namespace Prisma {
     CountOutMobil?: NullableIntFieldUpdateOperationsInput | number | null
     CreatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     UpdatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccGateUpdateWithoutLocationInput = {
+    gate?: StringFieldUpdateOperationsInput | string
+    ip_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    arduino?: NullableIntFieldUpdateOperationsInput | number | null
+    statusGate?: NullableIntFieldUpdateOperationsInput | number | null
+    id_tele?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    password_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    user_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    password_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OccGateUncheckedUpdateWithoutLocationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    gate?: StringFieldUpdateOperationsInput | string
+    ip_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    arduino?: NullableIntFieldUpdateOperationsInput | number | null
+    statusGate?: NullableIntFieldUpdateOperationsInput | number | null
+    id_tele?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    password_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    user_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    password_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type OccGateUncheckedUpdateManyWithoutLocationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    gate?: StringFieldUpdateOperationsInput | string
+    ip_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    arduino?: NullableIntFieldUpdateOperationsInput | number | null
+    statusGate?: NullableIntFieldUpdateOperationsInput | number | null
+    id_tele?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    password_lpr?: NullableStringFieldUpdateOperationsInput | string | null
+    ip_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    user_intercome?: NullableStringFieldUpdateOperationsInput | string | null
+    password_intercome?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

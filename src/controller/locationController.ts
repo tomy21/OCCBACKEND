@@ -106,6 +106,7 @@ export const getLocationById = async (req: Request, res: Response) => {
 export const detailGateByLocation = async (req: Request, res: Response) => {
   try {
     const { locationId } = req.params;
+    console.log(locationId);
     const { search } = req.query;
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
@@ -125,6 +126,8 @@ export const detailGateByLocation = async (req: Request, res: Response) => {
         },
       },
     });
+
+    console.log("data Gate", gatesRaw);
 
     // Manual filtering
     const filteredGates = gatesRaw.filter((gate) => {
@@ -184,7 +187,6 @@ export const addGateLocation = async (
       data: {
         gate: gateName,
         id_location: locationId,
-        channel_cctv: "0",
       },
     });
 
@@ -219,5 +221,49 @@ export const updateLocationActive = async (req: Request, res: Response) => {
     res
       .status(500)
       .json(createResponse("LOCATION", "ERROR", "Internal server error"));
+  }
+};
+
+export const updateConfigGate = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const {
+      ip_lpr,
+      user_lpr,
+      password_lpr,
+      ip_intercome,
+      user_intercome,
+      password_intercome,
+    } = req.body;
+
+    const gate = await dbMain.occGate.findUnique({
+      where: { id: parseInt(id) },
+    });
+
+    if (!gate) {
+      res.status(400).json(createResponse("GATE", "READ", "Gate not found"));
+      return;
+    }
+
+    console.log(gate);
+
+    await dbMain.occGate.update({
+      where: { id: parseInt(id) },
+      data: {
+        gate: gate.gate,
+        ip_lpr,
+        user_lpr,
+        password_lpr,
+        ip_intercome,
+        user_intercome,
+        password_intercome,
+      },
+    });
+    res.status(200).json(createResponse("GATE", "UPDATE", "Gate updated"));
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json(createResponse("GATE", "ERROR", "Internal server error"));
   }
 };
