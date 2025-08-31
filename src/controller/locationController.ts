@@ -267,3 +267,23 @@ export const updateConfigGate = async (req: Request, res: Response) => {
       .json(createResponse("GATE", "ERROR", "Internal server error"));
   }
 };
+
+export const getGateById = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+
+    const gate = await dbMain.occGate.findFirst({
+      where: { id: parseInt(id) },
+    });
+    res
+      .status(200)
+      .json(
+        createResponse("LOCATION", "READ", "Get location by id fetched", gate)
+      );
+  } catch (error) {
+    console.error(error);
+    res
+      .status(500)
+      .json(createResponse("LOCATION", "ERROR", "Internal server error"));
+  }
+};

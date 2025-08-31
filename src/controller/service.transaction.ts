@@ -211,6 +211,7 @@ export const updateTransaction = async (req: Request, res: Response) => {
       issuerCode,
     } = dataResult;
     console.log(dataResult);
+
     if (getDataPOST.data.length === 0) {
       res.status(200).json({
         success: true,
@@ -226,6 +227,8 @@ export const updateTransaction = async (req: Request, res: Response) => {
       });
       return;
     }
+
+    console.log(`${urlServer?.UrlServer}/api/update-transaction`);
 
     const dataPut = await axios.post(
       `${urlServer?.UrlServer}/api/update-transaction`,

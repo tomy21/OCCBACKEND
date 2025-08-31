@@ -4,6 +4,7 @@ import {
   detailGateByLocation,
   getAllLocation,
   getAllLocationActive,
+  getGateById,
   getLocationById,
   updateConfigGate,
   updateLocationActive,
@@ -19,5 +20,6 @@ router.get("/get-gate-by-location/:locationId", detailGateByLocation);
 router.put("/update-location-active/:id", updateLocationActive);
 router.post("/create-data/:idLocation", addGateLocation);
 router.put("/update-gate/:id", updateConfigGate);
+router.get("/get-gate-byid/:id", getGateById);
 
 export default router;
