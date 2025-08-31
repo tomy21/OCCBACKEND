@@ -20,6 +20,7 @@ export default function createGateStatusRoute(
     id: number;
     res: any;
     imageFile: string;
+    imageFace: string;
     timeoutId: NodeJS.Timeout;
     plateNumber: string;
     detailGate: any;
@@ -29,12 +30,17 @@ export default function createGateStatusRoute(
 
   router.post(
     "/status/:id",
-    upload.single("image"),
+    upload.fields([
+      { name: "image", maxCount: 1 },
+      { name: "imageFace", maxCount: 1 },
+    ]),
     async (req: any, res: any) => {
       const id = parseInt(req.params.id);
-      const imageFile = req.file;
+      const imageFile = req.files?.["image"]?.[0];
+      const imageFace = req.files?.["imageFace"]?.[0];
 
       const imagePath = imageFile?.filename || null;
+      const imagePathFace = imageFace?.filename || null;
 
       let plateNumber = "-";
       if (imageFile?.path) {
@@ -147,6 +153,7 @@ export default function createGateStatusRoute(
         id,
         res,
         imageFile,
+        imageFace,
         timeoutId,
         plateNumber,
         detailGate: gate,
@@ -178,7 +185,8 @@ export default function createGateStatusRoute(
     processing = true;
 
     while (queue.length > 0) {
-      const { id, res, imageFile, plateNumber, detailGate } = queue[0];
+      const { id, res, imageFile, imageFace, plateNumber, detailGate } =
+        queue[0];
 
       let allocated = false;
       const nextUserIndex = getNextUserIndex();
@@ -244,6 +252,7 @@ export default function createGateStatusRoute(
               gate: gate?.gate,
               imageFileIn: getTransaction?.PathIn,
               imageFile: imageFile,
+              imageFace: imageFace,
               detailGate: dataPOST.data || [],
             });
 
