@@ -161,6 +161,15 @@ model CounterGate {
   locationConter OccRefLocation @relation(fields: [LocationCode], references: [Code])
 }
 
+model OccLogActivity {
+  Id           Int      @id @default(autoincrement())
+  NameActivity String?
+  User         String
+  Action       String?
+  Response     String?
+  CreatedAt    DateTime @default(now())
+}
+
 model userEventNobu {
   id        Int      @id @default(autoincrement())
   nik       String   @unique

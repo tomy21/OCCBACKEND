@@ -23,6 +23,7 @@ import { checkArduinoTimeout } from "./jobs/cekStatusArduino";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import path from "path";
+import { logActivity } from "./middleware/logger";
 
 const app = express();
 const port = process.env.PORT || 3005;
@@ -47,7 +48,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 // app.post("/api/call", call);
 // app.post("/api/end-call", end);
-
+app.use(logActivity);
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
 app.use("/api/category", CategoryRoute);
 app.use("/api/description", DescriptionRoute);

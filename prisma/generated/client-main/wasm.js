@@ -267,6 +267,15 @@ exports.Prisma.CounterGateScalarFieldEnum = {
   UpdatedAt: 'UpdatedAt'
 };
 
+exports.Prisma.OccLogActivityScalarFieldEnum = {
+  Id: 'Id',
+  NameActivity: 'NameActivity',
+  User: 'User',
+  Action: 'Action',
+  Response: 'Response',
+  CreatedAt: 'CreatedAt'
+};
+
 exports.Prisma.UserEventNobuScalarFieldEnum = {
   id: 'id',
   nik: 'nik',
@@ -312,6 +321,7 @@ exports.Prisma.ModelName = {
   RefIssuer: 'RefIssuer',
   OccListMemberStyles: 'OccListMemberStyles',
   CounterGate: 'CounterGate',
+  OccLogActivity: 'OccLogActivity',
   userEventNobu: 'userEventNobu'
 };
 

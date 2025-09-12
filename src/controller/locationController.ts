@@ -3,24 +3,40 @@ import {
   createPaginatedResponse,
   createResponse,
 } from "../helper/responseCode";
-import { dbMain } from "../prisma/client";
+import { dbMain, PrismaMain } from "../prisma/client";
 
 export const getAllLocation = async (req: Request, res: Response) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
+    const search = (req.query.search as string) || "";
 
-    const totalItems = await dbMain.occRefLocation.count();
+    const whereClause: PrismaMain.OccRefLocationWhereInput = search
+      ? {
+          OR: [
+            { Name: { contains: search, mode: "insensitive" } },
+            { Code: { contains: search, mode: "insensitive" } },
+          ],
+        }
+      : {};
+
+    const totalItems = await dbMain.occRefLocation.count({
+      where: whereClause,
+    });
+
     const locations = await dbMain.occRefLocation.findMany({
       skip,
       take: limit,
+      where: whereClause,
       select: {
         id: true,
         Code: true,
         Name: true,
       },
+      orderBy: { Name: "asc" },
     });
+
     res
       .status(200)
       .json(
@@ -48,11 +64,24 @@ export const getAllLocationActive = async (req: Request, res: Response) => {
     const limit = parseInt(req.query.limit as string) || 10;
     const skip = (page - 1) * limit;
 
+    const search = (req.query.search as string) || "";
+    const whereClause: PrismaMain.OccRefLocationWhereInput = {
+      recordStatus: "ACTIVE",
+      ...(search
+        ? {
+            OR: [
+              { Name: { contains: search, mode: "insensitive" } },
+              { Code: { contains: search, mode: "insensitive" } },
+            ],
+          }
+        : {}),
+    };
+
     const totalItems = await dbMain.occRefLocation.count({
-      where: { recordStatus: "ACTIVE" },
+      where: whereClause,
     });
     const locations = await dbMain.occRefLocation.findMany({
-      where: { recordStatus: "ACTIVE" },
+      where: whereClause,
       skip,
       take: limit,
     });

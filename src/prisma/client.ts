@@ -1,5 +1,11 @@
-import { PrismaClient as PrismaMain } from "../../prisma/generated/client-main";
-import { PrismaClient as PrismaSecondary } from "../../prisma/generated/client-secondary";
+import {
+  PrismaClient as PrismaMain,
+  Prisma as PrismaMainNS,
+} from "../../prisma/generated/client-main";
+import {
+  PrismaClient as PrismaSecondary,
+  Prisma as PrismaSecondaryNS,
+} from "../../prisma/generated/client-secondary";
 
 const globalForPrisma = global as unknown as {
   dbMain?: PrismaMain;
@@ -17,6 +23,10 @@ export const dbSecondary =
   new PrismaSecondary({
     log: ["error", "warn"],
   });
+
+// ✅ Export namespace Prisma biar bisa dipakai buat typing
+export type { PrismaMainNS as PrismaMain };
+export type { PrismaSecondaryNS as PrismaSecondary };
 
 if (process.env.NODE_ENV !== "production") {
   globalForPrisma.dbMain = dbMain;
