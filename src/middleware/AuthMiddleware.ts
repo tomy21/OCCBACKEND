@@ -1,24 +1,40 @@
 import { Request, Response, NextFunction } from "express";
-import { verifyToken } from "./verifyToken";
+import jwt from "jsonwebtoken";
 
-export const authMiddleware = (
-  req: Request,
+export interface JwtPayload {
+  id: number;
+  email?: string;
+  // tambahkan properti lain kalau ada
+}
+
+export interface AuthRequest extends Request {
+  user?: JwtPayload;
+}
+
+export const protect = (
+  req: AuthRequest,
   res: Response,
   next: NextFunction
-): void => {
-  const token = req.cookies?.token;
-  console.log(token);
-  if (!token) {
-    res.status(401).json({ message: "Access denied, you are not logged in!" });
-    return;
-  }
-
+) => {
   try {
-    const user = verifyToken(token);
-    req.TokeUserPayload = user;
-    return next(); // tambahkan return agar type-nya jelas void
-  } catch (err) {
-    res.status(401).json({ message: "Invalid token" });
-    return;
+    const token = req.cookies?.token;
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ success: false, message: "Not authorized, no token" });
+    }
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET as string
+    ) as JwtPayload;
+
+    req.user = decoded; // sekarang setiap request punya user
+    next();
+  } catch (error) {
+    return res
+      .status(401)
+      .json({ success: false, message: "Not authorized, token failed" });
   }
 };

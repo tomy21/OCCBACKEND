@@ -1,6 +1,6 @@
 import express from "express";
 
-import { authMiddleware } from "../../middleware/AuthMiddleware";
+import { protect } from "../../middleware/AuthMiddleware";
 import {
   CallByQuantity,
   getIntercomeSummary,
@@ -9,7 +9,7 @@ import {
 } from "../../controller/summaryController";
 
 const router = express.Router();
-router.use(authMiddleware as express.RequestHandler);
+router.use(protect as express.RequestHandler);
 
 router.get("/count-call", getIntercomeSummary);
 router.get("/issue-monthly", getMonthlySummary);

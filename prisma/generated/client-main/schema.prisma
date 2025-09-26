@@ -164,7 +164,7 @@ model CounterGate {
 model OccLogActivity {
   Id           Int      @id @default(autoincrement())
   NameActivity String?
-  User         String
+  User         String?
   Action       String?
   Response     String?
   CreatedAt    DateTime @default(now())
@@ -174,6 +174,48 @@ model userEventNobu {
   id        Int      @id @default(autoincrement())
   nik       String   @unique
   event     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Users {
+  id         Int       @id @default(autoincrement())
+  name       String?   @db.VarChar(255)
+  email      String?   @unique @db.VarChar(255)
+  username   String?   @unique @db.VarChar(255)
+  password   String?   @db.VarChar(255)
+  role       Int?
+  status     Int?
+  lastActive DateTime? @db.Timestamp(6)
+  createdAt  DateTime? @default(now()) @db.Timestamp(6)
+  updatedAt  DateTime? @updatedAt @db.Timestamp(6)
+  deletedAt  DateTime? @db.Timestamp(6)
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model RolePermission {
+  id        Int      @id @default(autoincrement())
+  roleId    Int
+  menuId    Int
+  action    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Menus {
+  id        Int      @id @default(autoincrement())
+  parentId  Int?
+  name      String
+  icon      String?
+  link      String
+  position  Int?
+  status    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

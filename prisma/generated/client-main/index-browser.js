@@ -284,6 +284,48 @@ exports.Prisma.UserEventNobuScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.UsersScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  email: 'email',
+  username: 'username',
+  password: 'password',
+  role: 'role',
+  status: 'status',
+  lastActive: 'lastActive',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  deletedAt: 'deletedAt'
+};
+
+exports.Prisma.RoleScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.RolePermissionScalarFieldEnum = {
+  id: 'id',
+  roleId: 'roleId',
+  menuId: 'menuId',
+  action: 'action',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.MenusScalarFieldEnum = {
+  id: 'id',
+  parentId: 'parentId',
+  name: 'name',
+  icon: 'icon',
+  link: 'link',
+  position: 'position',
+  status: 'status',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -322,7 +364,11 @@ exports.Prisma.ModelName = {
   OccListMemberStyles: 'OccListMemberStyles',
   CounterGate: 'CounterGate',
   OccLogActivity: 'OccLogActivity',
-  userEventNobu: 'userEventNobu'
+  userEventNobu: 'userEventNobu',
+  Users: 'Users',
+  Role: 'Role',
+  RolePermission: 'RolePermission',
+  Menus: 'Menus'
 };
 
 /**

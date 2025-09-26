@@ -1,4 +1,8 @@
 export const RESPONSE_CODES = {
+  USER: 10,
+  ROLE: 11,
+  MENU: 12,
+  ROLEPERMISSION: 13,
   LOGIN: 20,
   CATEGORY: 21,
   DESCRIPTION: 22,

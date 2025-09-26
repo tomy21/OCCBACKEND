@@ -6,10 +6,10 @@ import {
   getCategoryById,
   updateCategory,
 } from "../../controller/categoryController";
-import { authMiddleware } from "../../middleware/AuthMiddleware";
+import { protect } from "../../middleware/AuthMiddleware";
 
 const router = express.Router();
-router.use(authMiddleware as express.RequestHandler);
+router.use(protect as express.RequestHandler);
 
 router.post("/create", createCategory);
 router.get("/get-all", getAllCategory);

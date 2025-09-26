@@ -56,19 +56,24 @@ export const getIntercomeSummary = async (req: Request, res: Response) => {
 
 export const getMonthlySummary = async (req: Request, res: Response) => {
   try {
-    const result = await dbMain.$queryRaw<
-      { month: string; total: number }[]
-    >`SELECT 
-        DATE_FORMAT(CONVERT_TZ(createdAt, '+00:00', '+07:00'), '%Y-%m') AS month,
-        COUNT(*) AS total
-      FROM OccIssue
-      WHERE deletedAt IS NULL
-      GROUP BY month
-      ORDER BY month ASC;`;
+    const result = await dbMain.occIssue.groupBy({
+      by: ["createdAt"],
+      where: {
+        deletedAt: null,
+      },
+      _count: {
+        _all: true,
+      },
+    });
 
+    // format hasil agar jadi bulan (YYYY-MM)
     const formatted = result.map((row) => ({
-      ...row,
-      total: Number(row.total), // Convert BigInt to Number
+      month: row.createdAt.toLocaleString("sv-SE", {
+        year: "numeric",
+        month: "2-digit",
+        timeZone: "Asia/Jakarta",
+      }), // hasil: "2025-09"
+      total: row._count._all,
     }));
 
     res.json({ status: "SUCCESS", data: formatted });

@@ -18,6 +18,8 @@ import SendWhatsappRoute from "./routes/sendWhatsapp/route";
 import CounterRoute from "./routes/counter/routes";
 import eventNobu from "./routes/eventNobu/route";
 import Auth from "./routes/login/routes";
+import UserRoute from "./routes/users/route";
+import RoleRoute from "./routes/role/route";
 
 import { checkArduinoTimeout } from "./jobs/cekStatusArduino";
 import cookieParser from "cookie-parser";
@@ -50,6 +52,8 @@ app.use(bodyParser.json());
 // app.post("/api/end-call", end);
 app.use(logActivity);
 app.use("/uploads", express.static(path.join(__dirname, "..", "uploads")));
+app.use("/api/user", UserRoute);
+app.use("/api/role", RoleRoute);
 app.use("/api/category", CategoryRoute);
 app.use("/api/description", DescriptionRoute);
 app.use("/api/issue", IssueRoute);
