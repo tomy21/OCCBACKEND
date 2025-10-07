@@ -162,7 +162,7 @@ export default function createGateStatusRoute(
     }
   );
 
-  router.post("/call-ended", (req: any, res: any) => {
+  router.post("/call-ended", async (req: any, res: any) => {
     const { userId } = req.body;
 
     const user = users.find((u) => u.id === userId);
@@ -174,6 +174,11 @@ export default function createGateStatusRoute(
     }
 
     user.busy = false;
+
+    await dbMain.users.update({
+      where: { id: userId },
+      data: { inCall: 0 },
+    });
 
     console.log(`User ${userId} (${user.socketId}) marked as free`);
 
@@ -198,6 +203,11 @@ export default function createGateStatusRoute(
           users[idx].busy = true;
 
           try {
+            await dbMain.users.update({
+              where: { id: users[idx].id! },
+              data: { inCall: 1 },
+            });
+
             const gate = await dbMain.occGate.findUnique({
               where: { id },
               include: {

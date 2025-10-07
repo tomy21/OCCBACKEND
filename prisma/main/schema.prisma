@@ -32,25 +32,30 @@ model OccDescription {
 }
 
 model OccIssue {
-  id           Int         @id @default(autoincrement())
-  ticket       String
-  category     String?
-  lokasi       String?
-  description  String?
-  gate         String?
-  action       String?
-  foto_in      String?
-  foto_out     String?
-  number_plate String?
-  TrxNo        String?
-  solusi       String?
-  duration     String?
-  status       statusIssue @default(new)
-  createdBy    String
-  modifiedBy   String?
-  createdAt    DateTime    @default(now())
-  updatedAt    DateTime    @updatedAt
-  deletedAt    DateTime?
+  id                    Int         @id @default(autoincrement())
+  ticket                String
+  category              String?
+  lokasi                String?
+  description           String?
+  gate                  String?
+  action                String?
+  foto_in               String?
+  foto_out              String?
+  number_plate          String?
+  TrxNo                 String?
+  solusi                String?
+  duration              String?
+  status                statusIssue @default(new)
+  createdBy             String
+  modifiedBy            String?
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+  deletedAt             DateTime?
+  foto_bukti_pembayaran String?
+  foto_face_in          String?
+  foto_face_out         String?
+
+  @@map("OccIssue")
 }
 
 model OccRefLocation {
@@ -186,6 +191,7 @@ model Users {
   password   String?   @db.VarChar(255)
   role       Int?
   status     Int?
+  inCall     Int?
   lastActive DateTime? @db.Timestamp(6)
   createdAt  DateTime? @default(now()) @db.Timestamp(6)
   updatedAt  DateTime? @updatedAt @db.Timestamp(6)

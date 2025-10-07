@@ -8,6 +8,7 @@ import {
   register,
   softDelete,
 } from "../../controller/user.controller";
+import { protect } from "../../middleware/AuthMiddleware";
 
 const router = Router();
 
@@ -17,7 +18,7 @@ router.post("/logout", logout);
 router.get("/", getAllUsers);
 
 router.put("/edit/:id", edit);
-router.put("/change-password", changePassword);
+router.put("/change-password", protect, changePassword);
 router.delete("/delete/:id", softDelete);
 
 export default router;

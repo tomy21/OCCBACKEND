@@ -160,7 +160,10 @@ exports.Prisma.OccIssueScalarFieldEnum = {
   modifiedBy: 'modifiedBy',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  deletedAt: 'deletedAt'
+  deletedAt: 'deletedAt',
+  foto_bukti_pembayaran: 'foto_bukti_pembayaran',
+  foto_face_in: 'foto_face_in',
+  foto_face_out: 'foto_face_out'
 };
 
 exports.Prisma.OccRefLocationScalarFieldEnum = {
@@ -292,6 +295,7 @@ exports.Prisma.UsersScalarFieldEnum = {
   password: 'password',
   role: 'role',
   status: 'status',
+  inCall: 'inCall',
   lastActive: 'lastActive',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',

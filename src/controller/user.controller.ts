@@ -9,11 +9,12 @@ import {
   createPaginatedResponse,
   createResponse,
 } from "../helper/responseCode";
+import { formatToJakarta } from "../helper/timeHelper";
 
 export const getAllUsers = async (req: Request, res: Response) => {
   try {
     const page = parseInt(req.query.page as string) || 1;
-    const limit = parseInt(req.query.limit as string) || 10;
+    const limit = parseInt(req.query.limit as string) || 5;
     const skip = (page - 1) * limit;
     const search = (req.query.search as string) || "";
 
@@ -33,7 +34,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
       where: whereClause,
     });
 
-    const locations = await dbMain.users.findMany({
+    const users = await dbMain.users.findMany({
       skip,
       take: limit,
       select: {
@@ -42,11 +43,20 @@ export const getAllUsers = async (req: Request, res: Response) => {
         email: true,
         username: true,
         role: true,
+        inCall: true,
+        lastActive: true,
         createdAt: true,
         updatedAt: true,
       },
-      orderBy: { updatedAt: "asc" },
+      orderBy: { updatedAt: "desc" },
     });
+
+    const formattedUsers = users.map((u) => ({
+      ...u,
+      lastActive: u.lastActive?.toISOString() ?? null,
+      createdAt: u.createdAt?.toISOString(),
+      updatedAt: u.updatedAt?.toISOString(),
+    }));
 
     res
       .status(200)
@@ -55,7 +65,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
           "USER",
           "READ",
           "Get all users fetched",
-          locations,
+          formattedUsers,
           page,
           limit,
           totalItems
@@ -130,6 +140,11 @@ export const login = async (req: Request, res: Response): Promise<void> => {
       process.env.JWT_SECRET as string,
       { expiresIn: remember ? "30d" : "1d" }
     );
+
+    await dbMain.users.update({
+      where: { id: user.id },
+      data: { lastActive: new Date() },
+    });
 
     const responseLogin = {
       id: user.id,

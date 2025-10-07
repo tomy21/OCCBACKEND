@@ -56,25 +56,36 @@ export const getIntercomeSummary = async (req: Request, res: Response) => {
 
 export const getMonthlySummary = async (req: Request, res: Response) => {
   try {
-    const result = await dbMain.occIssue.groupBy({
-      by: ["createdAt"],
+    const result = await dbMain.occIssue.findMany({
       where: {
         deletedAt: null,
       },
-      _count: {
-        _all: true,
+      select: {
+        createdAt: true,
       },
     });
 
-    // format hasil agar jadi bulan (YYYY-MM)
-    const formatted = result.map((row) => ({
-      month: row.createdAt.toLocaleString("sv-SE", {
+    // Hitung jumlah per bulan
+    const monthlyMap: Record<string, number> = {};
+
+    result.forEach((row) => {
+      const month = row.createdAt.toLocaleString("sv-SE", {
         year: "numeric",
         month: "2-digit",
         timeZone: "Asia/Jakarta",
-      }), // hasil: "2025-09"
-      total: row._count._all,
+      }); // contoh: 2025-09
+
+      monthlyMap[month] = (monthlyMap[month] || 0) + 1;
+    });
+
+    // Ubah ke array
+    const formatted = Object.entries(monthlyMap).map(([month, total]) => ({
+      month,
+      total,
     }));
+
+    // Urutkan berdasarkan bulan
+    formatted.sort((a, b) => a.month.localeCompare(b.month));
 
     res.json({ status: "SUCCESS", data: formatted });
   } catch (error) {

@@ -4,7 +4,6 @@ import jwt from "jsonwebtoken";
 export interface JwtPayload {
   id: number;
   email?: string;
-  // tambahkan properti lain kalau ada
 }
 
 export interface AuthRequest extends Request {
@@ -15,14 +14,16 @@ export const protect = (
   req: AuthRequest,
   res: Response,
   next: NextFunction
-) => {
+): void => {
   try {
     const token = req.cookies?.token;
 
     if (!token) {
-      return res
-        .status(401)
-        .json({ success: false, message: "Not authorized, no token" });
+      res.status(401).json({
+        success: false,
+        message: "Not authorized, no token",
+      });
+      return; // ✅ hentikan eksekusi, tapi tidak return Response
     }
 
     const decoded = jwt.verify(
@@ -30,11 +31,12 @@ export const protect = (
       process.env.JWT_SECRET as string
     ) as JwtPayload;
 
-    req.user = decoded; // sekarang setiap request punya user
+    req.user = decoded;
     next();
   } catch (error) {
-    return res
-      .status(401)
-      .json({ success: false, message: "Not authorized, token failed" });
+    res.status(401).json({
+      success: false,
+      message: "Not authorized, token failed",
+    });
   }
 };

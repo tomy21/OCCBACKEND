@@ -4640,6 +4640,9 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
+    foto_bukti_pembayaran: string | null
+    foto_face_in: string | null
+    foto_face_out: string | null
   }
 
   export type OccIssueMaxAggregateOutputType = {
@@ -4662,6 +4665,9 @@ export namespace Prisma {
     createdAt: Date | null
     updatedAt: Date | null
     deletedAt: Date | null
+    foto_bukti_pembayaran: string | null
+    foto_face_in: string | null
+    foto_face_out: string | null
   }
 
   export type OccIssueCountAggregateOutputType = {
@@ -4684,6 +4690,9 @@ export namespace Prisma {
     createdAt: number
     updatedAt: number
     deletedAt: number
+    foto_bukti_pembayaran: number
+    foto_face_in: number
+    foto_face_out: number
     _all: number
   }
 
@@ -4716,6 +4725,9 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    foto_bukti_pembayaran?: true
+    foto_face_in?: true
+    foto_face_out?: true
   }
 
   export type OccIssueMaxAggregateInputType = {
@@ -4738,6 +4750,9 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    foto_bukti_pembayaran?: true
+    foto_face_in?: true
+    foto_face_out?: true
   }
 
   export type OccIssueCountAggregateInputType = {
@@ -4760,6 +4775,9 @@ export namespace Prisma {
     createdAt?: true
     updatedAt?: true
     deletedAt?: true
+    foto_bukti_pembayaran?: true
+    foto_face_in?: true
+    foto_face_out?: true
     _all?: true
   }
 
@@ -4869,6 +4887,9 @@ export namespace Prisma {
     createdAt: Date
     updatedAt: Date
     deletedAt: Date | null
+    foto_bukti_pembayaran: string | null
+    foto_face_in: string | null
+    foto_face_out: string | null
     _count: OccIssueCountAggregateOutputType | null
     _avg: OccIssueAvgAggregateOutputType | null
     _sum: OccIssueSumAggregateOutputType | null
@@ -4910,6 +4931,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    foto_bukti_pembayaran?: boolean
+    foto_face_in?: boolean
+    foto_face_out?: boolean
   }, ExtArgs["result"]["occIssue"]>
 
   export type OccIssueSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4932,6 +4956,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    foto_bukti_pembayaran?: boolean
+    foto_face_in?: boolean
+    foto_face_out?: boolean
   }, ExtArgs["result"]["occIssue"]>
 
   export type OccIssueSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4954,6 +4981,9 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    foto_bukti_pembayaran?: boolean
+    foto_face_in?: boolean
+    foto_face_out?: boolean
   }, ExtArgs["result"]["occIssue"]>
 
   export type OccIssueSelectScalar = {
@@ -4976,9 +5006,12 @@ export namespace Prisma {
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
+    foto_bukti_pembayaran?: boolean
+    foto_face_in?: boolean
+    foto_face_out?: boolean
   }
 
-  export type OccIssueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticket" | "category" | "lokasi" | "description" | "gate" | "action" | "foto_in" | "foto_out" | "number_plate" | "TrxNo" | "solusi" | "duration" | "status" | "createdBy" | "modifiedBy" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["occIssue"]>
+  export type OccIssueOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "ticket" | "category" | "lokasi" | "description" | "gate" | "action" | "foto_in" | "foto_out" | "number_plate" | "TrxNo" | "solusi" | "duration" | "status" | "createdBy" | "modifiedBy" | "createdAt" | "updatedAt" | "deletedAt" | "foto_bukti_pembayaran" | "foto_face_in" | "foto_face_out", ExtArgs["result"]["occIssue"]>
 
   export type $OccIssuePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "OccIssue"
@@ -5003,6 +5036,9 @@ export namespace Prisma {
       createdAt: Date
       updatedAt: Date
       deletedAt: Date | null
+      foto_bukti_pembayaran: string | null
+      foto_face_in: string | null
+      foto_face_out: string | null
     }, ExtArgs["result"]["occIssue"]>
     composites: {}
   }
@@ -5445,6 +5481,9 @@ export namespace Prisma {
     readonly createdAt: FieldRef<"OccIssue", 'DateTime'>
     readonly updatedAt: FieldRef<"OccIssue", 'DateTime'>
     readonly deletedAt: FieldRef<"OccIssue", 'DateTime'>
+    readonly foto_bukti_pembayaran: FieldRef<"OccIssue", 'String'>
+    readonly foto_face_in: FieldRef<"OccIssue", 'String'>
+    readonly foto_face_out: FieldRef<"OccIssue", 'String'>
   }
     
 
@@ -15998,12 +16037,14 @@ export namespace Prisma {
     id: number | null
     role: number | null
     status: number | null
+    inCall: number | null
   }
 
   export type UsersSumAggregateOutputType = {
     id: number | null
     role: number | null
     status: number | null
+    inCall: number | null
   }
 
   export type UsersMinAggregateOutputType = {
@@ -16014,6 +16055,7 @@ export namespace Prisma {
     password: string | null
     role: number | null
     status: number | null
+    inCall: number | null
     lastActive: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -16028,6 +16070,7 @@ export namespace Prisma {
     password: string | null
     role: number | null
     status: number | null
+    inCall: number | null
     lastActive: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -16042,6 +16085,7 @@ export namespace Prisma {
     password: number
     role: number
     status: number
+    inCall: number
     lastActive: number
     createdAt: number
     updatedAt: number
@@ -16054,12 +16098,14 @@ export namespace Prisma {
     id?: true
     role?: true
     status?: true
+    inCall?: true
   }
 
   export type UsersSumAggregateInputType = {
     id?: true
     role?: true
     status?: true
+    inCall?: true
   }
 
   export type UsersMinAggregateInputType = {
@@ -16070,6 +16116,7 @@ export namespace Prisma {
     password?: true
     role?: true
     status?: true
+    inCall?: true
     lastActive?: true
     createdAt?: true
     updatedAt?: true
@@ -16084,6 +16131,7 @@ export namespace Prisma {
     password?: true
     role?: true
     status?: true
+    inCall?: true
     lastActive?: true
     createdAt?: true
     updatedAt?: true
@@ -16098,6 +16146,7 @@ export namespace Prisma {
     password?: true
     role?: true
     status?: true
+    inCall?: true
     lastActive?: true
     createdAt?: true
     updatedAt?: true
@@ -16199,6 +16248,7 @@ export namespace Prisma {
     password: string | null
     role: number | null
     status: number | null
+    inCall: number | null
     lastActive: Date | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -16232,6 +16282,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     status?: boolean
+    inCall?: boolean
     lastActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -16246,6 +16297,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     status?: boolean
+    inCall?: boolean
     lastActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -16260,6 +16312,7 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     status?: boolean
+    inCall?: boolean
     lastActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
@@ -16274,13 +16327,14 @@ export namespace Prisma {
     password?: boolean
     role?: boolean
     status?: boolean
+    inCall?: boolean
     lastActive?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     deletedAt?: boolean
   }
 
-  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "username" | "password" | "role" | "status" | "lastActive" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["users"]>
+  export type UsersOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "username" | "password" | "role" | "status" | "inCall" | "lastActive" | "createdAt" | "updatedAt" | "deletedAt", ExtArgs["result"]["users"]>
 
   export type $UsersPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Users"
@@ -16293,6 +16347,7 @@ export namespace Prisma {
       password: string | null
       role: number | null
       status: number | null
+      inCall: number | null
       lastActive: Date | null
       createdAt: Date | null
       updatedAt: Date | null
@@ -16727,6 +16782,7 @@ export namespace Prisma {
     readonly password: FieldRef<"Users", 'String'>
     readonly role: FieldRef<"Users", 'Int'>
     readonly status: FieldRef<"Users", 'Int'>
+    readonly inCall: FieldRef<"Users", 'Int'>
     readonly lastActive: FieldRef<"Users", 'DateTime'>
     readonly createdAt: FieldRef<"Users", 'DateTime'>
     readonly updatedAt: FieldRef<"Users", 'DateTime'>
@@ -20316,7 +20372,10 @@ export namespace Prisma {
     modifiedBy: 'modifiedBy',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    deletedAt: 'deletedAt'
+    deletedAt: 'deletedAt',
+    foto_bukti_pembayaran: 'foto_bukti_pembayaran',
+    foto_face_in: 'foto_face_in',
+    foto_face_out: 'foto_face_out'
   };
 
   export type OccIssueScalarFieldEnum = (typeof OccIssueScalarFieldEnum)[keyof typeof OccIssueScalarFieldEnum]
@@ -20478,6 +20537,7 @@ export namespace Prisma {
     password: 'password',
     role: 'role',
     status: 'status',
+    inCall: 'inCall',
     lastActive: 'lastActive',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
@@ -20802,6 +20862,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"OccIssue"> | Date | string
     updatedAt?: DateTimeFilter<"OccIssue"> | Date | string
     deletedAt?: DateTimeNullableFilter<"OccIssue"> | Date | string | null
+    foto_bukti_pembayaran?: StringNullableFilter<"OccIssue"> | string | null
+    foto_face_in?: StringNullableFilter<"OccIssue"> | string | null
+    foto_face_out?: StringNullableFilter<"OccIssue"> | string | null
   }
 
   export type OccIssueOrderByWithRelationInput = {
@@ -20824,6 +20887,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    foto_bukti_pembayaran?: SortOrderInput | SortOrder
+    foto_face_in?: SortOrderInput | SortOrder
+    foto_face_out?: SortOrderInput | SortOrder
   }
 
   export type OccIssueWhereUniqueInput = Prisma.AtLeast<{
@@ -20849,6 +20915,9 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"OccIssue"> | Date | string
     updatedAt?: DateTimeFilter<"OccIssue"> | Date | string
     deletedAt?: DateTimeNullableFilter<"OccIssue"> | Date | string | null
+    foto_bukti_pembayaran?: StringNullableFilter<"OccIssue"> | string | null
+    foto_face_in?: StringNullableFilter<"OccIssue"> | string | null
+    foto_face_out?: StringNullableFilter<"OccIssue"> | string | null
   }, "id">
 
   export type OccIssueOrderByWithAggregationInput = {
@@ -20871,6 +20940,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrderInput | SortOrder
+    foto_bukti_pembayaran?: SortOrderInput | SortOrder
+    foto_face_in?: SortOrderInput | SortOrder
+    foto_face_out?: SortOrderInput | SortOrder
     _count?: OccIssueCountOrderByAggregateInput
     _avg?: OccIssueAvgOrderByAggregateInput
     _max?: OccIssueMaxOrderByAggregateInput
@@ -20901,6 +20973,9 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"OccIssue"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"OccIssue"> | Date | string
     deletedAt?: DateTimeNullableWithAggregatesFilter<"OccIssue"> | Date | string | null
+    foto_bukti_pembayaran?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
+    foto_face_in?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
+    foto_face_out?: StringNullableWithAggregatesFilter<"OccIssue"> | string | null
   }
 
   export type OccRefLocationWhereInput = {
@@ -21657,6 +21732,7 @@ export namespace Prisma {
     password?: StringNullableFilter<"Users"> | string | null
     role?: IntNullableFilter<"Users"> | number | null
     status?: IntNullableFilter<"Users"> | number | null
+    inCall?: IntNullableFilter<"Users"> | number | null
     lastActive?: DateTimeNullableFilter<"Users"> | Date | string | null
     createdAt?: DateTimeNullableFilter<"Users"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"Users"> | Date | string | null
@@ -21671,6 +21747,7 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
     status?: SortOrderInput | SortOrder
+    inCall?: SortOrderInput | SortOrder
     lastActive?: SortOrderInput | SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
@@ -21688,6 +21765,7 @@ export namespace Prisma {
     password?: StringNullableFilter<"Users"> | string | null
     role?: IntNullableFilter<"Users"> | number | null
     status?: IntNullableFilter<"Users"> | number | null
+    inCall?: IntNullableFilter<"Users"> | number | null
     lastActive?: DateTimeNullableFilter<"Users"> | Date | string | null
     createdAt?: DateTimeNullableFilter<"Users"> | Date | string | null
     updatedAt?: DateTimeNullableFilter<"Users"> | Date | string | null
@@ -21702,6 +21780,7 @@ export namespace Prisma {
     password?: SortOrderInput | SortOrder
     role?: SortOrderInput | SortOrder
     status?: SortOrderInput | SortOrder
+    inCall?: SortOrderInput | SortOrder
     lastActive?: SortOrderInput | SortOrder
     createdAt?: SortOrderInput | SortOrder
     updatedAt?: SortOrderInput | SortOrder
@@ -21724,6 +21803,7 @@ export namespace Prisma {
     password?: StringNullableWithAggregatesFilter<"Users"> | string | null
     role?: IntNullableWithAggregatesFilter<"Users"> | number | null
     status?: IntNullableWithAggregatesFilter<"Users"> | number | null
+    inCall?: IntNullableWithAggregatesFilter<"Users"> | number | null
     lastActive?: DateTimeNullableWithAggregatesFilter<"Users"> | Date | string | null
     createdAt?: DateTimeNullableWithAggregatesFilter<"Users"> | Date | string | null
     updatedAt?: DateTimeNullableWithAggregatesFilter<"Users"> | Date | string | null
@@ -22075,6 +22155,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    foto_bukti_pembayaran?: string | null
+    foto_face_in?: string | null
+    foto_face_out?: string | null
   }
 
   export type OccIssueUncheckedCreateInput = {
@@ -22097,6 +22180,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    foto_bukti_pembayaran?: string | null
+    foto_face_in?: string | null
+    foto_face_out?: string | null
   }
 
   export type OccIssueUpdateInput = {
@@ -22118,6 +22204,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    foto_bukti_pembayaran?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_face_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_face_out?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OccIssueUncheckedUpdateInput = {
@@ -22140,6 +22229,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    foto_bukti_pembayaran?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_face_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_face_out?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OccIssueCreateManyInput = {
@@ -22162,6 +22254,9 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     deletedAt?: Date | string | null
+    foto_bukti_pembayaran?: string | null
+    foto_face_in?: string | null
+    foto_face_out?: string | null
   }
 
   export type OccIssueUpdateManyMutationInput = {
@@ -22183,6 +22278,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    foto_bukti_pembayaran?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_face_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_face_out?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OccIssueUncheckedUpdateManyInput = {
@@ -22205,6 +22303,9 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     deletedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    foto_bukti_pembayaran?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_face_in?: NullableStringFieldUpdateOperationsInput | string | null
+    foto_face_out?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type OccRefLocationCreateInput = {
@@ -23040,6 +23141,7 @@ export namespace Prisma {
     password?: string | null
     role?: number | null
     status?: number | null
+    inCall?: number | null
     lastActive?: Date | string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -23054,6 +23156,7 @@ export namespace Prisma {
     password?: string | null
     role?: number | null
     status?: number | null
+    inCall?: number | null
     lastActive?: Date | string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -23067,6 +23170,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableIntFieldUpdateOperationsInput | number | null
     status?: NullableIntFieldUpdateOperationsInput | number | null
+    inCall?: NullableIntFieldUpdateOperationsInput | number | null
     lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23081,6 +23185,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableIntFieldUpdateOperationsInput | number | null
     status?: NullableIntFieldUpdateOperationsInput | number | null
+    inCall?: NullableIntFieldUpdateOperationsInput | number | null
     lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23095,6 +23200,7 @@ export namespace Prisma {
     password?: string | null
     role?: number | null
     status?: number | null
+    inCall?: number | null
     lastActive?: Date | string | null
     createdAt?: Date | string | null
     updatedAt?: Date | string | null
@@ -23108,6 +23214,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableIntFieldUpdateOperationsInput | number | null
     status?: NullableIntFieldUpdateOperationsInput | number | null
+    inCall?: NullableIntFieldUpdateOperationsInput | number | null
     lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23122,6 +23229,7 @@ export namespace Prisma {
     password?: NullableStringFieldUpdateOperationsInput | string | null
     role?: NullableIntFieldUpdateOperationsInput | number | null
     status?: NullableIntFieldUpdateOperationsInput | number | null
+    inCall?: NullableIntFieldUpdateOperationsInput | number | null
     lastActive?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     createdAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     updatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
@@ -23586,6 +23694,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    foto_bukti_pembayaran?: SortOrder
+    foto_face_in?: SortOrder
+    foto_face_out?: SortOrder
   }
 
   export type OccIssueAvgOrderByAggregateInput = {
@@ -23612,6 +23723,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    foto_bukti_pembayaran?: SortOrder
+    foto_face_in?: SortOrder
+    foto_face_out?: SortOrder
   }
 
   export type OccIssueMinOrderByAggregateInput = {
@@ -23634,6 +23748,9 @@ export namespace Prisma {
     createdAt?: SortOrder
     updatedAt?: SortOrder
     deletedAt?: SortOrder
+    foto_bukti_pembayaran?: SortOrder
+    foto_face_in?: SortOrder
+    foto_face_out?: SortOrder
   }
 
   export type OccIssueSumOrderByAggregateInput = {
@@ -24184,6 +24301,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
+    inCall?: SortOrder
     lastActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -24194,6 +24312,7 @@ export namespace Prisma {
     id?: SortOrder
     role?: SortOrder
     status?: SortOrder
+    inCall?: SortOrder
   }
 
   export type UsersMaxOrderByAggregateInput = {
@@ -24204,6 +24323,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
+    inCall?: SortOrder
     lastActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -24218,6 +24338,7 @@ export namespace Prisma {
     password?: SortOrder
     role?: SortOrder
     status?: SortOrder
+    inCall?: SortOrder
     lastActive?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -24228,6 +24349,7 @@ export namespace Prisma {
     id?: SortOrder
     role?: SortOrder
     status?: SortOrder
+    inCall?: SortOrder
   }
 
   export type RoleCountOrderByAggregateInput = {
