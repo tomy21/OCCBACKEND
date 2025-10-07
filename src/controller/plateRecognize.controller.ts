@@ -10,7 +10,7 @@ export const detectPlate = async (
   try {
     const { camera_id, image_base64 } = req.body;
     const file = req.file as Express.Multer.File | undefined;
-    console.log("[request]", req.body);
+
     let imageSource: string | undefined;
 
     if (image_base64) {
