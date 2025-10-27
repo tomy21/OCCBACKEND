@@ -3,6 +3,7 @@ import {
   changePassword,
   edit,
   getAllUsers,
+  getById,
   login,
   logout,
   register,
@@ -16,6 +17,7 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.get("/", getAllUsers);
+router.get("/:id", getById);
 
 router.put("/edit/:id", edit);
 router.put("/change-password", protect, changePassword);

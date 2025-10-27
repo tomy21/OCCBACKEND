@@ -189,6 +189,19 @@ export const edit = async (req: Request, res: Response): Promise<void> => {
     res.status(500).json({ message: "Error updating user", error });
   }
 };
+export const getById = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const { id } = req.params;
+
+    const user = await dbMain.users.findUnique({
+      where: { id: parseInt(id) },
+    });
+
+    res.json({ message: "User updated", user });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating user", error });
+  }
+};
 
 export const changePassword = async (
   req: Request,
