@@ -5,6 +5,7 @@ import {
   createResponse,
 } from "../helper/responseCode";
 import { format, toZonedTime } from "date-fns-tz";
+import { addHours, endOfDay, startOfDay } from "date-fns";
 
 const formatWIB = (date: Date): string => {
   const jakartaTime = toZonedTime(date, "Asia/Jakarta");
@@ -268,11 +269,14 @@ export const getAllCounters = async (
   try {
     const page = parseInt(req.query.page as string) || 1;
     const limit = parseInt(req.query.limit as string) || 10;
+    const locationCode = req.query.locationCode as string;
+
     const skip = (page - 1) * limit;
 
     // Ambil data + total count sekaligus
     const [counters, total] = await Promise.all([
       dbMain.counterGate.findMany({
+        where: locationCode ? { LocationCode: locationCode } : {},
         skip,
         take: limit,
         orderBy: { CreatedAt: "desc" }, // pastikan format string tanggal konsisten
@@ -281,6 +285,68 @@ export const getAllCounters = async (
     ]);
 
     // Format CreatedAt dan UpdatedAt menjadi WIB
+    const countersFormatted = counters.map((item) => ({
+      ...item,
+      CreatedAt: formatWIB(item.CreatedAt),
+      UpdatedAt: formatWIB(item.UpdatedAt),
+    }));
+
+    res.json(
+      createPaginatedResponse(
+        "COUNTER",
+        "READ",
+        "Get all counters fetched",
+        countersFormatted,
+        page,
+        limit,
+        total
+      )
+    );
+  } catch (err) {
+    console.error("Pagination Error:", err);
+    res.status(500).json({ error: "Failed to retrieve counters" });
+  }
+};
+
+export const getAllCountersByLocation = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  try {
+    const page = parseInt(req.query.page as string) || 1;
+    const limit = parseInt(req.query.limit as string) || 10;
+    const skip = (page - 1) * limit;
+
+    // const locationId = req.query.locationId as string | undefined;
+
+    // WIB date range
+    const now = new Date();
+    const todayWIB = addHours(now, 7);
+
+    const todayStr = now.toISOString().split("T")[0];
+
+    const whereClause: any = {
+      Date: {
+        contains: todayStr,
+      },
+    };
+
+    // if (locationId) {
+    //   whereClause.locationId = locationId;
+    // }
+
+    const [counters, total] = await Promise.all([
+      dbMain.counterGate.findMany({
+        skip,
+        take: limit,
+        where: whereClause,
+        orderBy: { UpdatedAt: "desc" },
+      }),
+      dbMain.counterGate.count({
+        where: whereClause,
+      }),
+    ]);
+
     const countersFormatted = counters.map((item) => ({
       ...item,
       CreatedAt: formatWIB(item.CreatedAt),
