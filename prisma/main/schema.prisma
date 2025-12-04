@@ -226,6 +226,15 @@ model Menus {
   updatedAt DateTime @updatedAt
 }
 
+model OccHistoryCounting {
+  id           Int      @id @default(autoincrement())
+  idGate       Int?
+  locationCode String?
+  count        Int?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
 enum statusIssue {
   new
   progress

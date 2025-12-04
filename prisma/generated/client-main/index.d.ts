@@ -93,6 +93,11 @@ export type RolePermission = $Result.DefaultSelection<Prisma.$RolePermissionPayl
  * 
  */
 export type Menus = $Result.DefaultSelection<Prisma.$MenusPayload>
+/**
+ * Model OccHistoryCounting
+ * 
+ */
+export type OccHistoryCounting = $Result.DefaultSelection<Prisma.$OccHistoryCountingPayload>
 
 /**
  * Enums
@@ -409,6 +414,16 @@ export class PrismaClient<
     * ```
     */
   get menus(): Prisma.MenusDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.occHistoryCounting`: Exposes CRUD operations for the **OccHistoryCounting** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more OccHistoryCountings
+    * const occHistoryCountings = await prisma.occHistoryCounting.findMany()
+    * ```
+    */
+  get occHistoryCounting(): Prisma.OccHistoryCountingDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -864,7 +879,8 @@ export namespace Prisma {
     Users: 'Users',
     Role: 'Role',
     RolePermission: 'RolePermission',
-    Menus: 'Menus'
+    Menus: 'Menus',
+    OccHistoryCounting: 'OccHistoryCounting'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -883,7 +899,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer" | "occListMemberStyles" | "counterGate" | "occLogActivity" | "userEventNobu" | "users" | "role" | "rolePermission" | "menus"
+      modelProps: "occCategory" | "occDescription" | "occIssue" | "occRefLocation" | "occTransaction" | "occGate" | "occIntercome" | "refIssuer" | "occListMemberStyles" | "counterGate" | "occLogActivity" | "userEventNobu" | "users" | "role" | "rolePermission" | "menus" | "occHistoryCounting"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -2071,6 +2087,80 @@ export namespace Prisma {
           }
         }
       }
+      OccHistoryCounting: {
+        payload: Prisma.$OccHistoryCountingPayload<ExtArgs>
+        fields: Prisma.OccHistoryCountingFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.OccHistoryCountingFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.OccHistoryCountingFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>
+          }
+          findFirst: {
+            args: Prisma.OccHistoryCountingFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.OccHistoryCountingFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>
+          }
+          findMany: {
+            args: Prisma.OccHistoryCountingFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>[]
+          }
+          create: {
+            args: Prisma.OccHistoryCountingCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>
+          }
+          createMany: {
+            args: Prisma.OccHistoryCountingCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.OccHistoryCountingCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>[]
+          }
+          delete: {
+            args: Prisma.OccHistoryCountingDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>
+          }
+          update: {
+            args: Prisma.OccHistoryCountingUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>
+          }
+          deleteMany: {
+            args: Prisma.OccHistoryCountingDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.OccHistoryCountingUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.OccHistoryCountingUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>[]
+          }
+          upsert: {
+            args: Prisma.OccHistoryCountingUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$OccHistoryCountingPayload>
+          }
+          aggregate: {
+            args: Prisma.OccHistoryCountingAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateOccHistoryCounting>
+          }
+          groupBy: {
+            args: Prisma.OccHistoryCountingGroupByArgs<ExtArgs>
+            result: $Utils.Optional<OccHistoryCountingGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.OccHistoryCountingCountArgs<ExtArgs>
+            result: $Utils.Optional<OccHistoryCountingCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -2171,6 +2261,7 @@ export namespace Prisma {
     role?: RoleOmit
     rolePermission?: RolePermissionOmit
     menus?: MenusOmit
+    occHistoryCounting?: OccHistoryCountingOmit
   }
 
   /* Types for Logging */
@@ -20313,6 +20404,1056 @@ export namespace Prisma {
 
 
   /**
+   * Model OccHistoryCounting
+   */
+
+  export type AggregateOccHistoryCounting = {
+    _count: OccHistoryCountingCountAggregateOutputType | null
+    _avg: OccHistoryCountingAvgAggregateOutputType | null
+    _sum: OccHistoryCountingSumAggregateOutputType | null
+    _min: OccHistoryCountingMinAggregateOutputType | null
+    _max: OccHistoryCountingMaxAggregateOutputType | null
+  }
+
+  export type OccHistoryCountingAvgAggregateOutputType = {
+    id: number | null
+    idGate: number | null
+    count: number | null
+  }
+
+  export type OccHistoryCountingSumAggregateOutputType = {
+    id: number | null
+    idGate: number | null
+    count: number | null
+  }
+
+  export type OccHistoryCountingMinAggregateOutputType = {
+    id: number | null
+    idGate: number | null
+    locationCode: string | null
+    count: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type OccHistoryCountingMaxAggregateOutputType = {
+    id: number | null
+    idGate: number | null
+    locationCode: string | null
+    count: number | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type OccHistoryCountingCountAggregateOutputType = {
+    id: number
+    idGate: number
+    locationCode: number
+    count: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type OccHistoryCountingAvgAggregateInputType = {
+    id?: true
+    idGate?: true
+    count?: true
+  }
+
+  export type OccHistoryCountingSumAggregateInputType = {
+    id?: true
+    idGate?: true
+    count?: true
+  }
+
+  export type OccHistoryCountingMinAggregateInputType = {
+    id?: true
+    idGate?: true
+    locationCode?: true
+    count?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type OccHistoryCountingMaxAggregateInputType = {
+    id?: true
+    idGate?: true
+    locationCode?: true
+    count?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type OccHistoryCountingCountAggregateInputType = {
+    id?: true
+    idGate?: true
+    locationCode?: true
+    count?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type OccHistoryCountingAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OccHistoryCounting to aggregate.
+     */
+    where?: OccHistoryCountingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccHistoryCountings to fetch.
+     */
+    orderBy?: OccHistoryCountingOrderByWithRelationInput | OccHistoryCountingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: OccHistoryCountingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccHistoryCountings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccHistoryCountings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned OccHistoryCountings
+    **/
+    _count?: true | OccHistoryCountingCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: OccHistoryCountingAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: OccHistoryCountingSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: OccHistoryCountingMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: OccHistoryCountingMaxAggregateInputType
+  }
+
+  export type GetOccHistoryCountingAggregateType<T extends OccHistoryCountingAggregateArgs> = {
+        [P in keyof T & keyof AggregateOccHistoryCounting]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateOccHistoryCounting[P]>
+      : GetScalarType<T[P], AggregateOccHistoryCounting[P]>
+  }
+
+
+
+
+  export type OccHistoryCountingGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: OccHistoryCountingWhereInput
+    orderBy?: OccHistoryCountingOrderByWithAggregationInput | OccHistoryCountingOrderByWithAggregationInput[]
+    by: OccHistoryCountingScalarFieldEnum[] | OccHistoryCountingScalarFieldEnum
+    having?: OccHistoryCountingScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: OccHistoryCountingCountAggregateInputType | true
+    _avg?: OccHistoryCountingAvgAggregateInputType
+    _sum?: OccHistoryCountingSumAggregateInputType
+    _min?: OccHistoryCountingMinAggregateInputType
+    _max?: OccHistoryCountingMaxAggregateInputType
+  }
+
+  export type OccHistoryCountingGroupByOutputType = {
+    id: number
+    idGate: number | null
+    locationCode: string | null
+    count: number | null
+    createdAt: Date
+    updatedAt: Date
+    _count: OccHistoryCountingCountAggregateOutputType | null
+    _avg: OccHistoryCountingAvgAggregateOutputType | null
+    _sum: OccHistoryCountingSumAggregateOutputType | null
+    _min: OccHistoryCountingMinAggregateOutputType | null
+    _max: OccHistoryCountingMaxAggregateOutputType | null
+  }
+
+  type GetOccHistoryCountingGroupByPayload<T extends OccHistoryCountingGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<OccHistoryCountingGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof OccHistoryCountingGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], OccHistoryCountingGroupByOutputType[P]>
+            : GetScalarType<T[P], OccHistoryCountingGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type OccHistoryCountingSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    idGate?: boolean
+    locationCode?: boolean
+    count?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["occHistoryCounting"]>
+
+  export type OccHistoryCountingSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    idGate?: boolean
+    locationCode?: boolean
+    count?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["occHistoryCounting"]>
+
+  export type OccHistoryCountingSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    idGate?: boolean
+    locationCode?: boolean
+    count?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["occHistoryCounting"]>
+
+  export type OccHistoryCountingSelectScalar = {
+    id?: boolean
+    idGate?: boolean
+    locationCode?: boolean
+    count?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type OccHistoryCountingOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "idGate" | "locationCode" | "count" | "createdAt" | "updatedAt", ExtArgs["result"]["occHistoryCounting"]>
+
+  export type $OccHistoryCountingPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "OccHistoryCounting"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      idGate: number | null
+      locationCode: string | null
+      count: number | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["occHistoryCounting"]>
+    composites: {}
+  }
+
+  type OccHistoryCountingGetPayload<S extends boolean | null | undefined | OccHistoryCountingDefaultArgs> = $Result.GetResult<Prisma.$OccHistoryCountingPayload, S>
+
+  type OccHistoryCountingCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<OccHistoryCountingFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: OccHistoryCountingCountAggregateInputType | true
+    }
+
+  export interface OccHistoryCountingDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['OccHistoryCounting'], meta: { name: 'OccHistoryCounting' } }
+    /**
+     * Find zero or one OccHistoryCounting that matches the filter.
+     * @param {OccHistoryCountingFindUniqueArgs} args - Arguments to find a OccHistoryCounting
+     * @example
+     * // Get one OccHistoryCounting
+     * const occHistoryCounting = await prisma.occHistoryCounting.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends OccHistoryCountingFindUniqueArgs>(args: SelectSubset<T, OccHistoryCountingFindUniqueArgs<ExtArgs>>): Prisma__OccHistoryCountingClient<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one OccHistoryCounting that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {OccHistoryCountingFindUniqueOrThrowArgs} args - Arguments to find a OccHistoryCounting
+     * @example
+     * // Get one OccHistoryCounting
+     * const occHistoryCounting = await prisma.occHistoryCounting.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends OccHistoryCountingFindUniqueOrThrowArgs>(args: SelectSubset<T, OccHistoryCountingFindUniqueOrThrowArgs<ExtArgs>>): Prisma__OccHistoryCountingClient<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OccHistoryCounting that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccHistoryCountingFindFirstArgs} args - Arguments to find a OccHistoryCounting
+     * @example
+     * // Get one OccHistoryCounting
+     * const occHistoryCounting = await prisma.occHistoryCounting.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends OccHistoryCountingFindFirstArgs>(args?: SelectSubset<T, OccHistoryCountingFindFirstArgs<ExtArgs>>): Prisma__OccHistoryCountingClient<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first OccHistoryCounting that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccHistoryCountingFindFirstOrThrowArgs} args - Arguments to find a OccHistoryCounting
+     * @example
+     * // Get one OccHistoryCounting
+     * const occHistoryCounting = await prisma.occHistoryCounting.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends OccHistoryCountingFindFirstOrThrowArgs>(args?: SelectSubset<T, OccHistoryCountingFindFirstOrThrowArgs<ExtArgs>>): Prisma__OccHistoryCountingClient<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more OccHistoryCountings that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccHistoryCountingFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all OccHistoryCountings
+     * const occHistoryCountings = await prisma.occHistoryCounting.findMany()
+     * 
+     * // Get first 10 OccHistoryCountings
+     * const occHistoryCountings = await prisma.occHistoryCounting.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const occHistoryCountingWithIdOnly = await prisma.occHistoryCounting.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends OccHistoryCountingFindManyArgs>(args?: SelectSubset<T, OccHistoryCountingFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a OccHistoryCounting.
+     * @param {OccHistoryCountingCreateArgs} args - Arguments to create a OccHistoryCounting.
+     * @example
+     * // Create one OccHistoryCounting
+     * const OccHistoryCounting = await prisma.occHistoryCounting.create({
+     *   data: {
+     *     // ... data to create a OccHistoryCounting
+     *   }
+     * })
+     * 
+     */
+    create<T extends OccHistoryCountingCreateArgs>(args: SelectSubset<T, OccHistoryCountingCreateArgs<ExtArgs>>): Prisma__OccHistoryCountingClient<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many OccHistoryCountings.
+     * @param {OccHistoryCountingCreateManyArgs} args - Arguments to create many OccHistoryCountings.
+     * @example
+     * // Create many OccHistoryCountings
+     * const occHistoryCounting = await prisma.occHistoryCounting.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends OccHistoryCountingCreateManyArgs>(args?: SelectSubset<T, OccHistoryCountingCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many OccHistoryCountings and returns the data saved in the database.
+     * @param {OccHistoryCountingCreateManyAndReturnArgs} args - Arguments to create many OccHistoryCountings.
+     * @example
+     * // Create many OccHistoryCountings
+     * const occHistoryCounting = await prisma.occHistoryCounting.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many OccHistoryCountings and only return the `id`
+     * const occHistoryCountingWithIdOnly = await prisma.occHistoryCounting.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends OccHistoryCountingCreateManyAndReturnArgs>(args?: SelectSubset<T, OccHistoryCountingCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a OccHistoryCounting.
+     * @param {OccHistoryCountingDeleteArgs} args - Arguments to delete one OccHistoryCounting.
+     * @example
+     * // Delete one OccHistoryCounting
+     * const OccHistoryCounting = await prisma.occHistoryCounting.delete({
+     *   where: {
+     *     // ... filter to delete one OccHistoryCounting
+     *   }
+     * })
+     * 
+     */
+    delete<T extends OccHistoryCountingDeleteArgs>(args: SelectSubset<T, OccHistoryCountingDeleteArgs<ExtArgs>>): Prisma__OccHistoryCountingClient<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one OccHistoryCounting.
+     * @param {OccHistoryCountingUpdateArgs} args - Arguments to update one OccHistoryCounting.
+     * @example
+     * // Update one OccHistoryCounting
+     * const occHistoryCounting = await prisma.occHistoryCounting.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends OccHistoryCountingUpdateArgs>(args: SelectSubset<T, OccHistoryCountingUpdateArgs<ExtArgs>>): Prisma__OccHistoryCountingClient<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more OccHistoryCountings.
+     * @param {OccHistoryCountingDeleteManyArgs} args - Arguments to filter OccHistoryCountings to delete.
+     * @example
+     * // Delete a few OccHistoryCountings
+     * const { count } = await prisma.occHistoryCounting.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends OccHistoryCountingDeleteManyArgs>(args?: SelectSubset<T, OccHistoryCountingDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccHistoryCountings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccHistoryCountingUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many OccHistoryCountings
+     * const occHistoryCounting = await prisma.occHistoryCounting.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends OccHistoryCountingUpdateManyArgs>(args: SelectSubset<T, OccHistoryCountingUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more OccHistoryCountings and returns the data updated in the database.
+     * @param {OccHistoryCountingUpdateManyAndReturnArgs} args - Arguments to update many OccHistoryCountings.
+     * @example
+     * // Update many OccHistoryCountings
+     * const occHistoryCounting = await prisma.occHistoryCounting.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more OccHistoryCountings and only return the `id`
+     * const occHistoryCountingWithIdOnly = await prisma.occHistoryCounting.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends OccHistoryCountingUpdateManyAndReturnArgs>(args: SelectSubset<T, OccHistoryCountingUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one OccHistoryCounting.
+     * @param {OccHistoryCountingUpsertArgs} args - Arguments to update or create a OccHistoryCounting.
+     * @example
+     * // Update or create a OccHistoryCounting
+     * const occHistoryCounting = await prisma.occHistoryCounting.upsert({
+     *   create: {
+     *     // ... data to create a OccHistoryCounting
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the OccHistoryCounting we want to update
+     *   }
+     * })
+     */
+    upsert<T extends OccHistoryCountingUpsertArgs>(args: SelectSubset<T, OccHistoryCountingUpsertArgs<ExtArgs>>): Prisma__OccHistoryCountingClient<$Result.GetResult<Prisma.$OccHistoryCountingPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of OccHistoryCountings.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccHistoryCountingCountArgs} args - Arguments to filter OccHistoryCountings to count.
+     * @example
+     * // Count the number of OccHistoryCountings
+     * const count = await prisma.occHistoryCounting.count({
+     *   where: {
+     *     // ... the filter for the OccHistoryCountings we want to count
+     *   }
+     * })
+    **/
+    count<T extends OccHistoryCountingCountArgs>(
+      args?: Subset<T, OccHistoryCountingCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], OccHistoryCountingCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a OccHistoryCounting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccHistoryCountingAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends OccHistoryCountingAggregateArgs>(args: Subset<T, OccHistoryCountingAggregateArgs>): Prisma.PrismaPromise<GetOccHistoryCountingAggregateType<T>>
+
+    /**
+     * Group by OccHistoryCounting.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {OccHistoryCountingGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends OccHistoryCountingGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: OccHistoryCountingGroupByArgs['orderBy'] }
+        : { orderBy?: OccHistoryCountingGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, OccHistoryCountingGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetOccHistoryCountingGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the OccHistoryCounting model
+   */
+  readonly fields: OccHistoryCountingFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for OccHistoryCounting.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__OccHistoryCountingClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the OccHistoryCounting model
+   */
+  interface OccHistoryCountingFieldRefs {
+    readonly id: FieldRef<"OccHistoryCounting", 'Int'>
+    readonly idGate: FieldRef<"OccHistoryCounting", 'Int'>
+    readonly locationCode: FieldRef<"OccHistoryCounting", 'String'>
+    readonly count: FieldRef<"OccHistoryCounting", 'Int'>
+    readonly createdAt: FieldRef<"OccHistoryCounting", 'DateTime'>
+    readonly updatedAt: FieldRef<"OccHistoryCounting", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * OccHistoryCounting findUnique
+   */
+  export type OccHistoryCountingFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * Filter, which OccHistoryCounting to fetch.
+     */
+    where: OccHistoryCountingWhereUniqueInput
+  }
+
+  /**
+   * OccHistoryCounting findUniqueOrThrow
+   */
+  export type OccHistoryCountingFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * Filter, which OccHistoryCounting to fetch.
+     */
+    where: OccHistoryCountingWhereUniqueInput
+  }
+
+  /**
+   * OccHistoryCounting findFirst
+   */
+  export type OccHistoryCountingFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * Filter, which OccHistoryCounting to fetch.
+     */
+    where?: OccHistoryCountingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccHistoryCountings to fetch.
+     */
+    orderBy?: OccHistoryCountingOrderByWithRelationInput | OccHistoryCountingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OccHistoryCountings.
+     */
+    cursor?: OccHistoryCountingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccHistoryCountings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccHistoryCountings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OccHistoryCountings.
+     */
+    distinct?: OccHistoryCountingScalarFieldEnum | OccHistoryCountingScalarFieldEnum[]
+  }
+
+  /**
+   * OccHistoryCounting findFirstOrThrow
+   */
+  export type OccHistoryCountingFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * Filter, which OccHistoryCounting to fetch.
+     */
+    where?: OccHistoryCountingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccHistoryCountings to fetch.
+     */
+    orderBy?: OccHistoryCountingOrderByWithRelationInput | OccHistoryCountingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for OccHistoryCountings.
+     */
+    cursor?: OccHistoryCountingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccHistoryCountings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccHistoryCountings.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of OccHistoryCountings.
+     */
+    distinct?: OccHistoryCountingScalarFieldEnum | OccHistoryCountingScalarFieldEnum[]
+  }
+
+  /**
+   * OccHistoryCounting findMany
+   */
+  export type OccHistoryCountingFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * Filter, which OccHistoryCountings to fetch.
+     */
+    where?: OccHistoryCountingWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of OccHistoryCountings to fetch.
+     */
+    orderBy?: OccHistoryCountingOrderByWithRelationInput | OccHistoryCountingOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing OccHistoryCountings.
+     */
+    cursor?: OccHistoryCountingWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` OccHistoryCountings from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` OccHistoryCountings.
+     */
+    skip?: number
+    distinct?: OccHistoryCountingScalarFieldEnum | OccHistoryCountingScalarFieldEnum[]
+  }
+
+  /**
+   * OccHistoryCounting create
+   */
+  export type OccHistoryCountingCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * The data needed to create a OccHistoryCounting.
+     */
+    data: XOR<OccHistoryCountingCreateInput, OccHistoryCountingUncheckedCreateInput>
+  }
+
+  /**
+   * OccHistoryCounting createMany
+   */
+  export type OccHistoryCountingCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many OccHistoryCountings.
+     */
+    data: OccHistoryCountingCreateManyInput | OccHistoryCountingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OccHistoryCounting createManyAndReturn
+   */
+  export type OccHistoryCountingCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * The data used to create many OccHistoryCountings.
+     */
+    data: OccHistoryCountingCreateManyInput | OccHistoryCountingCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * OccHistoryCounting update
+   */
+  export type OccHistoryCountingUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * The data needed to update a OccHistoryCounting.
+     */
+    data: XOR<OccHistoryCountingUpdateInput, OccHistoryCountingUncheckedUpdateInput>
+    /**
+     * Choose, which OccHistoryCounting to update.
+     */
+    where: OccHistoryCountingWhereUniqueInput
+  }
+
+  /**
+   * OccHistoryCounting updateMany
+   */
+  export type OccHistoryCountingUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update OccHistoryCountings.
+     */
+    data: XOR<OccHistoryCountingUpdateManyMutationInput, OccHistoryCountingUncheckedUpdateManyInput>
+    /**
+     * Filter which OccHistoryCountings to update
+     */
+    where?: OccHistoryCountingWhereInput
+    /**
+     * Limit how many OccHistoryCountings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccHistoryCounting updateManyAndReturn
+   */
+  export type OccHistoryCountingUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * The data used to update OccHistoryCountings.
+     */
+    data: XOR<OccHistoryCountingUpdateManyMutationInput, OccHistoryCountingUncheckedUpdateManyInput>
+    /**
+     * Filter which OccHistoryCountings to update
+     */
+    where?: OccHistoryCountingWhereInput
+    /**
+     * Limit how many OccHistoryCountings to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccHistoryCounting upsert
+   */
+  export type OccHistoryCountingUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * The filter to search for the OccHistoryCounting to update in case it exists.
+     */
+    where: OccHistoryCountingWhereUniqueInput
+    /**
+     * In case the OccHistoryCounting found by the `where` argument doesn't exist, create a new OccHistoryCounting with this data.
+     */
+    create: XOR<OccHistoryCountingCreateInput, OccHistoryCountingUncheckedCreateInput>
+    /**
+     * In case the OccHistoryCounting was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<OccHistoryCountingUpdateInput, OccHistoryCountingUncheckedUpdateInput>
+  }
+
+  /**
+   * OccHistoryCounting delete
+   */
+  export type OccHistoryCountingDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+    /**
+     * Filter which OccHistoryCounting to delete.
+     */
+    where: OccHistoryCountingWhereUniqueInput
+  }
+
+  /**
+   * OccHistoryCounting deleteMany
+   */
+  export type OccHistoryCountingDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which OccHistoryCountings to delete
+     */
+    where?: OccHistoryCountingWhereInput
+    /**
+     * Limit how many OccHistoryCountings to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * OccHistoryCounting without action
+   */
+  export type OccHistoryCountingDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the OccHistoryCounting
+     */
+    select?: OccHistoryCountingSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the OccHistoryCounting
+     */
+    omit?: OccHistoryCountingOmit<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -20582,6 +21723,18 @@ export namespace Prisma {
   };
 
   export type MenusScalarFieldEnum = (typeof MenusScalarFieldEnum)[keyof typeof MenusScalarFieldEnum]
+
+
+  export const OccHistoryCountingScalarFieldEnum: {
+    id: 'id',
+    idGate: 'idGate',
+    locationCode: 'locationCode',
+    count: 'count',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type OccHistoryCountingScalarFieldEnum = (typeof OccHistoryCountingScalarFieldEnum)[keyof typeof OccHistoryCountingScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -21990,6 +23143,65 @@ export namespace Prisma {
     status?: IntWithAggregatesFilter<"Menus"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Menus"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Menus"> | Date | string
+  }
+
+  export type OccHistoryCountingWhereInput = {
+    AND?: OccHistoryCountingWhereInput | OccHistoryCountingWhereInput[]
+    OR?: OccHistoryCountingWhereInput[]
+    NOT?: OccHistoryCountingWhereInput | OccHistoryCountingWhereInput[]
+    id?: IntFilter<"OccHistoryCounting"> | number
+    idGate?: IntNullableFilter<"OccHistoryCounting"> | number | null
+    locationCode?: StringNullableFilter<"OccHistoryCounting"> | string | null
+    count?: IntNullableFilter<"OccHistoryCounting"> | number | null
+    createdAt?: DateTimeFilter<"OccHistoryCounting"> | Date | string
+    updatedAt?: DateTimeFilter<"OccHistoryCounting"> | Date | string
+  }
+
+  export type OccHistoryCountingOrderByWithRelationInput = {
+    id?: SortOrder
+    idGate?: SortOrderInput | SortOrder
+    locationCode?: SortOrderInput | SortOrder
+    count?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OccHistoryCountingWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: OccHistoryCountingWhereInput | OccHistoryCountingWhereInput[]
+    OR?: OccHistoryCountingWhereInput[]
+    NOT?: OccHistoryCountingWhereInput | OccHistoryCountingWhereInput[]
+    idGate?: IntNullableFilter<"OccHistoryCounting"> | number | null
+    locationCode?: StringNullableFilter<"OccHistoryCounting"> | string | null
+    count?: IntNullableFilter<"OccHistoryCounting"> | number | null
+    createdAt?: DateTimeFilter<"OccHistoryCounting"> | Date | string
+    updatedAt?: DateTimeFilter<"OccHistoryCounting"> | Date | string
+  }, "id">
+
+  export type OccHistoryCountingOrderByWithAggregationInput = {
+    id?: SortOrder
+    idGate?: SortOrderInput | SortOrder
+    locationCode?: SortOrderInput | SortOrder
+    count?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: OccHistoryCountingCountOrderByAggregateInput
+    _avg?: OccHistoryCountingAvgOrderByAggregateInput
+    _max?: OccHistoryCountingMaxOrderByAggregateInput
+    _min?: OccHistoryCountingMinOrderByAggregateInput
+    _sum?: OccHistoryCountingSumOrderByAggregateInput
+  }
+
+  export type OccHistoryCountingScalarWhereWithAggregatesInput = {
+    AND?: OccHistoryCountingScalarWhereWithAggregatesInput | OccHistoryCountingScalarWhereWithAggregatesInput[]
+    OR?: OccHistoryCountingScalarWhereWithAggregatesInput[]
+    NOT?: OccHistoryCountingScalarWhereWithAggregatesInput | OccHistoryCountingScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"OccHistoryCounting"> | number
+    idGate?: IntNullableWithAggregatesFilter<"OccHistoryCounting"> | number | null
+    locationCode?: StringNullableWithAggregatesFilter<"OccHistoryCounting"> | string | null
+    count?: IntNullableWithAggregatesFilter<"OccHistoryCounting"> | number | null
+    createdAt?: DateTimeWithAggregatesFilter<"OccHistoryCounting"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"OccHistoryCounting"> | Date | string
   }
 
   export type OccCategoryCreateInput = {
@@ -23423,6 +24635,66 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type OccHistoryCountingCreateInput = {
+    idGate?: number | null
+    locationCode?: string | null
+    count?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OccHistoryCountingUncheckedCreateInput = {
+    id?: number
+    idGate?: number | null
+    locationCode?: string | null
+    count?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OccHistoryCountingUpdateInput = {
+    idGate?: NullableIntFieldUpdateOperationsInput | number | null
+    locationCode?: NullableStringFieldUpdateOperationsInput | string | null
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccHistoryCountingUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idGate?: NullableIntFieldUpdateOperationsInput | number | null
+    locationCode?: NullableStringFieldUpdateOperationsInput | string | null
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccHistoryCountingCreateManyInput = {
+    id?: number
+    idGate?: number | null
+    locationCode?: string | null
+    count?: number | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type OccHistoryCountingUpdateManyMutationInput = {
+    idGate?: NullableIntFieldUpdateOperationsInput | number | null
+    locationCode?: NullableStringFieldUpdateOperationsInput | string | null
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type OccHistoryCountingUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    idGate?: NullableIntFieldUpdateOperationsInput | number | null
+    locationCode?: NullableStringFieldUpdateOperationsInput | string | null
+    count?: NullableIntFieldUpdateOperationsInput | number | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -24468,6 +25740,45 @@ export namespace Prisma {
     parentId?: SortOrder
     position?: SortOrder
     status?: SortOrder
+  }
+
+  export type OccHistoryCountingCountOrderByAggregateInput = {
+    id?: SortOrder
+    idGate?: SortOrder
+    locationCode?: SortOrder
+    count?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OccHistoryCountingAvgOrderByAggregateInput = {
+    id?: SortOrder
+    idGate?: SortOrder
+    count?: SortOrder
+  }
+
+  export type OccHistoryCountingMaxOrderByAggregateInput = {
+    id?: SortOrder
+    idGate?: SortOrder
+    locationCode?: SortOrder
+    count?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OccHistoryCountingMinOrderByAggregateInput = {
+    id?: SortOrder
+    idGate?: SortOrder
+    locationCode?: SortOrder
+    count?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type OccHistoryCountingSumOrderByAggregateInput = {
+    id?: SortOrder
+    idGate?: SortOrder
+    count?: SortOrder
   }
 
   export type OccDescriptionCreateNestedManyWithoutCategoryInput = {

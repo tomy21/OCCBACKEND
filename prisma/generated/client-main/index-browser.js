@@ -330,6 +330,15 @@ exports.Prisma.MenusScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.OccHistoryCountingScalarFieldEnum = {
+  id: 'id',
+  idGate: 'idGate',
+  locationCode: 'locationCode',
+  count: 'count',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -372,7 +381,8 @@ exports.Prisma.ModelName = {
   Users: 'Users',
   Role: 'Role',
   RolePermission: 'RolePermission',
-  Menus: 'Menus'
+  Menus: 'Menus',
+  OccHistoryCounting: 'OccHistoryCounting'
 };
 
 /**
